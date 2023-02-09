@@ -1,0 +1,185 @@
+{% extends 'store/main.html' %} {% load static %} {% block content %}
+
+<link href="{% static 'fontawesomefree/css/fontawesome.css' %}" rel="stylesheet" type="text/css">
+<link href="{% static 'fontawesomefree/css/brands.css' %}" rel="stylesheet" type="text/css">
+<link href="{% static 'fontawesomefree/css/solid.css' %}" rel="stylesheet" type="text/css">
+<link href="{% static 'fontawesomefree/css/all.min.css' %}" rel="stylesheet" type="text/css">
+
+<style type="text/css">
+  @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: "Poppins", sans-serif;
+    background-color: white;
+  }
+
+  .wrapper {
+    padding: 30px 50px;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    margin: 10px auto;
+    max-width: 600px;
+  }
+  h4 {
+    letter-spacing: -1px;
+    font-weight: 400;
+  }
+  .img {
+    margin-left: 25px;
+    width: 70px;
+    height: 70px;
+    border-radius: 6px;
+    object-fit: cover;
+  }
+  #img-section p,
+  #deactivate p {
+    font-size: 12px;
+    color: #777;
+    margin-bottom: 10px;
+    text-align: justify;
+  }
+  #img-section b,
+  #img-section button,
+  #deactivate b {
+    font-size: 14px;
+  }
+
+  label {
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 500;
+    color: #ffff;
+    padding-left: 3px;
+  }
+
+  .form-control {
+    border-radius: 10px;
+  }
+
+  input[placeholder] {
+    font-weight: 500;
+  }
+  .form-control:focus {
+    box-shadow: none;
+    border: 1.5px solid #0779e4;
+  }
+  select {
+    display: block;
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    height: 40px;
+    padding: 5px 10px;
+    /* -webkit-appearance: none; */
+  }
+
+  select:focus {
+    outline: none;
+  }
+  
+  .button:hover {
+    background-color: #0779e4;
+    color: #fff;
+  }
+  .btn-primary {
+    background-color: #0779e4;
+  }
+  .danger {
+    background-color: #fff;
+    color: #e20404;
+    border: 1px solid #ddd;
+  }
+  .danger:hover {
+    background-color: #e20404;
+    color: #fff;
+  }
+  @media (max-width: 576px) {
+    .wrapper {
+      padding: 25px 20px;
+    }
+    #deactivate {
+      line-height: 18px;
+    }
+  }
+</style>
+<br>
+<div class="wrapper">
+  <h4 class="pb-4 border-bottom">Account settings</h4>
+  <div class="d-flex align-items-start py-3 border-bottom">
+    <form action="" id="userinfo" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <img src="{{request.user.customer.image.url}}" class="img" alt="" />
+      <div class="pl-sm-4 pl-2" id="img-section">
+        <b>Profile Photo</b>
+        <p>{{form.image}}</p>
+        <button type="submit" id="form.image" class="btn button border">
+          <b>Upload</b>
+        </button>
+      </div>
+
+      <div class="py-2">
+        <div class="row py-2">
+          <div class="col-md-6">
+            <label for="firstname">Username</label>
+            <input type="text" class="b g-light form-control" placeholder="Fedor
+            Kulish" id={{form.name}}
+          </div>
+          <div class="col-md-6 pt-md-0 pt-3">
+            <label for="phone">Phone Number</label>
+            <input type="tel" class="b g-light form-control" placeholder="+7 213 548 6015S" id={{form.mobile}}
+          </div>
+        </div>
+        <div class="row py-2">
+          <div class="col-md-6">
+            <label for="email">Email Address</label>
+            <input type="text" class="b g-light form-control"
+            placeholder="steve_@email.com" id={{form.email}}
+          </div>
+          <div class="col-md-6 pt-md-0 pt-3">
+            <label for="country">Country</label>
+            <input type="tel" class="b g-light form-control"
+            placeholder="Russia" id={{form.contry}}
+          </div>
+        </div>
+        <div class="row py-2">
+          <div class="col-md-6">
+            <label for="state">State</label>
+            <input type="text" class="b g-light form-control"
+            placeholder="Krasnodarskiy kray" id={{form.state}}
+          </div>
+          <div class="col-md-6 pt-md-0 pt-3">
+            <label for="city">City</label>
+            <input type="tel" class="b g-light form-control"
+            placeholder="Krasnodar" id={{form.city}}
+          </div>
+        </div>
+        <div class="row py-2">
+          <div class="col-md-6">
+            <label for="street">Street</label>
+            <input type="text" class="b g-light form-control"
+            placeholder="Krushavets st. 48" id={{form.street}}
+          </div>
+          <div class="col-md-6 pt-md-0 pt-3">
+            <label for="zipcode">Zipcode</label>
+            <input type="tel" class="b g-light form-control" placeholder="14008"
+            id={{form.zipcode}}
+          </div>
+
+          <div class="py-3 pb-4 border-bottom">
+            <button type="submit" id="userinfo" class="btn btn-primary mr-3">
+              Save Changes
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+</div>
+{% endblock content %}

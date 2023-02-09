@@ -1,0 +1,82 @@
+{% extends 'store/main.html' %} {% load static %} {% block content %}
+
+<style type="text/css">
+  body {
+    background-color: white;
+  }
+</style>
+
+<link
+  href="{% static 'fontawesomefree/css/fontawesome.css' %}"
+  rel="stylesheet"
+  type="text/css" />
+<link
+  href="{% static 'fontawesomefree/css/brands.css' %}"
+  rel="stylesheet"
+  type="text/css" />
+<link
+  href="{% static 'fontawesomefree/css/solid.css' %}"
+  rel="stylesheet"
+  type="text/css" />
+<link
+  href="{% static 'fontawesomefree/css/all.min.css' %}"
+  rel="stylesheet"
+  type="text/css" />
+
+<br />
+<h1 style="text-align: center; color: black">Your Wish list</h1>
+<br />
+<div class="box-element">
+  <div class="cart-row">
+    <div style="flex: 2"></div>
+    <div style="flex: 2"><strong>Item</strong></div>
+    <div style="flex: 2"><strong>Quantity</strong></div>
+    <div style="flex: 1"><strong>Price</strong></div>
+    <div style="flex: 1"><strong>Action</strong></div>
+    <div style="flex: 1"><strong>Total</strong></div>
+  </div>
+
+  {% for item in wish_items %}
+  <div class="cart-row">
+    <div style="flex: 2">
+      <img class="row-image" src="{{item.product.imageURL}}" />
+    </div>
+    <div style="flex: 2"><p>{{item.product.name}}</p></div>
+    <div style="flex: 2; margin-left: 50px"><p>{{item.quantity}}</p></div>
+    <div style="flex: 1; margin-right: 25px">
+      <p>${{item.product.price|floatformat:2}}</p>
+    </div>
+    <div style="flex: 1">
+      <div class="ml-5">
+        <button
+          data-product="{{item.product.id}}"
+          data-action="add"
+          type="button"
+          class="btn btn-warning add-btn update-cart mt-3 mr-2"
+          style="margin-left: -150px"
+          title="add to cart">
+          Add to cart
+          <i id="fuction_icon" class="fa-solid fa-cart-shopping"></i>
+        </button>
+        <form action="{% url 'delete-from-wishlist' %}" method="post">
+          {% csrf_token %}
+          <input type="hidden" name="item-id" value="{{item.id}}" />
+          <button
+            type="submit"
+            class="btn btn-danger add-btn ml-1"
+            style="margin-left: -150px; margin-top: -67px"
+            title="remove from wishlist">
+            Remove
+          </button>
+        </form>
+      </div>
+    </div>
+    <div style="flex: 1"><p>${{item.get_item_price}}</p></div>
+  </div>
+
+  {% endfor %}
+</div>
+
+<script src="{% static 'fontawesomefree/js/all.min.js' %}"></script>
+
+{% endblock content %}

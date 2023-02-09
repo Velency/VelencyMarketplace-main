@@ -1,0 +1,58 @@
+{% extends 'store/main.html' %} {% load static %} {% block content %}
+<link
+  href="{% static 'fontawesomefree/css/fontawesome.css' %}"
+  rel="stylesheet"
+  type="text/css" />
+<link
+  href="{% static 'fontawesomefree/css/brands.css' %}"
+  rel="stylesheet"
+  type="text/css" />
+<link
+  href="{% static 'fontawesomefree/css/solid.css' %}"
+  rel="stylesheet"
+  type="text/css" />
+<link
+  href="{% static 'fontawesomefree/css/all.min.css' %}"
+  rel="stylesheet"
+  type="text/css" />
+
+<style type="text/css">
+  .container {
+    width: 100%;
+    max-height: fit-content;
+  }
+
+  th {
+    margin-left: 100px;
+    margin-right: 100px;
+  }
+</style>
+
+<br />
+<h1 style="color: black; text-align: center">My Orders</h1>
+
+<br />
+<div class="box-element">
+  <table class="table">
+    <thead>
+      <tr>
+        <th><h5>Order number</h5></th>
+        <th><h5>Customer</h5></th>
+        <th><h5>Order id</h5></th>
+        <th><h5>Date</h5></th>
+        <th><h5>Delivered Statuse</h5></th>
+        <th><h5>View details</h5></th>
+      </tr>
+    </thead>
+    <tbody>
+      <th><h6>{{order.id}}</h6></th>
+      <th><h6>{{order.customer}}</h6></th>
+      <th><h6>{{order.transaction_id}}</h6></th>
+      <th><h6>{{order.date_ordered}}</h6></th>
+      <th><h6>{{order.complete}}</h6></th>
+      <th><a href="" type="button" class="btn btn-primary">Views</a></th>
+    </tbody>
+  </table>
+
+  {% endblock content %}
+</div>

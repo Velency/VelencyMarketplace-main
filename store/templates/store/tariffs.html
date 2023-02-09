@@ -1,0 +1,248 @@
+{% extends 'store/main.html' %} {% load static %} {% block content %}
+
+<link
+  href="{% static 'fontawesomefree/css/fontawesome.css' %}"
+  rel="stylesheet"
+  type="text/css" />
+<link
+  href="{% static 'fontawesomefree/css/brands.css' %}"
+  rel="stylesheet"
+  type="text/css" />
+<link
+  href="{% static 'fontawesomefree/css/solid.css' %}"
+  rel="stylesheet"
+  type="text/css" />
+<link
+  href="{% static 'fontawesomefree/css/all.min.css' %}"
+  rel="stylesheet"
+  type="text/css" />
+
+<style>
+  /* Add styles for the page */
+  body {
+    background: #f5f5f5;
+    color: #333333;
+  }
+
+  .pricing-table {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 50px;
+  }
+
+  .pricing-card {
+    width: 90%;
+    height: 95%;
+    background: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgb(0 0 0 / 10%);
+    text-align: center;
+    padding: 20px;
+    margin-bottom: 50px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .pricing-card h3 {
+    font-size: 24px;
+    margin: 20px 0;
+    color: #0066c0;
+  }
+  .pricing-card .price {
+    font-size: 48px;
+    color: #0066c0;
+    margin-bottom: 20px;
+  }
+  .pricing-card .price small {
+    font-size: 18px;
+    color: #666666;
+  }
+  .pricing-card ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .pricing-card li {
+    margin: 10px 0;
+    color: #666666;
+  }
+  .pricing-card button {
+    width: 100%;
+    background: #0066c0;
+    color: #ffffff;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    padding: 15px;
+    cursor: pointer;
+  }
+  .pricing-card .long-description {
+    font-size: 14px;
+    color: #666666;
+    line-height: 1.5;
+    margin-top: 20px;
+  }
+  .pricing-card .long-description p {
+    margin: 10px 0;
+  }
+</style>
+<!-- Add container for pricing table -->
+
+<div class="">
+  <!-- Add pricing table -->
+  <div class="pricing-table row">
+    <div class="col-md-3">
+      <!-- Add pricing card for first tier -->
+      <div class="pricing-card">
+        <h3>Basic</h3>
+        <div class="price">Free<small>/Always</small></div>
+        <button>Already have</button>
+        <div class="long-description">
+          <ul>
+            <li>
+              1. Access to all marketplace products, except for the library of
+              books and video courses.
+            </li>
+            <li>
+              2. Buying products at a regular price without a Crown discount
+            </li>
+            <li>
+              3. Without a gift package of recordings of practices and
+              meditations
+            </li>
+            <li>4. Access to free HR World Chat.</li>
+            <li>5. No notifications of a special offer for the user</li>
+            <li>
+              6. Without benefits for products and projects from partners.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- Add pricing card for third tier -->
+    <div class="col-md-3">
+      <div class="pricing-card">
+        <h3>Crown Lite</h3>
+        <div class="price">$19.99<small>/month</small></div>
+        <button>Get now</button>
+        <div class="long-description">
+          <ul>
+            <li>
+              1. Free monthly access to the marketplace library of books and
+              video courses.
+            </li>
+            <li>
+              2. 10% discount on all courses and products on the marketplace.
+            </li>
+            <li>3. Free package of practice or meditation recordings.</li>
+            <li>
+              4. Access to a closed group on social networks, where live
+              webinars are held with the best teachers of the marketplace.
+            </li>
+            <li>
+              5. Free access to one course or online product on the marketplace.
+            </li>
+            <li>
+              6. Access to high quality courses that are not available to free
+              users.
+            </li>
+            <li>7. Free trials of new products and services.</li>
+            <li>
+              8. Opportunity to participate in prize draws and promotions.
+            </li>
+            <li>9. Priority service and prompt response to inquiries.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- Add pricing card for fourth tier -->
+    <div class="col-md-3">
+      <div class="pricing-card">
+        <h3>Crown Pro</h3>
+        <div class="price">$119.99<small>/Year</small></div>
+        <button>Get now</button>
+
+        <div class="long-description">
+          <ul>
+            <li>
+              1. Free annual access to the marketplace library of books and
+              video courses.
+            </li>
+            <li>
+              2. 10% discount on all courses and products on the marketplace.
+            </li>
+            <li>3. Free package of practice or meditation recordings.</li>
+            <li>
+              4. Access to a closed group on social networks, where live
+              webinars are held with the best teachers of the marketplace.
+            </li>
+            <li>
+              5. Free access to one course or online product on the marketplace.
+            </li>
+            <li>
+              6. Access to high quality courses that are not available to free
+              users.
+            </li>
+            <li>7. Free trials of new products and services.</li>
+            <li>
+              8. Opportunity to participate in prize draws and promotions.
+            </li>
+            <li>9. Priority service and prompt response to inquiries.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- Add pricing card for second tier -->
+    <div class="col-md-3">
+      <div class="pricing-card">
+        <h3>Seller</h3>
+        <div class="price">$12.99<small>/month</small></div>
+        <button>Get now</button>
+        <div class="long-description">
+          <div class="long-description">
+            <ul>
+              <li>
+                1. Community Support: Subscribing sellers will have access to
+                the Valency Store b HR World community.
+              </li>
+              <li>
+                2. Exclusive features. Subscribing sellers will have access to
+                exclusive features such as early access to new products or
+                discounts on certain products from the community and partners.
+              </li>
+              <li>
+                3. Brand products page. Subscribing sellers will be able to
+                customize their product pages, making them more personalized and
+                unique, helping to attract more customers.
+              </li>
+              <li>
+                4. Analytics and reporting. Subscribing sellers will have access
+                to analytics and reporting tools to help them track their sales
+                and better understand their customers, allowing them to make
+                informed business decisions.
+              </li>
+              <li>
+                5. Priority customer support. Subscribing sellers will have
+                priority access to customer support to help them resolve any
+                issues faster and more efficiently.
+              </li>
+              <li>
+                6. Increase sales: Sellers will make more sales as buyers who
+                purchase promotional subscriptions increase sales, which can
+                lead to higher revenue.
+              </li>
+              <li>
+                7. Increased visibility: Subscribing to our marketplace will
+                increase the visibility of the seller's products to potential
+                buyers as they will be more visible on the site.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

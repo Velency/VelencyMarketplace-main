@@ -1,0 +1,111 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+<style type="text/css">
+ 
+   
+   .row #product-row{
+       margin-top: 30px;
+   }
+
+   .card {
+      width: 250px;
+      height: 270px;
+      border-radius: 10px;
+      border: 2px solid #282828;
+  }
+ 
+ #product_img {
+      margin-top: 3px;
+      margin-left: 4px;
+      width: 240px;
+      height: 185px;
+      object-fit:contain;
+  }
+  .product-bottom #rating_icon{
+    color: #28a745;
+    font-size: 10px;  
+  }
+  .product-bottom #product_name {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  .product-bottom #product_price {
+    font-size: 15px;
+    padding-bottom: 10px;
+  }
+  .overlay {
+    display: block;
+    opacity: 0;
+    position: absolute;
+    top: 10%;
+    margin-left: 0;
+    width: 70px;
+  }
+  .product-top:hover .overlay{
+    opacity: 1;
+    margin-left: 5%;
+    transition: 0.5s;
+  }
+  .overlay #fuction_icon {
+    cursor: pointer;
+    background-color: #fff;
+    color: #000;
+    height: 20px;
+    width: 20px;
+    font-size: 20px;
+    padding: 7px;
+    margin: 5%;
+    margin-bottom: 5%;
+  }
+  .overlay .btn-secondary {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    }
+
+</style>
+
+<script src="{% static 'fontawesomefree/js/all.min.js' %}"></script>
+<link href="{% static 'fontawesomefree/css/fontawesome.css' %}" rel="stylesheet" type="text/css">
+<link href="{% static 'fontawesomefree/css/brands.css' %}" rel="stylesheet" type="text/css">
+<link href="{% static 'fontawesomefree/css/solid.css' %}" rel="stylesheet" type="text/css">
+<link href="{% static 'fontawesomefree/css/all.min.css' %}" rel="stylesheet" type="text/css">
+<br>
+<div class="container">
+<h3 id="result_text"  style="color: rgb(205, 163, 14); text-align: center;"><span style="color: #000;">Search result for </span>"{{request.GET.query}}"</h3>
+
+<div class="row" id="product-row">
+    {% for i in product %}
+    <div class="col-md-3 p-3">
+        <div class="card">
+        <div class="product-top">
+          <a href="/product/{{i.id}}"
+          ><img id="product_img" src="{{i.imageURL}}" alt=""></a>
+            <div class="overlay">
+              <button type="button" class="btn btn-secondary" title="quick shop"><a href="/product/{{i.id}}"> <i id="fuction_icon" class="fa fa-eye" aria-hidden="true"></i></a></button>
+              <form action="{% url 'add-to-wishlist' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="product-id" value="{{i.id}}">
+                <button  type="submit" class="btn btn-secondary add-btn add-to-wishlist" title="add to wishlist"> <i id="fuction_icon" class="fa-solid fa-heart"></i></button>
+            </form>
+                <button data-product={{i.id}} data-action="add" type="button" class="btn btn-secondary add-btn update-cart" title="add to cart">  <i id="fuction_icon" class="fa-solid fa-cart-shopping"></i></i></button>
+            </div>
+        </div>
+
+        <div class="product-bottom text-center">
+            <i id="rating_icon" class="fa-solid fa-star"></i>
+            <i id="rating_icon" class="fa-solid fa-star"></i>
+            <i id="rating_icon" class="fa-solid fa-star"></i>
+            <i id="rating_icon" class="fa-solid fa-star"></i>
+            <i id="rating_icon" class="fa-solid fa-star"></i>
+            <h3 id="product_name">{{i.name}}</h3>
+            <h5 id="product_price">${{i.price|floatformat:2}}</h5>
+        </div>
+
+    </div>
+    </div>
+    {% endfor %}
+</div>
+</div>
+{% endblock content %}

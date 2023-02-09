@@ -1,0 +1,345 @@
+{% extends 'store/main.html' %} {% load static %} {% block content %}
+<style type="text/css">
+  body {
+    background-color: white;
+  }
+
+  #tns1 > .tns-item {
+    width: auto;
+  }
+
+  .card {
+    max-width: 250px;
+    max-height: 270px;
+    border-radius: 10px;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #282828;
+  }
+  .product-top {
+    width: 240px;
+    height: 185px;
+  }
+  #product_img {
+    margin-left: 4px;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .product-bottom #rating_icon {
+    color: #28a745;
+    font-size: 10px;
+  }
+  .product-bottom #product_name {
+    font-size: 20px;
+    font-weight: bold;
+    overflow-x: clip;
+    line-height: 1;
+    margin-bottom: 0;
+  }
+  .product-bottom #product_price {
+    font-size: 15px;
+    padding-bottom: 10px;
+  }
+  .overlay {
+    display: block;
+    opacity: 0;
+    position: absolute;
+    top: 10%;
+    margin-left: 0;
+    width: 70px;
+  }
+  .product-top:hover .overlay {
+    opacity: 1;
+    margin-left: 5%;
+    transition: 0.5s;
+  }
+  .overlay #fuction_icon {
+    cursor: pointer;
+    background-color: #fff;
+    color: #000;
+    height: 20px;
+    width: 20px;
+    font-size: 20px;
+    padding: 7px;
+    margin: 5%;
+    margin-bottom: 5%;
+  }
+  .overlay .btn-secondary {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+
+  #line {
+    background-color: rgb(2, 2, 2);
+  }
+
+  #carouselExampleCaptions {
+    position: relative;
+    z-index: 1;
+    height: auto;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .carousel-inner {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: 600px;
+  }
+
+  #slide-img {
+    width: 100%;
+  }
+
+  #trend-block {
+    height: 380px;
+    width: 97%;
+    background-color: rgb(255, 255, 255);
+    position: absolute;
+    z-index: 3;
+    left: 10px;
+    right: 10px;
+    bottom: 0;
+    top: 390px;
+    border-radius: 10px;
+    border: 2px solid #282828;
+  }
+
+  #cat-list {
+    z-index: 3;
+    top: 730px;
+    width: auto;
+    height: auto;
+  }
+
+  #cat-row {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cat-block {
+    margin-left: auto;
+    margin-right: auto;
+    width: 300px;
+    height: 300px;
+    background-color: rgb(241, 241, 241);
+    border-radius: 10px;
+    border: 3px solid #c1c1c1;
+  }
+  .img-block {
+    width: 100%;
+    height: 200px;
+  }
+  .cat-block img {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+  }
+  .content {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+  }
+</style>
+
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/tiny-slider.css"
+/>
+<link rel="stylesheet" type="text/css" href="{% static 'css/slider.css' %}" />
+<link
+  href="{% static 'fontawesomefree/css/fontawesome.css' %}"
+  rel="stylesheet"
+  type="text/css"
+/>
+<link
+  href="{% static 'fontawesomefree/css/brands.css' %}"
+  rel="stylesheet"
+  type="text/css"
+/>
+<link
+  href="{% static 'fontawesomefree/css/solid.css' %}"
+  rel="stylesheet"
+  type="text/css"
+/>
+<link
+  href="{% static 'fontawesomefree/css/all.min.css' %}"
+  rel="stylesheet"
+  type="text/css"
+/>
+
+<div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      {% if sliders.0.product.id is not None %}<a
+        href="/product/{{sliders.0.product.id}}"
+        >{% endif %}
+        <img
+          id="slide-img"
+          src="{{sliders.0.image.url}}"
+          alt="{{slides.0.name}}"
+          style="width: 100%"
+        />{% if sliders.0.product.id is not None %}</a
+      >{% endif %}
+    </div>
+    {% for slide in sliders|slice:"1:" %}
+    <div class="carousel-item">
+      {% if slide.product.id is not None %}
+      <a href="/product/{{slide.product.id}}"
+        >{% endif %}
+        <img
+          src="{{slide.image.url}}"
+          alt="{{slide.name}}"
+          style="width: 100%"
+        />{% if slide.product.id is not None %}</a
+      >{% endif %}
+    </div>
+    {% endfor %}
+  </div>
+
+  <a
+    class="carousel-control-prev"
+    style="position: absolute; z-index: 2; width: 100px; height: 200px"
+    href="#carouselExampleCaptions"
+    role="button"
+    data-slide="prev"
+  >
+    <i class="fa-solid fa-angle-left"></i>
+  </a>
+  <a
+    class="carousel-control-next"
+    style="position: absolute; z-index: 2; width: 100px; height: 200px"
+    href="#carouselExampleCaptions"
+    role="button"
+    data-slide="next"
+  >
+    <i class="fa-solid fa-angle-right"></i>
+  </a>
+</div>
+<div id="trend-block" class="container-fluid">
+  <section style="position: relative" id="slider">
+    <div class="container">
+      <div class="subcontainer">
+        <div class="slider-wrapper">
+          <div class="controller">
+            <div>
+              <h2>Trending Products</h2>
+            </div>
+            <b
+              ><a href="{% url 'trends-list' %}"
+                ><p style="margin-right: 100px; color: black">View all</p></a
+              ></b
+            >
+            <div id="controls">
+              <button class="previous">
+                <i class="fa-solid fa-angle-left"></i>
+              </button>
+              <button class="next">
+                <i class="fa-solid fa-angle-right"></i>
+              </button>
+            </div>
+          </div>
+          {% for message in messages %}
+          <p id="messages">{{message}}</p>
+          {% endfor %}
+          <div class="my-slider">
+            {% for i in trends %}
+            <div class="card mr-2">
+              <div class="product-top">
+                <a href="/product/{{i.product.id}}"
+                  ><img id="product_img" src="{{i.product.imageURL}}" alt=""
+                /></a>
+                <div class="overlay">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    title="quick shop"
+                  >
+                    <a href="/product/{{i.product.id}}">
+                      <i
+                        id="fuction_icon"
+                        class="fa fa-eye"
+                        aria-hidden="true"
+                      ></i
+                    ></a>
+                  </button>
+                  <form action="{% url 'add-to-wishlist' %}" method="post">
+                    {% csrf_token %}
+                    <input
+                      type="hidden"
+                      name="product-id"
+                      value="{{i.product.id}}"
+                    />
+                    <button
+                      type="submit"
+                      class="btn btn-secondary add-btn add-to-wishlist"
+                      title="add to wishlist"
+                    >
+                      <i id="fuction_icon" class="fa-solid fa-heart"></i>
+                    </button>
+                  </form>
+                  <button
+                    data-product="{{i.product.id}}"
+                    data-action="add"
+                    type="button"
+                    class="btn btn-secondary add-btn update-cart"
+                    title="add to cart"
+                  >
+                    <i id="fuction_icon" class="fa-solid fa-cart-shopping"></i>
+                  </button>
+                </div>
+              </div>
+
+              <div class="product-bottom text-center">
+                <i id="rating_icon" class="fa-solid fa-star"></i>
+                <i id="rating_icon" class="fa-solid fa-star"></i>
+                <i id="rating_icon" class="fa-solid fa-star"></i>
+                <i id="rating_icon" class="fa-solid fa-star"></i>
+                <i id="rating_icon" class="fa-solid fa-star"></i>
+                <h3 id="product_name">{{i.product.name}}</h3>
+                <h5 id="product_price">${{i.product.price|floatformat:2}}</h5>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<br />
+<div id="cat-list" class="container-fluid">
+  <div id="cat-row" class="row center-block">
+    {% for cat in categories %}
+    <div class="col-lg-3">
+      <div class="cat-block mb-4">
+        <div class="img-block">
+          <img style="object-fit: cover" src="{{cat.image.url}}" alt="" />
+        </div>
+        <div class="content">
+          <br />
+          <h5>
+            <a href="/product-list/{{cat.id}}"><p>Show more</p></a>
+          </h5>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+<script src="{% static 'fontawesomefree/js/all.min.js' %}"></script>
+<script type="module" src="{% static 'js/slider.js' %}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/min/tiny-slider.js"></script>
+
+<script
+  src="https://code.jquery.com/jquery-1.11.1.min.js"
+  crossorigin="anonymous"
+></script>
+
+{% endblock content %}

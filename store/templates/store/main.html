@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html>
+  <head>
+    <title>Valency Store</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}" />
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/noframework.waypoints.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+      crossorigin="anonymous"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+      integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
+      crossorigin="anonymous" />
+    <link
+      href="{% static 'js/jquery-ui-1.13.1/jquery-ui.min.css' %}"
+      rel="stylesheet" />
+    <link
+      href="{% static 'js/jquery-ui-1.13.1/jquery-ui.structure.min.css' %}"
+      rel="stylesheet" />
+    <link
+      href="{% static 'js/jquery-ui-1.13.1/jquery-ui.theme.min.css' %}"
+      rel="stylesheet" />
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"></script>
+
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+
+    <script type="text/javascript">
+      var user = "{{request.user}}";
+
+      function getToken(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie !== "") {
+          var cookies = document.cookie.split(";");
+          for (var i = 0; i < cookies.length; i++) {
+            var cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === name + "=") {
+              cookieValue = decodeURIComponent(
+                cookie.substring(name.length + 1)
+              );
+              break;
+            }
+          }
+        }
+        return cookieValue;
+      }
+      var csrftoken = getToken("csrftoken");
+
+      function getCookie(name) {
+        // Split cookie string and get all individual name=value pairs in an array
+        var cookieArr = document.cookie.split(";");
+
+        // Loop through the array elements
+        for (var i = 0; i < cookieArr.length; i++) {
+          var cookiePair = cookieArr[i].split("=");
+
+          /* Removing whitespace at the beginning of the cookie name
+		        and compare it with the given string */
+          if (name == cookiePair[0].trim()) {
+            // Decode the cookie value and return
+            return decodeURIComponent(cookiePair[1]);
+          }
+        }
+
+        // Return null if not found
+        return null;
+      }
+      var cart = JSON.parse(getCookie("cart"));
+
+      if (cart == undefined) {
+        cart = {};
+        console.log("Cart Created!", cart);
+        document.cookie = "cart=" + JSON.stringify(cart) + ";domain=;path=/";
+      }
+      console.log("Cart:", cart);
+
+      var csrftoken = getToken("csrftoken");
+    </script>
+  </head>
+
+  <style>
+    /***** Sidebar *****/
+
+    .sidebar {
+      width: 250px;
+      height: 100vh;
+      position: fixed;
+      top: 0;
+      left: -255px;
+      z-index: 999;
+      background: #333;
+      color: #fff;
+      transition: all 0.3s;
+      box-shadow: 3px 3px 3px rgba(51, 51, 51, 0.5);
+      text-align: left;
+    }
+
+    .sidebar.active {
+      left: 0;
+    }
+
+    .open-menu {
+      top: 20px;
+      left: 10px;
+      z-index: 997;
+      box-shadow: 3px 3px 3px rgba(51, 51, 51, 0.2);
+    }
+
+    .open-menu.btn-customized,
+    .open-menu.btn-customized:hover,
+    .open-menu.btn-customized:active,
+    .open-menu.btn-customized:focus,
+    .open-menu.btn-customized:active:focus,
+    .open-menu.btn-customized.active:focus,
+    .open-menu.btn-customized.btn.btn-primary:not(:disabled):not(
+        .disabled
+      ):active,
+    .open-menu.btn-customized.btn.btn-primary:not(:disabled):not(
+        .disabled
+      ):active:focus {
+      box-shadow: 3px 3px 3px rgba(51, 51, 51, 0.2);
+    }
+
+    /* Style for all buttons with the class btn-customized */
+
+    a.btn-customized {
+      margin-left: 5px;
+      margin-right: 5px;
+      padding: 0.75rem 1.5rem;
+      background: #f35b3f;
+      border: 0;
+      border-radius: 4px;
+      font-size: 16px;
+      font-weight: 300;
+      color: #fff;
+      box-shadow: none;
+    }
+
+    a.btn-customized:hover,
+    a.btn-customized:active,
+    a.btn-customized:focus,
+    a.btn-customized:active:focus,
+    a.btn-customized.active:focus,
+    a.btn-customized.btn.btn-primary:not(:disabled):not(.disabled):active,
+    a.btn-customized.btn.btn-primary:not(:disabled):not(
+        .disabled
+      ):active:focus {
+      outline: 0;
+      background: #cd533d; /* for browsers that don't recognize rgba */
+      background: rgba(243, 91, 63, 0.7);
+      border: 0;
+      color: #fff;
+      box-shadow: none;
+    }
+
+    .dismiss {
+      width: 35px;
+      height: 35px;
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      transition: all 0.3s;
+      background: #444;
+      border-radius: 4px;
+      text-align: center;
+      line-height: 35px;
+      cursor: pointer;
+    }
+
+    .dismiss:hover,
+    .dismiss:focus {
+      background: #555;
+      color: #fff;
+    }
+
+    .sidebar .logo {
+      padding: 10px 10px;
+    }
+
+    .sidebar ul.menu-elements {
+      padding: 10px 0;
+      border-bottom: 1px solid #444;
+      transition: all 0.3s;
+    }
+
+    .sidebar ul li a {
+      display: block;
+      padding: 10px 20px;
+      border: 0;
+      color: #fff;
+    }
+
+    .sidebar ul li a:hover,
+    .sidebar ul li a:focus,
+    .sidebar ul li.active > a:hover,
+    .sidebar ul li.active > a:focus {
+      outline: 0;
+      background: #555;
+      color: #fff;
+    }
+
+    .sidebar ul li a i {
+      margin-right: 5px;
+    }
+
+    .sidebar ul li.active > a,
+    a[aria-expanded="true"] {
+      background: #444;
+      color: #fff;
+    }
+
+    .sidebar ul ul a {
+      background: #444;
+      padding-left: 30px;
+      font-size: 14px;
+    }
+
+    .sidebar ul ul li.active > a {
+      background: #555;
+    }
+
+    .sidebar a[data-toggle="collapse"] {
+      position: relative;
+    }
+
+    /* .sidebar .dropdown-toggle::after {
+      display: block;
+      position: absolute;
+      top: 50%;
+      right: 20px;
+      transform: translateY(-50%);
+    } */
+
+    .sidebar .to-top {
+      padding: 20px;
+      text-align: center;
+    }
+
+    a.btn-customized-3 {
+      display: inline-block;
+      width: 100%;
+      margin: 0;
+      padding: 0.75rem 1.5rem;
+      background: #444;
+      border: 0;
+      border-radius: 4px;
+      font-size: 16px;
+      font-weight: 300;
+      color: #fff;
+      box-shadow: none;
+    }
+
+    a.btn-customized-3:hover,
+    a.btn-customized-3:active,
+    a.btn-customized-3:focus,
+    a.btn-customized-3:active:focus,
+    a.btn-customized-3.active:focus,
+    a.btn-customized-3.btn.btn-primary:not(:disabled):not(.disabled):active,
+    a.btn-customized-3.btn.btn-primary:not(:disabled):not(
+        .disabled
+      ):active:focus {
+      outline: 0;
+      background: #555;
+      border: 0;
+      color: #fff;
+      box-shadow: none;
+    }
+
+    a.btn-customized-3 i {
+      margin-right: 5px;
+    }
+
+    .sidebar .dark-light-buttons {
+      padding: 10px 20px 30px 20px;
+      text-align: center;
+    }
+
+    a.btn-customized-4 {
+      display: inline-block;
+      width: 28px;
+      height: 28px;
+      margin: 0 3px;
+      padding: 0;
+      background: #444;
+      border: 0;
+      border-radius: 50%;
+      font-size: 16px;
+      font-weight: 300;
+      color: #fff;
+      box-shadow: none;
+      text-indent: -999999px;
+    }
+
+    a.btn-customized-4.btn-customized-dark {
+      background: #222;
+    }
+
+    a.btn-customized-4.btn-customized-light {
+      background: #fff;
+    }
+
+    a.btn-customized-4.btn-customized-dark:hover,
+    a.btn-customized-4.btn-customized-dark:active,
+    a.btn-customized-4.btn-customized-dark:focus,
+    a.btn-customized-4.btn-customized-dark:active:focus,
+    a.btn-customized-4.btn-customized-dark.active:focus,
+    a.btn-customized-4.btn-customized-dark.btn.btn-primary:not(:disabled):not(
+        .disabled
+      ):active,
+    a.btn-customized-4.btn-customized-dark.btn.btn-primary:not(:disabled):not(
+        .disabled
+      ):active:focus {
+      outline: 0;
+      background: #555;
+      border: 0;
+      color: #fff;
+      box-shadow: none;
+    }
+
+    a.btn-customized-4.btn-customized-light:hover,
+    a.btn-customized-4.btn-customized-light:active,
+    a.btn-customized-4.btn-customized-light:focus,
+    a.btn-customized-4.btn-customized-light:active:focus,
+    a.btn-customized-4.btn-customized-light.active:focus,
+    a.btn-customized-4.btn-customized-light.btn.btn-primary:not(:disabled):not(
+        .disabled
+      ):active,
+    a.btn-customized-4.btn-customized-light.btn.btn-primary:not(:disabled):not(
+        .disabled
+      ):active:focus {
+      outline: 0;
+      background: #555;
+      border: 0;
+      color: #fff;
+      box-shadow: none;
+    }
+  </style>
+  <body>
+    <!--Main Navigation-->
+    <header class="">
+      <!-- Jumbotron -->
+      <div class="p-3 text-center text-white" style="background-color: #131921">
+        <div class="" style="width: 80%; align-items: center; margin-left: 10%">
+          <div class="row">
+            <div
+              class="col-md-4 d-flex justify-content-center justify-content-md-start mb-3 mb-md-0">
+              <a href="{% url 'store' %}" class="ms-md-2">
+                <h5 style="color: white">VALENCY STORE</h5>
+                <h6 style="color: white">By HR World</h6>
+              </a>
+            </div>
+
+            <div class="col-md-4" style="margin-top: auto; margin-bottom: auto">
+              <form
+                class="d-flex input-group w-auto my-auto mb-3 mb-md-0"
+                method="get"
+                action="/search/">
+                <input
+                  name="query"
+                  type="text"
+                  autocomplete="off"
+                  class="form-control rounded"
+                  placeholder="Search" />
+                <button
+                  class="btn input-group-text border-0 d-none d-lg-flex"
+                  type="submit">
+                  <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+              </form>
+            </div>
+
+            <div
+              class="col-md-4 d-flex justify-content-center justify-content-md-end align-items-center">
+              <div class="d-flex">
+                <!-- Cart -->
+                <a
+                  class="text-reset me-3"
+                  href="{% url 'cart' %}"
+                  style="margin-left: 15px">
+                  <span><i class="fas fa-shopping-cart"></i></span>
+                  <span class="badge rounded-pill badge-notification bg-danger"
+                    >{{cartItems}}</span
+                  >
+                </a>
+
+                <!-- Notification -->
+                <div class="dropdown" style="margin-left: 15px">
+                  <a
+                    class="text-reset dropdown-toggle me-3 hidden-arrow"
+                    type="button"
+                    id="dropdownMenu2"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    <i class="fas fa-bell"></i>
+                  </a>
+                  <ul
+                    class="dropdown-menu dropdown-menu-end"
+                    aria-labelledby="navbarDropdownMenu2">
+                    <li><a class="dropdown-item" href="#">Some news</a></li>
+                    <li><a class="dropdown-item" href="#">Another news</a></li>
+                    <li>
+                      <a class="dropdown-item" href="#">Something else here</a>
+                    </li>
+                  </ul>
+                </div>
+
+                <!-- Languages -->
+                <div class="dropdown" style="margin-left: 15px">
+                  <a
+                    class="text-reset dropdown-toggle me-3 hidden-arrow"
+                    type="button"
+                    id="dropdownMenu2"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    <i class="fas fa-globe"></i>
+                  </a>
+                  <ul
+                    class="dropdown-menu dropdown-menu-end"
+                    aria-labelledby="navbarDropdown">
+                    <li>
+                      <a class="dropdown-item" href="#"
+                        ><i class="flag flag-united-kingdom"></i>English
+                        <i class="fa fa-check text-success ms-2"></i
+                      ></a>
+                    </li>
+                    <li>
+                      <hr class="dropdown-divider" />
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="#"
+                        ><i class="flag flag-russia"></i>Русский</a
+                      >
+                    </li>
+                  </ul>
+                </div>
+
+                <!-- User -->
+
+                <div class="dropdown" style="margin-left: 15px">
+                  <a
+                    class="text-reset dropdown-toggle me-3 hidden-arrow"
+                    type="button"
+                    id="dropdownMenu2"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    <img
+                      src="{{request.user.customer.image.url}}"
+                      class="rounded-circle"
+                      height="25"
+                      width="25"
+                      alt=""
+                      loading="lazy" />
+                  </a>
+                  <ul
+                    class="dropdown-menu dropdown-menu-end"
+                    aria-labelledby="navbarDropdown">
+                    <li>
+                      <a class="dropdown-item" href="{% url 'profile' %}"
+                        >Profile</a
+                      >
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="{% url 'orders' %}"
+                        >Orders</a
+                      >
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="{% url 'wishlist' %}"
+                        >Wishlist</a
+                      >
+                    </li>
+                    {% if user.is_superuser %}
+                    <li>
+                      <a class="dropdown-item" href="/admin">Admin Panel</a>
+                    </li>
+                    {% endif %}
+                    <li>
+                      <hr class="dropdown-divider" />
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="{% url 'logoutUser' %}"
+                        >Logout</a
+                      >
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Jumbotron -->
+
+      <!-- Navbar -->
+      <nav
+        class="navbar navbar-expand-lg navbar-dark"
+        style="background-color: #232f3e">
+        <!-- Container wrapper -->
+        <div
+          class="container justify-content-center justify-content-md-between">
+          <!-- Left links -->
+          <ul class="navbar-nav flex-row">
+            <li class="nav-item me-2 me-lg-0">
+              <!-- open sidebar menu -->
+              <a class="btn nav-link open-menu" href="#" role="button">
+                <i class="fas fa-align-left"></i> <span>Menu</span>
+              </a>
+
+              <!-- Sidebar -->
+              <nav class="sidebar">
+                <!-- close sidebar menu -->
+                <div class="dismiss">
+                  <i class="fas fa-arrow-left"></i>
+                </div>
+
+                <div class="logo">
+                  <img
+                    class="rounded-circle"
+                    style="
+                      width: 100px;
+                      height: 100px;
+                      margin-left: 60px;
+                      object-fit: cover;
+                    "
+                    src="/static/images/logo1.png" />
+                </div>
+                <ul class="list-unstyled menu-elements">
+                  <li class="active">
+                    <a class="dropdown-item scroll-link" href="#top-content"
+                      >Seller(soon)</a
+                    >
+                  </li>
+                  <li>
+                    <a type="button" href="{% url 'tariffs' %}" class="button"
+                      >Crown</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#collapse{{partner.site}}"
+                      data-toggle="collapse"
+                      aria-expanded="false"
+                      class="dropdown-toggle"
+                      >Partners</a
+                    >
+                    <ul
+                      class="collapse list-unstyled"
+                      id="collapse{{partner.site}}">
+                      {% for partner in partners %}
+                      <li>
+                        <a class="dropdown-item" href="{{partner.site}}"
+                          >{{partner.name}}</a
+                        >
+                      </li>
+                      {% endfor %}
+                    </ul>
+                  </li>
+                  <li>
+                    <a class="button" type="button" href="{% url 'offers' %}"
+                      >Suguestions</a
+                    >
+                  </li>
+                  <li>
+                    <a class="button" href="{% url 'support' %}">Support</a>
+                  </li>
+                  <li>
+                    <span style="margin-left: 70px"
+                      ><i class="fa-solid fa-angles-down"></i> Categories
+                      <i class="fa-solid fa-angles-down"></i
+                    ></span>
+                  </li>
+                  {% for cat in categories %}
+                  <li>
+                    <a
+                      class="dropdown-toggle"
+                      href="/product-list/{{cat.id}}"
+                      data-toggle="collapse"
+                      data-target="#collapse{{cat.id }}"
+                      aria-expanded="false"
+                      aria-controls="collapse{{cat.id }}">
+                      {{cat.name}}
+                    </a>
+
+                    <ul
+                      class="collapse list-unstyled"
+                      id="collapse{{ cat.id }}">
+                      <li>
+                        <a href="/product-list/{{cat.id}}"
+                          ><b>Show all products</b></a
+                        >
+                      </li>
+                      {% for subcat in cat.sub_category_set.all %}
+                      <li>
+                        <a
+                          class="dropdown-item"
+                          href="/sub-product-list/?category={{subcat.id}}"
+                          >{{subcat.name}}</a
+                        >
+                      </li>
+                      {% endfor %}
+                    </ul>
+                  </li>
+                  {% endfor %}
+                </ul>
+
+                <div class="to-top">
+                  <a
+                    class="btn btn-primary btn-customized-3"
+                    href="#"
+                    role="button">
+                    <i class="fas fa-arrow-up"></i> Top
+                  </a>
+                </div>
+              </nav>
+              <!-- End sidebar -->
+            </li>
+
+            <li class="nav-item me-2 me-lg-0 d-none d-md-inline-block">
+              <a class="nav-link" href="#">Seller(soon)</a>
+            </li>
+            <li class="nav-item me-2 me-lg-0 d-none d-md-inline-block">
+              <a class="nav-link" href="{% url 'tariffs' %}">Crown</a>
+            </li>
+            <li class="nav-item me-2 me-lg-0 d-none d-md-inline-block">
+              <div class="dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  role="button"
+                  data-toggle="dropdown"
+                  aria-expanded="false">
+                  Partners
+                </a>
+
+                <div class="dropdown-menu">
+                  {% for partner in partners %}
+                  <a class="dropdown-item" href="{{partner.site}}"
+                    >{{partner.name}}</a
+                  >
+                  {% endfor %}
+                </div>
+              </div>
+            </li>
+            <li class="nav-item me-2 me-lg-0 d-none d-md-inline-block">
+              <a class="nav-link" href="{% url 'offers' %}">Suguestions</a>
+            </li>
+            <li class="nav-item me-2 me-lg-0 d-none d-md-inline-block">
+              <a class="nav-link" href="{% url 'support' %}">Support</a>
+            </li>
+          </ul>
+          <!-- Left links -->
+        </div>
+        <!-- Container wrapper -->
+      </nav>
+      <!-- Navbar -->
+    </header>
+    <!--Main Navigation-->
+    {% block content %} {% endblock content %}
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      crossorigin="anonymous"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      crossorigin="anonymous"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"
+      crossorigin="anonymous"></script>
+
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      crossorigin="anonymous"></script>
+
+    <script type="text/javascript" src="{% static 'js/cart.js' %}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+    <script src="{% static 'js/jquery-ui-1.13.1/jquery-ui.js' %}"></script>
+    <script src="{% static 'js/custom.js' %}"></script>
+
+    <script>
+      jQuery(document).ready(function () {
+        $(".dismiss, .overlay").on("click", function () {
+          $(".sidebar").removeClass("active");
+          $(".overlay").removeClass("active");
+        });
+
+        $(".open-menu").on("click", function (e) {
+          e.preventDefault();
+          $(".sidebar").addClass("active");
+          $(".overlay").addClass("active");
+          // close opened sub-menus
+          $(".collapse.show").toggleClass("show");
+          $("a[aria-expanded=true]").attr("aria-expanded", "false");
+        });
+
+        /* other code */
+      });
+
+      /*
+    Navigation
+*/
+      $("a.scroll-link").on("click", function (e) {
+        e.preventDefault();
+        scroll_to($(this), 0);
+      });
+
+      function scroll_to(clicked_link, nav_height) {
+        var element_class = clicked_link.attr("href").replace("#", ".");
+        var scroll_to = 0;
+        if (element_class != ".top-content") {
+          element_class += "-container";
+          scroll_to = $(element_class).offset().top - nav_height;
+        }
+        if ($(window).scrollTop() != scroll_to) {
+          $("html, body").stop().animate({ scrollTop: scroll_to }, 1000);
+        }
+      }
+
+      $(".to-top a").on("click", function (e) {
+        e.preventDefault();
+        if ($(window).scrollTop() != 0) {
+          $("html, body").stop().animate({ scrollTop: 0 }, 1000);
+        }
+      });
+
+      $("a.btn-customized-dark").on("click", function (e) {
+        e.preventDefault();
+        $(".sidebar").removeClass("light");
+      });
+
+      $("a.btn-customized-light").on("click", function (e) {
+        e.preventDefault();
+        $(".sidebar").addClass("light");
+      });
+    </script>
+  </body>
+  <!-- Footer -->
+  <footer class="text-center text-lg-start bg-white text-muted">
+    <!-- Section: Social media -->
+    <section
+      class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+      <!-- Left -->
+      <div class="me-5 d-none d-lg-block">
+        <span>Get connected with us on social networks:</span>
+      </div>
+      <!-- Left -->
+
+      <!-- Right -->
+      <div>
+        <a href="" class="me-4 link-secondary" style="margin-left: 15px">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="" class="me-4 link-secondary" style="margin-left: 15px">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="" class="me-4 link-secondary" style="margin-left: 15px">
+          <i class="fab fa-telegram"></i>
+        </a>
+        <a href="" class="me-4 link-secondary" style="margin-left: 15px">
+          <i class="fab fa-youtube"></i>
+        </a>
+      </div>
+      <!-- Right -->
+    </section>
+    <!-- Section: Social media -->
+
+    <!-- Section: Links  -->
+    <section class="">
+      <div class="container text-center text-md-start mt-5">
+        <!-- Grid row -->
+        <div class="row mt-5">
+          <!-- Grid column -->
+          <div class="col-md-4 col-lg-4 col-xl-3 mx-auto mb-4">
+            <!-- Content -->
+            <h6 class="text-uppercase fw-bold mb-4">
+              <i class="fas fa-gem me-3 text-secondary"></i> VALENCY STORE
+            </h6>
+            <p>
+              Welcome to Valency Store, your one-stop destination for all things
+              education. Browse through our selection of courses and discover
+              the latest innovations in the field. Trust us to be your reliable
+              partner in your education journey.
+            </p>
+          </div>
+          <!-- Grid column -->
+
+          <div class="col-md-4 col-lg-2 col-xl-2 mx-auto mb-4">
+            <!-- Links -->
+            <h6 class="text-uppercase fw-bold mb-4">Partners</h6>
+            {% for partner in partners %}
+            <p>
+              <a href="{{partner.site}}" class="text-reset">{{partner.name}}</a>
+            </p>
+            {% endfor %}
+          </div>
+
+          <!-- Grid column -->
+          <div class="col-md-4 col-lg-2 col-xl-2 mx-auto mb-4">
+            <!-- Links -->
+            <h6 class="text-uppercase fw-bold mb-4">Info</h6>
+            <p>
+              <a href="#!" class="text-reset">News(soon)</a>
+            </p>
+            <p>
+              <a href="{% url 'tariffs' %}" class="text-reset">Crown</a>
+            </p>
+            <p>
+              <a href="#!" class="text-reset">Seller(soon)</a>
+            </p>
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-md-4 col-lg-2 col-xl-2 mx-auto mb-4">
+            <!-- Links -->
+            <h6 class="text-uppercase fw-bold mb-4">Help</h6>
+            <p>
+              <a href="{% url  'offers' %}" class="text-reset">Suguestions</a>
+            </p>
+            <p>
+              <a href="{% url 'support' %}" class="text-reset">Support</a>
+            </p>
+            <p>
+              <a href="#!" class="text-reset">F.A.Q(soon)</a>
+            </p>
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+            <!-- Links -->
+            <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
+            <p>
+              <i class="fas fa-home me-3 text-secondary"></i> Georgia, Kobaladze
+              8a, 6000, GE
+            </p>
+            <p>
+              <i class="fas fa-envelope me-3 text-secondary"></i>
+              valency.store.corp@gmail.com
+            </p>
+            <p>
+              <i class="fas fa-phone me-3 text-secondary"></i> + 995 568 836 179
+            </p>
+          </div>
+          <!-- Grid column -->
+        </div>
+        <!-- Grid row -->
+      </div>
+    </section>
+    <!-- Section: Links  -->
+
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.025)">
+      © 2021 Valency Store:
+      <a class="text-reset fw-bold" href="#">by HR World (beta 0.1)</a>
+    </div>
+    <!-- Copyright -->
+  </footer>
+  <!-- Footer -->
+</html>
