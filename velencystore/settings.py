@@ -30,7 +30,7 @@ SECRET_KEY = 'django-insecure-a&y+2)855phja&yth=5rf^n(r6oeo+7n#l1)dceo=j$(utz*2z
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['velency-marketplace.herokuapp.com','127.0.0.1']
+ALLOWED_HOSTS = ['velency-marketplace.herokuapp.com','127.0.0.1', 'testmarketplace.herokuapp.com']
 
 
 # Application definition
@@ -330,7 +330,7 @@ AWS_SECRET_ACCESS_KEY = 'fyMBqMt4WtywbDGlTFmwe1eccrnPDngzkkPLhJkC'
 AWS_STORAGE_BUCKET_NAME = 'valencystore-db'
 
 AWS_S3_SIGNATURE_VERSION = "s3v4"
-AWS_REGION_NAME = "eu-west-3"
+AWS_REGION_NAME = "eu-west-3"           
 
 
 AWS_S3_FILE_OWERWRITE = False
