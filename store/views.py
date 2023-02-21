@@ -14,7 +14,7 @@ from django.contrib.auth.forms import UserCreationForm
 from .forms import CreateUserForm, CustomerOfferForm, UpdateCustomerForm, CommentsForm, SupportForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-
+from django.contrib.auth.decorators import login_required
 
 from .s3 import upload_to_s3, download_from_s3
 
@@ -92,8 +92,8 @@ def DeleteFormWishList(request):
 		return HttpResponseRedirect(reverse('wishlist'))
 
 
-
-def account(request):
+@login_required
+def account(request):	
 	if request.method =="POST":
 		customer = request.user.customer
 		form = UpdateCustomerForm(request.POST, request.FILES, instance = customer)
