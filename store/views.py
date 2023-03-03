@@ -71,7 +71,7 @@ def wishlist(request):
 
 def addToWishlist(request):
 	if request.method =="POST":
-		product_id = request.POST.get('product-id')
+		product_id = request.POST.get('id')
 		product = Product.objects.get(id=product_id)
 
 		try:
@@ -155,7 +155,7 @@ def addComment(request, id):
 			data.comment = form.cleaned_data['comment']
 			data.rate = form.cleaned_data['rate']
 			data.ip = request.META.get('REMOTE_ADDR')
-			data.product_id = id
+			data.product.id = id
 			current_customer = request.user.customer
 			data.customer_id = current_customer.id
 			data.save()

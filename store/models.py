@@ -39,8 +39,8 @@ class Sub_Category(models.Model):
 
 
 class Product(models.Model):
+    id = models.AutoField(primary_key=True,default=None)
     name = models.CharField(max_length=23)
-    product_id = models.CharField(max_length=10, null=True)
     brand_name = models.ForeignKey(Customer, on_delete=models.CASCADE, null=True )
     slug = models.SlugField(default="", null=True)
     price = models.DecimalField(max_digits=7, decimal_places=2, null=True)
