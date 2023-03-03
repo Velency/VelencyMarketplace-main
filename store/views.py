@@ -155,7 +155,7 @@ def addComment(request, id):
 			data.comment = form.cleaned_data['comment']
 			data.rate = form.cleaned_data['rate']
 			data.ip = request.META.get('REMOTE_ADDR')
-			data.product.id = id
+			data.product_id = id
 			current_customer = request.user.customer
 			data.customer_id = current_customer.id
 			data.save()
