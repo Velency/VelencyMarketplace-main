@@ -71,7 +71,7 @@ def wishlist(request):
 
 def addToWishlist(request):
 	if request.method =="POST":
-		product_id = request.POST.get('id')
+		product_id = request.POST.get('product-id')
 		product = Product.objects.get(id=product_id)
 
 		try:
