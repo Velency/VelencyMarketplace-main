@@ -40,4 +40,8 @@ urlpatterns = [
     path('checkout/', views.checkout, name="checkout"),
     path('update_item/', views.updateItem, name="update_item"),
     path('process_order/', views.processOrder, name="process_order"),
+
+    #seller reg
+    path('create_seller', views.create_seller, name="create_seller"),
+
 ]

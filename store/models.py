@@ -51,7 +51,7 @@ class Seller(models.Model):
     payment_details = models.TextField(max_length=50, blank=False )
 
     def __str__(self):
-        return self.company_name
+        return self.brand_name
 
 class Product(models.Model):
     id = models.AutoField(primary_key=True,default=None)

@@ -33,10 +33,10 @@ def create_seller(request):
             seller = form.save(commit=False)
             seller.user = request.user
             seller.save()
-            return redirect('marketplace:index')
+            return redirect('store:main')
     else:
         form = SellerForm()
-    return render(request, 'marketplace/create_seller.html', {'form': form})
+    return render(request, 'store/create_seller.html', {'form': form})
 
 def create_product(request):
     if request.method == 'POST':
@@ -48,7 +48,7 @@ def create_product(request):
             return redirect('marketplace:index')
     else:
         form = ProductForm()
-    return render(request, 'marketplace/create_product.html', {'form': form})
+    return render(request, 'create_product.html', {'form': form})
 
 
 
