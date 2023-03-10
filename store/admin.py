@@ -12,6 +12,8 @@ admin.site.register(Customer)
 admin.site.register(Comments)
 admin.site.register(Offer)
 admin.site.register(Support)
+admin.site.register(Seller)
+admin.site.register(Payment_method)
 
 
 class GalleryInline(admin.TabularInline):

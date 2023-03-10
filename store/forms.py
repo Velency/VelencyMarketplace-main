@@ -3,7 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django import forms
 from django.contrib.auth.models import User
 
-from store.models import Customer, Comments, Offer, Support
+from store.models import Customer, Comments, Offer, Support, Seller, Product
 
 
 
@@ -12,7 +12,10 @@ class CreateUserForm(UserCreationForm):
         model = User 
         fields = ['username', 'email', 'password1', 'password2']
 
-
+class ProductForm(forms.ModelForm):
+    class Meta:
+        model = Product
+        fields = ['name','price','category','sub_category', 'description','quantity','digital' , 'available','file' , 'image',]
 
 class UpdateCustomerForm(forms.ModelForm):
     class Meta:
@@ -38,3 +41,7 @@ class SupportForm(forms.ModelForm):
         fields = [ 'subject', 'email', 'comment']
 
 
+class SellerForm(forms.ModelForm):
+    class Meta:
+        model = Seller
+        fields = ['bio','brand_name', 'location', 'phone', 'website']
