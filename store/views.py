@@ -33,7 +33,7 @@ def create_seller(request):
             seller = form.save(commit=False)
             seller.user = request.user
             seller.save()
-            return redirect('store:main')
+            return redirect('store')
     else:
         form = SellerForm()
     return render(request, 'store/create_seller.html', {'form': form})
