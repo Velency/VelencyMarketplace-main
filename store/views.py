@@ -11,7 +11,7 @@ from .utils import cookieCart, cartData, guestOrder
 
 
 from django.contrib.auth.forms import UserCreationForm
-from .forms import CreateUserForm, CustomerOfferForm, UpdateCustomerForm, CommentsForm, SupportForm
+from .forms import CreateUserForm, CustomerOfferForm, UpdateCustomerForm, CommentsForm, SupportForm,SellerForm,ProductForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -26,7 +26,29 @@ from .s3 import upload_to_s3, download_from_s3
 
 
 
+def create_seller(request):
+    if request.method == 'POST':
+        form = SellerForm(request.POST)
+        if form.is_valid():
+            seller = form.save(commit=False)
+            seller.user = request.user
+            seller.save()
+            return redirect('marketplace:index')
+    else:
+        form = SellerForm()
+    return render(request, 'marketplace/create_seller.html', {'form': form})
 
+def create_product(request):
+    if request.method == 'POST':
+        form = ProductForm(request.POST, request.FILES)
+        if form.is_valid():
+            product = form.save(commit=False)
+            product.seller = request.user.seller
+            product.save()
+            return redirect('marketplace:index')
+    else:
+        form = ProductForm()
+    return render(request, 'marketplace/create_product.html', {'form': form})
 
 
 
@@ -383,18 +405,22 @@ def register(request):
 		form = CreateUserForm()
 		if request.method == 'POST':
 			form = CreateUserForm(request.POST) 
-		if form.is_valid(): 
-		#saving the registered user
-			user = form.save()
-			username= form.cleaned_data.get('username')
-		#create customer
-			Customer.objects.create(user=user, name=username, email=user.email)
-			messages.success(request, 'Account was created for' + username)
-			return redirect('loginPage')
-		
-	
-		context = {'form':form}
-		return render(request, 'store/reg.html', context)
+			if form.is_valid():
+				# Check if username contains whitespace
+				username = form.cleaned_data.get('username')
+				if ' ' in username:
+					messages.info(request, 'Username should not contain spaces')
+					return redirect('register')
+				# Saving the registered user
+				user = form.save()
+				# Create customer
+				Customer.objects.create(user=user, name=username, email=user.email)
+				messages.success(request, 'Account was created for ' + username)
+				return redirect('loginPage')
+			
+	context = {'form':form}
+	return render(request, 'store/reg.html', context)
+
 
 
 

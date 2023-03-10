@@ -3,7 +3,6 @@ from django.contrib.auth.models import User
 from ckeditor.fields import RichTextField
 
 
-# Create your models here.
 
 class Customer(models.Model):
     user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
@@ -36,7 +35,23 @@ class Sub_Category(models.Model):
     def __str__(self):
 	    return self.name
 
+class Payment_method(models.Model):
+    name = models.CharField(max_length=50)
 
+    def __str__(self):
+	    return self.name
+class Seller(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    bio = models.TextField(max_length=500, blank=True)
+    brand_name = models.CharField(max_length=100)
+    location = models.CharField(max_length=100)
+    phone = models.CharField(max_length=20)
+    website = models.URLField(blank=True)
+    payment_method = models.ForeignKey(Payment_method, on_delete=models.CASCADE, null=True)
+    payment_details = models.TextField(max_length=50, blank=False )
+
+    def __str__(self):
+        return self.company_name
 
 class Product(models.Model):
     id = models.AutoField(primary_key=True,default=None)
@@ -221,3 +236,4 @@ class Partnership(models.Model):
 
     def __str__(self):
 	    return self.name
+
