@@ -46,7 +46,6 @@ INSTALLED_APPS = [
     'store.apps.StoreConfig',
     'fontawesomefree',
     'crispy_forms',
-    'ckeditor',
     'storages',
        
 ]
