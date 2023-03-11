@@ -28,7 +28,7 @@ def create_seller(request):
             seller = form.save(commit=False)
             seller.user = request.user
             seller.save()
-            return redirect('store')
+            return redirect('/store')
     else:
         form = SellerForm()
     return render(request, 'store/create_seller.html', {'form': form})
@@ -40,7 +40,7 @@ def create_product(request):
             product = form.save(commit=False)
             product.seller = request.user.seller
             product.save()
-            return redirect('store')
+            return redirect('/store')
     else:
         form = ProductForm()
     return render(request, 'store/create_product.html', {'form': form})
