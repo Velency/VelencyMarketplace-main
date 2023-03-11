@@ -43,5 +43,5 @@ urlpatterns = [
 
     #seller reg
     path('create_seller', views.create_seller, name="create_seller"),
-
+    path('create_product',views.create_product, name="create_product" )
 ]

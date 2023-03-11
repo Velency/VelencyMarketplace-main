@@ -21,11 +21,6 @@ from .s3 import upload_to_s3, download_from_s3
 
 # Create your views here.
 
-
-
-
-
-
 def create_seller(request):
     if request.method == 'POST':
         form = SellerForm(request.POST)
@@ -45,10 +40,10 @@ def create_product(request):
             product = form.save(commit=False)
             product.seller = request.user.seller
             product.save()
-            return redirect('marketplace:index')
+            return redirect('store')
     else:
         form = ProductForm()
-    return render(request, 'create_product.html', {'form': form})
+    return render(request, 'store/create_product.html', {'form': form})
 
 
 
