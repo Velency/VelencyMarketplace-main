@@ -44,4 +44,4 @@ class SupportForm(forms.ModelForm):
 class SellerForm(forms.ModelForm):
     class Meta:
         model = Seller
-        fields = ['bio','brand_name', 'location', 'phone', 'website']
+        fields = ['bio','brand_name', 'location', 'phone', 'payment_method', 'payment_details', 'website']

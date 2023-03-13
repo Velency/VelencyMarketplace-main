@@ -21,6 +21,19 @@ from .s3 import upload_to_s3, download_from_s3
 
 # Create your views here.
 
+@login_required
+def seller_dashboard(request):
+    user = request.user
+    try:
+        seller = Seller.objects.get(user=user)
+    except Seller.DoesNotExist:
+        return redirect('create_seller')
+    
+    if seller.is_verified:
+        return render(request, 'store/seller_dashboard.html')
+    else:
+        return render(request, 'store/pending_dashboard.html')
+
 def create_seller(request):
     if request.method == 'POST':
         form = SellerForm(request.POST)

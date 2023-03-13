@@ -48,7 +48,8 @@ class Seller(models.Model):
     phone = models.CharField(max_length=20)
     website = models.URLField(blank=True)
     payment_method = models.ForeignKey(Payment_method, on_delete=models.CASCADE, null=True)
-    payment_details = models.TextField(max_length=50, blank=False )
+    payment_details = models.CharField(max_length=20, blank=False )
+    is_verified = models.BooleanField(default=False,blank=False)
 
     def __str__(self):
         return self.brand_name

@@ -43,6 +43,8 @@ urlpatterns = [
     path('process_order/', views.processOrder, name="process_order"),
 
     #seller reg
+    path('seller_dashboard/', views.seller_dashboard, name="seller_dashboard"),
     path('create_seller/', views.create_seller, name="create_seller"),
     path('create_product/',views.create_product, name="create_product" )
+
 ]
