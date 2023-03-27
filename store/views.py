@@ -21,6 +21,23 @@ from .s3 import upload_to_s3, download_from_s3
 
 # Create your views here.
 
+def index(request):
+	return render(request, 'store/index.html')
+
+
+def packet_buy(request):
+	data = cartData(request)
+	
+	cartItems = data['cartItems']
+	order = data['order']
+	items = data['items']
+	partners = Partnership.objects.all()
+	context = {'partners':partners, 'items':items, 'order':order, 'cartItems':cartItems, }
+	return render(request, 'store/packet_buy.html', context)
+
+
+
+
 @login_required
 def seller_dashboard(request):
     user = request.user
@@ -143,7 +160,7 @@ def account(request):
 	context ={'partners':partners, 'cartItems':cartItems,  'form':form, 'order':order, 'items':items,  'categories':categories}
 	return render(request, 'store/customerDetail.html', context)
 
-
+@login_required
 def orders(request):
 	data = cartData(request)
 
@@ -304,7 +321,7 @@ def view_all(request, category_id):
 	return render(request, 'store/view_all.html', context)
 
 
-
+@login_required
 def cart(request):
 	data = cartData(request)
 
@@ -451,13 +468,13 @@ def search(request):
 
 def tariffs (request):
 	data = cartData(request)
-
+	
 	cartItems = data['cartItems']
 	order = data['order']
 	items = data['items']
 	categories =Category.objects.all()
 	partners = Partnership.objects.all()
-	context = {'cartItems':cartItems, 'order':order, 'items':items, 'categories':categories, 'partners':partners}
+	context = {  'cartItems':cartItems, 'order':order, 'items':items, 'categories':categories, 'partners':partners}
 	return render(request, 'store/tariffs.html', context)
 
 def politic (request):

@@ -16,6 +16,7 @@ admin.site.register(Seller)
 admin.site.register(Payment_method)
 
 
+
 class GalleryInline(admin.TabularInline):
     fk_name = 'product'
     model = Gallery

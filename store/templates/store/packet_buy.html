@@ -1,0 +1,35 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+
+<link href="{% static 'fontawesomefree/css/fontawesome.css' %}" rel="stylesheet" type="text/css">
+<link href="{% static 'fontawesomefree/css/brands.css' %}" rel="stylesheet" type="text/css">
+<link href="{% static 'fontawesomefree/css/solid.css' %}" rel="stylesheet" type="text/css">
+<link href="{% static 'fontawesomefree/css/all.min.css' %}" rel="stylesheet" type="text/css">
+    <div class="container">
+    <h3 style="margin-top:20px; text-align: center;">Внимание!</h3>
+        <p>Мы приносим свои извинения за такой формат покупки пакета. Нам требуется пару дней чтобы исправить данную ситуацию. 
+          Для покупки пакета запоните форму ниже после чего с вами свяжется наш менеджер и проконсультирует вас как приобрести пакет и как получить токены на ваш кошелёк. 
+
+        </p>
+    <div class="right-review">
+        <h4 class="text-top" style="text-align: center;"><b>Форма для покупки пакета:</b><h4>
+        <form class="form-contact" method="post" action="">
+          {% csrf_token %}
+          <h5 style="margin-left:150px;">Ваша почта:</h5>
+          <div class="form-group">
+            <input name="email" type="text" style="width:70%; margin-left: 150px; text-align:center; border-radius: 3px;" class="input" >
+          </div>
+          <h5 style="margin-left:150px;">Тема (Покупка пакета за "стоимость"):</h5>
+          <div class="form-group">
+            <input name="subject" type="text" style="width:70%; margin-left: 150px; text-align:center; border-radius: 3px;" class="input" >
+          </div>
+          <h5 style="margin-left: 150px;">Контактны данные для связи:</h5>
+          <div class="form-group">
+            <textarea name="comment" type="text" rows="4" style="width:70%; margin-left: 150px; text-align:center;  border-radius: 3px;" ></textarea>
+          </div>
+          <button style="margin-left: 150px; margin-top: -10px; width: 150px;" class="btn btn-primary" type="submit">Отправить</button>
+        </form>
+      </div>
+      </div>
+{% endblock content %}

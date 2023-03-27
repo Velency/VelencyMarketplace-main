@@ -119,7 +119,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru'
 
 TIME_ZONE = 'UTC'
 
@@ -324,19 +324,19 @@ JAZZMIN_UI_TWEAKS = {
 
 #aws settings
 
-AWS_ACCESS_KEY_ID = 'AKIAQG5DN6JGWMUW5T6Y'
-AWS_SECRET_ACCESS_KEY = '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'
-AWS_STORAGE_BUCKET_NAME = 'valencystore2'
+# AWS_ACCESS_KEY_ID = 'AKIAQG5DN6JGWMUW5T6Y'
+# AWS_SECRET_ACCESS_KEY = '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'
+# AWS_STORAGE_BUCKET_NAME = 'valencystore2'
 
-AWS_S3_SIGNATURE_VERSION = "s3v4"
-AWS_REGION_NAME = "us-east-1"
-AWS_S3_REGION_NAME = "us-east-1"           
+# AWS_S3_SIGNATURE_VERSION = "s3v4"
+# AWS_REGION_NAME = "us-east-1"
+# AWS_S3_REGION_NAME = "us-east-1"           
 
 
-AWS_S3_FILE_OWERWRITE = False
-AWS_DEFAULT_ACL = None
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+# AWS_S3_FILE_OWERWRITE = False
+# AWS_DEFAULT_ACL = None
+# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 
 
