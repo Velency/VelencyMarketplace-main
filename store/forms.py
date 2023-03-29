@@ -10,7 +10,7 @@ from store.models import Customer, Comments, Offer, Support, Seller, Product
 class CreateUserForm(UserCreationForm):
     class Meta:
         model = User 
-        fields = ['username', 'email', 'password1', 'password2']
+        fields = ['username', 'email', 'first_name', 'last_name', 'password1', 'password2']
 
 class ProductForm(forms.ModelForm):
     class Meta:

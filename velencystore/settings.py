@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'fontawesomefree',
     'crispy_forms',
     'storages',
+    
        
 ]
 

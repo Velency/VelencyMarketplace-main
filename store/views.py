@@ -19,6 +19,14 @@ from django.contrib.auth.decorators import login_required
 from .s3 import upload_to_s3, download_from_s3
 
 
+# metamask
+
+
+
+
+
+
+
 # Create your views here.
 
 def index(request):
