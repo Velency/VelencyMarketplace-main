@@ -24,9 +24,6 @@ from .s3 import upload_to_s3, download_from_s3
 
 
 
-
-
-
 # Create your views here.
 
 def index(request):

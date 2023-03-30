@@ -582,7 +582,9 @@
                     </li>
                   </ul>
                 </div>
-
+                {% for account in accounts %}
+                <li>{{ account }}</li>
+            {% endfor %}
                 <!-- User -->
 
                 <div class="dropdown" style="margin-left: 15px">
@@ -826,7 +828,6 @@
             </li>
             <li class="nav-item me-2 me-lg-0 d-none d-md-inline-block">
               <a class="nav-link" href="{% url 'support' %}">Тех. поддержка</a>
-            </li>
           </ul>
           <!-- Left links -->
         </div>
@@ -1028,6 +1029,7 @@
             <p>
               <i class="fas fa-phone me-3 text-secondary"></i> + 995 568 836 179
             </p>
+          </li>
           </div>
           <!-- Grid column -->
         </div>

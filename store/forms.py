@@ -7,6 +7,7 @@ from store.models import Customer, Comments, Offer, Support, Seller, Product
 
 
 
+
 class CreateUserForm(UserCreationForm):
     class Meta:
         model = User 
