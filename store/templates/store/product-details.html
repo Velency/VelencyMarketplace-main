@@ -190,7 +190,7 @@ label:hover ~ input:checked ~ label {
     <p class="mt-4"> <b>Category:</b>  {{product.category}}</p>
     <p style="margin-top: -10px;"><b>Sub Category:</b> {{product.sub_category}}</p>
     <p style="margin-top: -10px;"><b>Brand:</b> {{product.brand_name}}</p>
-    <h6 class="description">{{product.description}}</h6>
+    <h6 class="description">{{product.description|safe }}</h6>
   </div>
 </div>
 <hr>

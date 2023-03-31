@@ -47,6 +47,8 @@ INSTALLED_APPS = [
     'fontawesomefree',
     'crispy_forms',
     'storages',
+    'ckeditor',
+    'ckeditor_uploader'
        
 ]
 
@@ -135,13 +137,11 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = BASE_DIR / "static"
-
-STATICFILES_DIRS = [
+STATIC_ROOT = [
     os.path.join(BASE_DIR, 'static')
 ]
-
-django_heroku.settings(locals())
+STATIC_DIR = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = [STATIC_DIR]
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_URL = '/images/'
@@ -151,7 +151,7 @@ MEDIA_URL = '/images/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
+django_heroku.settings(locals())
 
 #JAZZMIN SETTINGS
 JAZZMIN_SETTINGS = {
@@ -334,9 +334,27 @@ AWS_S3_REGION_NAME = "us-east-1"
 
 
 AWS_S3_FILE_OWERWRITE = False
+# AWS_QUERYSTRING_AUTH = False
 AWS_DEFAULT_ACL = None
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
+
+
+# CKEditor Settings
+CKEDITOR_UPLOAD_PATH = 'uploads/'
+CKEDITOR_IMAGE_BACKEND = "pillow"
+CKEDITOR_JQUERY_URL = '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js' 
+CKEDITOR_BASEPATH = 'ckeditor/ckeditor'
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',
+        'height': 300,
+        'width': '100%',
+    },
+    'awesome_ckeditor': {
+        'toolbar': 'Basic',
+    },
+}
 
 

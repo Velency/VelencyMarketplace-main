@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-
+from ckeditor.fields import RichTextField
 
 
 
@@ -57,13 +57,13 @@ class Seller(models.Model):
 class Product(models.Model):
     id = models.AutoField(primary_key=True,default=None)
     name = models.CharField(max_length=23)
-    brand_name = models.ForeignKey(Customer, on_delete=models.CASCADE, null=True )
+    brand_name = models.ForeignKey(Seller, on_delete=models.CASCADE, null=True )
     slug = models.SlugField(default="", null=True)
     price = models.DecimalField(max_digits=7, decimal_places=2, null=True)
     crown_price = models.DecimalField(max_digits=7, decimal_places=2, null=True, blank=True)
     category =  models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
     sub_category = models.ForeignKey(Sub_Category, on_delete=models.CASCADE, null=True)
-    description = models.TextField( max_length=1500, null=True, blank=True)
+    description = RichTextField(default="", null=True)
     quantity = models.IntegerField(default=0, null=True, blank=True)
     digital = models.BooleanField(default=False,null=True, blank=True)
     available = models.BooleanField(default=False,null=True, blank=True)
