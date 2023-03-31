@@ -50,11 +50,21 @@ INSTALLED_APPS = [
     'fontawesomefree',
     'crispy_forms',
     'storages',
+<<<<<<< HEAD
+   
+    
+ 
+    
+=======
     'ckeditor',
     'ckeditor_uploader'
+>>>>>>> 53338c0c89452d5948e18b831938bda07ac18f69
 ]
 
-
+MORALIS = {
+    "APPLICATION_ID": "cP2QKvv4ccJNAjffgnL5rnRjq0rjTf6iRXFm3odaHxbrzAsnOOXG5ggVYEEu4XfL",
+    "SERVER_URL": "https://your_moralis_server_url/api",
+}
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",

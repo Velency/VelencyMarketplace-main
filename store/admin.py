@@ -5,6 +5,18 @@ from django import forms
 
 
 admin.site.register(Slider)
+<<<<<<< HEAD
+admin.site.register(Order)
+admin.site.register(OrderItem)
+admin.site.register(Trend)
+admin.site.register(WishItem)
+admin.site.register(Customer)
+admin.site.register(Comments)
+admin.site.register(Offer)
+admin.site.register(Support)
+admin.site.register(Seller)
+admin.site.register(Payment_method)
+=======
 # admin.site.register(Order)
 # admin.site.register(OrderItem)
 # admin.site.register(ShippingAddress)
@@ -16,6 +28,7 @@ admin.site.register(Slider)
 # admin.site.register(Support)
 # admin.site.register(Seller)
 # admin.site.register(Payment_method)
+>>>>>>> 53338c0c89452d5948e18b831938bda07ac18f69
 
 
 

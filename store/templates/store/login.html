@@ -130,9 +130,11 @@
           </button>
         </form>
         <!-- Add create account link -->
-        <button id="metamask" type="button" class="btn" onclick="window.ethereum.enable()">
+     
+        <a id="metamask" type="button" href="{% url 'store' %}" class="btn" >
           Log in with Metamask
-      </button>
+        </a>
+      
         <div class="create-account">
           Don't have an account? <a href="{% url 'register' %}">Sign Up</a>
         </div>
@@ -142,6 +144,15 @@
       {% endfor %}
     </div>
   </body>
-
-  
+  <script>
+    async function login() {
+    try {
+        await Moralis.enable();
+        window.location.href = "{% url 'store' %}";
+    } catch (error) {
+        console.log(error);
+    }
+}
+  </script>
+ 
 </html>

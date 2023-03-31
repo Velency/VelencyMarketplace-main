@@ -20,9 +20,51 @@ from .s3 import upload_to_s3, download_from_s3
 
 
 # metamask
+from django.shortcuts import render
+from django.shortcuts import redirect
+from web3 import Web3
+from moralis import *
 
 
+def LoginPage(request):
+    # create a new Moralis instance with the application ID and server URL
+    moralis = Moralis(
+        application_id='cP2QKvv4ccJNAjffgnL5rnRjq0rjTf6iRXFm3odaHxbrzAsnOOXG5ggVYEEu4XfL',
+        server_url='https://your_moralis_server_url/api',
+    )
 
+    # create a new Web3 instance using the user's browser provider
+    web3 = Web3(Web3.WebsocketProvider(moralis.get_web3_socket()))
+
+    # initiate the Metamask authentication process
+    login_data = moralis.authenticate(web3)
+
+    # redirect the user to the authentication URL
+    return redirect(login_data['url'])
+
+def authenticate(request):
+    # create a new Moralis instance with the application ID and server URL
+    moralis = Moralis(
+        application_id='cP2QKvv4ccJNAjffgnL5rnRjq0rjTf6iRXFm3odaHxbrzAsnOOXG5ggVYEEu4XfL',
+        server_url='https://your_moralis_server_url/api',
+    )
+
+    # create a new Web3 instance using the user's browser provider
+    web3 = Web3(Web3.WebsocketProvider(moralis.get_web3_socket()))
+
+    # get the authentication data from the request parameters
+    auth_data = moralis.get_auth_data_from_query_params(request.GET)
+
+    # authenticate the user with the authentication data
+    user = moralis.authenticate_user(web3, auth_data)
+
+    # save the user's Ethereum address to their session
+    request.session['user_address'] = user.get('attributes', {}).get('ethAddress')
+
+    # render a success page
+    return render(request, 'authenticate_success.html', {
+        'user_address': request.session.get('user_address'),
+    })
 
 # Create your views here.
 
