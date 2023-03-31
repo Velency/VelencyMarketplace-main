@@ -50,12 +50,16 @@ INSTALLED_APPS = [
     'fontawesomefree',
     'crispy_forms',
     'storages',
+   
     
  
     
 ]
 
-
+MORALIS = {
+    "APPLICATION_ID": "cP2QKvv4ccJNAjffgnL5rnRjq0rjTf6iRXFm3odaHxbrzAsnOOXG5ggVYEEu4XfL",
+    "SERVER_URL": "https://your_moralis_server_url/api",
+}
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",

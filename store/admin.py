@@ -5,7 +5,6 @@ from .models import *
 admin.site.register(Slider)
 admin.site.register(Order)
 admin.site.register(OrderItem)
-admin.site.register(ShippingAddress)
 admin.site.register(Trend)
 admin.site.register(WishItem)
 admin.site.register(Customer)

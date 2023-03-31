@@ -85,9 +85,15 @@
                                     <li class="nav-item">
                                         <a class="page-scroll" href="{% url 'store' %}">Торговая площадка</a>
                                     </li>
+                                    {% if user.is_authenticated %}
+                                    <li class="nav-item">
+                                        <a class="page-scroll" href="/store">Eth address: {{ user.username }}</a>
+                                        </li>
+                                    {% else %}
                                     <li class="nav-item">
                                         <a class="page-scroll" href="/login"><b>Войти</b></a>
                                     </li>
+                                    {% endif %}
                                 </ul>
                             </div> <!-- navbar collapse -->
                         </nav> <!-- navbar -->
