@@ -50,15 +50,8 @@ INSTALLED_APPS = [
     'fontawesomefree',
     'crispy_forms',
     'storages',
-<<<<<<< HEAD
-   
-    
- 
-    
-=======
     'ckeditor',
     'ckeditor_uploader'
->>>>>>> 53338c0c89452d5948e18b831938bda07ac18f69
 ]
 
 MORALIS = {
