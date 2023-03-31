@@ -1,7 +1,12 @@
-staticfiles
+<<<<<<< HEAD
 *.pyc
 db.sqlite3
-static
+=======
+admin.py
+*.pyc
+db.sqlite3
+models.py
+>>>>>>> a7dd886eabab27394846643e695559a52b5e1474
 db.sqlite3
 store/__pycache__/views.cpython-310.pyc
 first_vinv
