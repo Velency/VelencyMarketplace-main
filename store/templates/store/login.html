@@ -67,10 +67,23 @@
         color: white;
         font-size: 18px;
         border: none;
-        border-radius: 5px;
+        border-radius: 15px;
         padding: 15px;
         cursor: pointer;
       }
+
+      #metamask {
+        width: 75%;
+        margin-top: 10px;
+        background: rgb(25, 92, 85);
+        color: white;
+        font-size: 18px;
+        border: none;
+        border-radius: 15px;
+        padding: 15px;
+        cursor: pointer;
+      }
+
       .create-account {
         margin-top: 10px;
         font-size: 14px;
@@ -117,6 +130,9 @@
           </button>
         </form>
         <!-- Add create account link -->
+        <button id="metamask" type="button" class="btn" onclick="window.ethereum.enable()">
+          Log in with Metamask
+      </button>
         <div class="create-account">
           Don't have an account? <a href="{% url 'register' %}">Sign Up</a>
         </div>
@@ -126,4 +142,6 @@
       {% endfor %}
     </div>
   </body>
+
+  
 </html>
