@@ -8,9 +8,3 @@ class Migration(migrations.Migration):
     dependencies = [
         ('store', '0014_auto_20230331_1209'),
     ]
-
-    operations = [
-        migrations.DeleteModel(
-            name='ShippingAddress',
-        ),
-    ]

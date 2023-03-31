@@ -8,16 +8,18 @@ class Customer(models.Model):
     user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
     first_name = models.CharField(max_length=200, null=True)
     last_name = models.CharField(max_length=200, null=True)
-    referral_id = models.CharField(max_length=200, default=None)
-    referred_by = models.ForeignKey('self', null=True, blank=True, on_delete=models.SET_NULL)
+    # referred_by = models.ForeignKey('self', null=True, blank=True, on_delete=models.SET_NULL)
     earnings = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
     email = models.CharField(max_length=200)
     image = models.ImageField(default='user_photos/img.jpg',upload_to='user_photos')
     mobile = models.CharField(max_length=10,null=True, blank=True)
-    
 
     def __str__(self):
-	    return self.email
+        return self.email
+
+
+
+
 
 
 class Category(models.Model):
@@ -116,10 +118,12 @@ class Trend(models.Model):
 	    return str(self.product)
 
 class Order(models.Model):
-    customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True, blank=True)
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='orders')
+
     date_ordered = models.DateTimeField(auto_now_add=True)
     complete = models.BooleanField(default=False)
     transaction_id = models.CharField(max_length=100, null=True)
+
 
     def __str__(self):
         return str(self.id)
@@ -171,7 +175,7 @@ class Comments(models.Model):
     )
 
     product = models.ForeignKey(Product, on_delete=models.CASCADE, null=True)
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE, null=True)
+    customer = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     subject = models.CharField(max_length=50, null=True, blank=True)
     comment = models.TextField(max_length=150, null=True, blank=True)
     rate = models.IntegerField(default=1, null=True, blank=True)
@@ -190,7 +194,7 @@ class Offer(models.Model):
         ('Closed', 'Closed'),
     )
 
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE, null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     subject = models.CharField(max_length=50, null=True, blank=True)
     email = models.CharField(max_length=60, null=True)
     comment = models.CharField(max_length=150, null=True, blank=True)
@@ -209,7 +213,7 @@ class Support(models.Model):
         ('Read', 'Read'),
         ('Closed', 'Closed'),
     )
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE, null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     subject = models.CharField(max_length=50, null=True, blank=True)
     email = models.CharField(max_length=60, null=True)
     comment = models.CharField(max_length=150, null=True, blank=True)
