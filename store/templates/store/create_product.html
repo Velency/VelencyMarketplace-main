@@ -1,0 +1,18 @@
+{% extends 'store/main.html' %} {% load static %} {% block content %}
+<!-- <script src="https://cdn.ckeditor.com/4.5.11/full/ckeditor.js"></script> -->
+{% block extrahead %}
+<script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script>
+<script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
+<script>
+  window.CKEDITOR_BASEPATH = "ckeditor/ckeditor/";
+</script>
+{{ block.super }} {% endblock %}
+<div class="container">
+  <h2>Create Product Listing</h2>
+
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %} {{ form.as_p }}
+    <button type="submit">Create</button>
+  </form>
+</div>
+{% endblock content %}

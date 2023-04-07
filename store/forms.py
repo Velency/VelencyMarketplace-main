@@ -2,17 +2,23 @@
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
 from django.contrib.auth.models import User
+from ckeditor_uploader.widgets import CKEditorUploadingWidget
+from ckeditor.widgets import CKEditorWidget
+from store.models import Customer, Comments, Offer, Support, Seller, Product
 
-from store.models import Customer, Comments, Offer, Support
 
 
 
 class CreateUserForm(UserCreationForm):
     class Meta:
         model = User 
-        fields = ['username', 'email', 'password1', 'password2']
+        fields = ['username', 'email', 'first_name', 'last_name', 'password1', 'password2']
 
-
+class ProductForm(forms.ModelForm):
+    description = forms.CharField(widget=CKEditorWidget())
+    class Meta:
+        model = Product
+        fields = ['name','price','category','sub_category', 'description','quantity','digital' , 'available','file' , 'image',]
 
 class UpdateCustomerForm(forms.ModelForm):
     class Meta:
@@ -38,3 +44,7 @@ class SupportForm(forms.ModelForm):
         fields = [ 'subject', 'email', 'comment']
 
 
+class SellerForm(forms.ModelForm):
+    class Meta:
+        model = Seller
+        fields = ['bio','brand_name', 'location', 'phone', 'payment_method', 'payment_details', 'website']

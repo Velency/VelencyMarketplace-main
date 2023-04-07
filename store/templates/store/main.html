@@ -255,13 +255,13 @@
       position: relative;
     }
 
-    /* .sidebar .dropdown-toggle::after {
+    .sidebar .dropdown-toggle::after {
       display: block;
       position: absolute;
       top: 50%;
       right: 20px;
       transform: translateY(-50%);
-    } */
+    }
 
     .sidebar .to-top {
       padding: 20px;
@@ -586,7 +586,7 @@
                     </li>
                   </ul>
                 </div>
-
+                
                 <!-- User -->
 
                 <div class="dropdown" style="margin-left: 15px">
@@ -622,22 +622,22 @@
                   >
                     <li>
                       <a class="dropdown-item" href="{% url 'profile' %}"
-                        >Profile</a
+                        >Профиль</a
                       >
                     </li>
                     <li>
                       <a class="dropdown-item" href="{% url 'orders' %}"
-                        >Orders</a
+                        >Ордеры</a
                       >
                     </li>
                     <li>
                       <a class="dropdown-item" href="{% url 'wishlist' %}"
-                        >Wishlist</a
+                        >Избранное</a
                       >
                     </li>
                     {% if user.is_superuser %}
                     <li>
-                      <a class="dropdown-item" href="/admin">Admin Panel</a>
+                      <a class="dropdown-item" href="/admin">Админ панель</a>
                     </li>
                     {% endif %}
                     <li>
@@ -645,7 +645,7 @@
                     </li>
                     <li>
                       <a class="dropdown-item" href="{% url 'logoutUser' %}"
-                        >Logout</a
+                        >Выход</a
                       >
                     </li>
                   </ul>
@@ -672,7 +672,7 @@
             <li class="nav-item me-2 me-lg-0">
               <!-- open sidebar menu -->
               <a class="btn nav-link open-menu" href="#" role="button">
-                <i class="fas fa-align-left"></i> <span>Menu</span>
+                <i class="fas fa-align-left"></i> <span>Меню</span>
               </a>
 
               <!-- Sidebar -->
@@ -695,14 +695,21 @@
                   />
                 </div>
                 <ul class="list-unstyled menu-elements">
+                  <li>
+                    <a type="button" href="{% url 'index' %}" class="button"
+                      >Метавселенная</a
+                    >
+                  </li>
                   <li class="active">
-                    <a class="dropdown-item scroll-link" href="#top-content"
-                      >Seller(soon)</a
+                    <a
+                      class="dropdown-item scroll-link"
+                      href="{% url 'seller_dashboard' %}"
+                      >Создать продукт</a
                     >
                   </li>
                   <li>
                     <a type="button" href="{% url 'tariffs' %}" class="button"
-                      >Crown</a
+                      >Купить токен</a
                     >
                   </li>
                   <li>
@@ -711,7 +718,7 @@
                       data-toggle="collapse"
                       aria-expanded="false"
                       class="dropdown-toggle"
-                      >Partners</a
+                      >Партнёры</a
                     >
                     <ul
                       class="collapse list-unstyled"
@@ -728,15 +735,15 @@
                   </li>
                   <li>
                     <a class="button" type="button" href="{% url 'offers' %}"
-                      >Suguestions</a
-                    >
+                      >Обратная связь
+                    </a>
                   </li>
                   <li>
-                    <a class="button" href="{% url 'support' %}">Support</a>
+                    <a class="button" href="{% url 'support' %}">Тех. поддержка</a>
                   </li>
                   <li>
                     <span style="margin-left: 70px"
-                      ><i class="fa-solid fa-angles-down"></i> Categories
+                      ><i class="fa-solid fa-angles-down"></i> Категории
                       <i class="fa-solid fa-angles-down"></i
                     ></span>
                   </li>
@@ -759,7 +766,7 @@
                     >
                       <li>
                         <a href="/product-list/{{cat.id}}"
-                          ><b>Show all products</b></a
+                          ><b>Показать все продукты</b></a
                         >
                       </li>
                       {% for subcat in cat.sub_category_set.all %}
@@ -782,18 +789,20 @@
                     href="#"
                     role="button"
                   >
-                    <i class="fas fa-arrow-up"></i> Top
+                    <i class="fas fa-arrow-up"></i> Вверх
                   </a>
                 </div>
               </nav>
               <!-- End sidebar -->
             </li>
-
             <li class="nav-item me-2 me-lg-0 d-none d-md-inline-block">
-              <a class="nav-link" href="#">Seller(soon)</a>
+              <a class="nav-link" href="{% url 'index' %}">Метавселенная</a>
             </li>
             <li class="nav-item me-2 me-lg-0 d-none d-md-inline-block">
-              <a class="nav-link" href="{% url 'tariffs' %}">Crown</a>
+              <a class="nav-link" href="{% url 'seller_dashboard' %}">Создать продукт</a>
+            </li>
+            <li class="nav-item me-2 me-lg-0 d-none d-md-inline-block">
+              <a class="nav-link" href="{% url 'tariffs' %}">Купить токен</a>
             </li>
             <li class="nav-item me-2 me-lg-0 d-none d-md-inline-block">
               <div class="dropdown">
@@ -804,7 +813,7 @@
                   data-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  Partners
+                  Партнёры
                 </a>
 
                 <div class="dropdown-menu">
@@ -817,11 +826,10 @@
               </div>
             </li>
             <li class="nav-item me-2 me-lg-0 d-none d-md-inline-block">
-              <a class="nav-link" href="{% url 'offers' %}">Suguestions</a>
+              <a class="nav-link" href="{% url 'offers' %}">Обратная связь</a>
             </li>
             <li class="nav-item me-2 me-lg-0 d-none d-md-inline-block">
-              <a class="nav-link" href="{% url 'support' %}">Support</a>
-            </li>
+              <a class="nav-link" href="{% url 'support' %}">Тех. поддержка</a>
           </ul>
           <!-- Left links -->
         </div>
@@ -914,10 +922,10 @@
     </script>
   </body>
   <!-- Footer -->
-  <footer class="text-center text-lg-start bg-white text-muted">
+  <footer class="text-center text-lg-start bg-white text-muted" >
     <!-- Section: Social media -->
     <section
-      class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom"
+      class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom" 
     >
       <!-- Left -->
       <div class="me-5 d-none d-lg-block">
@@ -985,7 +993,9 @@
               <a href="{% url 'tariffs' %}" class="text-reset">Crown</a>
             </p>
             <p>
-              <a href="#!" class="text-reset">Seller(soon)</a>
+              <a href="{% url 'seller_dashboard' %}" class="text-reset"
+                >Seller</a
+              >
             </p>
           </div>
           <!-- Grid column -->
@@ -995,7 +1005,7 @@
             <!-- Links -->
             <h6 class="text-uppercase fw-bold mb-4">Help</h6>
             <p>
-              <a href="{% url  'offers' %}" class="text-reset">Suguestions</a>
+              <a href="{% url  'offers' %}" class="text-reset">Suggestion</a>
             </p>
             <p>
               <a href="{% url 'support' %}" class="text-reset">Support</a>
@@ -1021,6 +1031,7 @@
             <p>
               <i class="fas fa-phone me-3 text-secondary"></i> + 995 568 836 179
             </p>
+          </li>
           </div>
           <!-- Grid column -->
         </div>

@@ -11,7 +11,7 @@ from .utils import cookieCart, cartData, guestOrder
 
 
 from django.contrib.auth.forms import UserCreationForm
-from .forms import CreateUserForm, CustomerOfferForm, UpdateCustomerForm, CommentsForm, SupportForm
+from .forms import CreateUserForm, CustomerOfferForm, UpdateCustomerForm, CommentsForm, SupportForm,SellerForm,ProductForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -19,14 +19,108 @@ from django.contrib.auth.decorators import login_required
 from .s3 import upload_to_s3, download_from_s3
 
 
+# metamask
+from django.shortcuts import render
+from django.shortcuts import redirect
+from web3 import Web3
+from moralis import *
+
+
+def LoginPage(request):
+    # create a new Moralis instance with the application ID and server URL
+    moralis = Moralis(
+        application_id='cP2QKvv4ccJNAjffgnL5rnRjq0rjTf6iRXFm3odaHxbrzAsnOOXG5ggVYEEu4XfL',
+        server_url='https://your_moralis_server_url/api',
+    )
+
+    # create a new Web3 instance using the user's browser provider
+    web3 = Web3(Web3.WebsocketProvider(moralis.get_web3_socket()))
+
+    # initiate the Metamask authentication process
+    login_data = moralis.authenticate(web3)
+
+    # redirect the user to the authentication URL
+    return redirect(login_data['url'])
+
+def authenticate(request):
+    # create a new Moralis instance with the application ID and server URL
+    moralis = Moralis(
+        application_id='cP2QKvv4ccJNAjffgnL5rnRjq0rjTf6iRXFm3odaHxbrzAsnOOXG5ggVYEEu4XfL',
+        server_url='https://your_moralis_server_url/api',
+    )
+
+    # create a new Web3 instance using the user's browser provider
+    web3 = Web3(Web3.WebsocketProvider(moralis.get_web3_socket()))
+
+    # get the authentication data from the request parameters
+    auth_data = moralis.get_auth_data_from_query_params(request.GET)
+
+    # authenticate the user with the authentication data
+    user = moralis.authenticate_user(web3, auth_data)
+
+    # save the user's Ethereum address to their session
+    request.session['user_address'] = user.get('attributes', {}).get('ethAddress')
+
+    # render a success page
+    return render(request, 'authenticate_success.html', {
+        'user_address': request.session.get('user_address'),
+    })
+
 # Create your views here.
 
+def index(request):
+	return render(request, 'store/index.html')
+
+
+def packet_buy(request):
+	data = cartData(request)
+	
+	cartItems = data['cartItems']
+	order = data['order']
+	items = data['items']
+	partners = Partnership.objects.all()
+	context = {'partners':partners, 'items':items, 'order':order, 'cartItems':cartItems, }
+	return render(request, 'store/packet_buy.html', context)
 
 
 
 
+@login_required
+def seller_dashboard(request):
+    user = request.user
+    try:
+        seller = Seller.objects.get(user=user)
+    except Seller.DoesNotExist:
+        return redirect('create_seller')
+    
+    if seller.is_verified:
+        return render(request, 'store/seller_dashboard.html')
+    else:
+        return render(request, 'store/pending_dashboard.html')
 
+def create_seller(request):
+    if request.method == 'POST':
+        form = SellerForm(request.POST)
+        if form.is_valid():
+            seller = form.save(commit=False)
+            seller.user = request.user
+            seller.save()
+            return redirect('/store')
+    else:
+        form = SellerForm()
+    return render(request, 'store/create_seller.html', {'form': form})
 
+def create_product(request):
+    if request.method == 'POST':
+        form = ProductForm(request.POST, request.FILES)
+        if form.is_valid():
+            product = form.save(commit=False)
+            product.seller = request.user.seller
+            product.save()
+            return redirect('/store')
+    else:
+        form = ProductForm()
+    return render(request, 'store/create_product.html', {'form': form})
 
 
 
@@ -113,7 +207,7 @@ def account(request):
 	context ={'partners':partners, 'cartItems':cartItems,  'form':form, 'order':order, 'items':items,  'categories':categories}
 	return render(request, 'store/customerDetail.html', context)
 
-
+@login_required
 def orders(request):
 	data = cartData(request)
 
@@ -274,7 +368,7 @@ def view_all(request, category_id):
 	return render(request, 'store/view_all.html', context)
 
 
-
+@login_required
 def cart(request):
 	data = cartData(request)
 
@@ -383,18 +477,22 @@ def register(request):
 		form = CreateUserForm()
 		if request.method == 'POST':
 			form = CreateUserForm(request.POST) 
-		if form.is_valid(): 
-		#saving the registered user
-			user = form.save()
-			username= form.cleaned_data.get('username')
-		#create customer
-			Customer.objects.create(user=user, name=username, email=user.email)
-			messages.success(request, 'Account was created for' + username)
-			return redirect('loginPage')
-		
-	
-		context = {'form':form}
-		return render(request, 'store/reg.html', context)
+			if form.is_valid():
+				# Check if username contains whitespace
+				username = form.cleaned_data.get('username')
+				if ' ' in username:
+					messages.info(request, 'Username should not contain spaces')
+					return redirect('register')
+				# Saving the registered user
+				user = form.save()
+				# Create customer
+				Customer.objects.create(user=user, name=username, email=user.email)
+				messages.success(request, 'Account was created for ' + username)
+				return redirect('loginPage')
+			
+	context = {'form':form}
+	return render(request, 'store/reg.html', context)
+
 
 
 
@@ -417,13 +515,13 @@ def search(request):
 
 def tariffs (request):
 	data = cartData(request)
-
+	
 	cartItems = data['cartItems']
 	order = data['order']
 	items = data['items']
 	categories =Category.objects.all()
 	partners = Partnership.objects.all()
-	context = {'cartItems':cartItems, 'order':order, 'items':items, 'categories':categories, 'partners':partners}
+	context = {  'cartItems':cartItems, 'order':order, 'items':items, 'categories':categories, 'partners':partners}
 	return render(request, 'store/tariffs.html', context)
 
 def politic (request):

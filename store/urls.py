@@ -1,7 +1,8 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
 
 urlpatterns = [
+    path('ckeditor/', include('ckeditor_uploader.urls')),
     #log/reg pages
     path('login/', views.loginPage, name="loginPage"),
     path('accounts/login/',views.loginPage, name="loginPage"),
@@ -35,9 +36,19 @@ urlpatterns = [
     path('politic/', views.politic, name="politic"),
  
     #main pages
-    path('', views.store, name="store"),
+    path('', views.index, name="index"),
+    path('store/', views.store, name="store"),
     path('cart/', views.cart, name="cart"),
     path('checkout/', views.checkout, name="checkout"),
+    path('packet_buy/', views.packet_buy, name="packet_buy"),
     path('update_item/', views.updateItem, name="update_item"),
     path('process_order/', views.processOrder, name="process_order"),
+
+    #seller reg
+    path('seller_dashboard/', views.seller_dashboard, name="seller_dashboard"),
+    path('create_seller/', views.create_seller, name="create_seller"),
+    path('create_product/',views.create_product, name="create_product" )
+    
+
+
 ]
