@@ -14,11 +14,22 @@
         </p>
     <div class="right-review">
         <h4 class="text-top" style="text-align: center;"><b>Форма для покупки пакета:</b><h4>
-          <form method="post">
+          <form class="form-contact" method="post" action="">
             {% csrf_token %}
-            {{ form.as_p }}
-          <button style="margin-left: 150px; margin-top: -10px; width: 150px;" class="btn btn-primary" type="submit">Отправить</button>
-        </form>
+            <h5 style="margin-left:150px;">Ваша почта:</h5>
+            <div class="form-group">
+              <input name="email" type="text" style="width:70%; margin-left: 150px; text-align:center; border-radius: 3px;" class="input" >
+            </div>
+            <h5 style="margin-left:150px;">Тема (Покупка пакета за "стоимость"):</h5>
+            <div class="form-group">
+              <input name="email" type="text" style="width:70%; margin-left: 150px; text-align:center; border-radius: 3px;" class="input" >
+            </div>
+            <h5 style="margin-left: 150px;">Контактны данные для связи:</h5>
+            <div class="form-group">
+              <textarea name="message" type="text" rows="4" style="width:70%; margin-left: 150px; text-align:center;  border-radius: 3px;" ></textarea>
+            </div>
+            <button style="margin-left: 150px; margin-top: -10px; width: 150px;" class="btn btn-primary" type="submit">Отправить</button>
+          </form>
         {% if messages %}
         <ul class="messages">
           {% for message in messages %}
