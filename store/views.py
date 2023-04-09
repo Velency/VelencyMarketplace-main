@@ -25,6 +25,16 @@ from .s3 import upload_to_s3, download_from_s3
 def index(request):
 	return render(request, 'store/index.html')
 
+def packet_buy(request):
+	data = cartData(request)
+	
+	cartItems = data['cartItems']
+	order = data['order']
+	items = data['items']
+	partners = Partnership.objects.all()
+	context = {'partners':partners, 'items':items, 'order':order, 'cartItems':cartItems, }
+	return render(request, 'store/packet_buy.html', context)
+
 
 
 def store(request):
