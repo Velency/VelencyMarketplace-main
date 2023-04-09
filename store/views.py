@@ -8,14 +8,11 @@ import datetime
 from .utils import cookieCart, cartData, guestOrder
 
 
-
-
 from django.contrib.auth.forms import UserCreationForm
-from .forms import CreateUserForm, CustomerOfferForm, UpdateCustomerForm, CommentsForm, SupportForm
+from .forms import CreateUserForm, UpdateCustomerForm, CommentsForm, SupportForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-
 from .s3 import upload_to_s3, download_from_s3
 
 
@@ -25,8 +22,8 @@ from .s3 import upload_to_s3, download_from_s3
 
 
 
-
-
+def index(request):
+	return render(request, 'store/index.html')
 
 
 

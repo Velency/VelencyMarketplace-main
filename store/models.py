@@ -39,7 +39,7 @@ class Sub_Category(models.Model):
 
 
 class Product(models.Model):
-    id = models.AutoField(primary_key=True,default=None)
+    id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=23)
     brand_name = models.ForeignKey(Customer, on_delete=models.CASCADE, null=True )
     slug = models.SlugField(default="", null=True)

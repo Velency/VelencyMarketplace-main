@@ -35,9 +35,15 @@ urlpatterns = [
     path('politic/', views.politic, name="politic"),
  
     #main pages
-    path('', views.store, name="store"),
+    path('', views.index, name="index"),
+    path('store/', views.store, name="store"),
     path('cart/', views.cart, name="cart"),
     path('checkout/', views.checkout, name="checkout"),
     path('update_item/', views.updateItem, name="update_item"),
     path('process_order/', views.processOrder, name="process_order"),
+    # #moralis reg
+    # path('moralis_auth', views.moralis_auth, name='moralis_auth'),
+    # path('request_message', views.request_message, name='request_message'),
+    # path('my_profile', views.my_profile, name='my_profile'),
+    # path('verify_message', views.verify_message, name='verify_message'),
 ]

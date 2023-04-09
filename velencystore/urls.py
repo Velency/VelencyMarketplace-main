@@ -21,6 +21,7 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # path('web3_auth/', include('web3_auth.urls')),
     path('', include('store.urls')),
     
 ]
