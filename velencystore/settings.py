@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'fontawesomefree',
     'crispy_forms',
     'ckeditor',
+    'ckeditor_uploader',
     'storages',
     
        
@@ -340,5 +341,25 @@ AWS_DEFAULT_ACL = None
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
+# CKEditor Settings
+CKEDITOR_UPLOAD_PATH = 'uploads/'
+CKEDITOR_IMAGE_BACKEND = "pillow"
+CKEDITOR_JQUERY_URL = '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js' 
+CKEDITOR_BASEPATH = 'ckeditor/ckeditor'
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',
+        'height': 300,
+        'width': '100%',
+    },
+    'awesome_ckeditor': {
+        'toolbar': 'Basic',
+    },
+}
 
-
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.yandex.ru'
+EMAIL_PORT = 465
+EMAIL_USE_SSL = True
+EMAIL_HOST_USER = 'fidanur23@yandex.ru'
+EMAIL_HOST_PASSWORD = 'htuucbplufyuxoak'

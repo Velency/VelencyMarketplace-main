@@ -18,23 +18,48 @@ from .s3 import upload_to_s3, download_from_s3
 
 # Create your views here.
 
-
+#mail
+from django.core.mail import send_mail
+from .forms import FeedbackForm
 
 
 
 def index(request):
 	return render(request, 'store/index.html')
 
-def packet_buy(request):
-	data = cartData(request)
+# def packet_buy(request):
+# 	data = cartData(request)
 	
-	cartItems = data['cartItems']
-	order = data['order']
-	items = data['items']
-	partners = Partnership.objects.all()
-	context = {'partners':partners, 'items':items, 'order':order, 'cartItems':cartItems, }
-	return render(request, 'store/packet_buy.html', context)
+# 	cartItems = data['cartItems']
+# 	order = data['order']
+# 	items = data['items']
+# 	partners = Partnership.objects.all()
+# 	context = {'partners':partners, 'items':items, 'order':order, 'cartItems':cartItems, }
+# 	return render(request, 'store/packet_buy.html', context)
 
+def packet_buy(request):
+    if request.method == 'POST':
+        form = FeedbackForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            email = form.cleaned_data['email']
+            message = form.cleaned_data['message']
+            try:
+                send_mail(
+                    'Сообщение из формы обратной связи',
+                    f'От: {name}\nEmail: {email}\n\n{message}',
+                    'fidanur23@yandex.ru',
+                    ['data@hrworld.live'],
+                    fail_silently=False,
+                )
+            except:
+                messages.error(request, 'Ошибка отправки сообщения!')
+            else:
+                messages.success(request, 'Сообщение успешно отправлено.')
+                form = FeedbackForm()
+    else:
+        form = FeedbackForm()
+    return render(request, 'store/packet_buy.html', {'form': form})
 
 
 def store(request):
@@ -424,13 +449,13 @@ def search(request):
 
 def tariffs (request):
 	data = cartData(request)
-
+	
 	cartItems = data['cartItems']
 	order = data['order']
 	items = data['items']
 	categories =Category.objects.all()
 	partners = Partnership.objects.all()
-	context = {'cartItems':cartItems, 'order':order, 'items':items, 'categories':categories, 'partners':partners}
+	context = {  'cartItems':cartItems, 'order':order, 'items':items, 'categories':categories, 'partners':partners}
 	return render(request, 'store/tariffs.html', context)
 
 def politic (request):

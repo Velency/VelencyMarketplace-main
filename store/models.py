@@ -47,7 +47,7 @@ class Product(models.Model):
     crown_price = models.DecimalField(max_digits=7, decimal_places=2, null=True, blank=True)
     category =  models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
     sub_category = models.ForeignKey(Sub_Category, on_delete=models.CASCADE, null=True)
-    description = models.TextField( max_length=1500, null=True, blank=True)
+    description = RichTextField(default="",null=True)
     quantity = models.IntegerField(default=0, null=True, blank=True)
     digital = models.BooleanField(default=False,null=True, blank=True)
     available = models.BooleanField(default=False,null=True, blank=True)

@@ -39,4 +39,9 @@ class SupportForm(forms.ModelForm):
         model = Support
         fields = [ 'subject', 'email', 'comment']
 
+class FeedbackForm(forms.Form):
+    name = forms.CharField(max_length=100)
+    email = forms.EmailField()
+    message = forms.CharField(widget=forms.Textarea)
+
 
