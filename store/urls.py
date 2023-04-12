@@ -27,7 +27,7 @@ urlpatterns = [
     path('add-to-wishlist/', views.addToWishlist, name="add-to-wishlist"),
     path('delete-from-wishlist/', views.DeleteFormWishList, name="delete-from-wishlist"),
     #suggestions
-    path('offers/', views.offers, name="offers"),
+    # path('offers/', views.offers, name="offers"),
     #support 
     path('support/', views.support, name="support"),
     #tariffs
@@ -45,9 +45,14 @@ urlpatterns = [
     path('process_order/', views.processOrder, name="process_order"),
 
     #seller reg
-    path('seller_dashboard/', views.seller_dashboard, name="seller_dashboard"),
-    path('create_seller/', views.create_seller, name="create_seller"),
-    path('create_product/',views.create_product, name="create_product" )
+    # path('seller_dashboard/', views.seller_dashboard, name="seller_dashboard"),
+    # path('create_seller/', views.create_seller, name="create_seller"),
+    # path('create_product/',views.create_product, name="create_product" ),
+    #moralis reg
+    path('moralis_auth', views.moralis_auth, name='moralis_auth'),
+    path('request_message', views.request_message, name='request_message'),
+    path('my_profile', views.my_profile, name='my_profile'),
+    path('verify_message', views.verify_message, name='verify_message'),
     
 
 

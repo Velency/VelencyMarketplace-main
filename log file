@@ -1,0 +1,243 @@
+[33mcommit 9daf7ccb91e21a665c94e148d596770cd28a30ca[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Author: Herlock <fidanur23@gmail.com>
+Date:   Fri Mar 31 19:19:36 2023 +0400
+
+    s
+
+[33mcommit 267410aaa1954fa30a3979e5919a9a0984501c57[m
+Author: Herlock <fidanur23@gmail.com>
+Date:   Fri Mar 31 19:19:18 2023 +0400
+
+    adding
+
+[33mcommit 875725ebedc017eb1bea829875cdf7ee7715d6e2[m
+Author: Herlock <fidanur23@gmail.com>
+Date:   Fri Mar 31 16:41:07 2023 +0400
+
+    Edited migrations and daatabase
+
+[33mcommit 8e0160ebfdf9bfd0630e8962f6dff3096b4546a6[m
+Author: Herlock <fidanur23@gmail.com>
+Date:   Fri Mar 31 14:40:53 2023 +0400
+
+    edited models
+
+[33mcommit 8dbb47bcce782b897463562d5a9a1523e1dfbb96[m
+Merge: 908718b a7dd886
+Author: Herlock <fidanur23@gmail.com>
+Date:   Fri Mar 31 13:25:47 2023 +0400
+
+    Merge branch 'master' of https://github.com/Herlock/VelencyMarketplace-main
+
+[33mcommit 908718b63e58c45f19b9023265a130f061cbf8c3[m
+Author: Herlock <fidanur23@gmail.com>
+Date:   Fri Mar 31 13:21:47 2023 +0400
+
+    asd
+
+[33mcommit 337d56366001b8a5833ae03e6f6c8c56e543183a[m
+Author: Herlock <fidanur23@gmail.com>
+Date:   Fri Mar 31 13:21:25 2023 +0400
+
+    added statics
+
+[33mcommit a7dd886eabab27394846643e695559a52b5e1474[m
+Author: Valency <nikitakap16020@gmail.com>
+Date:   Fri Mar 31 12:20:24 2023 +0300
+
+    git ignore
+
+[33mcommit 4e369e759ced69bd583a39ecd12db4434e80e3c0[m
+Merge: 4cc6ad4 53338c0
+Author: Valency <nikitakap16020@gmail.com>
+Date:   Fri Mar 31 12:18:40 2023 +0300
+
+    static and staticfiles
+
+[33mcommit 4cc6ad4f4f8fd25c8875a1c9aefd4c6ae447aebd[m
+Author: Valency <nikitakap16020@gmail.com>
+Date:   Fri Mar 31 12:16:28 2023 +0300
+
+    static and staticfiles
+
+[33mcommit 53338c0c89452d5948e18b831938bda07ac18f69[m
+Merge: 97fc1e6 758da27
+Author: Herlock <fidanur23@gmail.com>
+Date:   Fri Mar 31 11:20:51 2023 +0400
+
+    my changes and resolve merge conflicts
+
+[33mcommit 97fc1e6a0881d2fdf4d4a880b14694c3b45918c9[m
+Author: Herlock <fidanur23@gmail.com>
+Date:   Fri Mar 31 11:13:10 2023 +0400
+
+    added seller and editable ckeditor
+
+[33mcommit 758da270cd83575c824e0ea16d77e13de41f30ab[m
+Author: Valency <nikitakap16020@gmail.com>
+Date:   Thu Mar 30 21:38:41 2023 +0300
+
+    finish present page
+
+[33mcommit c7c0263c759d48a1580a8db3aaaaa16405e13eb2[m
+Author: Valency <nikitakap16020@gmail.com>
+Date:   Wed Mar 29 22:39:26 2023 +0300
+
+    обнова картинок сайта
+
+[33mcommit f189a76ea3e1d86b4b3a25239b4c1b4a4121a3cc[m
+Author: Valency <nikitakap16020@gmail.com>
+Date:   Mon Mar 27 22:55:19 2023 +0300
+
+    added all main pages
+
+[33mcommit 951fafc3220484f528889d868a32bf8005181188[m[33m ([m[1;31mheroku/master[m[33m)[m
+Author: Herlock <fidanur23@gmail.com>
+Date:   Mon Mar 13 18:33:32 2023 +0400
+
+    edited seller profile
+
+[33mcommit 1f080032a2271bfe8d7aaa9a946deca28dc98d6f[m
+Author: Herlock <fidanur23@gmail.com>
+Date:   Sat Mar 11 22:08:09 2023 +0400
+
+    edited all
+
+[33mcommit 7bdfa5435b844caa4e507b2a1dfc34a9b0a4a9d6[m
+Author: Herlock <fidanur23@gmail.com>
+Date:   Sat Mar 11 20:04:34 2023 +0400
+
+    edited add product stuff
+
+[33mcommit 4ee6260b56091f6378b9f86f37ba0a8d0e609882[m
+Author: Herlock <fidanur23@gmail.com>
+Date:   Sat Mar 11 02:05:50 2023 +0400
+
+    edited redirections
+
+[33mcommit 4f25713b43c9332c8526f431468c8e884cb798c5[m
+Author: Herlock <fidanur23@gmail.com>
+Date:   Sat Mar 11 01:49:08 2023 +0400
+
+    edited sellers redirections
+
+[33mcommit f290d31115342a9e1b0078a1a80c66431506d353[m
+Author: Herlock <fidanur23@gmail.com>
+Date:   Sat Mar 11 01:48:45 2023 +0400
+
+    Working seller (FIXED!!!) delited migrations and edited tjings
+
+[33mcommit 05160f390a9b5843b44e07ad9f5ab3a551f4bca0[m
+Author: Valency <nikitakap16020@gmail.com>
+Date:   Fri Mar 10 22:40:48 2023 +0300
+
+    add seller reg page
+
+[33mcommit dfb6feeaff94de5442f5f9fa2c7db585d8aee1d9[m
+Merge: 9c5c98a e795330
+Author: Valency <nikitakap16020@gmail.com>
+Date:   Fri Mar 10 22:24:52 2023 +0300
+
+    Merge branch 'master' of https://github.com/Herlock/VelencyMarketplace-main
+
+[33mcommit 9c5c98a0e28a39e4b6bd8d718181ef081f198c87[m
+Author: Valency <nikitakap16020@gmail.com>
+Date:   Fri Mar 10 22:22:01 2023 +0300
+
+    gg
+
+[33mcommit e795330300a9954de579c6336ee1135b153c67d1[m
+Author: Herlock <fidanur23@gmail.com>
+Date:   Fri Mar 10 23:16:16 2023 +0400
+
+    added seller
+
+[33mcommit d4026a0b0cfe1db8c1bdf26df0f26499c916b23c[m
+Author: Herlock <fidanur23@gmail.com>
+Date:   Sat Mar 4 03:28:53 2023 +0400
+
+    fixed wishlist
+
+[33mcommit a9e86bae27521dff9de4bf14655eb2eecd75d251[m
+Author: Herlock <fidanur23@gmail.com>
+Date:   Sat Mar 4 01:45:59 2023 +0400
+
+    fixed comments
+
+[33mcommit eb20f475ce7d9d5624df8bae6a1837946f3cc602[m
+Author: Herlock <fidanur23@gmail.com>
+Date:   Fri Mar 3 19:27:29 2023 +0400
+
+    edited models added autogen prod id
+
+[33mcommit f30da5da5a631e7ffb470afed05ac5d27404a993[m
+Author: Herlock <fidanur23@gmail.com>
+Date:   Wed Feb 22 03:41:00 2023 +0400
+
+    added photo to user
+
+[33mcommit 11e41e2863174f13caad7e75524b26e061ae77e0[m
+Author: Herlock <fidanur23@gmail.com>
+Date:   Wed Feb 22 03:27:24 2023 +0400
+
+    added logo, changed start page, fixed error when you unloggined
+
+[33mcommit ec70d52577371050056a4bba985a87019d9f2bab[m
+Author: Herlock <fidanur23@gmail.com>
+Date:   Sat Feb 18 15:09:06 2023 +0400
+
+    edited all permissions
+
+[33mcommit d7bff0555227f1dc242d17791ce8d4eac50599f3[m
+Author: Herlock <fidanur23@gmail.com>
+Date:   Tue Feb 14 19:25:46 2023 +0400
+
+    editted settings and aws settings
+
+[33mcommit ab53665c9e1d66be100015b90e2aaa843d34b5c9[m
+Author: Herlock <fidanur23@gmail.com>
+Date:   Sun Feb 12 16:53:18 2023 +0400
+
+    edited region
+
+[33mcommit fe79ee11ecece64ab13d7e224332854d9138e13a[m
+Author: Herlock <fidanur23@gmail.com>
+Date:   Sat Feb 11 19:29:44 2023 +0400
+
+    editted req - added gunicorn
+
+[33mcommit bb284e897cf9e720d9ba3a37b34f43075fd570ae[m
+Author: Herlock <fidanur23@gmail.com>
+Date:   Sat Feb 11 19:20:43 2023 +0400
+
+    editted req - added gunicorn
+
+[33mcommit 5c07541a9ace34f984570bb19c1565601a6d9f2b[m
+Author: Herlock <fidanur23@gmail.com>
+Date:   Sat Feb 11 19:06:23 2023 +0400
+
+    editted req and settings
+
+[33mcommit 135afc0e0de45a13a84f5f624aed198da19cc598[m
+Author: Herlock <fidanur23@gmail.com>
+Date:   Sat Feb 11 18:51:29 2023 +0400
+
+    editted req
+
+[33mcommit a0c8889ee7529a31b41e876b19a3050ed7c41ca5[m
+Author: Herlock <fidanur23@gmail.com>
+Date:   Sat Feb 11 15:44:42 2023 +0400
+
+    edited req
+
+[33mcommit 300b6af48b4428df4b449caf6c43b7f43b97969c[m
+Author: Herlock <fidanur23@gmail.com>
+Date:   Sat Feb 11 15:41:01 2023 +0400
+
+    added heroku3
+
+[33mcommit f01ffc0ef3503b59859791ad7995a410782e7eae[m
+Author: Herlock <fidanur23@gmail.com>
+Date:   Fri Feb 10 01:28:05 2023 +0400
+
+    added aws s3bucket

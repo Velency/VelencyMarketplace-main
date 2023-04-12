@@ -699,7 +699,7 @@
                   <li class="active">
                     <a
                       class="dropdown-item scroll-link"
-                      href="{% url 'seller_dashboard' %}"
+                      href="{% url 'store' %}"
                       >Создать продукт</a
                     >
                   </li>
@@ -728,11 +728,6 @@
                       </li>
                       {% endfor %}
                     </ul>
-                  </li>
-                  <li>
-                    <a class="button" type="button" href="{% url 'offers' %}"
-                      >Обратная связь
-                    </a>
                   </li>
                   <li>
                     <a class="button" href="{% url 'support' %}">Тех. поддержка</a>
@@ -795,8 +790,8 @@
               <a class="nav-link" href="{% url 'index' %}">Метавселенная</a>
             </li>
             <li class="nav-item me-2 me-lg-0 d-none d-md-inline-block">
-              <a class="nav-link" href="{% url 'seller_dashboard' %}">Создать продукт</a>
-            </li>
+              <a class="nav-link" href="{% url 'store' %}">Создать продукт</a>
+            </li> 
             <li class="nav-item me-2 me-lg-0 d-none d-md-inline-block">
               <a class="nav-link" href="{% url 'tariffs' %}">Купить токен</a>
             </li>
@@ -820,9 +815,6 @@
                   {% endfor %}
                 </div>
               </div>
-            </li>
-            <li class="nav-item me-2 me-lg-0 d-none d-md-inline-block">
-              <a class="nav-link" href="{% url 'offers' %}">Обратная связь</a>
             </li>
             <li class="nav-item me-2 me-lg-0 d-none d-md-inline-block">
               <a class="nav-link" href="{% url 'support' %}">Тех. поддержка</a>
@@ -983,13 +975,13 @@
             <!-- Links -->
             <h6 class="text-uppercase fw-bold mb-4">Info</h6>
             <p>
-              <a href="#!" class="text-reset">News(soon)</a>
+              <a href="{% url 'index' %}" class="text-reset">News</a>
             </p>
             <p>
               <a href="{% url 'tariffs' %}" class="text-reset">Crown</a>
             </p>
             <p>
-              <a href="{% url 'seller_dashboard' %}" class="text-reset"
+              <a href="{% url 'store' %}" class="text-reset"
                 >Seller</a
               >
             </p>
@@ -1000,9 +992,6 @@
           <div class="col-md-4 col-lg-2 col-xl-2 mx-auto mb-4">
             <!-- Links -->
             <h6 class="text-uppercase fw-bold mb-4">Help</h6>
-            <p>
-              <a href="{% url  'offers' %}" class="text-reset">Suggestion</a>
-            </p>
             <p>
               <a href="{% url 'support' %}" class="text-reset">Support</a>
             </p>

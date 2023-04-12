@@ -2,6 +2,9 @@
 {% load static %}
 <html>
   <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
     <link
       rel="stylesheet"
@@ -72,7 +75,7 @@
         cursor: pointer;
       }
 
-      #metamask {
+      #auth-metamask {
         width: 75%;
         margin-top: 10px;
         background: rgb(25, 92, 85);
@@ -98,6 +101,10 @@
   </head>
   <body>
     <div class="container">
+      {% if user.is_authenticated %}
+      <h1>Welcome Moralis Web3 User, {{ user.username }} !</h1>
+      <a href="{% url '' %}"> Go to store </a>
+      {% else %}
       <div class="form-container">
         <!-- Add form for user input -->
         <form method="POST" action="">
@@ -130,29 +137,109 @@
           </button>
         </form>
         <!-- Add create account link -->
-     
-        <a id="metamask" type="button" href="{% url 'store' %}" class="btn" >
+
+        <a id="auth-metamask" type="button" class="btn">
           Log in with Metamask
         </a>
-      
+
         <div class="create-account">
           Don't have an account? <a href="{% url 'register' %}">Sign Up</a>
         </div>
       </div>
       {% for message in messages %}
       <p id="messages">{{message}}</p>
-      {% endfor %}
+      {% endfor %} {% endif %}
     </div>
   </body>
   <script>
     async function login() {
-    try {
+      try {
         await Moralis.enable();
         window.location.href = "{% url 'store' %}";
-    } catch (error) {
+      } catch (error) {
         console.log(error);
+      }
     }
-}
   </script>
- 
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script
+    src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js"
+    type="application/javascript"
+  ></script>
+  <script>
+    const elBtnMetamask = document.getElementById("auth-metamask");
+
+    const handleApiPost = async (endpoint, params) => {
+      const result = await axios.post(`${endpoint}`, params, {
+        headers: {
+          "content-type": "application/json",
+          "X-CSRFToken": "{{ csrf_token }}",
+        },
+      });
+
+      return result.data;
+    };
+
+    const requestMessage = (account, chain) =>
+      handleApiPost('{% url "request_message" %}', {
+        address: account,
+        chain: chain,
+        network: "evm",
+      });
+
+    const verifyMessage = (message, signature) =>
+      handleApiPost('{% url "verify_message" %}', {
+        message,
+        signature,
+        network: "evm",
+      });
+
+    const connectToMetamask = async () => {
+      const provider = new ethers.providers.Web3Provider(
+        window.ethereum,
+        "any"
+      );
+
+      const [accounts, chainId] = await Promise.all([
+        provider.send("eth_requestAccounts", []),
+        provider.send("eth_chainId", []),
+      ]);
+
+      const signer = provider.getSigner();
+      return { signer, chain: chainId, account: accounts[0] };
+    };
+
+    const handleAuth = async () => {
+      // Connect to Metamask
+      const { signer, chain, account } = await connectToMetamask();
+      console.log("account", account, "chain", chain);
+
+      if (!account) {
+        throw new Error("No account found");
+      }
+      if (!chain) {
+        throw new Error("No chain found");
+      }
+
+      const { message } = await requestMessage(account, chain);
+      const signature = await signer.signMessage(message);
+      const { user } = await verifyMessage(message, signature);
+      console.log(user);
+      if (user) {
+        location.reload();
+      } else {
+        alert("authentication error");
+      }
+    };
+
+    function init() {
+      elBtnMetamask.addEventListener("click", async () => {
+        handleAuth().catch((error) => console.log(error));
+      });
+    }
+
+    window.addEventListener("load", () => {
+      init();
+    });
+  </script>
 </html>
