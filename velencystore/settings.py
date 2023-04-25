@@ -49,7 +49,7 @@ INSTALLED_APPS = [
     'ckeditor',
     'ckeditor_uploader',
     'storages',
-    
+    'web3_auth'
        
 ]
 
@@ -363,3 +363,11 @@ EMAIL_PORT = 465
 EMAIL_USE_SSL = True
 EMAIL_HOST_USER = 'fidanur23@yandex.ru'
 EMAIL_HOST_PASSWORD = 'htuucbplufyuxoak'
+
+
+API_KEY = 'cP2QKvv4ccJNAjffgnL5rnRjq0rjTf6iRXFm3odaHxbrzAsnOOXG5ggVYEEu4XfL'
+if API_KEY == 'WEB3_API_KEY_HERE':
+    print("API key is not set")
+    raise SystemExit
+
+LOGIN_REDIRECT_URL = 'account'

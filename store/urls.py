@@ -5,7 +5,7 @@ urlpatterns = [
     #log/reg pages
     path('login/', views.loginPage, name="loginPage"),
     path('accounts/login/',views.loginPage, name="loginPage"),
-    path('register/', views.register, name="register"),
+    path('register/', views.registerUser, name="reg"),
     path('logout/', views.logoutUser, name="logoutUser"),
     #product pages
     path('product-list/<int:category_id>', views.view_all, name="product-list"),
@@ -42,9 +42,10 @@ urlpatterns = [
     path('checkout/', views.checkout, name="checkout"),
     path('update_item/', views.updateItem, name="update_item"),
     path('process_order/', views.processOrder, name="process_order"),
+    path('create_customer/', views.create_customer, name='create_customer'),
     # #moralis reg
-    # path('moralis_auth', views.moralis_auth, name='moralis_auth'),
-    # path('request_message', views.request_message, name='request_message'),
-    # path('my_profile', views.my_profile, name='my_profile'),
-    # path('verify_message', views.verify_message, name='verify_message'),
+    path('moralis_auth', views.moralis_auth, name='moralis_auth'),
+    path('request_message', views.request_message, name='request_message'),
+    path('my_profile/', views.my_profile, name='my_profile'),
+    path('verify_message', views.verify_message, name='verify_message'),
 ]

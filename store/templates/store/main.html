@@ -421,6 +421,12 @@
     .btn {
       border-radius: 0;
     }
+    .btn:hover {
+      color: #00b7ff;
+    }
+    #auth-metamask {
+      color: mintcream;
+    }
 
     .row-image {
       width: 100px;
@@ -477,6 +483,10 @@
     #search {
       margin-left: 200px;
     }
+    .nav-logo-group {
+      padding-top: 0.5rem;
+      color: white;
+    }
   </style>
   <body>
     <!--Main Navigation-->
@@ -522,18 +532,19 @@
               <div class="d-flex">
                 <!-- Cart -->
                 <a
-                  class="text-reset me-3"
+                  class="text-reset me-3 nav-logo-group"
                   href="{% url 'cart' %}"
                   style="margin-left: 15px"
                 >
                   <span><i class="fas fa-shopping-cart"></i></span>
-                  <span class="badge rounded-pill badge-notification bg-danger"
+                  <span
+                    class="badge rounded-pill badge-notification bg-danger nav-logo-group"
                     >{{cartItems}}</span
                   >
                 </a>
 
                 <!-- Notification -->
-                <div class="dropdown" style="margin-left: 15px">
+                <div class="dropdown nav-logo-group" style="margin-left: 15px">
                   <a
                     class="text-reset dropdown-toggle me-3 hidden-arrow"
                     type="button"
@@ -556,7 +567,7 @@
                 </div>
 
                 <!-- Languages -->
-                <div class="dropdown" style="margin-left: 15px">
+                <div class="dropdown nav-logo-group" style="margin-left: 15px">
                   <a
                     class="text-reset dropdown-toggle me-3 hidden-arrow"
                     type="button"
@@ -588,8 +599,12 @@
                 </div>
 
                 <!-- User -->
-
-                <div class="dropdown" style="margin-left: 15px">
+                {% if request.user.customer is none %}
+                <a id="auth-metamask" type="button" class="btn">
+                  Log in with Metamask
+                </a>
+                {% else %}
+                <div class="dropdown nav-logo-group" style="margin-left: 15px">
                   <a
                     class="text-reset dropdown-toggle me-3 hidden-arrow"
                     type="button"
@@ -597,15 +612,6 @@
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
                   >
-                    {% if request.user.customer.image.url is none %}<img
-                      src="{% static '/user_photos/img.jpg' %}"
-                      class="rounded-circle"
-                      height="25"
-                      width="25"
-                      alt=""
-                      loading="lazy"
-                    />
-                    {% else %}
                     <img
                       src="{{request.user.customer.image.url}}"
                       class="rounded-circle"
@@ -910,6 +916,104 @@
       $("a.btn-customized-light").on("click", function (e) {
         e.preventDefault();
         $(".sidebar").addClass("light");
+      });
+    </script>
+
+    <!-- Metamask scripts -->
+    <script>
+      async function login() {
+        try {
+          await Moralis.enable();
+          window.location.href = "{% url 'store' %}";
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script
+      src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js"
+      type="application/javascript"
+    ></script>
+    <script>
+      const elBtnMetamask = document.getElementById("auth-metamask");
+
+      const handleApiPost = async (endpoint, params) => {
+        const result = await axios.post(`${endpoint}`, params, {
+          headers: {
+            "content-type": "application/json",
+            "X-CSRFToken": "{{ csrf_token }}",
+          },
+        });
+
+        return result.data;
+      };
+
+      const requestMessage = (account, chain) =>
+        handleApiPost('{% url "request_message" %}', {
+          address: account,
+          chain: chain,
+          network: "evm",
+        });
+
+      const verifyMessage = (message, signature) =>
+        handleApiPost('{% url "verify_message" %}', {
+          message,
+          signature,
+          network: "evm",
+        }).then((response) => {
+          if (response.user) {
+            window.location.href = "{% url 'profile' %}";
+          }
+          return response;
+        });
+
+      const connectToMetamask = async () => {
+        const provider = new ethers.providers.Web3Provider(
+          window.ethereum,
+          "any"
+        );
+
+        const [accounts, chainId] = await Promise.all([
+          provider.send("eth_requestAccounts", []),
+          provider.send("eth_chainId", []),
+        ]);
+
+        const signer = provider.getSigner();
+        return { signer, chain: chainId, account: accounts[0] };
+      };
+
+      const handleAuth = async () => {
+        // Connect to Metamask
+        const { signer, chain, account } = await connectToMetamask();
+        console.log("account", account, "chain", chain);
+
+        if (!account) {
+          throw new Error("No account found");
+        }
+        if (!chain) {
+          throw new Error("No chain found");
+        }
+
+        const { message } = await requestMessage(account, chain);
+        const signature = await signer.signMessage(message);
+        const { user } = await verifyMessage(message, signature);
+        console.log(user);
+        if (user) {
+          window.location.href = "{% url 'profile' %}";
+        } else {
+          alert("authentication error");
+        }
+      };
+
+      function init() {
+        elBtnMetamask.addEventListener("click", async () => {
+          handleAuth().catch((error) => console.log(error));
+        });
+      }
+
+      window.addEventListener("load", () => {
+        init();
       });
     </script>
   </body>

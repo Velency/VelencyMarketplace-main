@@ -8,17 +8,24 @@ from ckeditor.fields import RichTextField
 class Customer(models.Model):
     user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
     name = models.CharField(max_length=200, null=True)
+    first_name = models.CharField(max_length=200, null=True)
+    last_name = models.CharField(max_length=20, null=True)
     email = models.CharField(max_length=200)
     image = models.ImageField(default='user_photos/img.jpg',upload_to='user_photos')
     mobile = models.CharField(max_length=10,null=True, blank=True)
     address = models.TextField(max_length=100, null=True, blank=True)
-    contry = models.CharField(max_length=100, null=True, blank=True)
+    country = models.CharField(max_length=100, null=True, blank=True)
     city = models.CharField(max_length=100, null=True, blank=True)
     state = models.CharField(max_length=50, null=True, blank=True)
     zipcode = models.CharField(max_length=6, null=True, blank=True)
-
+    referral_link = models.CharField(max_length=255, unique=True, null=True, blank=True)
+    referrer = models.ForeignKey('self', on_delete=models.SET_NULL, null=True, blank=True)
+    registred = models.BooleanField(default=False)
     def __str__(self):
-	    return self.name
+        if self.name:
+            return self.name
+        else:
+            return self.email
 
 
 class Category(models.Model):

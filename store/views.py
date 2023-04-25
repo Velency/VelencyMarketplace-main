@@ -6,10 +6,12 @@ from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 import json
 import datetime
 from .utils import cookieCart, cartData, guestOrder
+from django.dispatch import receiver
+from django.db.models.signals import post_save
 
 
 from django.contrib.auth.forms import UserCreationForm
-from .forms import CreateUserForm, UpdateCustomerForm, CommentsForm, SupportForm
+from .forms import CreateUserForm, UpdateCustomerForm, CommentsForm, SupportForm,CustomerForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -22,7 +24,108 @@ from .s3 import upload_to_s3, download_from_s3
 from django.core.mail import send_mail
 from .forms import FeedbackForm
 
+# metamask
+from web3 import Web3
+from moralis import *
+import requests
+from django.contrib.auth.models import User
 
+API_KEY = 'cP2QKvv4ccJNAjffgnL5rnRjq0rjTf6iRXFm3odaHxbrzAsnOOXG5ggVYEEu4XfL'
+if API_KEY == 'WEB3_API_KEY_HERE':
+    print("API key is not set")
+    raise SystemExit
+
+
+def moralis_auth(request):
+    return render(request, 'login.html', {})
+
+def my_profile(request):
+     return render(request, 'store/profile.html', {})
+
+def request_message(request):
+    data = json.loads(request.body)
+    print(data)
+
+    REQUEST_URL = 'https://authapi.moralis.io/challenge/request/evm'
+    request_object = {
+      "domain": "defi.finance",
+      "chainId": 1,
+      "address": data['address'],
+      "statement": "Please confirm",
+      "uri": "https://defi.finance/",
+      "expirationTime": "2024-01-01T00:00:00.000Z",
+      "notBefore": "2023-01-01T00:00:00.000Z",
+      "timeout": 15
+    }
+    x = requests.post(
+        REQUEST_URL,
+        json=request_object,
+        headers={'X-API-KEY': API_KEY})
+
+    return JsonResponse(json.loads(x.text))
+
+
+def verify_message(request):
+    data = json.loads(request.body)
+    print(data)
+
+    REQUEST_URL = 'https://authapi.moralis.io/challenge/verify/evm'
+    x = requests.post(
+        REQUEST_URL,
+        json=data,
+        headers={'X-API-KEY': API_KEY})
+    print(json.loads(x.text))
+    print(x.status_code)
+
+    user = None  # assign a default value to user
+
+    if x.status_code == 201:
+        # user can authenticate
+        eth_address = json.loads(x.text).get('address')
+        print("eth address", eth_address)
+        try:
+            user = User.objects.get(username=eth_address)
+        except User.DoesNotExist:
+            user = User(username=eth_address)
+            user.is_staff = False
+            user.is_superuser = False
+            user.save()
+
+            # create a new customer instance with the user
+            customer = Customer.objects.create(user=user, first_name=eth_address)
+
+        if user is not None:
+            if user.is_active:
+                login(request, user)
+                request.session['auth_info'] = data
+                request.session['verified_data'] = json.loads(x.text)
+                request.session['user_id'] = user.id  # сохраняем id пользователя в сессию
+                return JsonResponse({'user': user.username})
+            else:
+                return JsonResponse({'error': 'account disabled'})
+    else:
+        return JsonResponse(json.loads(x.text))
+
+
+
+
+
+
+def LoginPage(request):
+    # create a new Moralis instance with the application ID and server URL
+    moralis = Moralis(
+        application_id='cP2QKvv4ccJNAjffgnL5rnRjq0rjTf6iRXFm3odaHxbrzAsnOOXG5ggVYEEu4XfL',
+        server_url='https://your_moralis_server_url/api',
+    )
+
+    # create a new Web3 instance using the user's browser provider
+    web3 = Web3(Web3.WebsocketProvider(moralis.get_web3_socket()))
+
+    # initiate the Metamask authentication process
+    login_data = moralis.authenticate(web3)
+
+    # redirect the user to the authentication URL
+    return redirect('profile')
 
 def index(request):
 	return render(request, 'store/index.html')
@@ -37,29 +140,75 @@ def index(request):
 # 	context = {'partners':partners, 'items':items, 'order':order, 'cartItems':cartItems, }
 # 	return render(request, 'store/packet_buy.html', context)
 
+# Viwe.py 
+
 def packet_buy(request):
-    if request.method == 'POST':
-        form = FeedbackForm(request.POST)
-        if form.is_valid():
-            name = form.cleaned_data['name']
-            email = form.cleaned_data['email']
-            message = form.cleaned_data['message']
-            try:
-                send_mail(
-                    'Сообщение из формы обратной связи',
-                    f'От: {name}\nEmail: {email}\n\n{message}',
-                    'fidanur23@yandex.ru',
-                    ['data@hrworld.live'],
-                    fail_silently=False,
-                )
-            except:
-                messages.error(request, 'Ошибка отправки сообщения!')
-            else:
-                messages.success(request, 'Сообщение успешно отправлено.')
-                form = FeedbackForm()
-    else:
-        form = FeedbackForm()
-    return render(request, 'store/packet_buy.html', {'form': form})
+	value = request.GET.get('value')
+	if value == '50':
+		result = '50'
+		total = '150'
+		product = 'Packet 50 USDT'
+	elif value == '100':
+		result = '100'
+		total = '300'
+		product = 'Packet 100 USDT'
+	elif value == '250':
+		result = '250'
+		total = '750'
+		product = 'Packet 250 USDT'
+	elif value == '500':
+		result = '500'
+		total = '1500'
+		product = 'Packet 500 USDT'
+	elif value == '1000':
+		result = '1000'
+		total = '3000'
+		product = 'Packet 1000 USDT'
+	elif value == '2500':
+		result = '2500'
+		total = '7500'
+		product = 'Packet 2500 USDT'
+	elif value == '5000':
+		result = '5000'
+		total = '15000'
+		product = 'Packet 5000 USDT'
+	elif value == '10000':
+		result = '10000'
+		total = '30000'
+		product = 'Packet 10000 USDT'
+	else:
+		result = None
+		total = None
+		product =None
+	if request.method == 'POST':
+		form = FeedbackForm(request.POST)
+		if form.is_valid():
+			name = form.cleaned_data['name']
+			email = form.cleaned_data['email']
+			message = form.cleaned_data['message']
+			try:
+				send_mail(
+					f'От: {name}\nEmail: {email}\n\n{message}',
+					'nikitakap16020@gmail.com',
+					['nikitakap16020@gmail.com'],
+					fail_silently=False,
+				)
+			except:
+				messages.error(request, 'Ошибка отправки сообщения!')
+			else:
+				messages.success(request, 'Сообщение успешно отправлено.')
+				form = FeedbackForm()
+				return redirect('tariffs')
+		
+	context = { 'product':product, 'total':total, 'result': result }
+	return render(request, 'store/packet_buy.html', context)
+
+  # End View.py
+
+@receiver(post_save, sender=User)
+def create_customer(sender, instance, created, **kwargs):
+    if created:
+        Customer.objects.create(user=instance, name="new user")
 
 
 def store(request):
@@ -191,7 +340,7 @@ def addComment(request, id):
 			current_customer = request.user.customer
 			data.customer_id = current_customer.id
 			data.save()
-			return HttpResponseRedirect('/')
+			return HttpResponseRedirect('.')
 
 
 def support(request):
@@ -405,10 +554,10 @@ def loginPage(request):
 
 def logoutUser(request):
 	logout(request)
-	return redirect('loginPage')
+	return redirect('/')
 
 
-def register(request):
+def registerUser(request):
 	if request.user.is_authenticated:
 		return redirect('store')
 	else:
@@ -460,3 +609,39 @@ def tariffs (request):
 
 def politic (request):
 	return render(request, 'store/politic.html')
+
+
+def registerCustomer(request):
+    if request.method == 'POST':
+        user_form = UserCreationForm(request.POST)
+        customer_form = CustomerForm(request.POST)
+        if user_form.is_valid() and customer_form.is_valid():
+            # Создаем пользователя
+            user = user_form.save()
+            # Создаем объект Customer связанный с пользователем
+            customer = customer_form.save(commit=False)
+            customer.user = user
+            customer.save()
+            # Аутентификация пользователя и перенаправление на главную страницу
+            username = user_form.cleaned_data.get('username')
+            password = user_form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=password)
+            login(request, user)
+            return redirect('profile')
+    else:
+        user_form = UserCreationForm()
+        customer_form = CustomerForm()
+    return render(request, 'create_customer.html', {'user_form': user_form, 'customer_form': customer_form})
+
+@login_required
+def create_customer(request):
+    if request.method == 'POST':
+        form = CustomerForm(request.POST, request.FILES)
+        if form.is_valid():
+            customer = form.save(commit=False)
+            customer.user = request.user
+            customer.save()
+            return redirect('profile')
+    else:
+        form = CustomerForm()
+    return render(request, 'create_customer.html', {'form': form})

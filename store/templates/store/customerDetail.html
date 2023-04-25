@@ -1,9 +1,25 @@
 {% extends 'store/main.html' %} {% load static %} {% block content %}
 
-<link href="{% static 'fontawesomefree/css/fontawesome.css' %}" rel="stylesheet" type="text/css">
-<link href="{% static 'fontawesomefree/css/brands.css' %}" rel="stylesheet" type="text/css">
-<link href="{% static 'fontawesomefree/css/solid.css' %}" rel="stylesheet" type="text/css">
-<link href="{% static 'fontawesomefree/css/all.min.css' %}" rel="stylesheet" type="text/css">
+<link
+  href="{% static 'fontawesomefree/css/fontawesome.css' %}"
+  rel="stylesheet"
+  type="text/css"
+/>
+<link
+  href="{% static 'fontawesomefree/css/brands.css' %}"
+  rel="stylesheet"
+  type="text/css"
+/>
+<link
+  href="{% static 'fontawesomefree/css/solid.css' %}"
+  rel="stylesheet"
+  type="text/css"
+/>
+<link
+  href="{% static 'fontawesomefree/css/all.min.css' %}"
+  rel="stylesheet"
+  type="text/css"
+/>
 
 <style type="text/css">
   @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
@@ -54,7 +70,7 @@
     margin-bottom: 0;
     font-size: 14px;
     font-weight: 500;
-    color: #ffff;
+    color: rgb(0, 0, 0);
     padding-left: 3px;
   }
 
@@ -82,7 +98,7 @@
   select:focus {
     outline: none;
   }
-  
+
   .button:hover {
     background-color: #0779e4;
     color: #fff;
@@ -108,16 +124,16 @@
     }
   }
 </style>
-<br>
+<br />
 <div class="wrapper">
   <h4 class="pb-4 border-bottom">Account settings</h4>
   <div class="d-flex align-items-start py-3 border-bottom">
     <form action="" id="userinfo" method="post" enctype="multipart/form-data">
       {% csrf_token %}
-      <img src="{{request.user.customer.image.url}}" class="img" alt="" />
+      <img src="{{ request.user.customer.image.url }}" class="img" alt="" />
       <div class="pl-sm-4 pl-2" id="img-section">
         <b>Profile Photo</b>
-        <p>{{form.image}}</p>
+        <p>{{ form.image }}</p>
         <button type="submit" id="form.image" class="btn button border">
           <b>Upload</b>
         </button>
@@ -126,60 +142,92 @@
       <div class="py-2">
         <div class="row py-2">
           <div class="col-md-6">
-            <label for="firstname">Username</label>
-            <input type="text" class="b g-light form-control" placeholder="Fedor
-            Kulish" id={{form.name}}
+            <label for="first_name">First Name</label>
+            <input
+              type="text"
+              class="b g-light form-control"
+              placeholder="{{ request.user.customer.first_name }}"
+              id="{{ form.first_name.id_for_label }}"/>
           </div>
           <div class="col-md-6 pt-md-0 pt-3">
-            <label for="phone">Phone Number</label>
-            <input type="tel" class="b g-light form-control" placeholder="+7 213 548 6015S" id={{form.mobile}}
+            <label for="last_name">Last Name</label>
+            <input
+              type="text"
+              class="b g-light form-control"
+              placeholder="{{ request.user.customer.last_name  }}"
+              id="{{ form.last_name.id_for_label }}"/>          
           </div>
         </div>
         <div class="row py-2">
           <div class="col-md-6">
             <label for="email">Email Address</label>
-            <input type="text" class="b g-light form-control"
-            placeholder="steve_@email.com" id={{form.email}}
+            <input
+              type="text"
+              class="b g-light form-control"
+              placeholder="{{ request.user.customer.email }}"
+              id="{{ form.email.id_for_label }}"
+            />
           </div>
           <div class="col-md-6 pt-md-0 pt-3">
             <label for="country">Country</label>
-            <input type="tel" class="b g-light form-control"
-            placeholder="Russia" id={{form.contry}}
+            <input
+              type="tel"
+              class="b g-light form-control"
+              placeholder="{{ request.user.customer.country }}"
+              id="{{ form.country.id_for_label }}"
+            />
           </div>
         </div>
         <div class="row py-2">
           <div class="col-md-6">
             <label for="state">State</label>
-            <input type="text" class="b g-light form-control"
-            placeholder="Krasnodarskiy kray" id={{form.state}}
+            <input
+              type="text"
+              class="b g-light form-control"
+              placeholder="{{ request.user.customer.state}}"
+              id="{{ form.state.id_for_label }}"
+            />
           </div>
           <div class="col-md-6 pt-md-0 pt-3">
             <label for="city">City</label>
-            <input type="tel" class="b g-light form-control"
-            placeholder="Krasnodar" id={{form.city}}
+            <input
+              type="tel"
+              class="b g-light form-control"
+              placeholder="{{request.user.customer.city}} "
+              id="{{ form.city.id_for_label }}"
+            />
           </div>
         </div>
         <div class="row py-2">
           <div class="col-md-6">
             <label for="street">Street</label>
-            <input type="text" class="b g-light form-control"
-            placeholder="Krushavets st. 48" id={{form.street}}
+            <input
+              type="text"
+              class="b g-light form-control"
+              placeholder="{{request.user.customer.street}} "
+              id="{{ form.street.id_for_label}}"
+              />
           </div>
           <div class="col-md-6 pt-md-0 pt-3">
-            <label for="zipcode">Zipcode</label>
-            <input type="tel" class="b g-light form-control" placeholder="14008"
-            id={{form.zipcode}}
+            <label for="mobile">Mobile</label>
+            <input
+            type="tel"
+            class="b g-light form-control"
+            placeholder="{{ request.user.customer.mobile }}"
+            id="{{ form.mobile.id_for_label }}"
+          />
           </div>
-
-          <div class="py-3 pb-4 border-bottom">
-            <button type="submit" id="userinfo" class="btn btn-primary mr-3">
-              Save Changes
-            </button>
-          </div>
+        </div>
+        </div>
+        <div class="py-3 pb-4 border-bottom">
+          <button type="submit" id="userinfo" class="btn btn-primary mr-3">
+            Save Changes
+          </button>
         </div>
       </div>
     </form>
   </div>
 </div>
 </div>
+
 {% endblock content %}

@@ -20,7 +20,7 @@ class UpdateCustomerForm(forms.ModelForm):
     class Meta:
         model = Customer
         fields = '__all__'
-        exclude = [ 'user']
+        exclude = ['user','registred']
 
 
 class CommentsForm(forms.ModelForm):
@@ -44,4 +44,9 @@ class FeedbackForm(forms.Form):
     email = forms.EmailField()
     message = forms.CharField(widget=forms.Textarea)
 
+
+class CustomerForm(forms.ModelForm):
+    class Meta:
+        model = Customer
+        fields = ['first_name', 'email', 'image', 'mobile', 'address', 'country', 'city', 'state', 'zipcode']
 
