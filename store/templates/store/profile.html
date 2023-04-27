@@ -1,26 +1,112 @@
 {% extends 'store/main.html' %} {% load static %} {% block content %}
 
-<div>
+<link
+  href="{% static 'fontawesomefree/css/fontawesome.css' %}"
+  rel="stylesheet"
+  type="text/css"
+/>
+<link
+  href="{% static 'fontawesomefree/css/brands.css' %}"
+  rel="stylesheet"
+  type="text/css"
+/>
+<link
+  href="{% static 'fontawesomefree/css/solid.css' %}"
+  rel="stylesheet"
+  type="text/css"
+/>
+<link
+  href="{% static 'fontawesomefree/css/all.min.css' %}"
+  rel="stylesheet"
+  type="text/css"
+/>
+
+<div class="container">
   {% if user.is_authenticated %}
-  <h1>Eth address: {{ user.username }}</h1>
-  <h3>Session auth info</h3>
-  <table width="200px" border="0px" padding="5px">
-    {% for key,value in request.session.auth_info.items %}
-    <tr>
-      <td>{{key}}</td>
-      <td><pre>{{ value }}</pre></td>
-    </tr>
-    {% endfor %}
-  </table>
-  <table width="200px" border="0px" padding="0px">
-    <h3>Verified user info</h3>
-    {% for key,value in request.session.verified_data.items %}
-    <tr>
-      <td>{{key}}</td>
-      <td>{{ value }}</td>
-    </tr>
-    {% endfor %}
-  </table>
+  <div class="profile-container">
+    <div class="profile-header">
+      <h1>{{ request.user.customer.first_name }}'s Profile</h1>
+      <img src="{{ request.user.customer.image.url }}" alt="Profile Picture" />
+    </div>
+    <div class="profile-details">
+      <p><strong>First Name:</strong> {{ request.user.customer.first_name }}</p>
+      <p><strong>Last Name:</strong> {{ request.user.customer.last_name }}</p>
+      <p><strong>Email:</strong> {{ request.user.customer.email }}</p>
+      <p>
+        <strong>Referal Code:</strong> {{ request.user.customer.referral_link }}
+      </p>
+      <p><strong>Mobile:</strong> {{ request.user.customer.mobile }}</p>
+      <p>
+        <strong>Referrer:</strong> {{ request.user.customer.referral_by.name }}
+      </p>
+      <p><strong>Country:</strong> {{ request.user.customer.country }}</p>
+      <p><strong>City:</strong> {{ request.user.customer.city }}</p>
+      <p><strong>State:</strong> {{ request.user.customer.state }}</p>
+      <p><strong>Zipcode:</strong> {{ request.user.customer.zipcode }}</p>
+    </div>
+    <div class="container">
+      <h2>Referrals:</h2>
+      <ul>
+        {% for referral in user.customer.get_referrals %}
+        <li>{{ referral.name }} ({{ referral.email }})</li>
+        {% empty %}
+        <li>No referrals yet</li>
+        {% endfor %}
+      </ul>
+    </div>
+    <a href="{% url 'profile' %}" class="profile-button">Edit Profile</a>
+  </div>
+
+  <style>
+    .profile-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin: 50px;
+    }
+
+    .profile-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+
+    .profile-header img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 10px;
+    }
+
+    .profile-details {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: 10px;
+      max-width: 800px;
+    }
+
+    @media (max-width: 600px) {
+      .profile-details {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .profile-button {
+      background-color: #4caf50;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      text-decoration: none;
+      margin-top: 30px;
+    }
+
+    .profile-button:hover {
+      background-color: #3e8e41;
+    }
+  </style>
   <br />
   <a href="{% url 'logout' %}?next={% url 'logout' %}">Logout</a>
   {% else %}

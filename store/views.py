@@ -11,7 +11,7 @@ from django.db.models.signals import post_save
 
 
 from django.contrib.auth.forms import UserCreationForm
-from .forms import CreateUserForm, UpdateCustomerForm, CommentsForm, SupportForm,CustomerForm
+from .forms import CreateUserForm, UpdateCustomerForm, CommentsForm, SupportForm,CustomerForm,CustomerOfferForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -92,7 +92,12 @@ def verify_message(request):
             user.save()
 
             # create a new customer instance with the user
-            customer = Customer.objects.create(user=user, first_name=eth_address)
+            customer_data = {'user': user}
+            if 'first_name' in data:
+                customer_data['first_name'] = data['first_name']
+            else:
+                customer_data['first_name'] = 'New user'
+            customer = Customer.objects.create(**customer_data)
 
         if user is not None:
             if user.is_active:
@@ -107,6 +112,11 @@ def verify_message(request):
         return JsonResponse(json.loads(x.text))
 
 
+# @receiver(post_save, sender=User)
+# def create_customer(sender, instance, created, **kwargs):
+#     if created:
+#         customer_name = "New user {}".format(instance.id)
+#         Customer.objects.create(user=instance, name=customer_name)
 
 
 
@@ -205,10 +215,7 @@ def packet_buy(request):
 
   # End View.py
 
-@receiver(post_save, sender=User)
-def create_customer(sender, instance, created, **kwargs):
-    if created:
-        Customer.objects.create(user=instance, name="new user")
+
 
 
 def store(request):
@@ -274,25 +281,40 @@ def DeleteFormWishList(request):
 
 
 @login_required
-def account(request):	
-	if request.method =="POST":
-		customer = request.user.customer
-		form = UpdateCustomerForm(request.POST, request.FILES, instance = customer)
-		if form.is_valid():
-			form.save()
-			messages.success(request, 'Profile was updated')
-			return redirect('profile')
-	else:
-		form = UpdateCustomerForm(instance=request.user.customer)
-	data = cartData(request)
+def account(request):
+    if request.method == "POST":
+        customer = request.user.customer
+        form = UpdateCustomerForm(request.POST, request.FILES, instance=customer)
+        if form.is_valid():
+            customer.registred = True
+            
+            # Get the referrer code entered by the customer
+            referrer_code = form.cleaned_data.get('referrer_code')
+            if referrer_code:
+                # Find the customer who has the entered referral code as their referral_code
+                referrer = Customer.objects.filter(referral_code=referrer_code).first()
+                if referrer:
+                    # Add the referral to the database
+                    Referral.objects.create(referrer=request.user, invitee=referrer.user)
+                    # Set the referral_by field of the current customer to the referrer
+                    customer.referral_by = referrer
 
-	cartItems = data['cartItems']
-	order = data['order']
-	items = data['items']
-	categories =Category.objects.all()
-	partners = Partnership.objects.all()
-	context ={'partners':partners, 'cartItems':cartItems,  'form':form, 'order':order, 'items':items,  'categories':categories}
-	return render(request, 'store/customerDetail.html', context)
+            form.save()
+            messages.success(request, 'Profile was updated')
+            return redirect('my_profile')
+    else:
+        form = UpdateCustomerForm(instance=request.user.customer)
+
+    data = cartData(request)
+    cartItems = data['cartItems']
+    order = data['order']
+    items = data['items']
+    categories = Category.objects.all()
+    partners = Partnership.objects.all()
+    context = {'partners': partners, 'cartItems': cartItems, 'form': form, 'order': order, 'items': items, 'categories': categories}
+    return render(request, 'store/customer_form.html', context)
+
+
 
 
 def orders(request):
@@ -645,3 +667,23 @@ def create_customer(request):
     else:
         form = CustomerForm()
     return render(request, 'create_customer.html', {'form': form})
+
+@login_required
+def referral_list(request):
+    referrals = Referral.objects.filter(referrer=request.user)
+    return render(request, 'referral_list.html', {'referrals': referrals})
+
+
+
+
+# @login_required
+# def referral(request):
+#     user = request.user
+#     if user.userprofile.referred_by:
+#         referred_by = user.userprofile.referred_by.username
+#     else:
+#         referred_by = None
+#     referral_link = request.build_absolute_uri('/register/') + '?ref=' + user.username
+#     user.userprofile.referral_link = referral_link
+#     user.userprofile.save()
+#     return render(request, 'profile.html', {'referral_link': referral_link, 'referred_by': referred_by})

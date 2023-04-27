@@ -42,7 +42,7 @@ urlpatterns = [
     path('checkout/', views.checkout, name="checkout"),
     path('update_item/', views.updateItem, name="update_item"),
     path('process_order/', views.processOrder, name="process_order"),
-    path('create_customer/', views.create_customer, name='create_customer'),
+    path('customer_form/', views.account, name='customer_form'),
     # #moralis reg
     path('moralis_auth', views.moralis_auth, name='moralis_auth'),
     path('request_message', views.request_message, name='request_message'),

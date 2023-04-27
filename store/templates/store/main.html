@@ -963,7 +963,7 @@
           network: "evm",
         }).then((response) => {
           if (response.user) {
-            window.location.href = "{% url 'profile' %}";
+            window.location.href = "{% url 'my_profile' %}";
           }
           return response;
         });

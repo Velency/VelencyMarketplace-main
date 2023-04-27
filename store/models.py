@@ -1,6 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import User
 from ckeditor.fields import RichTextField
+import random
+import string
+import secrets
 
 
 # Create your models here.
@@ -19,13 +22,34 @@ class Customer(models.Model):
     state = models.CharField(max_length=50, null=True, blank=True)
     zipcode = models.CharField(max_length=6, null=True, blank=True)
     referral_link = models.CharField(max_length=255, unique=True, null=True, blank=True)
-    referrer = models.ForeignKey('self', on_delete=models.SET_NULL, null=True, blank=True)
+    referral_code = models.CharField(max_length=5, unique=True, default=secrets.token_urlsafe)
+    referrer_code = models.CharField(max_length=5, default='')
+    referral_by = models.ForeignKey('self', on_delete=models.SET_NULL, null=True, blank=True)
     registred = models.BooleanField(default=False)
     def __str__(self):
         if self.name:
             return self.name
         else:
             return self.email
+    
+    def save(self, *args, **kwargs):
+        if not self.referral_link:
+            self.referral_link = self.generate_referral_code()
+        super().save(*args, **kwargs)
+
+    def generate_referral_code(self):
+        letters_and_digits = string.ascii_letters + string.digits
+        while True:
+            referral_code = ''.join(random.choice(letters_and_digits) for _ in range(5))
+            if not Customer.objects.filter(referral_link=referral_code).exists():
+                return referral_code
+    def get_referrals(self):
+        return Customer.objects.filter(referral_by=self)
+
+class Referral(models.Model):
+    referrer = models.ForeignKey(User, related_name='referrer', on_delete=models.CASCADE)
+    invitee = models.ForeignKey(User, related_name='invitee', on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
 
 
 class Category(models.Model):
@@ -228,3 +252,14 @@ class Partnership(models.Model):
 
     def __str__(self):
 	    return self.name
+
+
+# class UserProfile(models.Model):
+#     user = models.OneToOneField(User, on_delete=models.CASCADE)
+#     referral_link = models.URLField(blank=True)
+#     referred_by = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True, related_name='referred')
+
+#     def __str__(self):
+#         return self.user.username
+
+    
