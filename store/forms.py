@@ -19,17 +19,17 @@ class CreateUserForm(UserCreationForm):
 class UpdateCustomerForm(forms.ModelForm):
     class Meta:
         model = Customer
-        fields = ['first_name','last_name', 'email', 'mobile', 'image', 'country', 'state', 'city', 'address', 'referrer_code']
+        fields = ['first_name','last_name', 'email', 'mobile', 'image', 'referrer_code']
         widgets = {
             'first_name': forms.TextInput(attrs={'class': 'form-control'}),
             'last_name': forms.TextInput(attrs={'class': 'form-control'}),
             'email': forms.EmailInput(attrs={'class': 'form-control'}),
             'mobile': forms.TextInput(attrs={'class': 'form-control'}),
-            'country': forms.TextInput(attrs={'class': 'form-control'}),
-            'state': forms.TextInput(attrs={'class': 'form-control'}),
-            'city': forms.TextInput(attrs={'class': 'form-control'}),
-            'address': forms.TextInput(attrs={'class': 'form-control'}),
-            'zipcode': forms.TextInput(attrs={'class': 'form-control'}),
+            # 'country': forms.TextInput(attrs={'class': 'form-control'}),
+            # 'state': forms.TextInput(attrs={'class': 'form-control'}),
+            # 'city': forms.TextInput(attrs={'class': 'form-control'}),
+            # 'address': forms.TextInput(attrs={'class': 'form-control'}),
+            # 'zipcode': forms.TextInput(attrs={'class': 'form-control'}),
         }
 
 
@@ -58,5 +58,5 @@ class FeedbackForm(forms.Form):
 class CustomerForm(forms.ModelForm):
     class Meta:
         model = Customer
-        fields = ['first_name', 'email', 'image', 'mobile', 'address', 'country', 'city', 'state', 'zipcode', 'referral_code']
+        fields = ['first_name', 'email', 'image', 'mobile', 'referral_code']
 
