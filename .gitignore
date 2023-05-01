@@ -4,3 +4,4 @@ db.sqlite3
 static
 db.sqlite3
 store/__pycache__/
+store/templates/store/old_profile.html

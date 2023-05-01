@@ -22,10 +22,13 @@ class Customer(models.Model):
     # state = models.CharField(max_length=50, null=True, blank=True)
     # zipcode = models.CharField(max_length=6, null=True, blank=True)
     referral_link = models.CharField(max_length=255, unique=True, null=True, blank=True)
-    referral_code = models.CharField(max_length=5, unique=True, default=secrets.token_urlsafe)
+    referral_code = models.CharField(max_length=5, unique=True, blank=True)
     referrer_code = models.CharField(max_length=5, default='')
     referral_by = models.ForeignKey('self', on_delete=models.SET_NULL, null=True, blank=True)
     registred = models.BooleanField(default=False)
+    balance_hrw = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    balance_HRWT = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    level = models.IntegerField(default=0, blank=False, null=False)
     def __str__(self):
         if self.name:
             return self.name
@@ -33,8 +36,8 @@ class Customer(models.Model):
             return self.email
     
     def save(self, *args, **kwargs):
-        if not self.referral_link:
-            self.referral_link = self.generate_referral_code()
+        if not self.referral_code:
+            self.referral_code = secrets.token_urlsafe(5)[:5]
         super().save(*args, **kwargs)
 
     def generate_referral_code(self):

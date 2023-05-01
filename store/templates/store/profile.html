@@ -1,116 +1,261 @@
-{% extends 'store/main.html' %} {% load static %} {% block content %}
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <title>Home</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+    <script src="{% static 'js/script.js' %}" defer></script>
+  </head>
+  <body class="body">
+    <div class="buttonsmenu">
+      <button class="logo">
+        <img src="{% static 'media/logo.png' %}" />
+      </button>
 
-<link
-  href="{% static 'fontawesomefree/css/fontawesome.css' %}"
-  rel="stylesheet"
-  type="text/css"
-/>
-<link
-  href="{% static 'fontawesomefree/css/brands.css' %}"
-  rel="stylesheet"
-  type="text/css"
-/>
-<link
-  href="{% static 'fontawesomefree/css/solid.css' %}"
-  rel="stylesheet"
-  type="text/css"
-/>
-<link
-  href="{% static 'fontawesomefree/css/all.min.css' %}"
-  rel="stylesheet"
-  type="text/css"
-/>
+      <a class="menu mar" href="#personalinformation">
+        <img src="{% static 'media/11.png' %}" />
+      </a>
 
-<div class="container">
-  {% if user.is_authenticated %}
-  <div class="profile-container">
-    <div class="profile-header">
-      <h1>{{ request.user.customer.first_name }}'s Profile</h1>
-      <img src="{{ request.user.customer.image.url }}" alt="Profile Picture" />
+      <a class="menu" href="#balances">
+        <img src="{% static 'media/2.png' %}" />
+      </a>
+
+      <a class="menu" href="#myteam">
+        <img src="{% static 'media/3.png' %}" />
+      </a>
     </div>
-    <div class="profile-details">
-      <p><strong>First Name:</strong> {{ request.user.customer.first_name }}</p>
-      <p><strong>Last Name:</strong> {{ request.user.customer.last_name }}</p>
-      <p><strong>Email:</strong> {{ request.user.customer.email }}</p>
-      <p>
-        <strong>Referal Code:</strong> {{ request.user.customer.referral_link }}
-      </p>
-      <p><strong>Mobile:</strong> {{ request.user.customer.mobile }}</p>
-      <p>
-        <strong>Referrer:</strong> {{ request.user.customer.referral_by.name }}
-      </p>
-      <!-- <p><strong>Country:</strong> {{ request.user.customer.country }}</p>
-      <p><strong>City:</strong> {{ request.user.customer.city }}</p>
-      <p><strong>State:</strong> {{ request.user.customer.state }}</p>
-      <p><strong>Zipcode:</strong> {{ request.user.customer.zipcode }}</p> -->
+
+    <div class="main">
+      <nav class="nav">
+        <div class="buttons">
+          <button class="but" type="button" href="'{% url 'store' %}">
+            <img class="icon" src="{% static 'media/market.svg' %}" alt="" />
+          </button>
+          <button class="but" type="button">
+            <img class="icon" src="{% static 'media/finance.svg' %}" alt="" />
+          </button>
+          <button class="but" type="button">
+            <img class="icon" src="{% static 'media/project.svg' %}" alt="" />
+          </button>
+          <button class="but" type="button">
+            <img class="icon" src="{% static 'media/community.svg' %}" alt="" />
+          </button>
+
+          <div class="form-group">
+            <div class="dropdown"></div>
+            <button class="signin">
+              <img
+                class="photo"
+                src="{{ request.user.customer.image.url }}"
+                alt=""
+              />
+              <p>{{ request.user.customer.name }}</p>
+              <img class="row" src="{% static 'media/row.svg' %}" alt="" />
+            </button>
+            <ul class="dropdown-list">
+              <li class="dropdown-list-item" data-value="area">
+                <img src="{% static 'media/area.png' %}" />
+                <a href="{% url 'my_profile' %}">Personal area</a>
+              </li>
+              <li class="dropdown-list-item" data-value="packages">
+                <img src="{% static 'media/packages.png' %}" />
+                <a href="{% url 'tariffs' %}">Packages</a>
+              </li>
+              <li class="dropdown-list-item" data-value="settings">
+                <img src="{% static 'media/settings.png' %}" />
+                <a href="{% url 'profile' %}">Settings</a>
+              </li>
+              <li class="dropdown-list-item" data-value="exit">
+                <img src="{% static 'media/exit.png' %}" />
+                <a href="{% url 'logout' %}">Exit</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <div class="information">
+        <p id="personalinformation">Personal information</p>
+        <div class="personal">
+          <img
+            class="profile"
+            src="{{ request.user.customer.image.url }}"
+            alt=""
+          />
+
+          <div class="title">
+            <h1 class="textleft">Username:</h1>
+            <h1 class="textleft">First/last name:</h1>
+            <h1 class="textleft">Referal ID:</h1>
+            <h1 class="textleft">Referal link:</h1>
+            <h1 class="textleft">Status:</h1>
+            <h1 class="textleft">Leader:</h1>
+          </div>
+          <div class="title">
+            <h1 class="textright">{{ request.user.customer.name}}</h1>
+            <h1 class="textright">
+              {{ request.user.customer.first_name}}
+              {{request.user.customer.last_name}}
+            </h1>
+            <h1 class="textright">{{ request.user.customer.mobile}}</h1>
+            <a class="textright" href="ttp://referal.link.referalID.com"
+              >{{ request.user.customer.referral_code}}</a
+            >
+            <h1 class="textright">Level - {{ request.user.customer.level}}</h1>
+            <h1 class="textright">
+              {{ request.user.customer.referral_by.name}}
+            </h1>
+          </div>
+        </div>
+
+        <p id="balances">Balances</p>
+        <div class="balances">
+          <table>
+            <tr>
+              <th></th>
+              <th>usdt</th>
+              <th>hrwt</th>
+            </tr>
+            <!--ряд с ячейками заголовков-->
+            <tr>
+              <th>Personal</th>
+              <td>{{ request.user.customer.balance_hrw }}</td>
+              <td>{{ request.user.customer.balance_HRWT }}</td>
+            </tr>
+            <tr>
+              <th>General</th>
+              <td>00.00</td>
+              <td>00.00</td>
+            </tr>
+            <tr>
+              <th>Team</th>
+              <td>00.00</td>
+              <td>00.00</td>
+            </tr>
+            <tr>
+              <th>Available <br />for withdrawal</th>
+              <th><button>withd</button></th>
+              <th><button>withd</button></th>
+            </tr>
+            <!--ряд с ячейками тела таблицы-->
+          </table>
+        </div>
+
+        <p id="myteam">My team</p>
+        <div class="forscroll" style="display: flex; align-items: center">
+          <button id="left" class="scrollbutton">
+            <img src="{% static 'media/rowleft.svg' %}" />
+          </button>
+          <div class="wrapper">
+            <div class="slider">
+              <div class="myteam">
+                <img
+                  class="profileteam"
+                  src="{% static 'media/img.jpg' %}"
+                  alt=""
+                />
+                <p class="team">Username</p>
+                <p class="team">Status</p>
+                <p class="team">Balance</p>
+              </div>
+              <div class="myteam">
+                <img
+                  class="profileteam"
+                  src="{% static 'media/img.jpg' %}"
+                  alt=""
+                />
+                <p class="team">fvwvwv</p>
+                <p class="team">Status</p>
+                <p class="team">Balance</p>
+              </div>
+              <div class="myteam">
+                <img
+                  class="profileteam"
+                  src="{% static 'media/img.jpg' %}"
+                  alt=""
+                />
+                <p class="team">Username</p>
+                <p class="team">Status</p>
+                <p class="team">Balance</p>
+              </div>
+              <div class="myteam">
+                <img
+                  class="profileteam"
+                  src="{% static 'media/img.jpg' %}"
+                  alt=""
+                />
+                <p class="team">Username</p>
+                <p class="team">Status</p>
+                <p class="team">Balance</p>
+              </div>
+              <div class="myteam">
+                <img
+                  class="profileteam"
+                  src="{% static 'media/img.jpg' %}"
+                  alt=""
+                />
+                <p class="team">Username</p>
+                <p class="team">Status</p>
+                <p class="team">Balance</p>
+              </div>
+              <div class="myteam">
+                <img
+                  class="profileteam"
+                  src="{% static 'media/img.jpg' %}"
+                  alt=""
+                />
+                <p class="team">Username</p>
+                <p class="team">Status</p>
+                <p class="team">Balance</p>
+              </div>
+              <div class="myteam">
+                <img
+                  class="profileteam"
+                  src="{% static 'media/img.jpg' %}"
+                  alt=""
+                />
+                <p class="team">Username</p>
+                <p class="team">Status</p>
+                <p class="team">Balance</p>
+              </div>
+              <div class="myteam">
+                <img
+                  class="profileteam"
+                  src="{% static 'media/img.jpg' %}"
+                  alt=""
+                />
+                <p class="team">Username</p>
+                <p class="team">Status</p>
+                <p class="team">Balance</p>
+              </div>
+              <div class="myteam">
+                <img
+                  class="profileteam"
+                  src="{% static 'media/img.jpg' %}"
+                  alt=""
+                />
+                <p class="team">Username</p>
+                <p class="team">Status</p>
+                <p class="team">Balance</p>
+              </div>
+              <div class="myteam">
+                <img
+                  class="profileteam"
+                  src="{% static 'media/img.jpg' %}"
+                  alt=""
+                />
+                <p class="team">Username</p>
+                <p class="team">Status</p>
+                <p class="team">Balance</p>
+              </div>
+            </div>
+          </div>
+          <button id="right" class="scrollbutton">
+            <img src="{% static 'media/rowright.svg' %}" />
+          </button>
+        </div>
+      </div>
     </div>
-    <div class="container">
-      <h2>Referrals:</h2>
-      <ul>
-        {% for referral in user.customer.get_referrals %}
-        <li>{{ referral.name }} ({{ referral.email }})</li>
-        {% empty %}
-        <li>No referrals yet</li>
-        {% endfor %}
-      </ul>
-    </div>
-    <a href="{% url 'profile' %}" class="profile-button">Edit Profile</a>
-  </div>
-
-  <style>
-    .profile-container {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      margin: 50px;
-    }
-
-    .profile-header {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-bottom: 30px;
-    }
-
-    .profile-header img {
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin-bottom: 10px;
-    }
-
-    .profile-details {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      grid-gap: 10px;
-      max-width: 800px;
-    }
-
-    @media (max-width: 600px) {
-      .profile-details {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .profile-button {
-      background-color: #4caf50;
-      color: white;
-      padding: 10px 20px;
-      border-radius: 5px;
-      text-decoration: none;
-      margin-top: 30px;
-    }
-
-    .profile-button:hover {
-      background-color: #3e8e41;
-    }
-  </style>
-  <br />
-  <a href="{% url 'logout' %}?next={% url 'logout' %}">Logout</a>
-  {% else %}
-  <a href="{% url 'moralis_auth' %}"> Login page </a>
-  {% endif %}
-</div>
-{% endblock content %}
+  </body>
+</html>
