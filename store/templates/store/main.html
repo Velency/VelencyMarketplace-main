@@ -627,7 +627,7 @@
                     aria-labelledby="navbarDropdown"
                   >
                     <li>
-                      <a class="dropdown-item" href="{% url 'profile' %}"
+                      <a class="dropdown-item" href="{% url 'my_profile' %}"
                         >Profile</a
                       >
                     </li>
@@ -1000,7 +1000,7 @@
         const { user } = await verifyMessage(message, signature);
         console.log(user);
         if (user) {
-          window.location.href = "{% url 'profile' %}";
+          window.location.href = "{% url 'my_profile' %}";
         } else {
           alert("authentication error");
         }

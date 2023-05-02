@@ -40,7 +40,10 @@ def moralis_auth(request):
     return render(request, 'login.html', {})
 
 def my_profile(request):
-     return render(request, 'store/profile.html', {})
+     if request.user.customer.registred:
+        return render(request, 'store/profile.html', {})
+     else:
+        return redirect('account')
 
 def request_message(request):
     data = json.loads(request.body)
@@ -117,8 +120,6 @@ def verify_message(request):
 #     if created:
 #         customer_name = "New user {}".format(instance.id)
 #         Customer.objects.create(user=instance, name=customer_name)
-
-
 
 
 def LoginPage(request):
@@ -287,7 +288,6 @@ def account(request):
         form = UpdateCustomerForm(request.POST, request.FILES, instance=customer)
         if form.is_valid():
             customer.registred = True
-            
             # Get the referrer code entered by the customer
             referrer_code = form.cleaned_data.get('referrer_code')
             if referrer_code:
