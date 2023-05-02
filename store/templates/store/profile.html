@@ -85,27 +85,31 @@
           />
 
           <div class="title">
-            <h1 class="textleft">Username:</h1>
-            <h1 class="textleft">First/last name:</h1>
-            <h1 class="textleft">Referal ID:</h1>
-            <h1 class="textleft">Referal link:</h1>
-            <h1 class="textleft">Status:</h1>
-            <h1 class="textleft">Leader:</h1>
-          </div>
-          <div class="title">
-            <h1 class="textright">{{ request.user.customer.name}}</h1>
-            <h1 class="textright">
-              {{ request.user.customer.first_name}}
-              {{request.user.customer.last_name}}
-            </h1>
-            <h1 class="textright">{{ request.user.customer.mobile}}</h1>
-            <a class="textright" href="ttp://referal.link.referalID.com"
-              >{{ request.user.customer.referral_code}}</a
-            >
-            <h1 class="textright">Level - {{ request.user.customer.level}}</h1>
-            <h1 class="textright">
-              {{ request.user.customer.referral_by.name}}
-            </h1>
+            <div>
+              <h1 class="textleft">Username:</h1>
+              <h1 class="textleft">First/last name:</h1>
+              <h1 class="textleft">Mobile:</h1>
+              <h1 class="textleft">Referal code:</h1>
+              <h1 class="textleft">Status:</h1>
+              <h1 class="textleft">Leader:</h1>
+            </div>
+            <div>
+              <h1 class="textright">{{ request.user.customer.name}}</h1>
+              <h1 class="textright">
+                {{ request.user.customer.first_name}}
+                {{request.user.customer.last_name}}
+              </h1>
+              <h1 class="textright">{{ request.user.customer.mobile}}</h1>
+              <a class="textright" href="ttp://referal.link.referalID.com"
+                >{{ request.user.customer.referral_code}}</a
+              >
+              <h1 class="textright">
+                Level - {{ request.user.customer.level}}
+              </h1>
+              <h1 class="textright">
+                {{ request.user.customer.referral_by.name}}
+              </h1>
+            </div>
           </div>
         </div>
 
@@ -148,108 +152,22 @@
             <img src="{% static 'media/rowleft.svg' %}" />
           </button>
           <div class="wrapper">
+            {% for referral in user.customer.get_referrals %}
             <div class="slider">
               <div class="myteam">
                 <img
                   class="profileteam"
-                  src="{% static 'media/img.jpg' %}"
+                  src="{{ referral.image.url }}"
                   alt=""
                 />
-                <p class="team">Username</p>
-                <p class="team">Status</p>
-                <p class="team">Balance</p>
+                <p class="team">{{ referral.name }}</p>
+                <p class="team">Level - {{ referral.level }}</p>
+                <p class="team">{{ referral.balance_hrw}}</p>
               </div>
-              <div class="myteam">
-                <img
-                  class="profileteam"
-                  src="{% static 'media/img.jpg' %}"
-                  alt=""
-                />
-                <p class="team">fvwvwv</p>
-                <p class="team">Status</p>
-                <p class="team">Balance</p>
-              </div>
-              <div class="myteam">
-                <img
-                  class="profileteam"
-                  src="{% static 'media/img.jpg' %}"
-                  alt=""
-                />
-                <p class="team">Username</p>
-                <p class="team">Status</p>
-                <p class="team">Balance</p>
-              </div>
-              <div class="myteam">
-                <img
-                  class="profileteam"
-                  src="{% static 'media/img.jpg' %}"
-                  alt=""
-                />
-                <p class="team">Username</p>
-                <p class="team">Status</p>
-                <p class="team">Balance</p>
-              </div>
-              <div class="myteam">
-                <img
-                  class="profileteam"
-                  src="{% static 'media/img.jpg' %}"
-                  alt=""
-                />
-                <p class="team">Username</p>
-                <p class="team">Status</p>
-                <p class="team">Balance</p>
-              </div>
-              <div class="myteam">
-                <img
-                  class="profileteam"
-                  src="{% static 'media/img.jpg' %}"
-                  alt=""
-                />
-                <p class="team">Username</p>
-                <p class="team">Status</p>
-                <p class="team">Balance</p>
-              </div>
-              <div class="myteam">
-                <img
-                  class="profileteam"
-                  src="{% static 'media/img.jpg' %}"
-                  alt=""
-                />
-                <p class="team">Username</p>
-                <p class="team">Status</p>
-                <p class="team">Balance</p>
-              </div>
-              <div class="myteam">
-                <img
-                  class="profileteam"
-                  src="{% static 'media/img.jpg' %}"
-                  alt=""
-                />
-                <p class="team">Username</p>
-                <p class="team">Status</p>
-                <p class="team">Balance</p>
-              </div>
-              <div class="myteam">
-                <img
-                  class="profileteam"
-                  src="{% static 'media/img.jpg' %}"
-                  alt=""
-                />
-                <p class="team">Username</p>
-                <p class="team">Status</p>
-                <p class="team">Balance</p>
-              </div>
-              <div class="myteam">
-                <img
-                  class="profileteam"
-                  src="{% static 'media/img.jpg' %}"
-                  alt=""
-                />
-                <p class="team">Username</p>
-                <p class="team">Status</p>
-                <p class="team">Balance</p>
-              </div>
+              {% empty %}
+              <div>No referrals yet</div>
             </div>
+            {% endfor %}
           </div>
           <button id="right" class="scrollbutton">
             <img src="{% static 'media/rowright.svg' %}" />
