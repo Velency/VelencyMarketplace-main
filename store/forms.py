@@ -4,7 +4,7 @@ from django import forms
 from django.contrib.auth.models import User
 
 from store.models import Customer, Comments, Offer, Support
-
+from django.core.validators import EmailValidator
 
 
 class CreateUserForm(UserCreationForm):
@@ -51,7 +51,7 @@ class SupportForm(forms.ModelForm):
 
 class FeedbackForm(forms.Form):
     name = forms.CharField(max_length=100)
-    email = forms.EmailField()
+    email = forms.EmailField(validators=[EmailValidator])
     message = forms.CharField(widget=forms.Textarea)
 
 

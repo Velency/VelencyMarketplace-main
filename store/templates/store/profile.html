@@ -124,13 +124,13 @@
             <!--ряд с ячейками заголовков-->
             <tr>
               <th>Personal</th>
-              <td>{{ request.user.customer.balance_hrw }}</td>
-              <td>{{ request.user.customer.balance_HRWT }}</td>
+              <td>{{ request.user.customer.balance_usdt }}</td>
+              <td>{{ request.user.customer.balance_hrwt }}</td>
             </tr>
             <tr>
               <th>General</th>
-              <td>00.00</td>
-              <td>00.00</td>
+              <td>{{ request.user.customer.balance_usdt }}</td>
+              <td>{{ request.user.customer.balance_hrwt }}</td>
             </tr>
             <tr>
               <th>Team</th>
@@ -152,8 +152,8 @@
             <img src="{% static 'media/rowleft.svg' %}" />
           </button>
           <div class="wrapper">
-            {% for referral in user.customer.get_referrals %}
             <div class="slider">
+              {% for referral in user.customer.get_referrals %}
               <div class="myteam">
                 <img
                   class="profileteam"

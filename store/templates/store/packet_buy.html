@@ -68,40 +68,16 @@
         <h5>Total: {{result}}.00 USDT</h5>
         <hr />
         <h5>После отправки подтвердите оплату</h5>
-        <form class="form-contact" method="post" action="">
+        <form
+          class="form-contact"
+          method="post"
+          action="{% url 'packet_buy' %}"
+        >
           {% csrf_token %}
           <div class="form-group">
-            <input
-              name="email"
-              placeholder="Укажите почту"
-              type="text"
-              style="width: 70%; text-align: center; border-radius: 3px"
-              class="input"
-            />
-            <input
-              name="massage"
-              placeholder="Как можемк вам обращатся"
-              type="text"
-              style="
-                width: 70%;
-                margin-top: 5px;
-                text-align: center;
-                border-radius: 3px;
-              "
-              class="input"
-            />
-            <input
-              name="name"
-              placeholder="Укажите пакет который оплатили"
-              type="text"
-              style="
-                width: 70%;
-                margin-top: 5px;
-                text-align: center;
-                border-radius: 3px;
-              "
-              class="input"
-            />
+            <p>{{ form.email }}</p> 
+            <p>{{ form.message }}</p>
+            <p> {{ form.name }}</p>
           </div>
           <button
             style="margin-top: -10px; width: 150px"
@@ -111,6 +87,14 @@
             Я оплатил
           </button>
         </form>
+        {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
       </div>
     </div>
   </div>

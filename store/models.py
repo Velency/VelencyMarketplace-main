@@ -23,11 +23,11 @@ class Customer(models.Model):
     # zipcode = models.CharField(max_length=6, null=True, blank=True)
     referral_link = models.CharField(max_length=255, unique=True, null=True, blank=True)
     referral_code = models.CharField(max_length=5, unique=True, blank=True)
-    referrer_code = models.CharField(max_length=5, default='')
+    referrer_code = models.CharField(max_length=5, default='',blank=True)
     referral_by = models.ForeignKey('self', on_delete=models.SET_NULL, null=True, blank=True)
     registred = models.BooleanField(default=False)
-    balance_hrw = models.DecimalField(max_digits=10, decimal_places=2, default=0)
-    balance_HRWT = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    balance_hrwt = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    balance_usdt = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     level = models.IntegerField(default=0, blank=False, null=False)
     def __str__(self):
         if self.name:

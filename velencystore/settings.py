@@ -362,6 +362,7 @@ EMAIL_HOST = 'smtp.yandex.ru'
 EMAIL_PORT = 465
 EMAIL_USE_SSL = True
 EMAIL_HOST_USER = 'fidanur23@yandex.ru'
+RECIPIENTS_EMAIL= 'data@hrworld.live'
 EMAIL_HOST_PASSWORD = 'htuucbplufyuxoak'
 
 
