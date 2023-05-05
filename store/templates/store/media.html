@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <title>Home</title>
+    <meta charset="UTF-8" />
+    <link
+      rel="shortcut icon"
+      href="{% static '/images/logo.png' %}"
+      type="image/png"
+    />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+  </head>
+  <body class="body">
+    <div class="buttonsmenu">
+      <button class="logo">
+        <img src="{% static 'media/logo.png' %}" />
+      </button>
+
+      <a class="menu mar" href="#personalinformation">
+        <img src="{% static 'media/11.png' %}" />
+      </a>
+
+      <a class="menu" href="#balances">
+        <img src="{% static 'media/2.png' %}" />
+      </a>
+
+      <a class="menu" href="#myteam">
+        <img src="{% static 'media/3.png' %}" />
+      </a>
+    </div>
+
+    <div class="main">
+      <nav class="nav">
+        <div class="buttons">
+          <button class="but" type="button">
+            <img class="icon" src="{% static 'media/market.svg' %}" alt="" />
+          </button>
+          <button class="but" type="button">
+            <img class="icon" src="{% static 'media/finance.svg' %}" alt="" />
+          </button>
+          <div>
+            <button class="but down" type="button">
+              <img class="icon" src="{% static 'media/project.svg' %}" alt="" />
+              <img class="row" src="{% static 'media/row.svg' %}" alt="" />
+            </button>
+
+            <ul class="dropdown-list1">
+              <li class="dropdown-list-item" data-value="area">
+                <img src="{% static 'media/area.png' %}" />
+                <a href="{% url 'my_profile' %}">Personal area</a>
+              </li>
+              <li class="dropdown-list-item" data-value="packages">
+                <img src="{% static 'media/packages.png' %}" />
+                <a href="{% url 'tariffs' %}">Packages</a>
+              </li>
+              <li class="dropdown-list-item" data-value="settings">
+                <img src="{% static 'media/settings.png' %}" />
+                <a href="{% url 'profile' %}">Settings</a>
+              </li>
+              <li class="dropdown-list-item" data-value="exit">
+                <img src="{% static 'media/exit.png' %}" />
+                <a href="{% url 'logout' %}">Exit</a>
+              </li>
+            </ul>
+          </div>
+          <button class="but" type="button">
+            <img class="icon" src="{% static 'media/community.svg' %}" alt="" />
+          </button>
+
+          <div class="form-group">
+            <div class="dropdown"></div>
+            <button class="signin">
+              <img
+                class="photo"
+                src="{{ request.user.customer.image.url }}"
+                alt=""
+              />
+              <p>{{ request.user.customer.name }}</p>
+              <img class="row" src="{% static 'media/row.svg' %}" alt="" />
+            </button>
+            <ul class="dropdown-list2">
+              <li class="dropdown-list-item" data-value="area">
+                <img src="{% static 'media/area.png' %}" />
+                <a href="{% url 'my_profile' %}">Personal area</a>
+              </li>
+              <li class="dropdown-list-item" data-value="packages">
+                <img src="{% static 'media/packages.png' %}" />
+                <a href="{% url 'tariffs' %}">Packages</a>
+              </li>
+              <li class="dropdown-list-item" data-value="settings">
+                <img src="{% static 'media/settings.png' %}" />
+                <a href="{% url 'profile' %}">Settings</a>
+              </li>
+              <li class="dropdown-list-item" data-value="exit">
+                <img src="{% static 'media/exit.png' %}" />
+                <a href="{% url 'logout' %}">Exit</a>
+              </li>
+            </ul>
+          </div>
+
+          <button class="burger" type="button">
+            <img class="icon" src="{% static 'media/burger.svg' %}" alt="" />
+          </button>
+        </div>
+      </nav>
+      {% block content %} {% endblock content %}
+    </div>
+  </body>
+</html>

@@ -204,7 +204,7 @@ def packet_buy(request):
             try:
                 send_mail(
                     'Сообщение из формы обратной связи',
-                    f'От: {name}\nEmail: {email}\n\n{message}\nПриобретен продукт:{product} \n by: {request.user.name} ',
+                    f'От: {name}\nEmail: {email}\n\n{message}\nПриобретен продукт:{product} \n by: {request.user.customer.name} ',
                      EMAIL_HOST_USER, [RECIPIENTS_EMAIL,'hrworld42@gmail.com','fidanur23@gmail.com'],
                     fail_silently=False,
                 )
@@ -661,7 +661,7 @@ def tariffs (request):
     categories =Category.objects.all()
     partners = Partnership.objects.all()
     context = {  'cartItems':cartItems, 'order':order, 'items':items, 'categories':categories, 'partners':partners}
-    return render(request, 'store/tariffs.html', context)
+    return render(request, 'store/packages.html', context)
 
 def politic (request):
     return render(request, 'store/politic.html')

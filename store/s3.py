@@ -2,10 +2,6 @@ import boto3
 from django.conf import settings
 from botocore.client import Config
 
-
-
-
-
 def upload_to_s3(local_file, s3_file):
     s3 = boto3.client("s3",
                       region_name=settings.AWS_REGION_NAME,

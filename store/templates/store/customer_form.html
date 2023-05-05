@@ -1,21 +1,97 @@
-{% extends 'store/main.html' %} {% load static %} {% block content %}
-<div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <div class="card">
-        <div class="card-header">
-          <h3>Create/Edit Customer</h3>
-        </div>
-        <div class="card-body">
-          <form method="POST" enctype="multipart/form-data">
-            {% csrf_token %} {{ form.as_p }}
-            <hr />
-            {{ user_form.as_p }}
-            <button class="btn btn-primary">Save</button>
-          </form>
-        </div>
-      </div>
+{% extends 'store/media.html' %} {% load static %} {% block content %}
+<script src="{% static 'js/script-settings.js' %}" defer></script>
+<p class="title_packages" id="myteam">Settings</p>
+
+<div class="buttons-settings" style="display: flex">
+  <button class="settings area open">Personal data</button>
+  <button class="settings photoset">Photo</button>
+  <button class="settings linkset">Linking a wallet</button>
+</div>
+
+<div class="line"></div>
+
+<div class="content-item open">
+  <p class="settings_text">Basic information</p>
+
+  <div class="personalarea">
+    <p class="for_input">First name</p>
+    <input type="text" placeholder="Guzel" />
+  </div>
+
+  <div class="personalarea">
+    <p class="for_input">Last name</p>
+    <input type="text" placeholder="Usmanova" />
+  </div>
+
+  <p class="settings_text">Location</p>
+
+  <div class="personalarea">
+    <p class="for_input">Country</p>
+    <input type="text" placeholder="Russia" />
+  </div>
+
+  <div class="personalarea">
+    <p class="for_input">Zipcode</p>
+    <input type="text" placeholder="656565" />
+  </div>
+
+  <p class="settings_text">Contact information</p>
+
+  <div class="personalarea">
+    <p class="for_input">E-mail</p>
+    <input type="text" placeholder="" />
+  </div>
+
+  <div class="personalarea">
+    <p class="error">*please enter e-mail</p>
+    <p class="for_input"></p>
+  </div>
+
+  <div class="personalarea">
+    <p class="for_input">Phone</p>
+    <input type="text" placeholder="" />
+  </div>
+  <div class="personalarea">
+    <p class="error">*please enter phone number</p>
+    <p class="for_input"></p>
+  </div>
+
+  <div class="personalarea">
+    <p class="for_input"></p>
+    <button class="save">Save</button>
+  </div>
+</div>
+
+<div class="content-item photosettings">
+  <div class="personalarea" style="padding-top: 20px">
+    <img
+      class="change_photo"
+      src="{{ request.user.customer.image.url }}"
+      alt=""
+    />
+
+    <div>
+      <button class="upload">Upload a photo</button>
+      <button class="upload" style="margin-top: 30px">Save</button>
     </div>
+  </div>
+</div>
+
+<div class="content-item wallet">
+  <div class="personalarea" style="padding-top: 20px">
+    <p class="for_input">
+      Address <br />
+      of Metamask wallet
+    </p>
+    <input type="text" placeholder="" />
+  </div>
+  <div class="personalarea">
+    <p class="error">*please enter address</p>
+    <p class="for_input"></p>
+  </div>
+  <div class="personalarea">
+    <p class="for_input"></p>
+    <button class="save">Save</button>
   </div>
 </div>
 {% endblock %}

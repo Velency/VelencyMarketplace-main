@@ -1,179 +1,96 @@
-<!DOCTYPE html>
-{% load static %}
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
-    <script src="{% static 'js/script.js' %}" defer></script>
-  </head>
-  <body class="body">
-    <div class="buttonsmenu">
-      <button class="logo">
-        <img src="{% static 'media/logo.png' %}" />
-      </button>
-
-      <a class="menu mar" href="#personalinformation">
-        <img src="{% static 'media/11.png' %}" />
-      </a>
-
-      <a class="menu" href="#balances">
-        <img src="{% static 'media/2.png' %}" />
-      </a>
-
-      <a class="menu" href="#myteam">
-        <img src="{% static 'media/3.png' %}" />
-      </a>
-    </div>
-
-    <div class="main">
-      <nav class="nav">
-        <div class="buttons">
-          <button class="but" type="button" href="'{% url 'store' %}">
-            <img class="icon" src="{% static 'media/market.svg' %}" alt="" />
-          </button>
-          <button class="but" type="button">
-            <img class="icon" src="{% static 'media/finance.svg' %}" alt="" />
-          </button>
-          <button class="but" type="button">
-            <img class="icon" src="{% static 'media/project.svg' %}" alt="" />
-          </button>
-          <button class="but" type="button">
-            <img class="icon" src="{% static 'media/community.svg' %}" alt="" />
-          </button>
-
-          <div class="form-group">
-            <div class="dropdown"></div>
-            <button class="signin">
-              <img
-                class="photo"
-                src="{{ request.user.customer.image.url }}"
-                alt=""
-              />
-              <p>{{ request.user.customer.name }}</p>
-              <img class="row" src="{% static 'media/row.svg' %}" alt="" />
-            </button>
-            <ul class="dropdown-list">
-              <li class="dropdown-list-item" data-value="area">
-                <img src="{% static 'media/area.png' %}" />
-                <a href="{% url 'my_profile' %}">Personal area</a>
-              </li>
-              <li class="dropdown-list-item" data-value="packages">
-                <img src="{% static 'media/packages.png' %}" />
-                <a href="{% url 'tariffs' %}">Packages</a>
-              </li>
-              <li class="dropdown-list-item" data-value="settings">
-                <img src="{% static 'media/settings.png' %}" />
-                <a href="{% url 'profile' %}">Settings</a>
-              </li>
-              <li class="dropdown-list-item" data-value="exit">
-                <img src="{% static 'media/exit.png' %}" />
-                <a href="{% url 'logout' %}">Exit</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-      <div class="information">
-        <p id="personalinformation">Personal information</p>
-        <div class="personal">
-          <img
-            class="profile"
-            src="{{ request.user.customer.image.url }}"
-            alt=""
-          />
-
-          <div class="title">
-            <div>
-              <h1 class="textleft">Username:</h1>
-              <h1 class="textleft">First/last name:</h1>
-              <h1 class="textleft">Mobile:</h1>
-              <h1 class="textleft">Referal code:</h1>
-              <h1 class="textleft">Status:</h1>
-              <h1 class="textleft">Leader:</h1>
-            </div>
-            <div>
-              <h1 class="textright">{{ request.user.customer.name}}</h1>
-              <h1 class="textright">
-                {{ request.user.customer.first_name}}
-                {{request.user.customer.last_name}}
-              </h1>
-              <h1 class="textright">{{ request.user.customer.mobile}}</h1>
-              <a class="textright" href="ttp://referal.link.referalID.com"
-                >{{ request.user.customer.referral_code}}</a
-              >
-              <h1 class="textright">
-                Level - {{ request.user.customer.level}}
-              </h1>
-              <h1 class="textright">
-                {{ request.user.customer.referral_by.name}}
-              </h1>
-            </div>
-          </div>
-        </div>
-
-        <p id="balances">Balances</p>
-        <div class="balances">
-          <table>
-            <tr>
-              <th></th>
-              <th>usdt</th>
-              <th>hrwt</th>
-            </tr>
-            <!--ряд с ячейками заголовков-->
-            <tr>
-              <th>Personal</th>
-              <td>{{ request.user.customer.balance_usdt }}</td>
-              <td>{{ request.user.customer.balance_hrwt }}</td>
-            </tr>
-            <tr>
-              <th>General</th>
-              <td>{{ request.user.customer.balance_usdt }}</td>
-              <td>{{ request.user.customer.balance_hrwt }}</td>
-            </tr>
-            <tr>
-              <th>Team</th>
-              <td>00.00</td>
-              <td>00.00</td>
-            </tr>
-            <tr>
-              <th>Available <br />for withdrawal</th>
-              <th><button>withd</button></th>
-              <th><button>withd</button></th>
-            </tr>
-            <!--ряд с ячейками тела таблицы-->
-          </table>
-        </div>
-
-        <p id="myteam">My team</p>
-        <div class="forscroll" style="display: flex; align-items: center">
-          <button id="left" class="scrollbutton">
-            <img src="{% static 'media/rowleft.svg' %}" />
-          </button>
-          <div class="wrapper">
-            <div class="slider">
-              {% for referral in user.customer.get_referrals %}
-              <div class="myteam">
-                <img
-                  class="profileteam"
-                  src="{{ referral.image.url }}"
-                  alt=""
-                />
-                <p class="team">{{ referral.name }}</p>
-                <p class="team">Level - {{ referral.level }}</p>
-                <p class="team">{{ referral.balance_hrw}}</p>
-              </div>
-              {% empty %}
-              <div>No referrals yet</div>
-            </div>
-            {% endfor %}
-          </div>
-          <button id="right" class="scrollbutton">
-            <img src="{% static 'media/rowright.svg' %}" />
-          </button>
-        </div>
+{% extends 'store/media.html' %} {% load static %} {% block content %}
+<script src="{% static 'js/script.js' %}" defer></script>
+<div class="information">
+  <p id="personalinformation">Personal information</p>
+  <div class="personal">
+    <img class="profile" src="{{ request.user.customer.image.url }}" alt="" />
+    <div class="perinf">
+      <div class="title">
+        <h1 class="textleft">Username:</h1>
+        <h1 class="textleft">First/last name:</h1>
+        <h1 class="textleft">Mobile:</h1>
+        <h1 class="textleft">Referal code:</h1>
+        <h1 class="textleft">Status:</h1>
+        <h1 class="textleft">Leader:</h1>
+      </div>
+      <div class="title">
+        <h1 class="textright">{{ request.user.customer.name}}</h1>
+        <h1 class="textright">
+          {{ request.user.customer.first_name}}
+          {{request.user.customer.last_name}}
+        </h1>
+        <h1 class="textright">{{ request.user.customer.mobile}}</h1>
+        <a class="textright" href="ttp://referal.link.referalID.com"
+          >{{ request.user.customer.referral_code}}</a
+        >
+        <h1 class="textright">Level - {{ request.user.customer.level}}</h1>
+        <h1 class="textright">{{ request.user.customer.referral_by.name}}</h1>
       </div>
     </div>
-  </body>
-</html>
+  </div>
+
+  <p id="balances">Balances</p>
+  <div class="balances">
+    <table>
+      <tr>
+        <th></th>
+        <th>usdt</th>
+        <th>hrwt</th>
+      </tr>
+      <!--ряд с ячейками заголовков-->
+      <tr>
+        <th>Personal</th>
+        <td>{{ request.user.customer.balance_usdt }}</td>
+        <td>{{ request.user.customer.balance_hrwt }}</td>
+      </tr>
+      <tr>
+        <th>General</th>
+        <td>{{ request.user.customer.balance_usdt }}</td>
+        <td>{{ request.user.customer.balance_hrwt }}</td>
+      </tr>
+      <tr>
+        <th>Team</th>
+        <td>00.00</td>
+        <td>00.00</td>
+      </tr>
+      <tr>
+        <th>Available <br />for withdrawal</th>
+        <td>00.00</td>
+        <td>00.00</td>
+      </tr>
+      <tr>
+        <th></th>
+        <th><button>withd</button></th>
+        <th><button>withd</button></th>
+      </tr>
+    </table>
+  </div>
+
+  <p id="myteam">My team</p>
+  <div class="forscroll" style="display: flex; align-items: center">
+    <button id="left" class="scrollbutton">
+      <img src="{% static 'media/rowleft.svg' %}" />
+    </button>
+    <div class="wrapper">
+      <div class="slider">
+        {% for referral in user.customer.get_referrals %}
+        <div class="myteam">
+          <img class="profileteam" src="{{ referral.image.url }}" alt="" />
+          <p class="team">{{ referral.name }}</p>
+          <p class="team">Level - {{ referral.level }}</p>
+          <p class="team">{{ referral.balance_hrw}}</p>
+        </div>
+        {% empty %}
+        <div class="myteam">
+          <img class="profileteam" src="{% static 'images/img.jpg' %}" alt="" />
+          <p class="empty_team">No referrals yet</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <button id="right" class="scrollbutton">
+      <img src="{% static 'media/rowright.svg' %}" />
+    </button>
+  </div>
+</div>
+{% endblock content %}

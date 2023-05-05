@@ -1,0 +1,147 @@
+{% extends 'store/media.html' %} {% load static %} {% block content %}
+<script src="{% static 'js/script-packages.js' %}" defer></script>
+      <p class="title_packages" id="myteam">Packages</p>
+        <div class="forscroll" style="display: flex; align-items: center; justify-content: center">
+          <button id="left" class="scrollbutton">
+                  <img src="{% static 'media/rowleft.svg' %}">
+          </button>
+          <div class="wrapper forpackages">
+        
+            <div class="slider">
+                
+                <div class="packages_slider">
+                  <div>
+                    <p class="price">$50</p>
+                    <p class="price">5000 HRWT</p>
+                  </div>
+                  <div>
+                    <p class="describe">Курс по заработку</p>
+                    <p class="describe">на криптовалюте</p>
+                    <p class="describe">в телеграмм.</p>
+                  </div>  
+                  <button class="buy" onclick="redirectToPayment(50)">Купить</button>
+                </div>
+
+                <div class="packages_slider">
+                  <div>
+                    <p class="price">$100</p>
+                    <p class="price">10000 HRWT</p>
+                  </div>
+                  <div><p class="describe">Всё что в пакете за 50$</p>
+                    <p class="describe">+ книга Гузель</p>
+                    <p class="describe">«Я всё»</p>
+                  </div>  
+                  <button class="buy" onclick="redirectToPayment(100)">Купить</button>
+                </div>
+
+                <div class="packages_slider">
+                  <div>
+                    <p class="price">$250</p>
+                    <p class="price">25000 HRWT</p>
+                  </div>
+                  <div><p class="describe">Всё что в пакете за 100$</p>
+                    <p class="describe">+ Курс по P2P </p>
+                    <p class="describe">заработку</p>
+                  </div>  
+                  <button class="buy" onclick="redirectToPayment(250)">Купить</button>
+                </div>
+
+                <div class="packages_slider">
+                  <div>
+                    <p class="price">$500</p>
+                    <p class="price">50000 HRWT</p>
+                  </div>
+                  <div><p class="describe">Всё что в пакете за 250$</p>
+                    <p class="describe">+ разбор талантов</p>
+                    <p class="describe">+ поиск ниши/план развития бизнеса</p>
+                  </div>  
+                  <button class="buy" onclick="redirectToPayment(500)">Купить</button>
+                </div>
+
+                <div class="packages_slider">
+                  <div>
+                    <p class="price">$1000</p>
+                    <p class="price">100000 HRWT</p>
+                  </div>
+                  <div><p class="describe">Всё что в пакете за 500$</p>
+                    <p class="describe">+ наставничество Гузель</p>
+                    <p class="describe">+ Курс от эксперта HR World</p>
+                  </div>  
+                  <button class="buy" onclick="redirectToPayment(1000)">Купить</button>
+                </div>
+
+                <div class="packages_slider">
+                  <div>
+                    <p class="price">$2500</p>
+                    <p class="price">250000 HRWT</p>
+                  </div>
+                  <div><p class="describe">Всё что в пакете за 1000$</p>
+                    <p class="describe">+ разбор любого запроса</p>
+                    <p class="describe">+ ретрит в Грузии(без перелета)</p>
+                  </div>  
+                  <button class="buy" onclick="redirectToPayment(2500)">Купить</button>
+                </div>
+
+                <div class="packages_slider">
+                  <div>
+                    <p class="price">$5000</p>
+                    <p class="price">500000 HRWT</p>
+                  </div>
+                  <div><p class="describe">Всё что в пакете за 2500$</p>
+                    <p class="describe">+ недельный круиз на лайнере</p>
+                    <p class="describe">(без перелета)</p>
+                  </div>  
+                  <button class="buy" onclick="redirectToPayment(5000)">Купить</button>
+                </div>
+
+                <div class="packages_slider">
+                  <div>
+                    <p class="price">$10000</p>
+                    <p class="price">1000000 HRWT</p>
+                  </div>
+                  <div><p class="describe">Всё что в пакете за 5000$</p>
+                    <p class="describe">+ недельный круиз на лайнере</p>
+                    <p class="describe">+ перелет</p>
+                  </div>  
+                  <button class="buy" onclick="redirectToPayment(10000)">Купить</button>
+                </div>
+               
+                
+            </div>
+
+           
+        </div>
+         <button id="right" class="scrollbutton">
+              <img src="{% static 'media/rowright.svg' %}">
+        </button>
+        </div>
+      
+
+
+      </div>
+
+
+      <script src="{% static 'js/script-packages.js' %}" defer></script>
+
+<!-- Добавляем функцию переадресации на страницу оплаты и передачи параметра стоимости -->
+<script>
+  function redirectToPayment(value) {
+    // Получаем текущий URL и заменяем часть после последнего слэша на 'packet_byu'
+    const paymentUrl = window.location.href.replace(/\/[^\/]*$/, '/packet_buy');
+    // Добавляем параметр 'value' со значением стоимости пакета к URL
+    const paymentUrlWithValue = `${paymentUrl}?value=${value}`;
+    // Переходим на страницу оплаты с передачей параметра
+    window.location.href = paymentUrlWithValue;
+  }
+</script>
+
+
+<script>
+  // Получаем значение параметра 'value' из URL
+  const urlParams = new URLSearchParams(window.location.search);
+  const packageValue = urlParams.get('value');
+  // Выводим значение параметра 'value' в элемент с id='package-value'
+  document.getElementById('package-value').textContent = packageValue;
+</script>
+      {% endblock content %}
+

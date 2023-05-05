@@ -50,9 +50,9 @@ class SupportForm(forms.ModelForm):
         fields = [ 'subject', 'email', 'comment']
 
 class FeedbackForm(forms.Form):
-    name = forms.CharField(max_length=100)
-    email = forms.EmailField(validators=[EmailValidator])
-    message = forms.CharField(widget=forms.Textarea)
+    name = forms.CharField(max_length=50, widget=forms.TextInput(attrs={'placeholder': 'Ваше имя'}))
+    email = forms.EmailField(validators=[EmailValidator], widget=forms.TextInput(attrs={'placeholder': 'Введите email'}))
+    message = forms.CharField(widget=forms.Textarea(attrs={'placeholder': 'Введите количество токенов которые хотели бы приобрести, и как мы сможем с вами связаться помимо почты'}), ) 
 
 
 class CustomerForm(forms.ModelForm):
