@@ -96,7 +96,7 @@ def verify_message(request):
             user.save()
 
             # create a new customer instance with the user
-            customer_data = {'user': user}
+            customer_data = {'user': user,'wallet': eth_address}
             if 'first_name' in data:
                 customer_data['first_name'] = data['first_name']
             else:
@@ -314,6 +314,8 @@ def DeleteFormWishList(request):
         WishItem.objects.filter(id=item_id).delete()
         return HttpResponseRedirect(reverse('wishlist'))
 
+from django.core.files.storage import default_storage
+from django.core.files.base import ContentFile
 
 @login_required
 def account(request):
@@ -321,6 +323,12 @@ def account(request):
         customer = request.user.customer
         form = UpdateCustomerForm(request.POST, request.FILES, instance=customer)
         if form.is_valid():
+            # Save the uploaded image to the default storage
+            image_file = form.cleaned_data.get('image')
+            if image_file:
+                filename = default_storage.save(image_file.name, ContentFile(image_file.read()))
+                customer.image = filename
+
             customer.registred = True
             # Get the referrer code entered by the customer
             referrer_code = form.cleaned_data.get('referrer_code')
@@ -347,6 +355,8 @@ def account(request):
     partners = Partnership.objects.all()
     context = {'partners': partners, 'cartItems': cartItems, 'form': form, 'order': order, 'items': items, 'categories': categories}
     return render(request, 'store/customer_form.html', context)
+
+
 
 
 
@@ -610,7 +620,7 @@ def loginPage(request):
 
 def logoutUser(request):
     logout(request)
-    return redirect('/')
+    return redirect('index')
 
 
 def registerUser(request):

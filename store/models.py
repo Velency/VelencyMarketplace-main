@@ -17,10 +17,10 @@ class Customer(models.Model):
     image = models.ImageField(default='user_photos/img.jpg',upload_to='user_photos')
     mobile = models.CharField(max_length=10,null=True, blank=True)
     # address = models.TextField(max_length=100, null=True, blank=True)
-    # country = models.CharField(max_length=100, null=True, blank=True)
+    country = models.CharField(max_length=100, null=True, blank=True)
     # city = models.CharField(max_length=100, null=True, blank=True)
     # state = models.CharField(max_length=50, null=True, blank=True)
-    # zipcode = models.CharField(max_length=6, null=True, blank=True)
+    zipcode = models.CharField(max_length=6, null=True, blank=True)
     referral_link = models.CharField(max_length=255, unique=True, null=True, blank=True)
     referral_code = models.CharField(max_length=5, unique=True, blank=True)
     referrer_code = models.CharField(max_length=5, default='',blank=True)
@@ -29,6 +29,11 @@ class Customer(models.Model):
     balance_hrwt = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     balance_usdt = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     level = models.IntegerField(default=0, blank=False, null=False)
+    wallet = models.CharField(max_length=200,null=False)
+    def __init__(self, *args, **kwargs):
+        super(Customer, self).__init__(*args, **kwargs)
+        if not self.wallet and self.user:
+            self.wallet = self.user.username
     def __str__(self):
         if self.name:
             return self.name

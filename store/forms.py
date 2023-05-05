@@ -19,19 +19,40 @@ class CreateUserForm(UserCreationForm):
 class UpdateCustomerForm(forms.ModelForm):
     class Meta:
         model = Customer
-        fields = ['first_name','last_name', 'email', 'mobile', 'image', 'referrer_code']
+        fields = ['first_name','last_name', 'country', 'zipcode','email', 'mobile', 'referrer_code', 'wallet', 'image']
         widgets = {
             'first_name': forms.TextInput(attrs={'class': 'form-control'}),
             'last_name': forms.TextInput(attrs={'class': 'form-control'}),
             'email': forms.EmailInput(attrs={'class': 'form-control'}),
             'mobile': forms.TextInput(attrs={'class': 'form-control'}),
-            # 'country': forms.TextInput(attrs={'class': 'form-control'}),
-            # 'state': forms.TextInput(attrs={'class': 'form-control'}),
-            # 'city': forms.TextInput(attrs={'class': 'form-control'}),
-            # 'address': forms.TextInput(attrs={'class': 'form-control'}),
-            # 'zipcode': forms.TextInput(attrs={'class': 'form-control'}),
+            'country': forms.TextInput(attrs={'class': 'form-control'}),
+            'zipcode': forms.TextInput(attrs={'class': 'form-control'}),
+        }
+        labels = {
+            'image': ('Profile Picture'),
+        }
+        help_texts = {
+            'image': ('Please upload a profile picture.'),
+        }
+        error_messages = {
+            'image': {
+                'max_length': ("This file is too large."),
+                'invalid': ("This file format is not supported."),
+            },
+        }
+        widgets = {
+            'image': forms.FileInput(attrs={'class': 'form-control'}),
         }
 
+class PhotoForm(forms.ModelForm):
+    class Meta:
+        model = Customer
+        fields = ['image']
+
+class WalletForm(forms.ModelForm):
+    class Meta:
+        model = Customer
+        fields = ['wallet']
 
 class CommentsForm(forms.ModelForm):
     class Meta:

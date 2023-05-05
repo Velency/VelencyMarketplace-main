@@ -1,68 +1,125 @@
-{% extends 'store/media.html' %} {% load static %} {% block content %}
+{% extends 'store/media-packages.html' %} {% load static %} {% block content %}
 <script src="{% static 'js/script-settings.js' %}" defer></script>
 <p class="title_packages" id="myteam">Settings</p>
 
-<div class="buttons-settings" style="display: flex">
+<!-- <div class="buttons-settings" style="display: flex">
   <button class="settings area open">Personal data</button>
   <button class="settings photoset">Photo</button>
   <button class="settings linkset">Linking a wallet</button>
-</div>
+</div> -->
 
 <div class="line"></div>
 
 <div class="content-item open">
-  <p class="settings_text">Basic information</p>
+  <form method="POST">
+    {% csrf_token %}
+    <p class="settings_text">Basic information</p>
+    {% if request.user.customer.registred %} {% else %}
+    <div class="personalarea">
+      <p class="for_input">referrer_code</p>
+      <input
+        type="text"
+        name="referrer_code"
+        value="{{ request.user.customer.referrer_code }}"
+      />
+    </div>
+    {% endif %}
 
-  <div class="personalarea">
-    <p class="for_input">First name</p>
-    <input type="text" placeholder="Guzel" />
-  </div>
+    <div class="personalarea">
+      <p class="for_input">First name</p>
+      <input
+        type="text"
+        name="first_name"
+        value="{{ request.user.customer.first_name }}"
+      />
+    </div>
 
-  <div class="personalarea">
-    <p class="for_input">Last name</p>
-    <input type="text" placeholder="Usmanova" />
-  </div>
+    <div class="personalarea">
+      <p class="for_input">Last name</p>
+      <input
+        type="text"
+        name="last_name"
+        value="{{ request.user.customer.last_name }}"
+      />
+    </div>
 
-  <p class="settings_text">Location</p>
+    <p class="settings_text">Location</p>
 
-  <div class="personalarea">
-    <p class="for_input">Country</p>
-    <input type="text" placeholder="Russia" />
-  </div>
+    <div class="personalarea">
+      <p class="for_input">Country</p>
+      <input
+        type="text"
+        name="country"
+        value="{{ request.user.customer.country }}"
+      />
+    </div>
 
-  <div class="personalarea">
-    <p class="for_input">Zipcode</p>
-    <input type="text" placeholder="656565" />
-  </div>
+    <div class="personalarea">
+      <p class="for_input">Zipcode</p>
+      <input
+        type="text"
+        name="zipcode"
+        value="{{ request.user.customer.zipcode }}"
+      />
+    </div>
 
-  <p class="settings_text">Contact information</p>
+    <p class="settings_text">Contact information</p>
 
-  <div class="personalarea">
-    <p class="for_input">E-mail</p>
-    <input type="text" placeholder="" />
-  </div>
+    <div class="personalarea">
+      <p class="for_input">E-mail</p>
+      <input
+        type="email"
+        name="email"
+        value="{{ request.user.customer.email }}"
+      />
+    </div>
 
-  <div class="personalarea">
-    <p class="error">*please enter e-mail</p>
-    <p class="for_input"></p>
-  </div>
+    <div class="personalarea">
+      <p class="error">*please enter e-mail</p>
+      <p class="for_input"></p>
+    </div>
 
-  <div class="personalarea">
-    <p class="for_input">Phone</p>
-    <input type="text" placeholder="" />
-  </div>
-  <div class="personalarea">
-    <p class="error">*please enter phone number</p>
-    <p class="for_input"></p>
-  </div>
+    <div class="personalarea">
+      <p class="for_input">Phone</p>
+      <input
+        type="text"
+        name="mobile"
+        value="{{ request.user.customer.mobile }}"
+      />
+    </div>
+    <div class="personalarea">
+      <p class="error">*please enter phone number</p>
+      <p class="for_input"></p>
+    </div>
 
-  <div class="personalarea">
-    <p class="for_input"></p>
-    <button class="save">Save</button>
-  </div>
+    <div class="personalarea" style="padding-top: 20px">
+      <p class="for_input">
+        Address <br />
+        of Metamask wallet
+      </p>
+      <input
+        type="text"
+        name="wallet"
+        value="{{ request.user.customer.wallet }}"
+      />
+    </div>
+    <div class="personalarea">
+      <p class="error">*please enter address</p>
+      <p class="for_input"></p>
+    </div>
+    <div class="personalarea">
+      <p class="for_input"></p>
+      <button type="submit" class="save">Save</button>
+    </div>
+
+    <!-- <div class="personalarea">
+      <p class="for_input"></p>
+      <button class="save">Save</button>
+    </div> -->
+  </form>
 </div>
 
-<div class="content-item photosettings">
+<!-- <div class="content-item photosettings">
   <div class="personalarea" style="padding-top: 20px">
     <img
       class="change_photo"
@@ -71,27 +128,30 @@
     />
 
     <div>
-      <button class="upload">Upload a photo</button>
-      <button class="upload" style="margin-top: 30px">Save</button>
+      <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input
+          type="file"
+          name="image"
+          style="display: none"
+          id="file_input"
+          accept="image/*"
+        />
+        <button
+          class="upload"
+          onclick="document.getElementById('file_input').click();return false;"
+        >
+          Upload a photo
+        </button>
+        <button type="submit" id="form.image" class="upload" style="margin-top: 30px">
+          <b>Upload</b>
+      </form>
     </div>
   </div>
-</div>
+</div> -->
 
-<div class="content-item wallet">
-  <div class="personalarea" style="padding-top: 20px">
-    <p class="for_input">
-      Address <br />
-      of Metamask wallet
-    </p>
-    <input type="text" placeholder="" />
-  </div>
-  <div class="personalarea">
-    <p class="error">*please enter address</p>
-    <p class="for_input"></p>
-  </div>
-  <div class="personalarea">
-    <p class="for_input"></p>
-    <button class="save">Save</button>
-  </div>
-</div>
+<!-- <div class="content-item wallet">
+  <form method="POST">{% csrf_token %}</form>
+</div> -->
+
 {% endblock %}
