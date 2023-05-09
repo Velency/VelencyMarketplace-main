@@ -112,9 +112,9 @@
                   </li>
                   {% if user.is_authenticated %}
                   <li class="nav-item">
-                    <a class="page-scroll" href="/store"
-                      >Eth address: {{ user.username }}</a
-                    >
+                    <a class="page-scroll" href="/store">
+                      Eth address: ...{{ user.username|slice:"-5:" }}
+                    </a>
                   </li>
                   <li class="nav-item">
                     <a class="page-scroll" href="/logout"><b>Выйти</b></a>

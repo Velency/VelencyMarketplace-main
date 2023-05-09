@@ -40,6 +40,7 @@ if API_KEY == 'WEB3_API_KEY_HERE':
 def moralis_auth(request):
     return render(request, 'login.html', {})
 
+@login_required
 def my_profile(request):
      if request.user.customer.registred:
         return render(request, 'store/profile.html', {})
@@ -154,7 +155,7 @@ def index(request):
 
 # Viwe.py 
 
-
+@login_required
 def packet_buy(request):
     result = None
     total = None
@@ -360,7 +361,7 @@ def account(request):
 
 
 
-
+@login_required
 def orders(request):
     data = cartData(request)
 
@@ -392,7 +393,7 @@ def product_details(request,id):
     context = {'partners':partners, 'product':product, 'reviews':reviews, 'images':images, 'categories':categories, 'cartItems':cartItems, 'order':order, 'items':items }
     return render(request, 'store/product-details.html', context)
 
-
+@login_required
 def addComment(request, id):
     if request.method == "POST":
         form = CommentsForm(request.POST)
@@ -661,7 +662,7 @@ def search(request):
     params ={'partners':partners, 'cartItems':cartItems, 'order':order, 'categories':categories, 'items':items, 'product':product}
     return render(request, 'store/search.html', params)
 
-
+@login_required
 def tariffs (request):
     data = cartData(request)
     

@@ -2,11 +2,11 @@
 <script src="{% static 'js/script-settings.js' %}" defer></script>
 <p class="title_packages" id="myteam">Settings</p>
 
-<!-- <div class="buttons-settings" style="display: flex">
+<div class="buttons-settings" style="display: flex">
   <button class="settings area open">Personal data</button>
-  <button class="settings photoset">Photo</button>
+  <!-- <button class="settings photoset">Photo</button> -->
   <button class="settings linkset">Linking a wallet</button>
-</div> -->
+</div>
 
 <div class="line"></div>
 
@@ -62,23 +62,26 @@
         value="{{ request.user.customer.zipcode }}"
       />
     </div>
-
+    <!-- Контактная информаци -->
     <p class="settings_text">Contact information</p>
 
+    <!-- Email form -->
     <div class="personalarea">
       <p class="for_input">E-mail</p>
       <input
         type="email"
         name="email"
         value="{{ request.user.customer.email }}"
+        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+        required
       />
     </div>
 
-    <div class="personalarea">
-      <p class="error">*please enter e-mail</p>
+    <div class="personalarea" style="display: none">
+      <p class="error">*please enter a valid e-mail</p>
       <p class="for_input"></p>
     </div>
-
+    <!-- Phone form -->
     <div class="personalarea">
       <p class="for_input">Phone</p>
       <input
@@ -87,39 +90,22 @@
         value="{{ request.user.customer.mobile }}"
       />
     </div>
-    <div class="personalarea">
+    <div class="personalarea" style="display: none" id="phone-error">
       <p class="error">*please enter phone number</p>
       <p class="for_input"></p>
     </div>
 
-    <div class="personalarea" style="padding-top: 20px">
-      <p class="for_input">
-        Address <br />
-        of Metamask wallet
-      </p>
-      <input
-        type="text"
-        name="wallet"
-        value="{{ request.user.customer.wallet }}"
-      />
-    </div>
-    <div class="personalarea">
-      <p class="error">*please enter address</p>
-      <p class="for_input"></p>
-    </div>
     <div class="personalarea">
       <p class="for_input"></p>
       <button type="submit" class="save">Save</button>
     </div>
-
-    <!-- <div class="personalarea">
-      <p class="for_input"></p>
-      <button class="save">Save</button>
-    </div> -->
   </form>
 </div>
 
-<!-- <div class="content-item photosettings">
+<!-- 
+  Блок с фото работает не корректно
+  
+  <div class="content-item photosettings">
   <div class="personalarea" style="padding-top: 20px">
     <img
       class="change_photo"
@@ -150,8 +136,71 @@
   </div>
 </div> -->
 
-<!-- <div class="content-item wallet">
-  <form method="POST">{% csrf_token %}</form>
-</div> -->
+<!-- Добавление кошелька -->
+<div class="content-item wallet">
+  <script>
+    function validateForm() {
+      var wallet = document.forms["myForm"]["wallet"].value;
+      if (wallet == "") {
+        document.getElementById("error").style.display = "block";
+        return false;
+      }
+    }
+  </script>
+
+  <form name="myForm" onsubmit="return validateForm()" method="post">
+    {% csrf_token %}
+    <div class="personalarea" style="padding-top: 20px">
+      <p class="for_input">
+        Address <br />
+        of Metamask wallet
+      </p>
+      <input
+        type="text"
+        name="wallet"
+        value="{{ request.user.customer.wallet }}"
+      />
+    </div>
+    <div class="personalarea" id="error" style="display: none">
+      <p class="error">*please enter address</p>
+      <p class="for_input"></p>
+    </div>
+    <div class="personalarea">
+      <p class="for_input"></p>
+      <button type="submit" class="save">Save</button>
+    </div>
+  </form>
+</div>
+<script>
+  document.querySelector("form").addEventListener("submit", function (event) {
+    var phoneInput = document.querySelector('input[name="mobile"]');
+    var phoneError = document.querySelector("#phone-error");
+    if (phoneInput.value === "") {
+      event.preventDefault(); // Остановка отправки формы
+      phoneError.style.display = "block"; // Отображение блока с ошибкой
+    } else {
+      phoneError.style.display = "none"; // Скрытие блока с ошибкой
+    }
+  });
+</script>
+<style>
+  #phone-error {
+    display: none;
+  }
+</style>
+
+<script>
+  const emailInput = document.querySelector('input[name="email"]');
+  const emailErrorBlock = document.querySelector(".error");
+
+  emailInput.addEventListener("invalid", function (event) {
+    event.preventDefault();
+    emailErrorBlock.style.display = "block";
+  });
+
+  emailInput.addEventListener("input", function (event) {
+    emailErrorBlock.style.display = "none";
+  });
+</script>
 
 {% endblock %}

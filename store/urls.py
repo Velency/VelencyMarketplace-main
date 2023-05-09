@@ -36,6 +36,7 @@ urlpatterns = [
  
     #main pages
     path('', views.index, name="index"),
+    path('index', views.index, name="index"),
     path('store/', views.store, name="store"),
     path('cart/', views.cart, name="cart"),
     path('tariffs/packet_buy/', views.packet_buy, name="packet_buy"),
