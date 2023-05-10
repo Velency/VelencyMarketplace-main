@@ -72,7 +72,6 @@
         type="email"
         name="email"
         value="{{ request.user.customer.email }}"
-        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
         required
       />
     </div>
@@ -85,7 +84,7 @@
     <div class="personalarea">
       <p class="for_input">Phone</p>
       <input
-        type="text"
+        type="mobile"
         name="mobile"
         value="{{ request.user.customer.mobile }}"
       />
@@ -100,6 +99,10 @@
       <button type="submit" class="save">Save</button>
     </div>
   </form>
+
+  {% if form.errors %} {% for field in form %} {% for error in field.errors %}
+  <div class="alert alert-danger">{{ error }}</div>
+  {% endfor %} {% endfor %} {% endif %}
 </div>
 
 <!-- 
@@ -138,33 +141,28 @@
 
 <!-- Добавление кошелька -->
 <div class="content-item wallet">
-  <script>
-    function validateForm() {
-      var wallet = document.forms["myForm"]["wallet"].value;
-      if (wallet == "") {
-        document.getElementById("error").style.display = "block";
-        return false;
-      }
-    }
-  </script>
-
-  <form name="myForm" onsubmit="return validateForm()" method="post">
+  <form method="post">
     {% csrf_token %}
     <div class="personalarea" style="padding-top: 20px">
       <p class="for_input">
         Address <br />
         of Metamask wallet
       </p>
-      <input
-        type="text"
-        name="wallet"
-        value="{{ request.user.customer.wallet }}"
-      />
+      {{ form.wallet }}
     </div>
-    <div class="personalarea" id="error" style="display: none">
-      <p class="error">*please enter address</p>
+    {% if form.errors %}
+    <div
+      class="personalarea alert alert-danger"
+      id="error"
+      style="display: none"
+    >
+      {% for error in form.wallet.errors %}
+      <p class="error">*{{ error }}</p>
+      {% endfor %}
       <p class="for_input"></p>
     </div>
+    {% endif %}
+
     <div class="personalarea">
       <p class="for_input"></p>
       <button type="submit" class="save">Save</button>
@@ -203,4 +201,13 @@
   });
 </script>
 
+<script>
+  function validateForm() {
+    var wallet = document.forms["myForm"]["wallet"].value;
+    if (wallet == "") {
+      document.getElementById("error").style.display = "block";
+      return false;
+    }
+  }
+</script>
 {% endblock %}

@@ -6,18 +6,14 @@ from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 import json
 import datetime
 from .utils import cookieCart, cartData, guestOrder
-from django.dispatch import receiver
 from django.db.models.signals import post_save
 
-
 from django.contrib.auth.forms import UserCreationForm
-from .forms import CreateUserForm, UpdateCustomerForm, CommentsForm, SupportForm,CustomerForm,CustomerOfferForm
+from .forms import UpdateCustomerForm, CommentsForm, SupportForm,CustomerForm,CustomerOfferForm, WalletForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from .s3 import upload_to_s3, download_from_s3
 from velencystore.settings import RECIPIENTS_EMAIL, EMAIL_HOST_USER
-
 
 # Create your views here.
 
@@ -37,15 +33,38 @@ if API_KEY == 'WEB3_API_KEY_HERE':
     raise SystemExit
 
 
-def moralis_auth(request):
-    return render(request, 'login.html', {})
+# ГЛАВНАЯ Страница
+def index(request):
+    return render(request, 'store/index.html')
 
-@login_required
-def my_profile(request):
-     if request.user.customer.registred:
-        return render(request, 'store/profile.html', {})
-     else:
-        return redirect('account')
+def store(request):
+    
+    products = Product.objects.filter(available=True)
+    sliders = Slider.objects.all()
+
+    data = cartData(request)
+
+    cartItems = data['cartItems']
+    order = data['order']
+    items = data['items']
+    categories =Category.objects.all()
+
+    trends = Trend.objects.order_by('-number')[0:30]
+    
+    categoryID = request.GET.get('category')
+    partners = Partnership.objects.all()
+    if categoryID:
+        products = Product.objects.filter(sub_category = categoryID)
+    else:
+        products = Product.objects.filter(available=True)
+
+    params={ 'partners':partners, 'categories':categories, 'products':products, 'trends':trends,  'cartItems':cartItems, 'sliders':sliders,  'order':order, 'items':items }
+
+    return render(request, 'store/store.html', params)
+
+
+# Авторизация и регистрация
+
 
 def request_message(request):
     data = json.loads(request.body)
@@ -116,44 +135,91 @@ def verify_message(request):
     else:
         return JsonResponse(json.loads(x.text))
 
+def logoutUser(request):
+    logout(request)
+    return redirect('index')
 
-# @receiver(post_save, sender=User)
-# def create_customer(sender, instance, created, **kwargs):
-#     if created:
-#         customer_name = "New user {}".format(instance.id)
-#         Customer.objects.create(user=instance, name=customer_name)
+#Работа с аккаунтами
+
+def my_profile(request):
+     if request.user.customer.registred:
+        return render(request, 'store/profile.html', {})
+     else:
+        return redirect('account')
 
 
-def LoginPage(request):
-    # create a new Moralis instance with the application ID and server URL
-    moralis = Moralis(
-        application_id='cP2QKvv4ccJNAjffgnL5rnRjq0rjTf6iRXFm3odaHxbrzAsnOOXG5ggVYEEu4XfL',
-        server_url='https://your_moralis_server_url/api',
-    )
+def account(request):
+    form = None  # установить значение по умолчанию
+    wallet_form = None  # установить значение по умолчанию
+    if request.method == "POST":
+        customer = request.user.customer
+        form = UpdateCustomerForm(request.POST, request.FILES, instance=customer)
+        wallet_form = WalletForm(request.POST, instance=customer)
+        if form.is_valid():
+            customer.registred = True
+            # Get the referrer code entered by the customer
+            referrer_code = form.cleaned_data.get('referrer_code')
+            if referrer_code:
+                # Find the customer who has the entered referral code as their referral_code
+                referrer = Customer.objects.filter(referral_code=referrer_code).first()
+                if referrer:
+                    # Add the referral to the database
+                    Referral.objects.create(referrer=request.user, invitee=referrer.user)
+                    # Set the referral_by field of the current customer to the referrer
+                    customer.referral_by = referrer
 
-    # create a new Web3 instance using the user's browser provider
-    web3 = Web3(Web3.WebsocketProvider(moralis.get_web3_socket()))
+            form.save()
+            messages.success(request, 'Profile was updated')
+            return redirect('my_profile')
+        if wallet_form.is_valid():
+            wallet_form.save()
+            messages.success(request, 'Wallet was updated')
+            return redirect('my_profile')
+    else:
+        form = UpdateCustomerForm(instance=request.user.customer)
+        wallet_form = WalletForm(instance=request.user.customer)
+    return render(request, 'store/customer_form.html', {'form': form, 'wallet_form': wallet_form})
 
-    # initiate the Metamask authentication process
-    login_data = moralis.authenticate(web3)
 
-    # redirect the user to the authentication URL
-    return redirect('profile')
 
-def index(request):
-    return render(request, 'store/index.html')
+def registerCustomer(request):
+    if request.method == 'POST':
+        user_form = UserCreationForm(request.POST)
+        customer_form = CustomerForm(request.POST)
+        if user_form.is_valid() and customer_form.is_valid():
+            # Создаем пользователя
+            user = user_form.save()
+            # Создаем объект Customer связанный с пользователем
+            customer = customer_form.save(commit=False)
+            customer.user = user
+            customer.save()
+            # Аутентификация пользователя и перенаправление на главную страницу
+            username = user_form.cleaned_data.get('username')
+            password = user_form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=password)
+            login(request, user)
+            return redirect('profile')
+    else:
+        user_form = UserCreationForm()
+        customer_form = CustomerForm()
+    return render(request, 'create_customer.html', {'user_form': user_form, 'customer_form': customer_form})
 
-# def packet_buy(request):
-#     data = cartData(request)
-    
-#     cartItems = data['cartItems']
-#     order = data['order']
-#     items = data['items']
-#     partners = Partnership.objects.all()
-#     context = {'partners':partners, 'items':items, 'order':order, 'cartItems':cartItems, }
-#     return render(request, 'store/packet_buy.html', context)
 
 # Viwe.py 
+
+# Пакеты криптовалют и токена
+
+@login_required
+def tariffs (request):
+    data = cartData(request)
+    
+    cartItems = data['cartItems']
+    order = data['order']
+    items = data['items']
+    categories =Category.objects.all()
+    partners = Partnership.objects.all()
+    context = {  'cartItems':cartItems, 'order':order, 'items':items, 'categories':categories, 'partners':partners}
+    return render(request, 'store/packages.html', context)
 
 @login_required
 def packet_buy(request):
@@ -224,62 +290,8 @@ def packet_buy(request):
 
 
 
-
-    # if request.method == 'POST':
-    #     # если метод POST, проверим форму и отправим письмо
-    #     form = FeedbackForm(request.POST)
-    #     if form.is_valid():
-    #         subject = form.cleaned_data['subject']
-    #         from_email = form.cleaned_data['from_email']
-    #         message = form.cleaned_data['message']
-    #         try:
-    #             send_mail(f'{subject} от {from_email}', message,
-    #                       EMAIL_HOST_USER, RECIPIENTS_EMAIL)
-    #         except Exception as e:
-    #             messages.error(request, f'Ошибка отправки сообщения! {e}')
-    #         else:
-    #             messages.success(request, 'Сообщение успешно отправлено.')
-    #             form = FeedbackForm()
-    # else:
-    #     return HttpResponse('Неверный запрос.')
-
-
-
-
-    return render(request, 'store/packet_buy.html', {'form': form, 'product': product})
-
-
-  # End View.py
-
-
-
-
-def store(request):
-    
-    products = Product.objects.filter(available=True)
-    sliders = Slider.objects.all()
-
-    data = cartData(request)
-
-    cartItems = data['cartItems']
-    order = data['order']
-    items = data['items']
-    categories =Category.objects.all()
-
-    trends = Trend.objects.order_by('-number')[0:30]
-    
-    categoryID = request.GET.get('category')
-    partners = Partnership.objects.all()
-    if categoryID:
-        products = Product.objects.filter(sub_category = categoryID)
-    else:
-        products = Product.objects.filter(available=True)
-
-    params={ 'partners':partners, 'categories':categories, 'products':products, 'trends':trends,  'cartItems':cartItems, 'sliders':sliders,  'order':order, 'items':items }
-
-    return render(request, 'store/store.html', params)
-
-
+# Модули маркетплейса 
+@login_required
 def wishlist(request):
     wish_items = WishItem.objects.filter(user=request.user)
     data = cartData(request)
@@ -292,7 +304,7 @@ def wishlist(request):
     context={'partners':partners, 'wish_items':wish_items, 'data':data, 'cartItems':cartItems, 'order':order, 'items':items, 'categories':categories}
     return render(request, 'store/wishlist.html', context)
 
-
+@login_required
 def addToWishlist(request):
     if request.method =="POST":
         product_id = request.POST.get('product-id')
@@ -308,7 +320,7 @@ def addToWishlist(request):
         finally:
             return HttpResponseRedirect(reverse('wishlist'))
 
-
+@login_required
 def DeleteFormWishList(request):
     if request.method == "POST":
         item_id = request.POST.get('item-id')
@@ -317,48 +329,6 @@ def DeleteFormWishList(request):
 
 from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
-
-@login_required
-def account(request):
-    if request.method == "POST":
-        customer = request.user.customer
-        form = UpdateCustomerForm(request.POST, request.FILES, instance=customer)
-        if form.is_valid():
-            # Save the uploaded image to the default storage
-            image_file = form.cleaned_data.get('image')
-            if image_file:
-                filename = default_storage.save(image_file.name, ContentFile(image_file.read()))
-                customer.image = filename
-
-            customer.registred = True
-            # Get the referrer code entered by the customer
-            referrer_code = form.cleaned_data.get('referrer_code')
-            if referrer_code:
-                # Find the customer who has the entered referral code as their referral_code
-                referrer = Customer.objects.filter(referral_code=referrer_code).first()
-                if referrer:
-                    # Add the referral to the database
-                    Referral.objects.create(referrer=request.user, invitee=referrer.user)
-                    # Set the referral_by field of the current customer to the referrer
-                    customer.referral_by = referrer
-
-            form.save()
-            messages.success(request, 'Profile was updated')
-            return redirect('my_profile')
-    else:
-        form = UpdateCustomerForm(instance=request.user.customer)
-
-    data = cartData(request)
-    cartItems = data['cartItems']
-    order = data['order']
-    items = data['items']
-    categories = Category.objects.all()
-    partners = Partnership.objects.all()
-    context = {'partners': partners, 'cartItems': cartItems, 'form': form, 'order': order, 'items': items, 'categories': categories}
-    return render(request, 'store/customer_form.html', context)
-
-
-
 
 
 @login_required
@@ -534,6 +504,7 @@ def cart(request):
     context = {'partners':partners,'items':items, 'order':order, 'categories':categories, 'cartItems':cartItems}
     return render(request, 'store/cart.html', context)
 
+@login_required
 def checkout(request):
     data = cartData(request)
     
@@ -544,6 +515,7 @@ def checkout(request):
     context = {'partners':partners, 'items':items, 'order':order, 'cartItems':cartItems, }
     return render(request, 'store/checkout.html', context)
 
+@login_required
 def updateItem(request):
     data = json.loads(request.body.decode('utf-8'))
     productId = data['productId']
@@ -569,6 +541,7 @@ def updateItem(request):
 
     return JsonResponse('Item was added', safe=False)
 
+@login_required
 def processOrder(request):
     transaction_id = datetime.datetime.now().timestamp()
     data = json.loads(request.body)
@@ -599,52 +572,6 @@ def processOrder(request):
     return JsonResponse('Payment submitted..', safe=False)
 
 
-def loginPage(request):
-    if request.user.is_authenticated:
-        return redirect('store')
-    else:
-        if request.method == 'POST':
-            username = request.POST.get('username')
-            password = request.POST.get('password')
-
-            user = authenticate(request, username=username, password=password)
-
-            if user is not None:
-                login(request, user)
-                return redirect('store')
-            else: 
-                messages.info(request, 'Username OR password is incorrect')
-
-        context = {}
-        return render(request, 'store/login.html', context)
-
-
-def logoutUser(request):
-    logout(request)
-    return redirect('index')
-
-
-def registerUser(request):
-    if request.user.is_authenticated:
-        return redirect('store')
-    else:
-        form = CreateUserForm()
-        if request.method == 'POST':
-            form = CreateUserForm(request.POST) 
-        if form.is_valid(): 
-        #saving the registered user
-            user = form.save()
-            username= form.cleaned_data.get('username')
-        #create customer
-            Customer.objects.create(user=user, name=username, email=user.email)
-            messages.success(request, 'Account was created for' + username)
-            return redirect('loginPage')
-        
-    
-        context = {'form':form}
-        return render(request, 'store/reg.html', context)
-
-
 
 def search(request):
     data = cartData(request)
@@ -662,56 +589,13 @@ def search(request):
     params ={'partners':partners, 'cartItems':cartItems, 'order':order, 'categories':categories, 'items':items, 'product':product}
     return render(request, 'store/search.html', params)
 
-@login_required
-def tariffs (request):
-    data = cartData(request)
-    
-    cartItems = data['cartItems']
-    order = data['order']
-    items = data['items']
-    categories =Category.objects.all()
-    partners = Partnership.objects.all()
-    context = {  'cartItems':cartItems, 'order':order, 'items':items, 'categories':categories, 'partners':partners}
-    return render(request, 'store/packages.html', context)
+
 
 def politic (request):
     return render(request, 'store/politic.html')
 
 
-def registerCustomer(request):
-    if request.method == 'POST':
-        user_form = UserCreationForm(request.POST)
-        customer_form = CustomerForm(request.POST)
-        if user_form.is_valid() and customer_form.is_valid():
-            # Создаем пользователя
-            user = user_form.save()
-            # Создаем объект Customer связанный с пользователем
-            customer = customer_form.save(commit=False)
-            customer.user = user
-            customer.save()
-            # Аутентификация пользователя и перенаправление на главную страницу
-            username = user_form.cleaned_data.get('username')
-            password = user_form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=password)
-            login(request, user)
-            return redirect('profile')
-    else:
-        user_form = UserCreationForm()
-        customer_form = CustomerForm()
-    return render(request, 'create_customer.html', {'user_form': user_form, 'customer_form': customer_form})
 
-@login_required
-def create_customer(request):
-    if request.method == 'POST':
-        form = CustomerForm(request.POST, request.FILES)
-        if form.is_valid():
-            customer = form.save(commit=False)
-            customer.user = request.user
-            customer.save()
-            return redirect('profile')
-    else:
-        form = CustomerForm()
-    return render(request, 'create_customer.html', {'form': form})
 
 @login_required
 def referral_list(request):
@@ -720,15 +604,3 @@ def referral_list(request):
 
 
 
-
-# @login_required
-# def referral(request):
-#     user = request.user
-#     if user.userprofile.referred_by:
-#         referred_by = user.userprofile.referred_by.username
-#     else:
-#         referred_by = None
-#     referral_link = request.build_absolute_uri('/register/') + '?ref=' + user.username
-#     user.userprofile.referral_link = referral_link
-#     user.userprofile.save()
-#     return render(request, 'profile.html', {'referral_link': referral_link, 'referred_by': referred_by})

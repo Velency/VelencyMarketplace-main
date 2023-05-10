@@ -23,13 +23,14 @@ class Customer(models.Model):
     zipcode = models.CharField(max_length=6, null=True, blank=True)
     referral_link = models.CharField(max_length=255, unique=True, null=True, blank=True)
     referral_code = models.CharField(max_length=5, unique=True, blank=True)
-    referrer_code = models.CharField(max_length=5, default='',blank=True)
+    referrer_code = models.CharField(max_length=5, default='admin',blank=True)
     referral_by = models.ForeignKey('self', on_delete=models.SET_NULL, null=True, blank=True)
     registred = models.BooleanField(default=False)
     balance_hrwt = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     balance_usdt = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     level = models.IntegerField(default=0, blank=False, null=False)
     wallet = models.CharField(max_length=200,null=False)
+    
     def __init__(self, *args, **kwargs):
         super(Customer, self).__init__(*args, **kwargs)
         if not self.wallet and self.user:
