@@ -9,7 +9,7 @@ from .utils import cookieCart, cartData, guestOrder
 from django.db.models.signals import post_save
 
 from django.contrib.auth.forms import UserCreationForm
-from .forms import UpdateCustomerForm, CommentsForm, SupportForm,CustomerForm,CustomerOfferForm, WalletForm
+from .forms import UpdateCustomerForm, CommentsForm, SupportForm,CustomerOfferForm, WalletForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -137,7 +137,7 @@ def verify_message(request):
 
 def logoutUser(request):
     logout(request)
-    return redirect('index')
+    return redirect('/')
 
 #Работа с аккаунтами
 
@@ -145,7 +145,7 @@ def my_profile(request):
      if request.user.customer.registred:
         return render(request, 'store/profile.html', {})
      else:
-        return redirect('account')
+        return redirect('customer_form')
 
 
 def account(request):
@@ -179,30 +179,6 @@ def account(request):
         form = UpdateCustomerForm(instance=request.user.customer)
         wallet_form = WalletForm(instance=request.user.customer)
     return render(request, 'store/customer_form.html', {'form': form, 'wallet_form': wallet_form})
-
-
-
-def registerCustomer(request):
-    if request.method == 'POST':
-        user_form = UserCreationForm(request.POST)
-        customer_form = CustomerForm(request.POST)
-        if user_form.is_valid() and customer_form.is_valid():
-            # Создаем пользователя
-            user = user_form.save()
-            # Создаем объект Customer связанный с пользователем
-            customer = customer_form.save(commit=False)
-            customer.user = user
-            customer.save()
-            # Аутентификация пользователя и перенаправление на главную страницу
-            username = user_form.cleaned_data.get('username')
-            password = user_form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=password)
-            login(request, user)
-            return redirect('profile')
-    else:
-        user_form = UserCreationForm()
-        customer_form = CustomerForm()
-    return render(request, 'create_customer.html', {'user_form': user_form, 'customer_form': customer_form})
 
 
 # Viwe.py 

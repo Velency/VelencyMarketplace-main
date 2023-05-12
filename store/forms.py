@@ -21,7 +21,6 @@ class UpdateImageForm(forms.Form):
 
 class UpdateCustomerForm(forms.ModelForm):
     referrer_code = forms.CharField(max_length=5, required=False)
-    wallet = forms.CharField(max_length=200, required=False)
     zipcode = forms.IntegerField( required=False)
     country = forms.CharField(max_length=60, required=False)
     mobile = forms.IntegerField(required=False)
@@ -29,7 +28,7 @@ class UpdateCustomerForm(forms.ModelForm):
     class Meta:
         model = Customer
         
-        fields = ['first_name','last_name', 'country', 'zipcode','email', 'mobile', 'referrer_code', 'wallet']
+        fields = ['first_name','last_name', 'country', 'zipcode','email', 'mobile', 'referrer_code']
         
 
 class WalletForm(forms.ModelForm):
@@ -42,10 +41,6 @@ class PhotoForm(forms.ModelForm):
         model = Customer
         fields = ['image']
 
-class WalletForm(forms.ModelForm):
-    class Meta:
-        model = Customer
-        fields = ['wallet']
 
 class CommentsForm(forms.ModelForm):
     class Meta:
@@ -69,8 +64,5 @@ class FeedbackForm(forms.Form):
     message = forms.CharField(widget=forms.Textarea(attrs={'placeholder': 'Введите количество токенов которые хотели бы приобрести, и как мы сможем с вами связаться помимо почты'}), ) 
 
 
-class CustomerForm(forms.ModelForm):
-    class Meta:
-        model = Customer
-        fields = ['first_name', 'email', 'image', 'mobile', 'referral_code']
+
 

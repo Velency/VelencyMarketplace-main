@@ -11,7 +11,7 @@
 <div class="line"></div>
 
 <div class="content-item open">
-  <form method="POST">
+  <form method="POST" name="UpdateCustomerForm">
     {% csrf_token %}
     <p class="settings_text">Basic information</p>
     {% if request.user.customer.registred %} {% else %}
@@ -26,31 +26,34 @@
     {% endif %}
 
     <div class="personalarea">
-      <p class="for_input">First name</p>
+      <p class="for_input" title="Обязательное поле">First name*</p>
       <input
         type="text"
         name="first_name"
         value="{{ request.user.customer.first_name }}"
+        title="Введите ваше имя"
       />
     </div>
 
     <div class="personalarea">
-      <p class="for_input">Last name</p>
+      <p class="for_input" title="Обязательное поле">Last name*</p>
       <input
         type="text"
         name="last_name"
         value="{{ request.user.customer.last_name }}"
+        title="Введите вашу фамилию"
       />
     </div>
 
     <p class="settings_text">Location</p>
 
     <div class="personalarea">
-      <p class="for_input">Country</p>
+      <p class="for_input" title="Обязательное поле">Country*</p>
       <input
         type="text"
         name="country"
         value="{{ request.user.customer.country }}"
+        title="Страна проживания"
       />
     </div>
 
@@ -60,6 +63,7 @@
         type="text"
         name="zipcode"
         value="{{ request.user.customer.zipcode }}"
+        title="Почтовый индекс"
       />
     </div>
     <!-- Контактная информаци -->
@@ -67,11 +71,12 @@
 
     <!-- Email form -->
     <div class="personalarea">
-      <p class="for_input">E-mail</p>
+      <p class="for_input" title="Обязательное поле">E-mail*</p>
       <input
         type="email"
         name="email"
         value="{{ request.user.customer.email }}"
+        title="Электронная почта для связи"
         required
       />
     </div>
@@ -82,11 +87,12 @@
     </div>
     <!-- Phone form -->
     <div class="personalarea">
-      <p class="for_input">Phone</p>
+      <p class="for_input" title="Обязательное поле">Phone*</p>
       <input
         type="mobile"
         name="mobile"
         value="{{ request.user.customer.mobile }}"
+        title="Мобильный телефон для связи"
       />
     </div>
     <div class="personalarea" style="display: none" id="phone-error">
@@ -96,12 +102,13 @@
 
     <div class="personalarea">
       <p class="for_input"></p>
-      <button type="submit" class="save">Save</button>
+      <button type="submit" name="UpdateCustomerForm" class="save">Save</button>
     </div>
   </form>
 
   {% if form.errors %} {% for field in form %} {% for error in field.errors %}
   <div class="alert alert-danger">{{ error }}</div>
+
   {% endfor %} {% endfor %} {% endif %}
 </div>
 
@@ -141,14 +148,19 @@
 
 <!-- Добавление кошелька -->
 <div class="content-item wallet">
-  <form method="post">
+  <form method="POST" name="WalletForm">
     {% csrf_token %}
     <div class="personalarea" style="padding-top: 20px">
       <p class="for_input">
         Address <br />
         of Metamask wallet
       </p>
-      {{ form.wallet }}
+      <input
+        type="text"
+        name="wallet"
+        value="{{ request.user.customer.wallet }}"
+        title="Enter the address of your Metamask wallet"
+      />
     </div>
     {% if form.errors %}
     <div
@@ -165,7 +177,7 @@
 
     <div class="personalarea">
       <p class="for_input"></p>
-      <button type="submit" class="save">Save</button>
+      <button type="submit" name="WalletForm" class="save">Save</button>
     </div>
   </form>
 </div>

@@ -25,7 +25,7 @@
     <div class="main">
       <nav class="nav">
         <div class="buttons">
-          <button class="but" type="button">
+          <button class="but" type="button" onclick="goToStore()">
             <img class="icon" src="{% static 'media/market.svg' %}" alt="" />
           </button>
           <button class="but" type="button">
@@ -98,5 +98,10 @@
       </nav>
       {% block content %} {% endblock content %}
     </div>
+    <script>
+      function goToStore() {
+        window.location.href = "{% url 'store' %}";
+      }
+    </script>
   </body>
 </html>
