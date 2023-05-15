@@ -9,7 +9,7 @@
 
     <link
       rel="shortcut icon"
-      href="{% static 'img/logo1.png' %}"
+      href="{% static 'img/logo.png' %}"
       type="image/png"
     />
     <!-- Place favicon.png in the root directory -->
@@ -112,7 +112,7 @@
                   </li>
                   {% if user.is_authenticated %}
                   <li class="nav-item">
-                    <a class="page-scroll" href="/store">
+                    <a class="page-scroll" href="/my_profile">
                       Eth address: ...{{ user.username|slice:"-5:" }}
                     </a>
                   </li>

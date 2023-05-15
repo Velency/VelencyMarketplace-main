@@ -5,8 +5,12 @@
     <title>Home</title>
     <meta charset="UTF-8" />
     <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <link
       rel="shortcut icon"
-      href="{% static '/images/logo.png' %}"
+      href="{% static 'img/logo.png' %}"
       type="image/png"
     />
     <meta name="viewport" content="width=device-width" />
@@ -71,7 +75,7 @@
               <p>{{ request.user.customer.name }}</p>
               <img class="row" src="{% static 'media/row.svg' %}" alt="" />
             </button>
-            <ul class="dropdown-list2">
+            <ul class="dropdown-list2" style="z-index: 1">
               <li class="dropdown-list-item" data-value="area">
                 <img src="{% static 'media/area.png' %}" />
                 <a href="{% url 'my_profile' %}">Personal area</a>

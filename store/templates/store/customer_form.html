@@ -5,7 +5,7 @@
 <div class="buttons-settings" style="display: flex">
   <button class="settings area open">Personal data</button>
   <!-- <button class="settings photoset">Photo</button> -->
-  <button class="settings linkset">Linking a wallet</button>
+  <!-- <button class="settings linkset">Linking a wallet</button> -->
 </div>
 
 <div class="line"></div>
@@ -100,6 +100,21 @@
       <p class="for_input"></p>
     </div>
 
+    <p class="settings_text">Wallet</p>
+
+    <div class="personalarea" style="padding-top: 20px">
+      <p class="for_input">
+        Address <br />
+        of Metamask wallet
+      </p>
+      <input
+        type="text"
+        name="wallet"
+        value="{{ request.user.customer.wallet }}"
+        title="Enter the address of your Metamask wallet"
+      />
+    </div>
+
     <div class="personalarea">
       <p class="for_input"></p>
       <button type="submit" name="UpdateCustomerForm" class="save">Save</button>
@@ -147,7 +162,7 @@
 </div> -->
 
 <!-- Добавление кошелька -->
-<div class="content-item wallet">
+<!-- <div class="content-item wallet">
   <form method="POST" name="WalletForm">
     {% csrf_token %}
     <div class="personalarea" style="padding-top: 20px">
@@ -162,26 +177,22 @@
         title="Enter the address of your Metamask wallet"
       />
     </div>
-    {% if form.errors %}
-    <div
-      class="personalarea alert alert-danger"
-      id="error"
-      style="display: none"
-    >
-      {% for error in form.wallet.errors %}
-      <p class="error">*{{ error }}</p>
-      {% endfor %}
-      <p class="for_input"></p>
-    </div>
-    {% endif %}
 
     <div class="personalarea">
       <p class="for_input"></p>
       <button type="submit" name="WalletForm" class="save">Save</button>
     </div>
   </form>
-</div>
-<script>
+  {% if form.errors %}
+  <div class="personalarea alert alert-danger" id="error" style="display: none">
+    {% for error in form.wallet.errors %}
+    <p class="error">*{{ error }}</p>
+    {% endfor %}
+    <p class="for_input"></p>
+  </div>
+  {% endif %}
+</div> -->
+<!-- <script>
   document.querySelector("form").addEventListener("submit", function (event) {
     var phoneInput = document.querySelector('input[name="mobile"]');
     var phoneError = document.querySelector("#phone-error");
@@ -193,11 +204,6 @@
     }
   });
 </script>
-<style>
-  #phone-error {
-    display: none;
-  }
-</style>
 
 <script>
   const emailInput = document.querySelector('input[name="email"]');
@@ -221,5 +227,5 @@
       return false;
     }
   }
-</script>
+</script> -->
 {% endblock %}

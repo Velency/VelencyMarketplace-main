@@ -6,7 +6,7 @@
   <div class="order">
     <p class="price" style="margin-bottom: 20px">
       ${{ result }} <br />
-      {{ total }} HRWT
+      {{ total }} tvt
     </p>
     <p class="describe">
       Всё что в пакете за 100$ <br />+ Курс по P2P заработку
@@ -29,16 +29,19 @@
       </button>
     </div>
     <p class="description_order">Order description</p>
-    <!-- <p class="points">
+    {% if result == '250' %}
+    <p class="points">
       • 4 разделов <br />• 14 лекций <br />• Общая продолжительность 3 ч 2 мин
       <br />На этом курсе мы научим вас P2P Арбитражу, арбитражу в криптовалюте.
       В двух словах Р2Р - это рынок, где есть продавцы и есть покупатели. Первое
       время после обучения уверенно можно зарабатывать как два-три процента от
       суммы стартового капитала.
-    </p> -->
+    </p>
+  {% endif %}
+  
     <div style="display: flex; margin: 0; margin-top: 10px">
       <p class="total">Total:</p>
-      <p class="price_pay">{{total}}.00 USDT</p>
+      <p class="price_pay">{{result}}.00 USDT</p>
     </div>
     <form class="form-contact" method="post" action="{% url 'packet_buy' %}">
       {% csrf_token %}
