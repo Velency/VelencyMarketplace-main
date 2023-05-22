@@ -38,7 +38,7 @@ if API_KEY == 'WEB3_API_KEY_HERE':
 
 # ГЛАВНАЯ Страница
 def index(request):
-    return render(request, 'store/index.html')
+    return render(request, 'store/index2.html')
 
 def store(request):
     
