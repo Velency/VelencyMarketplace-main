@@ -28,22 +28,22 @@ class Customer(models.Model):
     registred = models.BooleanField(default=False)
     balance_tvt = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     balance_usdt = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    balance_usdt = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     level = models.IntegerField(default=0, blank=False, null=False)
-    wallet = models.CharField(max_length=200,null=False)
+    wallet = models.CharField(max_length=100, default='')
     
     def __init__(self, *args, **kwargs):
         super(Customer, self).__init__(*args, **kwargs)
         if not self.wallet and self.user:
             self.wallet = self.user.username
     def __str__(self):
-        if self.name:
-            return self.name
-        else:
-            return self.email
+        return self.user.username
     
     def save(self, *args, **kwargs):
         if not self.referral_code:
             self.referral_code = secrets.token_urlsafe(5)[:5]
+        if not self.wallet:
+            self.wallet = self.user.get_username()
         super().save(*args, **kwargs)
 
     def generate_referral_code(self):

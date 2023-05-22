@@ -27,6 +27,9 @@ from moralis import *
 import requests
 from django.contrib.auth.models import User
 
+
+
+
 API_KEY = 'cP2QKvv4ccJNAjffgnL5rnRjq0rjTf6iRXFm3odaHxbrzAsnOOXG5ggVYEEu4XfL'
 if API_KEY == 'WEB3_API_KEY_HERE':
     print("API key is not set")

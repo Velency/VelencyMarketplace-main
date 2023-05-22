@@ -49,7 +49,8 @@ INSTALLED_APPS = [
     'ckeditor',
     'ckeditor_uploader',
     'storages',
-    'web3_auth'
+    'web3_auth',
+    'walletconnect'
        
 ]
 

@@ -35,6 +35,7 @@
       <tr>
         <th></th>
         <th>usdt</th>
+        <th>hrwt</th>
         <th>tvt</th>
       </tr>
       <!--ряд с ячейками заголовков-->
@@ -42,24 +43,29 @@
         <th>Personal</th>
         <td>{{ request.user.customer.balance_usdt }}</td>
         <td>{{ request.user.customer.balance_tvt }}</td>
+        <td>{{ request.user.customer.balance_hrwt }}</td>
       </tr>
       <tr>
         <th>General</th>
         <td>{{ request.user.customer.balance_usdt }}</td>
         <td>{{ request.user.customer.balance_tvt }}</td>
+        <td>{{ request.user.customer.balance_hrwt }}</td>
       </tr>
       <tr>
         <th>Team</th>
-        <td>00.00</td>
-        <td>00.00</td>
+        <td>0.00</td>
+        <td>0.00</td>
+        <td>0.00</td>
       </tr>
       <tr>
         <th>Available <br />for withdrawal</th>
-        <td>00.00</td>
-        <td>00.00</td>
+        <td>0.00</td>
+        <td>0.00</td>
+        <td>0.00</td>
       </tr>
       <tr>
         <th></th>
+        <th><button>withd</button></th>
         <th><button>withd</button></th>
         <th><button>withd</button></th>
       </tr>

@@ -601,6 +601,9 @@
                 <!-- User -->
                 {% if request.user.customer is none %}
                 <a id="auth-metamask" type="button" class="btn"> Connect </a>
+                <button id="walletconnect-button">
+                  Connect with WalletConnect
+                </button>
                 {% else %}
                 <div class="dropdown nav-logo-group" style="margin-left: 15px">
                   <a
@@ -1011,6 +1014,21 @@
       window.addEventListener("load", () => {
         init();
       });
+      // Walletconnect
+      document
+        .getElementById("walletconnect-button")
+        .addEventListener("click", async () => {
+          const provider = new WalletConnectProvider();
+
+          // Подключение к кошельку пользователя
+          await provider.enable();
+
+          // Взаимодействие с кошельком, отправка транзакций и т.д.
+          // ...
+
+          // Перенаправление пользователя на другую страницу или обновление текущей страницы
+          window.location.href = "/some-page";
+        });
     </script>
   </body>
   <!-- Footer -->

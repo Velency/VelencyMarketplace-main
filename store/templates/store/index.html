@@ -1,117 +1,34 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html class="no-js" lang="">
+<html lang="en">
   <head>
-    <title>HR World Metaverse</title>
-    <meta name="description" content="" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <link
-      rel="shortcut icon"
-      href="{% static 'img/logo.png' %}"
-      type="image/png"
-    />
-    <!-- Place favicon.png in the root directory -->
-
-    <!-- ========================= CSS here ========================= -->
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="{% static 'css/bootstrap-5.0.0-alpha-1.min.css' %}"
-    />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="{% static 'css/LineIcons.2.0.css' %}"
-    />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="{% static 'css/animate.css' %}"
-    />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="{% static 'css/main1.css' %}"
-    />
+    <title>Home</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="main.css" />
+    <script src="main.js" defer></script>
   </head>
-  <body>
-    <!--[if lte IE 9]>
-      <p class="browserupgrade">
-        You are using an <strong>outdated</strong> browser. Please
-        <a href="https://browsehappy.com/">upgrade your browser</a> to improve
-        your experience and security.
-      </p>
-    <![endif]-->
+  <body class="body">
 
-    <!-- ========================= preloader start ========================= -->
-    <div class="preloader d-none">
-      <div class="loader">
-        <div class="ytp-spinner">
-          <div class="ytp-spinner-container">
-            <div class="ytp-spinner-rotator">
-              <div class="ytp-spinner-left">
-                <div class="ytp-spinner-circle"></div>
-              </div>
-              <div class="ytp-spinner-right">
-                <div class="ytp-spinner-circle"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- preloader end -->
+      <nav class="navbar">
 
-    <!-- ========================= header start ========================= -->
-    <header class="header navbar-area">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
-            <nav class="navbar navbar-expand-lg">
-              <a class="navbar-brand" href="/">
-                <h3 style="color: #fff">HR World Metaverse</h3>
-              </a>
-              <button
-                class="navbar-toggler"
-                type="button"
-                data-toggle="collapse"
-                data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
-              >
-                <span class="toggler-icon"></span>
-                <span class="toggler-icon"></span>
-                <span class="toggler-icon"></span>
-              </button>
+        <div class="container">
 
-              <div
-                class="collapse navbar-collapse sub-menu-bar"
-                id="navbarSupportedContent"
-              >
-                <ul id="nav" class="navbar-nav ml-auto">
-                  <li class="nav-item">
-                    <a class="page-scroll active" href="#home">Главная</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="page-scroll" href="#about">Про нас</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="page-scroll" href="#service">Преимущества</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="page-scroll" href="#roadmap">Дорожная карта</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="page-scroll" href="#team">Команда</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="page-scroll" href="#contact">Контакты</a>
-                  </li>
-                  {% if user.is_authenticated %}
-                  <li class="nav-item">
+            <a href="#" class="navbar-brand"><img src="media/logo.png" alt=""></a>
+
+            <div class="navbar-wrap">
+                <ul class="navbar-menu">
+                    <li><a href="#" class="link">Главная <div style="width: 65px; height: 8px; background: #2CE8C2; box-shadow: 0px 0px 21px rgba(44, 232, 194, 0.35); border-radius: 0px 0px 5px 5px;"></div></a></li>
+                    <li><a href="#" class="link" >Возможности <div style="width: 110px; height: 8px; background: #2CE8C2; box-shadow: 0px 0px 21px rgba(44, 232, 194, 0.35); border-radius: 0px 0px 5px 5px;"></div></a></li>
+                    <li><a href="#" class="link">О нас <div style="width: 45px; height: 8px; background: #2CE8C2; box-shadow: 0px 0px 21px rgba(44, 232, 194, 0.35); border-radius: 0px 0px 5px 5px;"></div></a></li>
+                    <li><a href="#" class="link">Токен <div style="width: 50px; height: 8px; background: #2CE8C2; box-shadow: 0px 0px 21px rgba(44, 232, 194, 0.35); border-radius: 0px 0px 5px 5px;"></div></a></li>
+                    <li><a href="#" class="link">Проекты <div style="width: 77px; height: 8px; background: #2CE8C2; box-shadow: 0px 0px 21px rgba(44, 232, 194, 0.35); border-radius: 0px 0px 5px 5px;"></div></a></li>
+                    <li><a href="#" class="link">Команда <div style="width: 75px; height: 8px; background: #2CE8C2; box-shadow: 0px 0px 21px rgba(44, 232, 194, 0.35); border-radius: 0px 0px 5px 5px;"></div></a></li>
+                    <li><a href="#" class="link">Партнеры <div style="width: 83px; height: 8px; background: #2CE8C2; box-shadow: 0px 0px 21px rgba(44, 232, 194, 0.35); border-radius: 0px 0px 5px 5px;"></div></a></li>
+                    <li><a href="#" class="link">Контакты <div style="width: 83px; height: 8px; background: #2CE8C2; box-shadow: 0px 0px 21px rgba(44, 232, 194, 0.35); border-radius: 0px 0px 5px 5px;"></div></a></li>
+                    {% if user.is_authenticated %}
+                  <li class="link">
                     <a class="page-scroll" href="/my_profile">
                       Eth address: ...{{ user.username|slice:"-5:" }}
                     </a>
@@ -120,972 +37,431 @@
                     <a class="page-scroll" href="/logout"><b>Выйти</b></a>
                   </li>
                   {% else %}
-                  <li class="nav-item">
-                    <a class="page-scroll" href="{% url 'store' %}"
-                      >Торговая площадка</a
-                    >
-                  </li>
-                  <li class="nav-item">
-                    <a id="auth-metamask" type="button" class="btn">
-                      Connect
-                    </a>
-                  </li>
-                  {% endif %}
-                </ul>
-              </div>
-              <!-- navbar collapse -->
-            </nav>
-            <!-- navbar -->
-          </div>
-        </div>
-        <!-- row -->
-      </div>
-      <!-- container -->
-    </header>
-    <!-- ========================= header end ========================= -->
+                    <button class="enter"><a href="#">Войти</a></button>
+                    <button id="walletconnect-button">Connect with WalletConnect</button>
+                </ul>                    
+            </div>
+        </div>        
+      </nav>
 
-    <!-- ========================= hero-section start ========================= -->
-    <section
-      id="home"
-      class="hero-section"
-      style="
-        background-image: url(https://valencystore2.s3.amazonaws.com/img/xcommon-bg11.webp);
-      "
-    >
-      <div class="shapes">
-        <div class="shape shape-1"></div>
-        <div class="shape shape-2"></div>
-        <div class="shape shape-3"></div>
-      </div>
-      <div class="container">
-        <div class="row align-items-center">
-          <div class="col-xl-7 col-lg-7">
-            <div class="hero-content-wrapper">
-              <h1 class="text-white wow fadeInDown" data-wow-delay=".2s">
-                Покупай, продавай, инвестируй с HR World Metaverse
-              </h1>
-              <p class="text-white wow fadeInLeft" data-wow-delay=".4s">
-                Будьте в курсе актуальных новостей нашего проекта! Получите
-                бонус за партнёрство уже сегодня! Будь первыми держателем
-                <a href="#countdown" style="color: #fff"><b>токена HRW!</b></a>
-              </p>
-              <a
-                href="/register"
-                class="theme-btn wow fadeInUp"
-                data-wow-delay=".6s"
-                >Регистрируйся сейчас!</a
-              >
-            </div>
-          </div>
-          <div class="col-xl-5 col-lg-5">
-            <div class="hero-img">
-              <img
-                src="{% static 'img/hero-img.webp' %}"
-                alt=""
-                class="wow fadeInRight"
-                data-wow-delay=".5s"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- ========================= hero-section end ========================= -->
 
-    <!--========================= feature-section start========================= -->
-    <section id="feature" class="feature-section pt-150">
-      <div class="container">
-        <div class="row">
-          <div class="col-xl-7 col-lg-8 mx-auto">
-            <div class="section-title text-center mb-55">
-              <h2 class="mb-20 wow fadeInUp" data-wow-delay=".2s">
-                Возможности на старте проекта
-              </h2>
-              <p class="wow fadeInUp" data-wow-delay=".4s">
-                Создавай внутренюю экономику и становись партнёром проекта.
-              </p>
-            </div>
-          </div>
+      <div class="first">
+        
+        <div class="left">
+          <p class="title">ПОКУПАЙ, ПРОДАВАЙ, ИНВЕСТИРУЙ</p>
+          <p class="title">С HR WORLD METAVERSE</p>
+          <p class="description">Будьте в курсе актуальных новостей нашего проекта! Получите бонус за партнёрство уже сегодня! Будь первыми держателем токена HRWT!</p>
+          <button class="enter_button"><a href="#">Войти</a></button>
         </div>
-        <div
-          class="features-wrapper"
-          style="
-            background-image: url(https://valencystore2.s3.amazonaws.com/img/xcommon-bg11.webp);
-          "
-        >
-          <div class="row justify-content-center">
-            <div class="col-xl-4 col-lg-4 col-md-6">
-              <div
-                class="single-feature text-center mb-30 wow fadeInUp"
-                data-wow-delay=".2s"
-              >
-                <div class="feature-img mb-20">
-                  <img src="{% static 'img/feature-1.png' %}" alt="" />
-                </div>
-                <div class="feature-content">
-                  <h5>Покупай токен HRW</h5>
-                  <p>
-                    Создавай внутреннюю экономику и увеличивай доходность с
-                    помощью биржи! Покупай и продавай токены, чтобы получить
-                    ликвидную прибыль!
-                  </p>
+        
+        <div class="right">
+          <div class="back" style="position: relative;"></div>
+          <img class="logo" src="media/logo.png" alt="" style="position: absolute;">
+        </div>
+
+      </div>
+
+      <div class="line"></div>
+
+      <div class="second">
+
+      <p class="title_min">Возможности на старте проекта</p>
+      <p class="descr_min">Создавай внутреннюю экономику и становись партнёром проекта.</p>
+
+        <div class="cards">
+
+          <div class="possibility" style="display: flex; flex-direction: column; align-items: center; width: 400px;">
+            <div class="pos">
+              <div  class="circle" style="position: relative;"> <img src="media/circle.png" alt=""></div>
+                <div class="possibil" style="position: absolute;">
+                  <img src="media/Group.svg" alt="" style=" width: 130px;">
+                  <p class="title_mini">Покупай</p>
+                  <p class="title_mini">токен HRWT</p>
                 </div>
               </div>
+              <p class="descr_mini">Создавай внутреннюю экономику и увеличивай доходность с помощью биржи! Покупай и продавай токены, чтобы получить ликвидную прибыль!</p>
             </div>
-            <div class="col-xl-4 col-lg-4 col-md-6">
-              <div
-                class="single-feature text-center mb-30 wow fadeInUp"
-                data-wow-delay=".4s"
-              >
-                <div class="feature-img mb-25">
-                  <img src="{% static 'img/feature-2.png' %}" alt="" />
-                </div>
-                <div class="feature-content">
-                  <h5>
-                    Создай и продай свои товар за HRW на торговой площадке
-                  </h5>
-                  <p>
-                    Создайте уникальный NFT товар и получайте прибыль на нашей
-                    торговой площадке! .
-                  </p>
+
+
+          <div class="possibility" style="display: flex; flex-direction: column; align-items: center; width: 400px;">
+            <div class="pos">
+              <div  class="circle" style="position: relative;"> <img src="media/circle.png" alt=""></div>
+                <div class="possibil" style="position: absolute;">
+                  <img src="media/43.svg" alt="" style=" width: 130px;">
+                  <p class="title_mini">Создай и продай</p>
+                  <p class="title_mini">свой товар за HRWT </p>
+                  <p class="title_mini">на торговой площадке</p>
                 </div>
               </div>
+              <p class="descr_mini">Создайте уникальный NFT товар и получайте прибыль на нашей торговой площадке!</p>
             </div>
-            <div class="col-xl-4 col-lg-4 col-md-6">
-              <div
-                class="single-feature text-center mb-30 wow fadeInUp"
-                data-wow-delay=".6s"
-              >
-                <div class="feature-img mb-20">
-                  <img src="{% static  'img/feature-3.png' %}" alt="" />
-                </div>
-                <div class="feature-content">
-                  <h5>
-                    Инвестируй и получи в подарок участок земли HR World
-                    Metaverse
-                  </h5>
-                  <p>
-                    Больше вкладываешь - больше получаешь. Инвестируй и участвуй
-                    в розыграшах виртуального участка земли.
-                  </p>
+
+
+          <div class="possibility" style="display: flex; flex-direction: column; align-items: center; width: 400px;">
+            <div class="pos">
+              <div  class="circle" style="position: relative;"> <img src="media/circle.png" alt=""></div>
+                <div class="possibil" style="position: absolute;">
+                  <img src="media/Group3.svg" alt="" style=" width: 130px;">
+                  <p class="title_mini">Инвестируй</p>
+                  <p class="title_mini">и получи в подарок</p>
+                  <p class="title_mini">участок земли</p>
+                  <p class="title_mini">HR World Metaverse</p>
                 </div>
               </div>
+              <p class="descr_mini">Больше вкладываешь - больше получаешь. Инвестируй и участвуй в розыграшах виртуального участка земли!</p>
             </div>
           </div>
         </div>
       </div>
-    </section>
-    <!--========================= feature-section end========================= -->
 
-    <!-- ========================= about-section start ========================= -->
-    <section id="about" class="about-section pt-150 pb-20">
-      <div class="container">
-        <div class="row align-items-center">
-          <div class="col-xl-6 col-lg-6">
-            <div class="about-img mb-30">
-              <img
-                src="{% static 'img/about-img.webp' %}"
-                alt="image"
-                class="wow fadeInLeft"
-                data-wow-delay=".4s"
-              />
-            </div>
-          </div>
-          <div class="col-xl-6 col-lg-6">
-            <div class="about-content mb-30">
-              <div class="section-title mb-40">
-                <h2 class="wow fadeInUp" data-wow-delay=".2s">Про нас</h2>
-              </div>
-              <p class="mb-15 wow fadeInUp" data-wow-delay=".4s">
-                HR word - это люди из разных стран и социальных слоев, разных
-                возрастов и образования, без предрассудков и разделений. Мы
-                соединяемся, чтобы реализовать свою мечту и мечты каждого.
-              </p>
-              <p class="mb-35 wow fadeInUp" data-wow-delay=".6s">
-                HR World Metaverse - это проект который строится на философии
-                "работай онлайн, а живи оффлайн". Большой акцент будет делён на
-                коммерческий сектор для предоставления всех преимуществ и выгод
-                перехода из реального сектора в цифровой.
-              </p>
-              <a
-                href="https://hrworld.live"
-                class="theme-btn theme-btn-2 wow fadeInRight"
-                data-wow-delay=".8s"
-                >Узнать больше</a
-              >
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- ========================= about-section end ========================= -->
+      <div class="line"></div>
 
-    <!-- ========================= service-section end ========================= -->
-    <section id="service" class="service-section pt-150 pb-120">
-      <div class="container">
-        <div class="row">
-          <div class="col-xl-7 col-lg-8 col-md-10 mx-auto">
-            <div class="section-title text-center mb-55">
-              <h2
-                class="mb-20 wow fadeInDown"
-                data-wow-delay=".2s"
-                style="
-                  visibility: visible;
-                  animation-delay: 0.2s;
-                  animation-name: fadeInDown;
-                "
-              >
-                Особености работы с нами
-              </h2>
-              <p
-                class="wow fadeInUp"
-                data-wow-delay=".4s"
-                style="
-                  visibility: visible;
-                  animation-delay: 0.4s;
-                  animation-name: fadeInUp;
-                "
-              >
-                Оцените, какие могут быть преимущества от партнёрства в HR World
-                Metaverse
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-xl-4 col-lg-4 col-md-6">
-            <div
-              class="single-service wow fadeInUp"
-              data-wow-delay=".2s"
-              style="
-                visibility: visible;
-                animation-delay: 0.2s;
-                animation-name: fadeInUp;
-              "
-            >
-              <div class="service-icon mb-30" style="background: #36cde1">
-                <i class="lni lni-money-protection"></i>
-              </div>
-              <h4>Web3 Wallet</h4>
-              <p>
-                Использование авторизации через web3 кошелёк преимущественно
-                MetaMask дает возможность быстро создавать аккаунт и скрывает
-                информацию которую компании могут использовать не по назначению.
-              </p>
-            </div>
-          </div>
-          <div class="col-xl-4 col-lg-4 col-md-6">
-            <div
-              class="single-service wow fadeInUp"
-              data-wow-delay=".4s"
-              style="
-                visibility: visible;
-                animation-delay: 0.4s;
-                animation-name: fadeInUp;
-              "
-            >
-              <div class="service-icon mb-30" style="background: #36cde1">
-                <i class="lni lni-alarm"></i>
-              </div>
-              <h4>Gifts and bonuses</h4>
-              <p>
-                Регулярные розыгрыши подарков и бонусов за активность в проекте.
-                Активностью считается, покупка монет, построение структуры,
-                создание своих NFT, креативные постройки и тд.
-              </p>
-            </div>
-          </div>
-          <div class="col-xl-4 col-lg-4 col-md-6">
-            <div
-              class="single-service wow fadeInUp"
-              data-wow-delay=".6s"
-              style="
-                visibility: visible;
-                animation-delay: 0.6s;
-                animation-name: fadeInUp;
-              "
-            >
-              <div class="service-icon mb-30" style="background: #36cde1">
-                <i class="lni lni-reload"></i>
-              </div>
-              <h4>Goods Rental</h4>
-              <p>
-                Созданые предметы, или купленую землю можно не только держать у
-                себя, а ещё и сдавать в аренду и получать пасивно доход.
-              </p>
-            </div>
-          </div>
-          <div class="col-xl-4 col-lg-4 col-md-6">
-            <div
-              class="single-service wow fadeInUp"
-              data-wow-delay=".2s"
-              style="
-                visibility: visible;
-                animation-delay: 0.2s;
-                animation-name: fadeInUp;
-              "
-            >
-              <div class="service-icon mb-30" style="background: #36cde1">
-                <i class="lni lni-cog"></i>
-              </div>
-              <h4>Servicing your Business</h4>
-              <p>
-                При приобретении участка земли под коммерцию - постоянная
-                поддержка вашего бизнеска.
-              </p>
-            </div>
-          </div>
-          <div class="col-xl-4 col-lg-4 col-md-6">
-            <div
-              class="single-service wow fadeInUp"
-              data-wow-delay=".4s"
-              style="
-                visibility: visible;
-                animation-delay: 0.4s;
-                animation-name: fadeInUp;
-              "
-            >
-              <div class="service-icon mb-30" style="background: #36cde1">
-                <i class="lni lni-bolt-alt"></i>
-              </div>
-              <h4>Marketplace</h4>
-              <p>
-                Торговая площадка "Valency Store" на которой можно создавать,
-                продавать и покупать различные товары и участки земли.
-              </p>
-            </div>
-          </div>
-          <div class="col-xl-4 col-lg-4 col-md-6">
-            <div
-              class="single-service wow fadeInUp"
-              data-wow-delay=".6s"
-              style="
-                visibility: visible;
-                animation-delay: 0.6s;
-                animation-name: fadeInUp;
-              "
-            >
-              <div class="service-icon mb-30" style="background: #36cde1">
-                <i class="lni lni-coin"></i>
-              </div>
-              <h4>Investments</h4>
-              <p>
-                Инвестиции в проект дают право быть партнёром и открывает
-                множество привелегий таких как розыгрышь земельных участков и не
-                только...
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- ========================= service-section end ========================= -->
-    <!-- ========================= roadmap-section start ========================= -->
 
-    <section
-      id="roadmap"
-      class="roadmap-section pt-100 pb-70 img-bg"
-      style="background-image: url(static/img/xcommon-bg11.webp)"
-    >
-      <div class="container">
-        <div class="row">
-          <div class="col-xl-6 col-lg-7 col-md-9 mx-auto">
-            <div class="section-title text-center mb-55">
-              <h2
-                class="text-white mb-20 wow fadeInUp"
-                data-wow-delay=".4s"
-                style="
-                  visibility: visible;
-                  animation-delay: 0.4s;
-                  animation-name: fadeInUp;
-                "
-              >
-                Дорожая карта
-              </h2>
-              <p
-                class="text-white wow fadeInUp"
-                data-wow-delay=".6s"
-                style="
-                  visibility: visible;
-                  animation-delay: 0.6s;
-                  animation-name: fadeInUp;
-                "
-              >
-                Ознакомится с ближайшими событиями, планами и целями проекта вы
-                можете на нашей дорожной карте .
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="roadmap-wrapper justify-content-center">
-          <div class="roadmap-item">
-            <span class="circle"></span>
-            <span>Апрель 2023</span>
-            <p>Работа над сайтом проекта и проведение ICO</p>
-          </div>
-          <div class="roadmap-item">
-            <span class="circle"></span>
-            <span>Май 2023</span>
-            <p>Начало разработки приложения. Подготовка в IEO</p>
-          </div>
-          <div class="roadmap-item">
-            <span class="circle"></span>
-            <span>Июнь 2023</span>
-            <p>Проведение IDO. Первые выплаты нашим инвесторам.</p>
-          </div>
-          <div class="roadmap-item">
-            <span class="circle"></span>
-            <span>Июль 2023</span>
-            <p>Проведение IEO. Начало работы над приложением.</p>
-          </div>
-          <div class="roadmap-item">
-            <span class="circle"></span>
-            <span>Август 2023</span>
-            <p>Доработки перед бета тестом. Розыгрышь земли.</p>
-          </div>
-          <div class="roadmap-item">
-            <span class="circle"></span>
-            <span>Сентябрь 2023</span>
-            <p>Бета тест. Дорожная карта на следующие пол года.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- ========================= roadmap-section end ========================= -->
 
-    <!-- ========================= team-section start ========================= -->
-    <section id="team" class="team-section pt-120 pb-120">
-      <div class="container">
-        <div class="row">
-          <div class="col-xl-6 col-lg-7 mx-auto">
-            <div class="section-title text-center mb-55">
-              <h2
-                class="mb-20 wow fadeInUp"
-                data-wow-delay=".2s"
-                style="
-                  visibility: visible;
-                  animation-delay: 0.2s;
-                  animation-name: fadeInUp;
-                "
-              >
-                Приветствуйте нашу команду
-              </h2>
-              <p
-                class="mb-55 wow fadeInLeft"
-                data-wow-delay=".4s"
-                style="
-                  visibility: visible;
-                  animation-delay: 0.4s;
-                  animation-name: fadeInLeft;
-                "
-              >
-                Наши специалисты которые совместно работают над проектом
-                <b>HR World Metaverse</b>
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-xl-3 col-lg-3 col-md-6">
-            <div
-              class="single-team text-center mb-120 wow fadeInUp"
-              data-wow-delay=".2s"
-              style="
-                visibility: visible;
-                animation-delay: 0.2s;
-                animation-name: fadeInUp;
-              "
-            >
-              <div class="team-img mb-20">
-                <img
-                  alt=""
-                  data-pagespeed-url-hash="486462791"
-                  src="{% static 'img/xteam-6.png' %}"
-                  onerror="this.onerror=null;pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);"
-                />
-                <div class="team-social-links">
-                  <ul>
-                    <li>
-                      <a href="#"><i class="lni lni-facebook-filled"></i></a>
-                    </li>
-                    <li>
-                      <a href="#"><i class="lni lni-twitter-filled"></i></a>
-                    </li>
-                    <li>
-                      <a href="#"><i class="lni lni-linkedin-original"></i></a>
-                    </li>
-                  </ul>
-                </div>
-                <div class="team-info">
-                  <h5>Гузель Усманова</h5>
-                  <span>Founder</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-xl-3 col-lg-3 col-md-6">
-            <div
-              class="single-team text-center mb-120 wow fadeInUp"
-              data-wow-delay=".2s"
-              style="
-                visibility: visible;
-                animation-delay: 0.2s;
-                animation-name: fadeInUp;
-              "
-            >
-              <div class="team-img mb-20">
-                <img
-                  alt=""
-                  data-pagespeed-url-hash="486462791"
-                  src="{% static 'img/xteam-1.png' %}"
-                  onerror="this.onerror=null;pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);"
-                />
-                <div class="team-social-links">
-                  <ul>
-                    <li>
-                      <a href="#"><i class="lni lni-facebook-filled"></i></a>
-                    </li>
-                    <li>
-                      <a href="#"><i class="lni lni-twitter-filled"></i></a>
-                    </li>
-                    <li>
-                      <a href="#"><i class="lni lni-linkedin-original"></i></a>
-                    </li>
-                  </ul>
-                </div>
-                <div class="team-info">
-                  <h5>Никита Костава</h5>
-                  <span>Co-Founder and CEO</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-xl-3 col-lg-3 col-md-6">
-            <div
-              class="single-team text-center mb-120 wow fadeInUp"
-              data-wow-delay=".4s"
-              style="
-                visibility: visible;
-                animation-delay: 0.4s;
-                animation-name: fadeInUp;
-              "
-            >
-              <div class="team-img mb-20">
-                <img
-                  alt=""
-                  data-pagespeed-url-hash="780962712"
-                  src="{% static 'img/xteam-2.png' %}"
-                  onerror="this.onerror=null;pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);"
-                />
-                <div class="team-social-links">
-                  <ul>
-                    <li>
-                      <a href="#"><i class="lni lni-facebook-filled"></i></a>
-                    </li>
-                    <li>
-                      <a href="#"><i class="lni lni-twitter-filled"></i></a>
-                    </li>
-                    <li>
-                      <a href="#"><i class="lni lni-linkedin-original"></i></a>
-                    </li>
-                  </ul>
-                </div>
-                <div class="team-info">
-                  <h5>Фиданур Усманов</h5>
-                  <span>IT-Specialist</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-xl-3 col-lg-3 col-md-6">
-            <div
-              class="single-team text-center mb-120 wow fadeInUp"
-              data-wow-delay=".6s"
-              style="
-                visibility: visible;
-                animation-delay: 0.6s;
-                animation-name: fadeInUp;
-              "
-            >
-              <div class="team-img mb-20">
-                <img
-                  alt=""
-                  data-pagespeed-url-hash="1075462633"
-                  src="{% static 'img/xteam-3.png' %}"
-                  onerror="this.onerror=null;pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);"
-                />
-                <div class="team-social-links">
-                  <ul>
-                    <li>
-                      <a href="#"><i class="lni lni-facebook-filled"></i></a>
-                    </li>
-                    <li>
-                      <a href="#"><i class="lni lni-twitter-filled"></i></a>
-                    </li>
-                    <li>
-                      <a href="#"><i class="lni lni-linkedin-original"></i></a>
-                    </li>
-                  </ul>
-                </div>
-                <div class="team-info">
-                  <h5>Эльза Шаяхметова</h5>
-                  <span>Product Manager</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-xl-3 col-lg-3 col-md-6">
-            <div
-              class="single-team text-center mb-120 wow fadeInUp"
-              data-wow-delay=".8s"
-              style="
-                visibility: visible;
-                animation-delay: 0.8s;
-                animation-name: fadeInUp;
-              "
-            >
-              <div class="team-img mb-20">
-                <img
-                  alt=""
-                  data-pagespeed-url-hash="1369962554"
-                  src="{% static 'img/xteam-5.png' %}"
-                  onerror="this.onerror=null;pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);"
-                />
-                <div class="team-social-links">
-                  <ul>
-                    <li>
-                      <a href="#"><i class="lni lni-facebook-filled"></i></a>
-                    </li>
-                    <li>
-                      <a href="#"><i class="lni lni-twitter-filled"></i></a>
-                    </li>
-                    <li>
-                      <a href="#"><i class="lni lni-linkedin-original"></i></a>
-                    </li>
-                  </ul>
-                </div>
-                <div class="team-info">
-                  <h5>Марина Макрицова</h5>
-                  <span>Sale Manager</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-xl-3 col-lg-3 col-md-6">
-            <div
-              class="single-team text-center mb-120 wow fadeInUp"
-              data-wow-delay=".2s"
-              style="
-                visibility: visible;
-                animation-delay: 0.2s;
-                animation-name: fadeInUp;
-              "
-            >
-              <div class="team-img mb-20">
-                <img
-                  alt=""
-                  data-pagespeed-url-hash="486462791"
-                  src="{% static 'img/xteam-4.png' %}"
-                  onerror="this.onerror=null;pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);"
-                />
-                <div class="team-social-links">
-                  <ul>
-                    <li>
-                      <a href="#"><i class="lni lni-facebook-filled"></i></a>
-                    </li>
-                    <li>
-                      <a href="#"><i class="lni lni-twitter-filled"></i></a>
-                    </li>
-                    <li>
-                      <a href="#"><i class="lni lni-linkedin-original"></i></a>
-                    </li>
-                  </ul>
-                </div>
-                <div class="team-info">
-                  <h5>Мая Степнова</h5>
-                  <span>Project Manager</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- ========================= team-section end ========================= -->
 
-    <!-- ========================= countdown-section start ========================= -->
-    <section
-      id="countdown"
-      class="countdown-section pt-70 pb-70 img-bg"
-      style="background-image: url(static/img/xcommon-bg11.webp)"
-    >
-      <div class="container">
-        <div class="row align-items-center">
-          <div class="col-xl-6 col-lg-6">
-            <div class="countdown-img">
-              <img
-                src="{% static 'img/countdown-img.webp' %}"
-                alt=""
-                class="wow fadeInLeft"
-                data-wow-delay=".4s"
-              />
-            </div>
-          </div>
-          <div class="col-xl-6 col-lg-6">
-            <div class="countdown-content-wrapper">
-              <div class="countdown">
-                <ul id="countdown-example">
-                  <li>
-                    <span class="days">89</span>
-                    <p class="days_text">Дней</p>
-                  </li>
-                  <li>
-                    <span class="hours">53</span>
-                    <p class="hours_text">Часов</p>
-                  </li>
-                  <li>
-                    <span class="minutes">34</span>
-                    <p class="minutes_text">Минут</p>
-                  </li>
-                  <li>
-                    <span class="seconds">08</span>
-                    <p class="seconds_text">Секунд</p>
-                  </li>
-                </ul>
-              </div>
-              <div class="countdown-content">
-                <h2 class="text-white mb-35 wow fadeInUp" data-wow-delay=".2s">
-                  Стань одним из первых держателей токена HRW!
-                </h2>
-                <p class="text-white mb-30 wow fadeInUp" data-wow-delay=".4s">
-                  Первые держатели токенов нашего проекта получают льготный
-                  бонус и узнают первыми о новостях, а также могут обналичить
-                  свои токены. Какие условия необходимо выполнить, чтобы стать
-                  держателем токенов проекта?
-                </p>
-                <a
-                  href="/tariffs"
-                  class="theme-btn wow fadeInUp"
-                  data-wow-delay=".6s"
-                  >Купить токен сейчас</a
-                >
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- ========================= countdown-section end ========================= -->
 
-    <!-- ========================= contact-section start ========================= -->
-    <section id="contact" class="contact-section pt-120 pb-105">
-      <div class="container">
-        <div class="row align-items-end">
-          <div class="col-xl-6 col-lg-7">
-            <div class="contact-wrapper mb-30">
-              <h2 class="mb-20 wow fadeInDown" data-wow-delay=".2s">
-                Свяжитесь с нами
-              </h2>
-              <p class="mb-55 wow fadeInUp" data-wow-delay=".4s">
-                Отправте нам свой вопрос и мы обязательно дадим ответ на него.
-              </p>
-              <form
-                action="assets/mail.php"
-                method="POST"
-                id="contact-form"
-                class="contact-form"
-              >
-                <div class="row">
-                  <div class="col-lg-6 col-md-6">
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      placeholder="Name"
-                    />
-                  </div>
-                  <div class="col-lg-6 col-md-6">
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      placeholder="Email"
-                    />
-                  </div>
-                  <div class="col-lg-6 col-md-6">
-                    <input
-                      type="text"
-                      id="phone"
-                      name="phone"
-                      placeholder="Phone"
-                    />
-                  </div>
-                  <div class="col-lg-6 col-md-6">
-                    <input
-                      type="text"
-                      id="subject"
-                      name="subject"
-                      placeholder="Subject"
-                    />
-                  </div>
-                  <div class="col-lg-12">
-                    <textarea
-                      name="message"
-                      id="message"
-                      rows="5"
-                      placeholder="Message"
-                    ></textarea>
+      <div class="second">
+
+        <div class="cards">
+
+          <div class="possibility" style="display: flex; flex-direction: column; align-items: center; width: 400px;">
+            <div class="pos">
+              <div  class="b_photo" style="position: relative;"> <img src="media/b.png" alt=""></div>
+                <div class="possibil" style="position: absolute;  width: 400px;">
+                  <p class="title">+25900</p>
+                  <p class="descr_mini">учеников, которые прошли обучение и зарабатывают уже сейчас</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="possibility" style="display: flex; flex-direction: column; align-items: center; width: 150px;">
+              <div class="pos">
+                <div  class="b_photo" style="position: relative;"> <img src="media/b.png" alt=""></div>
+                  <div class="possibil" style="position: absolute; width: 400px;">
+                    <p class="title">+25900</p>
+                    <p class="descr_mini">учеников, которые прошли обучение и зарабатывают уже сейчас</p>
                   </div>
                 </div>
-                <button type="submit" class="theme-btn theme-btn-2">
-                  Отправить
-                </button>
-              </form>
-            </div>
-          </div>
-          <div class="col-xl-6 col-lg-5">
-            <div class="contact-map mb-30">
-              <div class="map-canvas">
-                <iframe
-                  class="map"
-                  id="gmap_canvas"
-                  src="https://maps.google.com/maps?q=Mission%20District%2C%20San%20Francisco%2C%20CA%2C%20USA&amp;t=&amp;z=13&amp;ie=UTF8&amp;iwloc=&amp;output=embed"
-                  frameborder="0"
-                  scrolling="no"
-                  marginheight="0"
-                  marginwidth="0"
-                ></iframe>
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- ========================= contact-section end ========================= -->
 
-    <!-- ========================= footer start ========================= -->
-    <footer
-      class="footer pt-100 img-bg"
-      style="background-image: url(static/img/xcommon-bg11.webp)"
-    >
-      <div class="container">
-        <div class="row">
-          <div class="col-xl-4 col-lg-4 col-md-6">
-            <div
-              class="footer-widget mb-60 wow fadeInLeft"
-              data-wow-delay=".2s"
-            >
-              <a href="index.html" class="logo mb-40"
-                ><h2 style="color: #fff">HR World Metaverse</h2></a
-              >
-              <p class="mb-30">
-                Маленький мир для жизни, но большой для возможностей. Мы хотим
-                показать все возможности и преимущства работы онлайн. А жизни
-                оффлайн, здесь и сейчас!
-              </p>
-              <div class="footer-social-links">
-                <ul>
-                  <li>
-                    <a href="#"><i class="lni lni-facebook-filled"></i></a>
-                  </li>
-                  <li>
-                    <a href="#"><i class="lni lni-twitter-filled"></i></a>
-                  </li>
-                  <li>
-                    <a href="#"><i class="lni lni-linkedin-original"></i></a>
-                  </li>
-                  <li>
-                    <a href="#"><i class="lni lni-instagram-original"></i></a>
-                  </li>
-                </ul>
+
+              <div class="possibility" style="display: flex; flex-direction: column; align-items: center; width: 400px;">
+                <div class="pos">
+                  <div  class="b_photo" style="position: relative;"> <img src="media/b.png" alt=""></div>
+                    <div class="possibil" style="position: absolute;  width: 400px;">
+                      <p class="title">+25900</p>
+                      <p class="descr_mini">учеников, которые прошли обучение и зарабатывают уже сейчас</p>
+                    </div>
+                  </div>
+                </div>
+        </div>
+      </div>
+
+
+      <div class="line"></div>
+
+
+
+
+      <div class="third">
+        
+        <div class="left">
+          <p class="title">О НАС</p>
+          <p class="description">HR word - это люди из разных стран и социальных слоев, разных возрастов и образования, без предрассудков и разделений. Мы соединяемся, чтобы реализовать свою мечту и мечты каждого.
+
+            HR World Metaverse - это проект который строится на философии "работай онлайн, а живи оффлайн". Большой акцент будет делён на коммерческий сектор для предоставления всех преимуществ и выгод перехода из реального сектора в цифровой.</p>
+          <button class="know_button"><a href="#">Узнать больше</a></button>
+        </div>
+        
+        <div class="right">
+          <div class="back_tree" style="position: relative;"></div>
+          <img class="tree" src="media/tree.png" alt="" style="position: absolute;">
+        </div>
+
+      </div>
+
+
+      <div class="line"></div>
+
+
+      <div class="third" style="display: flex; align-items: center;">
+        
+        <div class="lleft">
+          <img class="pack" src="media/pack.png" alt="">
+        </div>
+
+        <div class="rright">
+          <p class="title-right">Стань одним из первых держателей токена HRWT!</p>
+          <p class="description-right">Первые держатели токенов нашего проекта получают льготный бонус и узнают первыми о новостях,
+            а также могут обналичить свои токены.
+            Какие условия необходимо выполнить, чтобы стать держателем токенов проекта?</p>
+            <div style="width: max-content; height: max-content; display: inline-block; float: right;"> <button class="token_button"><a href="#">Купить токен сейчас</a></button></div>
+            
+        </div>
+
+      </div>
+
+
+
+
+
+      <div class="image_wrapper" >
+        <div class="slider">
+          <div class="slider-nav">
+            <div class="slider-items">
+              <div class="item">
+                <img src="media/wrap.png" alt="">
+              </div>
+              <div class="item">
+                <img src="media/wrap.png" alt="">
+              </div>
+              <div class="item">
+                <img src="media/wrap.png" alt="">
+              </div>
+              <div class="item">
+                <img src="media/wrap.png" alt="">
+              </div>
+              <div class="item">
+                <img src="media/wrap.png" alt="">
               </div>
             </div>
           </div>
-          <div class="col-xl-2 col-lg-2 col-md-6">
-            <div class="footer-widget mb-60 wow fadeInUp" data-wow-delay=".4s">
-              <h4>Компания</h4>
-              <ul class="footer-links">
-                <li>
-                  <a href="#home">Главная</a>
-                </li>
-                <li>
-                  <a href="#about">Про нас</a>
-                </li>
-                <li>
-                  <a href="#service">Преимущества</a>
-                </li>
-                <li>
-                  <a href="#team">Команда</a>
-                </li>
-                <li>
-                  <a href="/store">Торговая площадка</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-xl-3 col-lg-3 col-md-6">
-            <div class="footer-widget mb-60 wow fadeInUp" data-wow-delay=".6s">
-              <h4>Информация</h4>
-              <ul class="footer-links">
-                <li>
-                  <a href="javascript:void(0)">Документация</a>
-                </li>
-                <li>
-                  <a href="politic/">Политика конфиденциальности</a>
-                </li>
-                <li>
-                  <a href="support/">Тех поддержка</a>
-                </li>
-                <li>
-                  <a href="offers/">Обратная связь</a>
-                </li>
-                <li>
-                  <a href="#contact">Контакты</a>
-                </li>
-                <li></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-xl-3 col-lg-3 col-md-6">
-            <div
-              class="footer-widget mb-60 wow fadeInRight"
-              data-wow-delay=".8s"
-            >
-              <h4>Связь с нами</h4>
-              <ul>
-                <li class="mb-30">
-                  <p>
-                    Телефон: <br />
-                    +995 568 836 179
-                  </p>
-                </li>
-                <li class="mb-30">
-                  <p>
-                    Почта: <br />
-                    hrworld48@gmail.com
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Адрес: Kobaladze 8a,, <br />
-                    Georgia, 6000, GE
-                  </p>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="copyright-area">
-          <p class="mb-0 text-white text-center">
-            Made by
-            <a href="https://hrworld.live" rel="nofollow" target="_blank"
-              >HR World Community</a
-            >
-          </p>
         </div>
       </div>
-    </footer>
-    <!-- ========================= footer end ========================= -->
+
+
+      <div class="second">
+
+        <p class="title_min" style="text-align: center; margin-top: 50px;">Наша команда</p>
+  
+          <div class="cards">
+  
+            <div class="possibility" style="display: flex; flex-direction: column; align-items: center; width: 400px;">
+              <div class="pos">
+                <div  class="circle_photo" style="position: relative;"> <img src="media/circle.png" alt=""></div>
+                  <div class="possibil" style="position: absolute;">
+                    <img src="media/photo.jpg" alt="" style=" width: 200px; border-radius: 12px; cursor: pointer;">
+                    <p class="title_mini">Гузель</p>
+                    <p class="title_mini">Усманова</p>
+                  </div>
+                </div>
+              </div>
+  
+  
+              <div class="possibility" style="display: flex; flex-direction: column; align-items: center; width: 400px;">
+                <div class="pos">
+                  <div  class="circle_photo" style="position: relative;"> <img src="media/circle.png" alt=""></div>
+                    <div class="possibil" style="position: absolute;">
+                      <img src="media/photo.jpg" alt="" style=" width: 200px; border-radius: 12px; cursor: pointer;">
+                      <p class="title_mini">Гузель</p>
+                      <p class="title_mini">Усманова</p>
+                    </div>
+                  </div>
+                </div>
+  
+  
+                <div class="possibility" style="display: flex; flex-direction: column; align-items: center; width: 400px;">
+                  <div class="pos">
+                    <div  class="circle_photo" style="position: relative;"> <img src="media/circle.png" alt=""></div>
+                      <div class="possibil" style="position: absolute;">
+                        <img src="media/photo.jpg" alt="" style=" width: 200px; border-radius: 12px; cursor: pointer;">
+                        <p class="title_mini">Гузель</p>
+                        <p class="title_mini">Усманова</p>
+                      </div>
+                    </div>
+                  </div>
+          </div>
+        </div>
+  
+        <div class="fifth" style="padding-top: 40px;">
+          <p class="title_min" style="text-align: center;">Наши проекты</p>
+          <div class="forscroll" style="display: flex; align-items: center; justify-content: center">
+  
+            <button id="left" class="scrollbutton">
+                    <img src="media/rowleft.svg">
+            </button>
+            <div class="wrapper forpackages">
+          
+              <div class="slider_main">
+                  
+                  <div class="packages_slider">
+                    <img src="media/main1.svg" alt="" style="width: 130px; height: 130px;">
+                    <div>
+                      <p class="title_mini">Покупай токен HRWT</p>
+                      <p class="describe_main">Создавай внутреннюю экономику и увеличивай доходность с помощью биржи! </p>
+                    </div>  
+                    <button class="know_button"><a href="#">Узнать больше</a></button>
+                  </div>
+
+
+                  <div class="packages_slider">
+                    <img src="media/main2.svg" alt="" style="width: 130px; height: 130px;">
+                    <div>
+                      <p class="title_mini">Центр сотворчества</p>
+                      <p class="describe_main">Создавай внутреннюю экономику и увеличивай доходность с помощью биржи! </p>
+                    </div>  
+                    <button class="know_button"><a href="#">Узнать больше</a></button>
+                  </div>
+
+
+                  <div class="packages_slider">
+                    <img src="media/main3.svg" alt="" style="width: 130px; height: 130px;">
+                    <div>
+                      <p class="title_mini">Академия HR World</p>
+                      <p class="describe_main">Создавай внутреннюю экономику и увеличивай доходность с помощью биржи! </p>
+                    </div>  
+                    <button class="know_button"><a href="#">Узнать больше</a></button>
+                  </div>
+
+
+                  <div class="packages_slider">
+                    <img src="media/main4.svg" alt="" style="width: 130px; height: 130px;">
+                    <div>
+                      <p class="title_mini">3D моделирование AR и VR </p>
+                      <p class="describe_main">Создавай внутреннюю экономику и увеличивай доходность с помощью биржи! </p>
+                    </div>  
+                    <button class="know_button"><a href="#">Узнать больше</a></button>
+                  </div>
+  
+                  
+                 
+                  
+              </div>
+  
+             
+          </div>
+           <button id="right" class="scrollbutton">
+                <img src="media/rowright.svg">
+          </button>
+          </div>
+
+        </div>
+
+       
+
+        <div class="second">
+
+          <p class="title_min" style="text-align: center; margin-top: 50px;">Партнеры</p>
+  
+          <div class="cards">
+  
+            <div class="possibility" style="display: flex; flex-direction: column; align-items: center; width: 400px;">
+              <div class="pos">
+                <div  class="b_photo" style="position: relative;"> <img src="media/b.png" alt=""></div>
+                  <div class="possibil" style="position: absolute;">
+                    <img src="media/heart.svg" alt="" style=" width: 200px; border-radius: 12px; cursor: pointer;">
+                    <p class="title_mini">Благотворительный</p>
+                    <p class="title_mini">фонд “Созидание”</p>
+                  </div>
+                </div>
+              </div>
+  
+  
+              <div class="possibility" style="display: flex; flex-direction: column; align-items: center; width: 400px;">
+                <div class="pos">
+                  <div  class="b_photo" style="position: relative;"> <img src="media/b.png" alt=""></div>
+                    <div class="possibil" style="position: absolute;">
+                      <img src="media/heart.svg" alt="" style=" width: 200px; border-radius: 12px; cursor: pointer;">
+                      <p class="title_mini">Благотворительный</p>
+                      <p class="title_mini">фонд “Созидание”</p>
+                    </div>
+                  </div>
+                </div>
+  
+  
+                <div class="possibility" style="display: flex; flex-direction: column; align-items: center; width: 400px;">
+                  <div class="pos">
+                    <div  class="b_photo" style="position: relative;"> <img src="media/b.png" alt=""></div>
+                      <div class="possibil" style="position: absolute;">
+                        <img src="media/heart.svg" alt="" style=" width: 200px; border-radius: 12px; cursor: pointer;">
+                        <p class="title_mini">Благотворительный</p>
+                        <p class="title_mini">фонд “Созидание”</p>
+                      </div>
+                    </div>
+                  </div>
+          </div>
+        </div>
+
+
+        <div class="line"></div>
+
+
+        <div class="third" style="display: flex; align-items: center;">
+        
+          <div class="left">
+            <p class="title">Свяжитесь с нами</p>
+            <p class="description">Отправте нам свой вопрос и мы обязательно дадим ответ на него.</p>
+            <div class="two_forms">
+              <input type="text" placeholder="Name">
+              <input type="text" placeholder="Email">
+            </div>
+            <div class="two_forms">
+              <input type="text" placeholder="Phone">
+              <input type="text" placeholder="Subject">
+            </div>
+            <div style="display: flex; flex-direction: column;">
+              <textarea name="" id="" cols="30" rows="10" placeholder="Message"></textarea>
+              <button class="enter" style="margin: 0; margin-top: 30px;"><a href="#">Отправить</a></button>
+            </div>
+
+          </div>
+
+          
+          <div class="right">
+            <img class="tree" src="media/map.png" alt="">
+          </div>
+
+  
+        </div>
+
+
+
+        <div class="line"></div>
+
+
+        <div class="contacts">
+
+          <div style="width: 20%; margin-left: 40px;">
+            <p class="title">HR WORLD METAVERSE</p>
+            <p class="description">Маленький мир для жизни, но большой для возможностей. Мы хотим показать все возможности и преимущства работы онлайн. А жизни оффлайн, здесь и сейчас!</p>
+            <div style="display: flex; flex-direction: row;">
+              <img src="media/face.svg" alt="" style="width: 50px; filter: drop-shadow(0px 0px 62px rgba(46, 236, 197, 0.5)); margin-right: 10px;">
+              <img src="media/inst.svg" alt="" style="width: 50px; filter: drop-shadow(0px 0px 62px rgba(46, 236, 197, 0.5)); margin-right: 10px;">
+              <img src="media/face.svg" alt="" style="width: 50px; filter: drop-shadow(0px 0px 62px rgba(46, 236, 197, 0.5)); margin-right: 10px;">
+              <img src="media/inst.svg" alt="" style="width: 50px; filter: drop-shadow(0px 0px 62px rgba(46, 236, 197, 0.5)); margin-right: 10px;">
+            </div>
+          </div>
+
+          <div style="width: 20%; margin-left: 40px; display: flex; flex-direction: column;">
+            <p class="title">Компания</p>
+            <a href="#" class="description" style="margin-bottom: 20px;">Главная</a>
+            <a href="#" class="description" style="margin-bottom: 20px;">Про нас</a>
+            <a href="#" class="description" style="margin-bottom: 20px;">Преимущества</a>
+            <a href="#" class="description" style="margin-bottom: 20px;">Команда</a>
+            <a href="#" class="description" style="margin-bottom: 20px;">Торговая площадка</a>
+          </div>
+
+          <div style="width: 20%; margin-left: 40px; display: flex; flex-direction: column;">
+            <p class="title">Информация</p>
+            <a href="#" class="description" style="margin-bottom: 20px;">Документация</a>
+            <a href="#" class="description" style="margin-bottom: 20px;">Политика конфиденциальности</a>
+            <a href="#" class="description" style="margin-bottom: 20px;">Техподдержка</a>
+            <a href="#" class="description" style="margin-bottom: 20px;">Обратная связь</a>
+            <a href="#" class="description" style="margin-bottom: 20px;">Контакты</a>
+          </div>
+
+          <div style="width: 20%; margin-left: 40px; margin-right: 60px;">
+            <p class="title">Связь</p>
+            <p class="description">Телефон: 
+              +995 568 836 179</p>
+            <p class="description">Почта: hrworld48@gmail.com</p>
+            <p class="description">Адрес: Kobaladze 8a, Georgia, 6000, GE</p>
+          </div>
+          
+
+        </div>
+
+
 
     <!-- ========================= scroll-top ========================= -->
     <a href="#" class="scroll-top">
