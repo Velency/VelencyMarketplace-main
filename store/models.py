@@ -28,7 +28,7 @@ class Customer(models.Model):
     registred = models.BooleanField(default=False)
     balance_tvt = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     balance_usdt = models.DecimalField(max_digits=10, decimal_places=2, default=0)
-    balance_usdt = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    balance_hrwt = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     level = models.IntegerField(default=0, blank=False, null=False)
     wallet = models.CharField(max_length=100, default='')
     

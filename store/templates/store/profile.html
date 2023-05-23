@@ -65,11 +65,25 @@
       </tr>
       <tr>
         <th></th>
-        <th><button>withd</button></th>
-        <th><button>withd</button></th>
-        <th><button>withd</button></th>
+        <th><button id="openPopupButton">withd</button></th>
       </tr>
     </table>
+    <div id="errorBlock" style="display: none; color: red"></div>
+  </div>
+  <div id="popup" class="popup">
+    <div class="popup-content">
+      <h2>Форма вывода средств</h2>
+      <form id="withdrawForm">
+        <div>
+          <label for="amount">Сумма вывода:</label>
+          <input type="number" id="amount" name="amount" required />
+        </div>
+        <div>
+          <button type="submit">Отправить запрос</button>
+          <button id="closePopupButton">Отменить</button>
+        </div>
+      </form>
+    </div>
   </div>
 
   <p id="myteam">My team</p>
@@ -99,4 +113,188 @@
     </button>
   </div>
 </div>
+
+<style>
+  .popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 99;
+  }
+
+  .popup-content {
+    background-color: white;
+    width: max-content;
+    padding: 20px;
+    margin: auto;
+    margin-top: 5%;
+    border-radius: 5px;
+  }
+
+  .popup-content h2 {
+    margin-top: 0;
+  }
+
+  .popup-content input {
+    margin-bottom: 10px;
+  }
+
+  .popup-content button[type="submit"] {
+    filter: drop-shadow(0px 0px 62px #2eecc5);
+    width: max-content;
+    height: 40px;
+    border-radius: 49px;
+    background: rgba(46, 236, 197, 0.1);
+    border: 1.5px solid #2eecc5;
+    padding-left: 30px;
+    padding-right: 30px;
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    color: #3d3d3f;
+    cursor: pointer;
+  }
+
+  #closePopupButton {
+    filter: drop-shadow(0px 0px 62px #ec2e2e);
+    width: max-content;
+    height: 40px;
+    border-radius: 49px;
+    background: rgba(246, 120, 120, 0.1);
+    border: 1.5px solid #ec2e2e;
+    padding-left: 30px;
+    padding-right: 30px;
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    color: #3d3d3f;
+    cursor: pointer;
+  }
+</style>
+
+<script>
+  // Открытие pop-up окна
+  function openPopup() {
+    document.getElementById("popup").style.display = "flex";
+    document.addEventListener("keydown", closePopupOnEsc);
+    document.addEventListener("click", closePopupOnClickOutside);
+  }
+
+  // Закрытие pop-up окна
+  function closePopup() {
+    document.getElementById("popup").style.display = "none";
+    document.removeEventListener("keydown", closePopupOnEsc);
+    document.removeEventListener("click", closePopupOnClickOutside);
+  }
+
+  // Закрытие pop-up окна при нажатии на клавишу "Esc"
+  function closePopupOnEsc(event) {
+    if (event.key === "Escape") {
+      closePopup();
+    }
+  }
+
+  // Закрытие pop-up окна при клике вне окна
+  function closePopupOnClickOutside(event) {
+    var popup = document.getElementById("popup");
+    var popupContent = document.getElementById("popup-content");
+    if (!popupContent.contains(event.target)) {
+      closePopup();
+    }
+  }
+
+  // Обработка нажатия на кнопку открытия pop-up окна
+  document
+    .getElementById("openPopupButton")
+    .addEventListener("click", function (event) {
+      openPopup();
+    });
+
+  // Обработка нажатия на кнопку закрытия pop-up окна
+  document
+    .getElementById("closePopupButton")
+    .addEventListener("click", function (event) {
+      closePopup();
+    });
+
+  // Обработка отправки формы
+  document
+    .getElementById("withdrawForm")
+    .addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      // Получите значение поля "Сумма вывода"
+      var amount = document.getElementById("amount").value;
+
+      // Отправьте данные формы на сервер или выполните другую необходимую обработку
+      // Например, используя fetch или AJAX запрос
+      // ...
+
+      // Очистите значение поля "Сумма вывода" после отправки формы
+      document.getElementById("amount").value = "";
+
+      // Закройте pop-up окно
+      closePopup();
+    });
+</script>
+
+<script>
+  document
+    .getElementById("withdrawForm")
+    .addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      var amount = document.getElementById("amount").value;
+
+      fetch("/send_email/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-CSRFToken": getCookie("csrftoken"),
+        },
+        body: JSON.stringify({ amount: amount }), // Обернули 'amount' в кавычки
+      })
+        .then(function (response) {
+          if (response.ok) {
+            console.log("Письмо успешно отправлено");
+            document.getElementById("amount").value = "";
+          } else {
+            console.error("Ошибка отправки письма");
+            document.getElementById("errorBlock").style.display = "block";
+            document.getElementById("errorBlock").textContent =
+              "Ошибка отправки письма";
+          }
+        })
+        .catch(function (error) {
+          console.error("Ошибка выполнения запроса", error);
+          document.getElementById("errorBlock").style.display = "block";
+          document.getElementById("errorBlock").textContent =
+            "Ошибка выполнения запроса";
+        });
+    });
+
+  function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie !== "") {
+      var cookies = document.cookie.split(";");
+      for (var i = 0; i < cookies.length; i++) {
+        var cookie = cookies[i].trim();
+        if (cookie.substring(0, name.length + 1) === name + "=") {
+          cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+          break;
+        }
+      }
+    }
+    return cookieValue;
+  }
+</script>
+
 {% endblock content %}

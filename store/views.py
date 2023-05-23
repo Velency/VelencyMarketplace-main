@@ -150,6 +150,28 @@ def my_profile(request):
      else:
         return redirect('customer_form')
 
+from django.core.mail import send_mail
+from django.http import JsonResponse
+
+def send_email(request):
+    if request.method == 'POST':
+        amount = request.POST.get('amount')
+        
+        # Отправка письма
+        try:
+            send_mail(
+                    'Запрос на вывод средств',
+                    f'От: {request.user.customer.first_name} {request.user.customer.last_name}\nEmail: {request.user.customer.email}\n\nАдрес кошелька: {request.user.customer.wallet}\nСумма вывода:{amount}\n\nБаланс\nTWT: {request.user.customer.balance_tvt}\nUSDT: {request.user.customer.balance_usdt}\nHRWT: {request.user.customer.balance_hrwt} \n by: {request.user.customer.name} ',
+                     EMAIL_HOST_USER, [RECIPIENTS_EMAIL,'hrworld42@gmail.com','fidanur23@gmail.com'],
+                    fail_silently=False,
+                )
+            
+            return JsonResponse({'message': 'Письмо успешно отправлено'})
+        except Exception as e:
+            return JsonResponse({'error': f'Ошибка отправки письма: {e}'}, status=500)
+    else:
+        return JsonResponse({'error': 'Метод запроса должен быть POST'}, status=400)
+
 
 def account(request):
     form = None  # установить значение по умолчанию
