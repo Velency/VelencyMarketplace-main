@@ -1,5 +1,6 @@
 {% extends 'store/media.html' %} {% load static %} {% block content %}
 <script src="{% static 'js/script.js' %}" defer></script>
+<link rel="stylesheet" href="{% static 'css/styles.css' %}" />
 <div class="information">
   <p id="personalinformation">Personal information</p>
   <div class="personal">
@@ -31,7 +32,7 @@
 
   <p id="balances">Balances</p>
   <div class="balances">
-    <table>
+    <table class="table">
       <tr>
         <th></th>
         <th>usdt</th>
@@ -198,15 +199,6 @@
   // Закрытие pop-up окна при нажатии на клавишу "Esc"
   function closePopupOnEsc(event) {
     if (event.key === "Escape") {
-      closePopup();
-    }
-  }
-
-  // Закрытие pop-up окна при клике вне окна
-  function closePopupOnClickOutside(event) {
-    var popup = document.getElementById("popup");
-    var popupContent = document.getElementById("popup-content");
-    if (!popupContent.contains(event.target)) {
       closePopup();
     }
   }

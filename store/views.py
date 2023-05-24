@@ -38,7 +38,7 @@ if API_KEY == 'WEB3_API_KEY_HERE':
 
 # ГЛАВНАЯ Страница
 def index(request):
-    return render(request, 'store/index2.html')
+    return render(request, 'store/index.html')
 
 def store(request):
     
@@ -604,4 +604,10 @@ def referral_list(request):
     return render(request, 'referral_list.html', {'referrals': referrals})
 
 
+#Блок с Преподавателями
 
+def trainers(request):
+    return render(request, 'store/trainers.html')
+
+def schedule(request):
+    return render(request, 'store/schedule.html')

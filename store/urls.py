@@ -49,4 +49,6 @@ urlpatterns = [
     path('my_profile/', views.my_profile, name='my_profile'),
     path('verify_message', views.verify_message, name='verify_message'),
     path('send_email/', views.send_email, name='send_email'),
+    path('trainers/', views.trainers, name='trainers'),
+    path('schedule/', views.schedule, name='schedule'),
 ]

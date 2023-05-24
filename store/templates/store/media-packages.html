@@ -36,12 +36,37 @@
             <img class="icon" src="{% static 'media/finance.svg' %}" alt="" />
           </button>
           <div>
-            <button class="but down" type="button">
+            <button class="but" type="button">
               <img class="icon" src="{% static 'media/project.svg' %}" alt="" />
+            </button>
+          </div>
+          <button class="but down" type="button">
+            <img class="icon" src="{% static 'media/community.svg' %}" alt="" />
+            <img class="row" src="{% static 'media/row.svg' %}" alt="" />
+          </button>
+          <ul class="dropdown-list1">
+            <li class="dropdown-list-item" data-value="area">
+              <img src="{% static 'media/teacher.png' %}" />
+              <a href="{% url 'trainers' %}">Trainers</a>
+            </li>
+            <li class="dropdown-list-item" data-value="packages">
+              <img src="{% static 'media/blog.png' %}" />
+              <a href="{% url 'index' %}">Blog</a>
+            </li>
+          </ul>
+
+          <div class="form-group">
+            <div class="dropdown"></div>
+            <button class="signin">
+              <img
+                class="photo"
+                src="{{ request.user.customer.image.url }}"
+                alt=""
+              />
+              <p>{{ request.user.customer.name }}</p>
               <img class="row" src="{% static 'media/row.svg' %}" alt="" />
             </button>
-
-            <ul class="dropdown-list1">
+            <ul class="dropdown-list2">
               <li class="dropdown-list-item" data-value="area">
                 <img src="{% static 'media/area.png' %}" />
                 <a href="{% url 'my_profile' %}">Personal area</a>
@@ -55,38 +80,8 @@
                 <a href="{% url 'profile' %}">Settings</a>
               </li>
               <li class="dropdown-list-item" data-value="exit">
-                <img src="{% static 'media/exit.png' %}" />
-                <a href="{% url 'logout' %}">Exit</a>
-              </li>
-            </ul>
-          </div>
-          <button class="but" type="button">
-            <img class="icon" src="{% static 'media/community.svg' %}" alt="" />
-          </button>
-
-          <div class="form-group">
-            <div class="dropdown"></div>
-            <button class="signin">
-              <img
-                class="photo"
-                src="{{ request.user.customer.image.url }}"
-                alt=""
-              />
-              <p>{{ request.user.customer.name }}</p>
-              <img class="row" src="{% static 'media/row.svg' %}" alt="" />
-            </button>
-            <ul class="dropdown-list2" style="z-index: 1">
-              <li class="dropdown-list-item" data-value="area">
-                <img src="{% static 'media/area.png' %}" />
-                <a href="{% url 'my_profile' %}">Personal area</a>
-              </li>
-              <li class="dropdown-list-item" data-value="packages">
-                <img src="{% static 'media/packages.png' %}" />
-                <a href="{% url 'tariffs' %}">Packages</a>
-              </li>
-              <li class="dropdown-list-item" data-value="settings">
-                <img src="{% static 'media/settings.png' %}" />
-                <a href="{% url 'profile' %}">Settings</a>
+                <img src="{% static 'media/clock.png' %}" />
+                <a href="{% url 'schedule'%}">Schedule</a>
               </li>
               <li class="dropdown-list-item" data-value="exit">
                 <img src="{% static 'media/exit.png' %}" />

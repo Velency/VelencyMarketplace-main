@@ -1,0 +1,191 @@
+{% extends 'store/media-packages.html' %} {% load static %} {% block content %}
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width" />
+<link rel="stylesheet" href="{% static 'css/styles.css'%}" />
+<link
+  rel="preload"
+  href="fonts/open-sans.woff2"
+  as="font"
+  type="font/woff2"
+  crossorigin
+/>
+<script src="{% static 'js/schedule.js'%}" defer></script>
+
+<p class="title_packages" id="myteam">Schedule</p>
+
+<div>
+  <button
+    class="but subj"
+    type="button"
+    style="margin-bottom: 0px; margin-top: 0; margin-left: 105px"
+  >
+    <p class="subject">Пакет "Экономика"</p>
+    <img class="row" src="{% static 'media/row.svg'%}" alt="" />
+  </button>
+
+  <ul
+    class="dropdown-list3"
+    style="margin-bottom: 50px; margin-top: 0; margin-left: 105px"
+  >
+    <li class="dropdown-list-item" data-value="area" style="margin: 10px">
+      <a href="{% url 'schedule' %}">Не экономика</a>
+    </li>
+    <li class="dropdown-list-item" data-value="packages" style="margin: 10px">
+      <a href="{% url 'schedule' %}">Какой то еще пакет</a>
+    </li>
+    <li class="dropdown-list-item" data-value="settings" style="margin: 10px">
+      <a href="{% url 'schedule' %}">Пакетик</a>
+    </li>
+    <li class="dropdown-list-item" data-value="exit" style="margin: 10px">
+      <a href="{% url 'schedule' %}">Еще пакетик</a>
+    </li>
+  </ul>
+</div>
+
+<div class="schedule">
+  <table class="schedule_table">
+    <tr>
+      <th></th>
+      <th>
+        <div class="date">
+          <p class="day">Пн</p>
+          <p class="figure">22</p>
+        </div>
+      </th>
+      <th>
+        <div class="date">
+          <p class="day">Вт</p>
+          <p class="figure">23</p>
+        </div>
+      </th>
+      <th>
+        <div class="date">
+          <p class="day">Ср</p>
+          <p class="figure">24</p>
+        </div>
+      </th>
+      <th>
+        <div class="date">
+          <p class="day">Чт</p>
+          <p class="figure">25</p>
+        </div>
+      </th>
+      <th>
+        <div class="date">
+          <p class="day">Пт</p>
+          <p class="figure">26</p>
+        </div>
+      </th>
+      <th>
+        <div class="date">
+          <p class="day">Сб</p>
+          <p class="figure">27</p>
+        </div>
+      </th>
+      <th>
+        <div class="date">
+          <p class="day">Вс</p>
+          <p class="figure">28</p>
+        </div>
+      </th>
+    </tr>
+    <!--ряд с ячейками заголовков-->
+
+    <tr>
+      <th class="time">9:30 - 10:30</th>
+
+      <td>
+        <div class="cell"></div>
+      </td>
+
+      <td>
+        <div class="cell"></div>
+      </td>
+
+      <td>
+        <div class="cell"></div>
+      </td>
+
+      <td>
+        <div class="cell"></div>
+      </td>
+
+      <td>
+        <div class="cell"></div>
+      </td>
+
+      <td>
+        <div class="cell"></div>
+      </td>
+
+      <td>
+        <div class="cell"></div>
+      </td>
+    </tr>
+
+    <tr>
+      <th class="time">10:30 - 11:30</th>
+
+      <td>
+        <div class="cell"></div>
+      </td>
+
+      <td>
+        <div class="cell"></div>
+      </td>
+
+      <td>
+        <div class="cell"></div>
+      </td>
+
+      <td>
+        <div class="cell"></div>
+      </td>
+
+      <td>
+        <div class="cell"></div>
+      </td>
+
+      <td>
+        <div class="cell"></div>
+      </td>
+
+      <td>
+        <div class="cell"></div>
+      </td>
+    </tr>
+    <tr>
+      <th class="time">11:30 - 12:30</th>
+
+      <td>
+        <div class="cell"></div>
+      </td>
+
+      <td>
+        <div class="cell"></div>
+      </td>
+
+      <td>
+        <div class="cell"></div>
+      </td>
+
+      <td>
+        <div class="cell"></div>
+      </td>
+
+      <td>
+        <div class="cell"></div>
+      </td>
+
+      <td>
+        <div class="cell"></div>
+      </td>
+
+      <td>
+        <div class="cell"></div>
+      </td>
+    </tr>
+  </table>
+</div>
+
+{% endblock content %}

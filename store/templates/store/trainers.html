@@ -1,0 +1,118 @@
+{% extends 'store/media-packages.html' %} {% load static %} {% block content %}
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width" />
+<link rel="stylesheet" href="{% static 'css/styles.css'%}" />
+<script src="{% static 'js/trainers.js'%}" defer></script>
+
+<p class="title_packages" id="myteam">Trainers</p>
+
+<div class="trainers">
+  <div
+    style="
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+    "
+  >
+    <div class="trainer_card">
+      <div class="back" style="position: relative"></div>
+
+      <div
+        class="trainer"
+        style="
+          position: absolute;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        "
+      >
+        <a class="video_link" href="#" style="position: absolute; z-index: 1">
+          <img class="button_video" src="{% static 'media/video.svg'%}" />
+        </a>
+        <img
+          class="trainer_photo"
+          src="{% static 'media/elza.jpg'%}"
+          style="position: absolute"
+        />
+        <p class="trainer_name">Эльза Шаяхметова</p>
+        <div class="gradient" style="position: relative"></div>
+      </div>
+    </div>
+
+    <button class="learn_more">Узнать больше</button>
+  </div>
+
+  <div
+    style="
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+    "
+  >
+    <div class="trainer_card">
+      <div class="back" style="position: relative"></div>
+
+      <div
+        class="trainer"
+        style="
+          position: absolute;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        "
+      >
+        <a class="video_link" href="#" style="position: absolute; z-index: 1">
+          <img class="button_video" src="{% static 'media/video.svg'%}" />
+        </a>
+        <img
+          class="trainer_photo"
+          src="{% static 'media/elza.jpg'%}"
+          style="position: absolute"
+        />
+        <p class="trainer_name">Эльза Шаяхметова</p>
+        <div class="gradient" style="position: relative"></div>
+      </div>
+    </div>
+
+    <button class="learn_more">Узнать больше</button>
+  </div>
+
+  <div
+    style="
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+    "
+  >
+    <div class="trainer_card">
+      <div class="back" style="position: relative"></div>
+
+      <div
+        class="trainer"
+        style="
+          position: absolute;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        "
+      >
+        <a class="video_link" href="#" style="position: absolute; z-index: 1">
+          <img class="button_video" src="{% static 'media/video.svg'%}" />
+        </a>
+        <img
+          class="trainer_photo"
+          src="{% static 'media/elza.jpg'%}"
+          style="position: absolute"
+        />
+        <p class="trainer_name">Эльза Шаяхметова</p>
+        <div class="gradient" style="position: relative"></div>
+      </div>
+    </div>
+
+    <button class="learn_more">Узнать больше</button>
+  </div>
+</div>
+{% endblock content %}
