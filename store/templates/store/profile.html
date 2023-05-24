@@ -23,7 +23,7 @@
         <a class="textright" href="ttp://referal.link.referalID.com"
           >{{ request.user.customer.referral_code}}</a
         >
-        <h1 class="textright">Level - {{ request.user.customer.level}}</h1>
+        <h1 class="textright">{{ request.user.customer.status}}</h1>
         <h1 class="textright">{{ request.user.customer.referral_by.name}}</h1>
       </div>
     </div>
@@ -97,7 +97,7 @@
         <div class="myteam">
           <img class="profileteam" src="{{ referral.image.url }}" alt="" />
           <p class="team">{{ referral.name }}</p>
-          <p class="team">Level - {{ referral.level }}</p>
+          <p class="team">{{ referral.status }}</p>
           <p class="team">{{ referral.balance_hrw}}</p>
         </div>
         {% empty %}

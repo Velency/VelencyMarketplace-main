@@ -6,9 +6,19 @@ import string
 import secrets
 
 
+
+
 # Create your models here.
 
 class Customer(models.Model):
+    
+    STATUS_CHOICES = (
+        ('Ученик', 'Ученик'),
+        ('Преподаватель', 'Преподаватель'),
+        ('Эксперт', 'Эксперт'),
+        ('Продавец', 'Продавец'),
+    )
+    
     user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
     name = models.CharField(max_length=200, null=True)
     first_name = models.CharField(max_length=200, null=True)
@@ -29,8 +39,9 @@ class Customer(models.Model):
     balance_tvt = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     balance_usdt = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     balance_hrwt = models.DecimalField(max_digits=10, decimal_places=2, default=0)
-    level = models.IntegerField(default=0, blank=False, null=False)
+    # level = models.IntegerField(default=0, blank=False, null=False)
     wallet = models.CharField(max_length=100, default='')
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES)
     
     def __init__(self, *args, **kwargs):
         super(Customer, self).__init__(*args, **kwargs)
