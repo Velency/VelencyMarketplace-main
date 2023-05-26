@@ -287,7 +287,7 @@ def packet_buy(request):
             print(form.errors)
             messages.error(request, 'Ошибка формы!')
             
-    return render(request, 'store/packet.html', {'form': form, 'result': result, 'total': total, 'product': product})
+    return render(request, 'store/payment.html', {'form': form, 'result': result, 'total': total, 'product': product})
 
 
 

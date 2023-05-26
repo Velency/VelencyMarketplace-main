@@ -1,0 +1,87 @@
+{% extends 'store/media-packages.html' %} {% load static %} {% block content %}
+<script src="{% static 'js/payment.js' %}" defer></script>
+<p class="title_packages" id="myteam">Order list</p>
+
+<div class="payment_blocks">
+  <div class="order">
+    <p class="price" style="margin-bottom: 20px">
+      ${{result}} <br />
+      {{total}} HRWT
+    </p>
+    <!-- <p class="describe">
+      Всё что в пакете за 100$ <br />+ Курс по P2P заработку
+    </p> -->
+    <button class="curs">Курс на данный момент</button>
+    <p class="up">Адресс кошелька:</p>
+    <p class="describe">0x04a5739471B210815c69f08F6358914dE194c843</p>
+
+    <div
+      style="
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 90%;
+      "
+    >
+      <div>
+        <p class="up" style="margin: 0; margin-right: 10px; text-align: left">
+          Сеть блокчейн:
+        </p>
+        <p class="describe" style="text-align: left">Polygon</p>
+      </div>
+      <img src="{% static 'media/qr.jpg'%}" alt="" />
+    </div>
+  </div>
+  <div class="details" style="display: flex; flex-direction: column">
+    <div style="display: flex; justify-content: space-between">
+      <p class="detail">Order details</p>
+      <button class="back">
+        <a href="packages.html" style="text-decoration: none"
+          >← Назад к пакетам</a
+        >
+      </button>
+    </div>
+    <p class="total">Total:</p>
+    <p class="price_pay">{{result}}.00 USDT</p>
+    <div style="display: flex; flex-direction: column">
+      <form class="form-contact" method="post" action="{% url 'packet_buy' %}">
+        {% csrf_token %}
+      <div class="personalarea" style="margin-top: 10px">
+        <p class="for_input">Package</p>
+        <input type="text" id="{{ form.message.id_for_label }}" placeholder="" name="{{ form.message.name }}"/>
+      </div>
+      <div class="personalarea">
+        <p class="for_input">First/Last name</p>
+        <input type="text" id="{{ form.name.id_for_label }}" placeholder="" name="{{ form.name.name }}"/>
+      </div>
+      <div class="personalarea">
+        <p class="for_input">E-mail</p>
+        <input type="text" placeholder="" id="{{ form.email.id_for_label }}" name="{{ form.email.name }}"/>
+      </div>
+  
+      <div class="personalarea" style="margin-top: 10px">
+        <p class="for_input"></p>
+        <button class="save">Я оплатил</button>
+      </div>
+      {% if messages %}
+      <ul class="messages">
+          {% for message in messages %}
+              <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+      </form>
+    </div>
+  </div>
+</div>
+<p class="description_order">Order description</p>
+{% if result == '250' %}
+    <p class="points">
+      • 4 разделов <br />• 14 лекций <br />• Общая продолжительность 3 ч 2 мин
+      <br />На этом курсе мы научим вас P2P Арбитражу, арбитражу в криптовалюте.
+      В двух словах Р2Р - это рынок, где есть продавцы и есть покупатели. Первое
+      время после обучения уверенно можно зарабатывать как два-три процента от
+      суммы стартового капитала.
+    </p>
+  {% endif %}
+{% endblock content %}
