@@ -378,7 +378,11 @@ def addComment(request, id):
             current_customer = request.user.customer
             data.customer_id = current_customer.id
             data.save()
-            return HttpResponseRedirect('.')
+            product_url = reverse('product', args=[id])
+            return HttpResponseRedirect(product_url)
+    else:
+        product_url = reverse('product-details', args=[id])
+        return HttpResponseRedirect(product_url)
 
 
 def support(request):

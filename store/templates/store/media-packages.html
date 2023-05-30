@@ -13,6 +13,7 @@
       href="{% static 'media/logo.png' %}"
       type="image/png"
     />
+
     <meta name="viewport" content="width=device-width" />
     <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
   </head>
@@ -36,24 +37,28 @@
             <img class="icon" src="{% static 'media/finance.svg' %}" alt="" />
           </button>
           <div>
-            <button class="but" type="button">
-              <img class="icon" src="{% static 'media/project.svg' %}" alt="" />
+            <button class="but down" type="button">
+              <img
+                class="icon"
+                src="{% static 'media/community.svg' %}"
+                alt=""
+              />
+              <img class="row" src="{% static 'media/row.svg' %}" alt="" />
             </button>
+            <ul class="dropdown-list1">
+              <li class="dropdown-list-item" data-value="area">
+                <img src="{% static 'media/teacher.png' %}" />
+                <a href="{% url 'trainers' %}">Trainers</a>
+              </li>
+              <li class="dropdown-list-item" data-value="packages">
+                <img src="{% static 'media/blog.png' %}" />
+                <a href="{% url 'index' %}">Blog</a>
+              </li>
+            </ul>
           </div>
-          <button class="but down" type="button">
-            <img class="icon" src="{% static 'media/community.svg' %}" alt="" />
-            <img class="row" src="{% static 'media/row.svg' %}" alt="" />
+          <button class="but" type="button">
+            <img class="icon" src="{% static 'media/project.svg' %}" alt="" />
           </button>
-          <ul class="dropdown-list1">
-            <li class="dropdown-list-item" data-value="area">
-              <img src="{% static 'media/teacher.png' %}" />
-              <a href="{% url 'trainers' %}">Trainers</a>
-            </li>
-            <li class="dropdown-list-item" data-value="packages">
-              <img src="{% static 'media/blog.png' %}" />
-              <a href="{% url 'index' %}">Blog</a>
-            </li>
-          </ul>
 
           <div class="form-group">
             <div class="dropdown"></div>
