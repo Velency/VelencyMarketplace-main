@@ -1,7 +1,7 @@
 {% extends 'store/media-packages.html' %} {% load static %} {% block content %}
 <script src="{% static 'js/script-packages.js' %}" defer></script>
-      <p class="title_packages" id="myteam">Packages</p>
-        <div class="forscroll" style="display: flex; align-items: center; justify-content: center">
+<p class="title_packages" id="myteam">Packages</p>
+<!-- <div class="forscroll" style="display: flex; align-items: center; justify-content: center">
           <button id="left" class="scrollbutton">
                   <img src="{% static 'media/rowleft.svg' %}">
           </button>
@@ -118,16 +118,103 @@
       
 
 
-      </div>
+      </div> -->
+
+<div>
+  <button
+    class="but subj"
+    type="button"
+    style="margin-bottom: 0px; margin-top: 0; margin-left: 30px"
+  >
+    <p class="subject">Пакет "Экономика"</p>
+    <img class="row" src="{% static 'media/row.svg' %}" alt="" />
+  </button>
+
+  <ul
+    class="dropdown-list3"
+    style="margin-bottom: 50px; margin-top: 20; margin-left: 30px"
+  >
+    <li class="dropdown-list-item" data-value="area" style="margin: 10px">
+      <a href="packages.html">Не экономика</a>
+    </li>
+    <li class="dropdown-list-item" data-value="packages" style="margin: 10px">
+      <a href="packages.html">Какой то еще пакет</a>
+    </li>
+    <li class="dropdown-list-item" data-value="settings" style="margin: 10px">
+      <a href="packages.html">Пакетик</a>
+    </li>
+    <li class="dropdown-list-item" data-value="exit" style="margin: 10px">
+      <a href="packages.html">Еще пакетик</a>
+    </li>
+  </ul>
+</div>
 
 
-      <script src="{% static 'js/script-packages.js' %}" defer></script>
+
+<div class="packages" style="display: flex; justify-content: space-between; padding-left: 30px; padding-right: 30px; padding-top: 30px;">
+      
+  <div class="package">
+    <p class="time_package">1 week</p>
+    <div class="line_package"></div>
+    <p class="price_package">$250 <br> 25000 HRWT</p>
+    <p class="describe_package">Всё что в пакете за 100$ <br> + Курс по P2P заработку <br> Всё что в пакете за 100$ <br> + Курс по P2P заработку
+    </p>
+    <button class="signin_packages">
+      <p>Выбрать</p>
+      <img class="row" src="{% static 'media/row.svg' %}" alt="" />
+    </button>
+  </div>
+
+  <div class="package_main">
+    <p class="time_package_main">2 months</p>
+    <div class="line_package_main"></div>
+    <p class="price_package_main">$250 <br> 25000 HRWT</p>
+    <p class="describe_package_main">Всё что в пакете за 100$ <br> + Курс по P2P заработку <br> Всё что в пакете за 100$ <br> + Курс по P2P заработку
+    </p>
+    <button class="signin_packages_main">
+      <p>Выбрать</p>
+      <img class="row" src="{% static 'media/row.svg' %}" alt="" />
+    </button>
+  </div>
+
+  <div class="package">
+    <p class="time_package">2 months</p>
+    <div class="line_package"></div>
+    <p class="price_package">$250 <br> 25000 HRWT</p>
+    <p class="describe_package">Всё что в пакете за 100$ <br> + Курс по P2P заработку <br> Всё что в пакете за 100$ <br> + Курс по P2P заработку
+    </p>
+    <button class="signin_packages">
+      <p>Выбрать</p>
+      <img class="row" src="{% static 'media/row.svg' %}" alt="" />
+    </button>
+  </div>
+
+  <div class="package">
+    <p class="time_package">3 months</p>
+    <div class="line_package"></div>
+    <p class="price_package">$250 <br> 25000 HRWT</p>
+    <p class="describe_package">Всё что в пакете за 100$ <br> + Курс по P2P заработку <br> Всё что в пакете за 100$ <br> + Курс по P2P заработку
+    </p>
+    <button class="signin_packages">
+      <p>Выбрать</p>
+      <img class="row" src="{% static 'media/row.svg' %}" alt="" />
+    </button>
+  </div>
+
+</div>
+
+
+
+
+</div>
+
+<script src="{% static 'js/script-packages.js' %}" defer></script>
 
 <!-- Добавляем функцию переадресации на страницу оплаты и передачи параметра стоимости -->
 <script>
   function redirectToPayment(value) {
     // Получаем текущий URL и заменяем часть после последнего слэша на 'packet_byu'
-    const paymentUrl = window.location.href.replace(/\/[^\/]*$/, '/packet_buy');
+    const paymentUrl = window.location.href.replace(/\/[^\/]*$/, "/packet_buy");
     // Добавляем параметр 'value' со значением стоимости пакета к URL
     const paymentUrlWithValue = `${paymentUrl}?value=${value}`;
     // Переходим на страницу оплаты с передачей параметра
@@ -135,13 +222,11 @@
   }
 </script>
 
-
 <script>
   // Получаем значение параметра 'value' из URL
   const urlParams = new URLSearchParams(window.location.search);
-  const packageValue = urlParams.get('value');
+  const packageValue = urlParams.get("value");
   // Выводим значение параметра 'value' в элемент с id='package-value'
-  document.getElementById('package-value').textContent = packageValue;
+  document.getElementById("package-value").textContent = packageValue;
 </script>
-      {% endblock content %}
-
+{% endblock content %}

@@ -9,12 +9,12 @@ from .utils import cookieCart, cartData, guestOrder
 from django.db.models.signals import post_save
 
 from django.contrib.auth.forms import UserCreationForm
-from .forms import UpdateCustomerForm, CommentsForm, SupportForm,CustomerOfferForm, WalletForm
+from .forms import UpdateCustomerForm, CommentsForm, SupportForm,CustomerOfferForm, WalletForm, WithdrawForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from velencystore.settings import RECIPIENTS_EMAIL, EMAIL_HOST_USER
-
+from django.utils import timezone
 # Create your views here.
 
 #mail
@@ -143,35 +143,42 @@ def logoutUser(request):
     return redirect('/')
 
 #Работа с аккаунтами
-
+@login_required
 def my_profile(request):
      if request.user.customer.registred:
         return render(request, 'store/profile.html', {})
      else:
         return redirect('customer_form')
 
-from django.core.mail import send_mail
-from django.http import JsonResponse
 
+@login_required
 def send_email(request):
     if request.method == 'POST':
-        amount = request.POST.get('amount')
-        
-        # Отправка письма
-        try:
-            send_mail(
+        form = WithdrawForm(request.POST)
+        if form.is_valid():
+            amount = form.cleaned_data['amount']
+            
+            # Create a new Withdraw model instance
+            withdraw = Withdraw.objects.create(
+                amount=amount,
+                date=timezone.now().date(),
+                user=request.user,
+                status='open'
+            )
+            
+            try:
+                send_mail(
                     'Запрос на вывод средств',
                     f'От: {request.user.customer.first_name} {request.user.customer.last_name}\nEmail: {request.user.customer.email}\n\nАдрес кошелька: {request.user.customer.wallet}\nСумма вывода:{amount}\n\nБаланс\nTWT: {request.user.customer.balance_tvt}\nUSDT: {request.user.customer.balance_usdt}\nHRWT: {request.user.customer.balance_hrwt} \n by: {request.user.customer.name} ',
-                     EMAIL_HOST_USER, [RECIPIENTS_EMAIL,'hrworld42@gmail.com','fidanur23@gmail.com'],
+                    EMAIL_HOST_USER, [RECIPIENTS_EMAIL,'hrworld42@gmail.com','fidanur23@gmail.com'],
                     fail_silently=False,
                 )
-            
-            return JsonResponse({'message': 'Письмо успешно отправлено'})
-        except Exception as e:
-            return JsonResponse({'error': f'Ошибка отправки письма: {e}'}, status=500)
-    else:
-        return JsonResponse({'error': 'Метод запроса должен быть POST'}, status=400)
-
+                
+                return JsonResponse({'message': 'Письмо успешно отправлено'})
+            except Exception as e:
+                return JsonResponse({'error': f'Ошибка отправки письма: {e}'}, status=500)
+        else:
+            return JsonResponse({'error': 'Неверные данные формы', 'errors': form.errors}, status=400)
 
 def account(request):
     form = None  # установить значение по умолчанию

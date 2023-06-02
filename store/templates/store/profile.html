@@ -74,7 +74,8 @@
   <div id="popup" class="popup">
     <div class="popup-content">
       <h2>Форма вывода средств</h2>
-      <form id="withdrawForm">
+      <form id="withdrawForm" method="post" action="/send_email/">
+        {% csrf_token %}
         <div>
           <label for="amount">Сумма вывода:</label>
           <input type="number" id="amount" name="amount" required />
@@ -246,13 +247,14 @@
 
       var amount = document.getElementById("amount").value;
 
-      fetch("/send_email/", {
+      fetch("/your-form-endpoint/", {
+        // Replace "/your-form-endpoint/" with the correct URL
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           "X-CSRFToken": getCookie("csrftoken"),
         },
-        body: JSON.stringify({ amount: amount }), // Обернули 'amount' в кавычки
+        body: JSON.stringify({ amount: amount }),
       })
         .then(function (response) {
           if (response.ok) {
@@ -279,6 +281,7 @@
       var cookies = document.cookie.split(";");
       for (var i = 0; i < cookies.length; i++) {
         var cookie = cookies[i].trim();
+        // Does this cookie string begin with the name we want?
         if (cookie.substring(0, name.length + 1) === name + "=") {
           cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
           break;

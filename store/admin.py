@@ -12,6 +12,7 @@ admin.site.register(Customer)
 admin.site.register(Comments)
 admin.site.register(Offer)
 admin.site.register(Support)
+admin.site.register(Withdraw)
 
 
 class GalleryInline(admin.TabularInline):

@@ -11,7 +11,7 @@
     <p class="describe">
       Всё что в пакете за 100$ <br />+ Курс по P2P заработку
     </p>
-    <button class="curs">Курс на данный момент</button>
+    <!-- <button class="curs">Курс на данный момент</button> -->
     <p class="up">Адресс кошелька:</p>
     <p class="describe">{{ request.user.customer.wallet }}</p>
     <p class="up">Сеть блокчейн:</p>
@@ -24,9 +24,9 @@
       <p class="detail">Order details</p>
       
     </div>
-    <p class="description_order">Order description</p>
+    <p class="description_order" style="margin-left: 20px;">Order description</p>
     {% if result == '250' %}
-    <p class="points">
+    <p class="points" style="margin-left: 20px;">
       • 4 разделов <br />• 14 лекций <br />• Общая продолжительность 3 ч 2 мин
       <br />На этом курсе мы научим вас P2P Арбитражу, арбитражу в криптовалюте.
       В двух словах Р2Р - это рынок, где есть продавцы и есть покупатели. Первое

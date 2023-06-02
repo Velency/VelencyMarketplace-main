@@ -3,7 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django import forms
 from django.contrib.auth.models import User
 
-from store.models import Customer, Comments, Offer, Support
+from store.models import Customer, Comments, Offer, Support, Withdraw
 from django.core.validators import EmailValidator
 
 
@@ -57,6 +57,11 @@ class SupportForm(forms.ModelForm):
     class Meta:
         model = Support
         fields = [ 'subject', 'email', 'comment']
+
+class WithdrawForm(forms.ModelForm):
+    class Meta:
+        model = Withdraw
+        fields = ['amount']
 
 class FeedbackForm(forms.Form):
     name = forms.CharField(max_length=50, widget=forms.TextInput(attrs={'placeholder': 'Ваше имя'}))
