@@ -22,7 +22,7 @@
       <a class="logo" href="{% url 'index' %}">
         <img src="{% static 'media/logo.png' %}" />
       </a>
-      <a class="menu exit" href="{% url 'my_profile' %}">
+      <a class="menu exit" id="goBackLink" href="#">
         <img src="{% static 'media/exit.png' %}" />
       </a>
     </div>
@@ -106,6 +106,13 @@
       function goToStore() {
         window.location.href = "{% url 'store' %}";
       }
+      var goBackLink = document.getElementById("goBackLink");
+
+      // Добавляем обработчик события клика
+      goBackLink.addEventListener("click", function (event) {
+        event.preventDefault(); // Отменяем стандартное действие перехода по ссылке
+        history.back(); // Вызываем функцию перехода на предыдущую страницу
+      });
     </script>
   </body>
 </html>
