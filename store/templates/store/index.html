@@ -20,7 +20,7 @@
 
         <div class="container">
 
-            <a href="#" class="navbar-brand"><img src="{% static 'logo1.svg'%}" alt=""></a>
+            <a href="index" class="navbar-brand"><img src="{% static 'media/logo1.svg'%}" alt=""></a>
 
             <div class="navbar-wrap">
                 <ul class="navbar-menu">
@@ -47,7 +47,7 @@
                 {% endif %}                    
             </div>
             <div class="burger">
-              <img src="media/burgerr.svg" alt="">
+              <img src="{% static 'media/burgerr.svg'%}" alt="">
             </div>
         </div>        
       </nav>
@@ -59,12 +59,12 @@
           <p class="title">ПОКУПАЙ, ПРОДАВАЙ, ИНВЕСТИРУЙ</p>
           <p class="title">С HR WORLD METAVERSE</p>
           <p class="description">Будьте в курсе актуальных новостей нашего проекта! Получите бонус за партнёрство уже сегодня! Будь первыми держателем токена HRWT!</p>
-          <button class="enter_button"><a href="#">Войти</a></button>
+          <button class="enter_button" ><a href="#">Войти</a></button>
         </div>
         
         <div class="right">
-          <div  class="b_photo" style="position: relative;"> <img src="media/b.png" alt=""></div>
-          <img class="logo" src="media/logo1.png" alt="" style="position: absolute;">
+          <div  class="b_photo" style="position: relative;"> <img src="{% static 'media/b.png'%}" alt=""></div>
+          <img class="logo" src="{% static 'media/logo1.png'%}" alt="" style="position: absolute;">
         </div>
 
       </div>
@@ -181,7 +181,7 @@
         
         <div class="right">
             <!-- <div  class="b_photo" style="position: relative;"> <img src="media/b.png" alt=""></div> -->
-            <img class="tree" src="media/tree.png" alt="" style="position: absolute;">
+            <img class="tree" src="{% static 'media/tree.png'%}" alt="" style="position: absolute;">
         </div>
 
       </div>
