@@ -51,4 +51,6 @@ urlpatterns = [
     path('send_email/', views.send_email, name='send_email'),
     path('trainers/', views.trainers, name='trainers'),
     path('schedule/', views.schedule, name='schedule'),
+    path('tasks/', views.tasks, name='tasks'),
+
 ]

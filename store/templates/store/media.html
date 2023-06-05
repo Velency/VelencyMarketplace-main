@@ -23,15 +23,15 @@
       </a>
 
       <a class="menu mar" href="#personalinformation">
-        <img src="{% static 'media/11.png' %}" />
+        <img src="{% static 'media/11.svg' %}" />
       </a>
 
       <a class="menu" href="#balances">
-        <img src="{% static 'media/2.png' %}" />
+        <img src="{% static 'media/2.svg' %}" />
       </a>
 
       <a class="menu" href="#myteam">
-        <img src="{% static 'media/3.png' %}" />
+        <img src="{% static 'media/3.svg' %}" />
       </a>
     </div>
 
@@ -70,14 +70,18 @@
 
           <div class="form-group">
             <div class="dropdown"></div>
-            <button class="signin">
+            <button class="signin button_drop">
               <img
-                class="photo"
+                class="photo button_drop"
                 src="{{ request.user.customer.image.url }}"
                 alt=""
               />
-              <p>{{ request.user.customer.name }}</p>
-              <img class="row" src="{% static 'media/row.svg' %}" alt="" />
+              <p class="button_drop">{{ request.user.customer.name }}</p>
+              <img
+                class="row button_drop"
+                src="{% static 'media/row.svg' %}"
+                alt=""
+              />
             </button>
             <ul class="dropdown-list2">
               <li class="dropdown-list-item" data-value="area">

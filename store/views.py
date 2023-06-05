@@ -622,3 +622,7 @@ def trainers(request):
 
 def schedule(request):
     return render(request, 'store/schedule.html')
+
+
+def tasks(request):
+    return render(request, 'store/tasks.html')
