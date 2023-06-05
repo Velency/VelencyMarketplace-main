@@ -1,5 +1,5 @@
 {% extends 'store/media-packages.html' %} {% load static %} {% block content %}
-<script src="tasks.js" defer></script>
+<script src="{% static 'js/tasks.js' %}" defer></script>
 
 <p class="title_packages" id="myteam">Tasks</p>
 
@@ -10,7 +10,7 @@
       <p class="task_description">Напиши комментарий на торговой площадке</p>
       <button class="task_button">Проверить</button>
     </div>
-    <img class="task_img" src="media/comment.svg" alt="" />
+    <img class="task_img" src="{% static 'media/comment.svg' %}" alt="" />
   </div>
   <div class="task">
     <div class="task_text">
@@ -18,7 +18,7 @@
       <p class="task_description">Напиши комментарий на торговой площадке</p>
       <button class="task_button">Проверить</button>
     </div>
-    <img class="task_img" src="media/comment.svg" alt="" />
+    <img class="task_img" src="{% static 'media/comment.svg' %}" alt="" />
   </div>
 </div>
 
@@ -29,7 +29,7 @@
       <p class="task_description">Купить образовательный пакет на неделю</p>
       <button class="task_button">Проверить</button>
     </div>
-    <img class="task_img" src="media/phone.svg" alt="" />
+    <img class="task_img" src="{% static 'media/phone.svg' %}" alt="" />
   </div>
   <div class="task">
     <div class="task_text">
@@ -37,7 +37,7 @@
       <p class="task_description">Купить образовательный пакет на неделю</p>
       <button class="task_button">Проверить</button>
     </div>
-    <img class="task_img" src="media/phone.svg" alt="" />
+    <img class="task_img" src="{% static 'media/phone.svg' %}" alt="" />
   </div>
 </div>
 
@@ -50,7 +50,7 @@
       </p>
       <button class="task_button">Проверить</button>
     </div>
-    <img class="task_img" src="media/Hand.svg" alt="" />
+    <img class="task_img" src="{% static 'media/Hand.svg' %}" alt="" />
   </div>
   <div class="task">
     <div class="task_text">
@@ -60,7 +60,7 @@
       </p>
       <button class="task_button">Проверить</button>
     </div>
-    <img class="task_img" src="media/Hand.svg" alt="" />
+    <img class="task_img" src="{% static 'media/Hand.svg' %}" alt="" />
   </div>
 </div>
 {% endblock content %}
