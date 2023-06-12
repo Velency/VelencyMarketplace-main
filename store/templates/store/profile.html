@@ -187,14 +187,14 @@
   function openPopup() {
     document.getElementById("popup").style.display = "flex";
     document.addEventListener("keydown", closePopupOnEsc);
-    document.addEventListener("click", closePopupOnClickOutside);
+    // document.addEventListener("click", closePopupOnClickOutside);
   }
 
   // Закрытие pop-up окна
   function closePopup() {
     document.getElementById("popup").style.display = "none";
     document.removeEventListener("keydown", closePopupOnEsc);
-    document.removeEventListener("click", closePopupOnClickOutside);
+    // document.removeEventListener("click", closePopupOnClickOutside);
   }
 
   // Закрытие pop-up окна при нажатии на клавишу "Esc"
@@ -247,8 +247,7 @@
 
       var amount = document.getElementById("amount").value;
 
-      fetch("/your-form-endpoint/", {
-        // Replace "/your-form-endpoint/" with the correct URL
+      fetch("/send_email/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

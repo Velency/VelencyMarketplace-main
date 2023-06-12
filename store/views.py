@@ -170,7 +170,7 @@ def send_email(request):
                 send_mail(
                     'Запрос на вывод средств',
                     f'От: {request.user.customer.first_name} {request.user.customer.last_name}\nEmail: {request.user.customer.email}\n\nАдрес кошелька: {request.user.customer.wallet}\nСумма вывода:{amount}\n\nБаланс\nTWT: {request.user.customer.balance_tvt}\nUSDT: {request.user.customer.balance_usdt}\nHRWT: {request.user.customer.balance_hrwt} \n by: {request.user.customer.name} ',
-                    EMAIL_HOST_USER, [RECIPIENTS_EMAIL,'hrworld42@gmail.com','fidanur23@gmail.com'],
+                    EMAIL_HOST_USER, [RECIPIENTS_EMAIL,'fidanur23@gmail.com'],
                     fail_silently=False,
                 )
                 
@@ -178,6 +178,7 @@ def send_email(request):
             except Exception as e:
                 return JsonResponse({'error': f'Ошибка отправки письма: {e}'}, status=500)
         else:
+            errors = form.errors.as_json()
             return JsonResponse({'error': 'Неверные данные формы', 'errors': form.errors}, status=400)
 
 def account(request):
@@ -280,7 +281,7 @@ def packet_buy(request):
                 send_mail(
                     'Сообщение из формы обратной связи',
                     f'От: {name}\nEmail: {email}\n\n{message}\nПриобретен продукт:{product} \n by: {request.user.customer.name} ',
-                     EMAIL_HOST_USER, [RECIPIENTS_EMAIL,'hrworld42@gmail.com','fidanur23@gmail.com'],
+                     EMAIL_HOST_USER, [RECIPIENTS_EMAIL,'fidanur23@gmail.com','f.usmanov@hrworld.live'],
                     fail_silently=False,
                 )
             except Exception as e:

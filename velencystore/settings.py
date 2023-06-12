@@ -363,7 +363,7 @@ EMAIL_PORT = 465
 EMAIL_USE_SSL = True
 EMAIL_HOST_USER = 'fidanur23@yandex.ru'
 RECIPIENTS_EMAIL= 'hrworld48@gmail.com'
-EMAIL_HOST_PASSWORD = 'htuucbplufyuxoak'
+EMAIL_HOST_PASSWORD = 'tlbuzwqrbmpsgvph'
 
 
 API_KEY = 'cP2QKvv4ccJNAjffgnL5rnRjq0rjTf6iRXFm3odaHxbrzAsnOOXG5ggVYEEu4XfL'
