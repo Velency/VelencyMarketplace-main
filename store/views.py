@@ -38,7 +38,12 @@ if API_KEY == 'WEB3_API_KEY_HERE':
 
 # ГЛАВНАЯ Страница
 def index(request):
-    return render(request, 'store/index.html')
+    news_feed = NewsFeed.objects.all()
+    team_members = TeamMember.objects.all()
+    item_count = news_feed.count()
+    # partners = Partnership.objects.all()
+    context = {'news_feed': news_feed, 'item_count': item_count,'team_members': team_members,}
+    return render(request, 'store/index.html', context)
 
 def store(request):
     

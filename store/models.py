@@ -71,6 +71,16 @@ class Referral(models.Model):
     invitee = models.ForeignKey(User, related_name='invitee', on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
 
+class TeamMember(models.Model):
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    role = models.CharField(max_length=100)
+    image = models.ImageField(default='user_photos/img.jpg',upload_to='user_photos')
+
+    def __str__(self):
+        return self.first_name
+
+
 class Withdraw(models.Model):
     amount = models.DecimalField(max_digits=23, decimal_places=2)
     date = models.DateField()
@@ -137,6 +147,15 @@ class WishItem(models.Model):
 
     def get_item_price(self):
         return self.quantity * self.product.price
+
+class NewsFeed(models.Model):
+    name = models.CharField(max_length=100)
+    image = models.ImageField(upload_to='news_images')
+    news_link = models.URLField( null=True,blank=True)
+
+    def __str__(self):
+        return self.name
+
 
 class Slider(models.Model):
     name = models.CharField(max_length=50, default = "", null=True)
@@ -274,6 +293,7 @@ class Support(models.Model):
 class Partnership(models.Model):
     name = models.CharField(max_length=50, null=True)
     site = models.CharField(max_length=200, null=True)
+    image = models.ImageField(upload_to='partners',null=True)
 
     def __str__(self):
 	    return self.name
