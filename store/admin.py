@@ -13,7 +13,10 @@ admin.site.register(Comments)
 admin.site.register(Offer)
 admin.site.register(Support)
 admin.site.register(Withdraw)
-
+admin.site.register(TeamMember)
+admin.site.register(NewsFeed)
+admin.site.register(Partnership)
+admin.site.register(Packages)
 
 class GalleryInline(admin.TabularInline):
     fk_name = 'product'

@@ -1,124 +1,7 @@
 {% extends 'store/media-packages.html' %} {% load static %} {% block content %}
 <script src="{% static 'js/script-packages.js' %}" defer></script>
+
 <p class="title_packages" id="myteam">Packages</p>
-<!-- <div class="forscroll" style="display: flex; align-items: center; justify-content: center">
-          <button id="left" class="scrollbutton">
-                  <img src="{% static 'media/rowleft.svg' %}">
-          </button>
-          <div class="wrapper forpackages">
-        
-            <div class="slider">
-                
-                <div class="packages_slider">
-                  <div>
-                    <p class="price">$50</p>
-                    <p class="price">5000 tvt</p>
-                  </div>
-                  <div>
-                    <p class="describe">Курс по заработку</p>
-                    <p class="describe">на криптовалюте</p>
-                    <p class="describe">в телеграмм.</p>
-                  </div>  
-                  <button class="buy" onclick="redirectToPayment(50)">Купить</button>
-                </div>
-
-                <div class="packages_slider">
-                  <div>
-                    <p class="price">$100</p>
-                    <p class="price">10000 tvt</p>
-                  </div>
-                  <div><p class="describe">Всё что в пакете за 50$</p>
-                    <p class="describe">+ книга Гузель</p>
-                    <p class="describe">«Я всё»</p>
-                  </div>  
-                  <button class="buy" onclick="redirectToPayment(100)">Купить</button>
-                </div>
-
-                <div class="packages_slider">
-                  <div>
-                    <p class="price">$250</p>
-                    <p class="price">25000 tvt</p>
-                  </div>
-                  <div><p class="describe">Всё что в пакете за 100$</p>
-                    <p class="describe">+ Курс по P2P </p>
-                    <p class="describe">заработку</p>
-                  </div>  
-                  <button class="buy" onclick="redirectToPayment(250)">Купить</button>
-                </div>
-
-                <div class="packages_slider">
-                  <div>
-                    <p class="price">$500</p>
-                    <p class="price">50000 tvt</p>
-                  </div>
-                  <div><p class="describe">Всё что в пакете за 250$</p>
-                    <p class="describe">+ разбор талантов</p>
-                    <p class="describe">+ поиск ниши/план развития бизнеса</p>
-                  </div>  
-                  <button class="buy" onclick="redirectToPayment(500)">Купить</button>
-                </div>
-
-                <div class="packages_slider">
-                  <div>
-                    <p class="price">$1000</p>
-                    <p class="price">100000 tvt</p>
-                  </div>
-                  <div><p class="describe">Всё что в пакете за 500$</p>
-                    <p class="describe">+ наставничество Гузель</p>
-                    <p class="describe">+ Курс от эксперта HR World</p>
-                  </div>  
-                  <button class="buy" onclick="redirectToPayment(1000)">Купить</button>
-                </div>
-
-                <div class="packages_slider">
-                  <div>
-                    <p class="price">$2500</p>
-                    <p class="price">250000 tvt</p>
-                  </div>
-                  <div><p class="describe">Всё что в пакете за 1000$</p>
-                    <p class="describe">+ разбор любого запроса</p>
-                    <p class="describe">+ ретрит в Грузии(без перелета)</p>
-                  </div>  
-                  <button class="buy" onclick="redirectToPayment(2500)">Купить</button>
-                </div>
-
-                <div class="packages_slider">
-                  <div>
-                    <p class="price">$5000</p>
-                    <p class="price">500000 tvt</p>
-                  </div>
-                  <div><p class="describe">Всё что в пакете за 2500$</p>
-                    <p class="describe">+ недельный круиз на лайнере</p>
-                    <p class="describe">(без перелета)</p>
-                  </div>  
-                  <button class="buy" onclick="redirectToPayment(5000)">Купить</button>
-                </div>
-
-                <div class="packages_slider">
-                  <div>
-                    <p class="price">$10000</p>
-                    <p class="price">1000000 tvt</p>
-                  </div>
-                  <div><p class="describe">Всё что в пакете за 5000$</p>
-                    <p class="describe">+ недельный круиз на лайнере</p>
-                    <p class="describe">+ перелет</p>
-                  </div>  
-                  <button class="buy" onclick="redirectToPayment(10000)">Купить</button>
-                </div>
-               
-                
-            </div>
-
-           
-        </div>
-         <button id="right" class="scrollbutton">
-              <img src="{% static 'media/rowright.svg' %}">
-        </button>
-        </div>
-      
-
-
-      </div> -->
 
 <div>
   <button
@@ -152,79 +35,44 @@
 
 
 <div class="packages" style="display: flex; justify-content: space-between; padding-left: 30px; padding-right: 30px; padding-top: 30px;">
-      
-  <div class="package">
-    <p class="time_package">1 week</p>
-    <div class="line_package"></div>
-    <p class="price_package">$250 <br> 25000 HRWT</p>
-    <p class="describe_package">Всё что в пакете за 100$ <br> + Курс по P2P заработку <br> Всё что в пакете за 100$ <br> + Курс по P2P заработку
-    </p>
-    <button class="signin_packages"  onclick="redirectToPayment(2500)">
-      <p>Выбрать</p>
-      <img class="row" src="{% static 'media/row.svg' %}" alt="" />
-    </button>
-  </div>
-
-  <div class="package_main">
-    <p class="time_package_main">2 months</p>
-    <div class="line_package_main"></div>
-    <p class="price_package_main">$250 <br> 25000 HRWT</p>
-    <p class="describe_package_main">Всё что в пакете за 100$ <br> + Курс по P2P заработку <br> Всё что в пакете за 100$ <br> + Курс по P2P заработку
-    </p>
-    <button class="signin_packages_main"  onclick="redirectToPayment(10000)" >
-      <p>Выбрать</p>
-      <img class="row" src="{% static 'media/row.svg' %}" alt="" />
-    </button>
-  </div>
-
-  <div class="package">
-    <p class="time_package">2 months</p>
-    <div class="line_package"></div>
-    <p class="price_package">$250 <br> 25000 HRWT</p>
-    <p class="describe_package">Всё что в пакете за 100$ <br> + Курс по P2P заработку <br> Всё что в пакете за 100$ <br> + Курс по P2P заработку
-    </p>
-    <button class="signin_packages" onclick="redirectToPayment(25000)" >
-      <p>Выбрать</p>
-      <img class="row" src="{% static 'media/row.svg' %}" alt="" />
-    </button>
-  </div>
-
-  <div class="package">
-    <p class="time_package">3 months</p>
-    <div class="line_package"></div>
-    <p class="price_package">$250 <br> 25000 HRWT</p>
-    <p class="describe_package">Всё что в пакете за 100$ <br> + Курс по P2P заработку <br> Всё что в пакете за 100$ <br> + Курс по P2P заработку
-    </p>
-    <button class="signin_packages" onclick="redirectToPayment(2500)" >
-      <p>Выбрать</p>
-      <img class="row" src="{% static 'media/row.svg' %}" alt="" />
-    </button>
-  </div>
-
+  {% for package in packages %}
+    {% if package.is_main %}
+    <div class="package">
+      <p class="time_package">{{ package.header }}</p>
+      <div class="line_package"></div>
+      <p class="price_package">${{package.price_usd}} <br> {{ package.price_twt }} HRWT</p>
+      <p class="describe_package">{{ package.short_desc }}</p>
+      <button class="signin_packages" onclick="redirectToPayment({{ package.amount }})">
+        <p>Выбрать</p>
+      </button>
+    </div>
+    {% else %}
+    <div class="package_main">
+      <p class="time_package_main">{{ package.header }}</p>
+      <div class="line_package_main"></div>
+      <p class="price_package_main">${{ package.price_usd }} <br> {{ package.price_twt }} HRWT</p>
+      <p class="describe_package_main">{{ package.short_desc }}</p>
+      <button class="signin_packages_main" onclick="redirectToPayment({{ package.id }})" >
+        <p>Выбрать</p>
+      </button>
+    </div>
+    {% endif%}
+  {% endfor %}
+  
 </div>
-
-
-
 
 </div>
 <script>
-  function redirectToPayment(value) {
-    // Получаем текущий URL и заменяем часть после последнего слэша на 'packet_byu'
+  function redirectToPayment(package) {
+    // Получаем текущий URL и заменяем часть после последнего слэша на 'packet_buy'
     const paymentUrl = window.location.href.replace(/\/[^\/]*$/, '/packet_buy');
-    // Добавляем параметр 'value' со значением стоимости пакета к URL
-    const paymentUrlWithValue = `${paymentUrl}?value=${value}`;
+    // Кодируем объект пакета в JSON и добавляем его в URL в качестве параметра 'package'
+    const packageData = encodeURIComponent(JSON.stringify(package));
+    const paymentUrlWithPackage = `${paymentUrl}?package=${packageData}`;
     // Переходим на страницу оплаты с передачей параметра
-    window.location.href = paymentUrlWithValue;
+    window.location.href = paymentUrlWithPackage;
   }
 </script>
 
-
-<script>
-  // Получаем значение параметра 'value' из URL
-  const urlParams = new URLSearchParams(window.location.search);
-  const packageValue = urlParams.get('value');
-  // Выводим значение параметра 'value' в элемент с id='package-value'
-  document.getElementById('package-value').textContent = packageValue;
-</script>
 
 {% endblock content %}

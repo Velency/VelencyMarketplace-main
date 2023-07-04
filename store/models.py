@@ -156,6 +156,15 @@ class NewsFeed(models.Model):
     def __str__(self):
         return self.name
 
+class Packages(models.Model):
+    name = models.CharField(max_length=100)
+    header = models.CharField(max_length=25)
+    price_usd = models.CharField(max_length=25)
+    price_twt = models.CharField(max_length=25)
+    amount = models.PositiveBigIntegerField()
+    short_desc = models.CharField(max_length=100)
+    long_desc = models.CharField(max_length=500)
+    is_main = models.BooleanField(default=False)
 
 class Slider(models.Model):
     name = models.CharField(max_length=50, default = "", null=True)

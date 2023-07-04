@@ -23,7 +23,7 @@ from .forms import FeedbackForm
 
 # metamask
 from web3 import Web3
-from moralis import *
+# from moralis import *
 import requests
 from django.contrib.auth.models import User
 
@@ -222,58 +222,38 @@ def account(request):
 # Viwe.py 
 
 # Пакеты криптовалют и токена
-
 @login_required
-def tariffs (request):
+def tariffs(request):
     data = cartData(request)
-    
     cartItems = data['cartItems']
     order = data['order']
     items = data['items']
-    categories =Category.objects.all()
+    categories = Category.objects.all()
     partners = Partnership.objects.all()
-    context = {  'cartItems':cartItems, 'order':order, 'items':items, 'categories':categories, 'partners':partners}
+
+    # Получаем все пакеты из модели Packages
+    packages = Packages.objects.all()
+
+    context = {
+        'cartItems': cartItems,
+        'order': order,
+        'items': items,
+        'categories': categories,
+        'partners': partners,
+        'packages': packages,
+    }
     return render(request, 'store/packages.html', context)
+
+
 
 @login_required
 def packet_buy(request):
-    result = None
-    total = None
-    product= None
-    value = request.GET.get('value')
-    if value == '50':
-        result = '50'
-        total = '150'
-        product = 'Packet 50 USDT'
-    elif value == '100':
-        result = '100'
-        total = '300'
-        product = 'Packet 100 USDT'
-    elif value == '250':
-        result = '250'
-        total = '750'
-        product = 'Packet 250 USDT'
-    elif value == '500':
-        result = '500'
-        total = '1500'
-        product = 'Packet 500 USDT'
-    elif value == '1000':
-        result = '1000'
-        total = '3000'
-        product = 'Packet 1000 USDT'
-    elif value == '2500':
-        result = '2500'
-        total = '7500'
-        product = 'Packet 2500 USDT'
-    elif value == '5000':
-        result = '5000'
-        total = '15000'
-        product = 'Packet 5000 USDT'
-    elif value == '10000':
-        result = '10000'
-        total = '30000'
-        product = 'Packet 10000 USDT'
-    
+    package_id = request.GET.get('package')
+    try:
+        package = Packages.objects.get(id=package_id)
+    except Packages.DoesNotExist:
+        package = None
+
     form = FeedbackForm()
     if request.method == 'POST':
         form = FeedbackForm(request.POST)
@@ -281,26 +261,30 @@ def packet_buy(request):
             name = form.cleaned_data['name']
             email = form.cleaned_data['email']
             message = form.cleaned_data['message']
-            
+
             try:
                 send_mail(
                     'Сообщение из формы обратной связи',
-                    f'От: {name}\nEmail: {email}\n\n{message}\nПриобретен продукт:{product} \n by: {request.user.customer.name} ',
-                     EMAIL_HOST_USER, [RECIPIENTS_EMAIL,'fidanur23@gmail.com','f.usmanov@hrworld.live'],
+                    f'От: {name}\nEmail: {email}\n\n{message}\nПриобретен продукт: {package["header"]} \nby: {request.user.customer.name} ',
+                    EMAIL_HOST_USER, [RECIPIENTS_EMAIL, 'fidanur23@gmail.com', 'f.usmanov@hrworld.live'],
                     fail_silently=False,
                 )
             except Exception as e:
                 messages.error(request, f'Ошибка отправки сообщения! {e}')
-                
             else:
                 messages.success(request, 'Сообщение успешно отправлено.')
                 form = FeedbackForm()
-                
         else:
             print(form.errors)
             messages.error(request, 'Ошибка формы!')
-            
-    return render(request, 'store/payment.html', {'form': form, 'result': result, 'total': total, 'product': product})
+
+    context = {
+        'result': package.price_twt if package else '',
+        'total': package.price_usd if package else '',
+        'package_description': package.long_desc if package else '',
+    }
+    return render(request, 'store/payment.html', context)
+
 
 
 

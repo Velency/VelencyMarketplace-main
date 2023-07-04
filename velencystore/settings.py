@@ -26,11 +26,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-a&y+2)855phja&yth=5rf^n(r6oeo+7n#l1)dceo=j$(utz*2z'
+SECURE_CROSS_ORIGIN_OPENER_POLICY = None
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['velency-marketplace.herokuapp.com','127.0.0.1', 'testmarketplace.herokuapp.com']
+ALLOWED_HOSTS = ['velencymarketplace.herokuapp.com/','127.0.0.1']
 
 
 # Application definition
@@ -49,7 +50,6 @@ INSTALLED_APPS = [
     'ckeditor',
     'ckeditor_uploader',
     'storages',
-    'web3_auth',
        
 ]
 
@@ -168,7 +168,7 @@ JAZZMIN_SETTINGS = {
     "site_brand": "Admin panel",
 
     # Logo to use for your site, must be present in static files, used for brand on top left
-    "site_logo": "img/logo1.png",
+    "site_logo": "media/logo.png",
 
     # CSS classes that are applied to the logo above
     "site_logo_classes": "img-circle",
@@ -372,3 +372,6 @@ if API_KEY == 'WEB3_API_KEY_HERE':
     raise SystemExit
 
 LOGIN_REDIRECT_URL = 'account'
+
+
+
