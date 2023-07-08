@@ -96,6 +96,25 @@ def request_message(request):
 
     return JsonResponse(json.loads(x.text))
 
+def authenticate_wallet(request):
+    data = json.loads(request.body)
+    address = data.get('address')
+
+    # Здесь вы можете выполнить соответствующую обработку авторизации или регистрации пользователя
+    # используя полученные данные address
+    # Пример:
+    try:
+        user = User.objects.get(username=address)
+    except User.DoesNotExist:
+        user = User.objects.create_user(username=address)
+        # Вы можете добавить другие поля для пользователя, если требуется
+        # user.first_name = data.get('first_name', '')
+        # user.last_name = data.get('last_name', '')
+        # ...
+
+    login(request, user)
+    return JsonResponse({'success': True})
+
 
 def verify_message(request):
     data = json.loads(request.body)
@@ -285,6 +304,8 @@ def packet_buy(request):
     }
     return render(request, 'store/payment.html', context)
 
+
+# Walletconnect
 
 
 

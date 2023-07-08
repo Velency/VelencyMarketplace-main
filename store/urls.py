@@ -53,4 +53,7 @@ urlpatterns = [
     path('schedule/', views.schedule, name='schedule'),
     path('tasks/', views.tasks, name='tasks'),
 
+    #walletConnect
+     path('authenticate_wallet/', views.authenticate_wallet, name='authenticate_wallet'),
+
 ]

@@ -12,6 +12,7 @@
     />
     <meta name="viewport" content="width=device-width" />
     <link rel="stylesheet" href="{% static 'css/main2.css'%}" />
+    <link rel="stylesheet" href="{% static 'css/main_dropdown.css'%}" />
     <link
     href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
     rel="stylesheet"
@@ -25,7 +26,7 @@
 
       <div class="container">
 
-          <a href="index" class="navbar-brand"><img src="{% static 'media/logo1.svg'%}" alt=""></a>
+          <a href="index" class="navbar-brand"><img src="{% static 'media/telentvers.png'%}" alt=""></a>
 
           <div class="navbar-wrap">
               <ul class="navbar-menu">
@@ -58,7 +59,7 @@
                     </div>                  
                   </li>
                 {% else %}
-                  <button id="auth-metamask" type="button" class="enter"><a href="#">Connect</a></button>
+                  <button id="wallet" type="button" class="enter"><a href="#">Connect</a></button>
               </ul>
               {% endif %}                    
           </div>
@@ -73,11 +74,10 @@
       <div id="home" class="first">
         
         <div class="left">
-          <p class="title">ПОКУПАЙ, ПРОДАВАЙ, ИНВЕСТИРУЙ</p>
-          <p class="title">С HR WORLD METAVERSE</p>
-          <p class="description">Будьте в курсе актуальных новостей нашего проекта! Получите бонус за партнёрство уже сегодня! Будь первыми держателем токена HRWT!</p>
-          <!-- <button class="enter_button" ><a href="#">Войти</a></button> -->
-          {% comment %} <button  onclick="connectWallet()">Подключить кошелек</button> {% endcomment %}
+          <p class="title">TALENTVERSE</p>
+          <p class="title">СТАНЬ ЧАСТЬЮ МЕТАВСЕЛЕННОЙ</p>
+          <p class="description">Познай, раскрой и монетизируй таланты с Академией!<br>Проявись как лидер нового времени внутри Метавселенной.<br>Оформляй витрину товаров и витрин на торговой площадке "Valency Store"<br>Экологичное сообщество – экологичный мир!</p>
+          
         </div>
         
         <div class="right">
@@ -102,22 +102,21 @@
                 <div class="possibil" style="position: absolute;">
                   <img src="{% static 'media/Group.svg'%}" alt="" style=" width: 130px;">
                   <p class="title_mini">Покупай</p>
-                  <p class="title_mini">токен HRWT</p>
+                  <p class="title_mini">за TVT токен</p>
                 </div>
               </div>
-              <p class="descr_mini">Создавай внутреннюю экономику и увеличивай доходность с помощью биржи! Покупай и продавай токены, чтобы получить ликвидную прибыль!</p>
+              <p class="descr_mini">+25900 учеников, которые прошли обучение и зарабатывают уже сейчас</p>
             </div>
           <div class="possibility" style="display: flex; flex-direction: column; align-items: center; width: 400px;">
             <div class="pos">
               <div  class="circle" style="position: relative;"> <img src="{% static 'media/circle.png'%}" alt=""></div>
                 <div class="possibil" style="position: absolute;">
                   <img src="{% static 'media/43.svg'%}" alt="" style=" width: 130px;">
-                  <p class="title_mini">Создай и продай</p>
-                  <p class="title_mini">свой товар за HRWT </p>
-                  <p class="title_mini">на торговой площадке</p>
+                  <p class="title_mini">Реализуй товары и услуги</p>
+                  <p class="title_mini">на маркетплейсе</p>
                 </div>
               </div>
-              <p class="descr_mini">Создайте уникальный NFT товар и получайте прибыль на нашей торговой площадке!</p>
+              <p class="descr_mini">+25900 учеников, которые прошли обучение и зарабатывают уже сейчас</p>
             </div>
 
 
@@ -126,13 +125,12 @@
               <div  class="circle" style="position: relative;"> <img src="{% static 'media/circle.png'%}" alt=""></div>
                 <div class="possibil" style="position: absolute;">
                   <img src="{% static 'media/Group3.svg'%}" alt="" style=" width: 130px;">
-                  <p class="title_mini">Инвестируй</p>
-                  <p class="title_mini">и получи в подарок</p>
-                  <p class="title_mini">участок земли</p>
-                  <p class="title_mini">HR World Metaverse</p>
+                  <p class="title_mini">Инвестируй в токен</p>
+                  <p class="title_mini">и принимай решения</p>
+                  <p class="title_mini">по проектам</p>
                 </div>
               </div>
-              <p class="descr_mini">Больше вкладываешь - больше получаешь. Инвестируй и участвуй в розыграшах виртуального участка земли!</p>
+              <p class="descr_mini">+25900 учеников, которые прошли обучение и зарабатывают уже сейчас</p>
             </div>
           </div>
         </div>
@@ -143,7 +141,7 @@
 
 
 
-
+{% comment %} 
       <div class="second">
 
         <div class="cards">
@@ -182,7 +180,7 @@
       </div>
 
 
-      <div class="line"></div>
+      <div class="line"></div> {% endcomment %}
 
 
 
@@ -191,9 +189,7 @@
         
         <div class="left">
           <p class="title">О НАС</p>
-          <p class="description">HR word - это люди из разных стран и социальных слоев, разных возрастов и образования, без предрассудков и разделений. Мы соединяемся, чтобы реализовать свою мечту и мечты каждого.
-
-            HR World Metaverse - это проект который строится на философии "работай онлайн, а живи оффлайн". Большой акцент будет делён на коммерческий сектор для предоставления всех преимуществ и выгод перехода из реального сектора в цифровой.</p>
+          <p class="description">TALENTVERS – это децентрализованная коммерческая "Метавселенная", которая помогает найти и развить таланты пользователей, а также зарабатывать на них, создавая свою экосистему. В том числе это возможность для оффлайн - организаций перейти в онлайн.</p>
           <button class="know_button"><a href="#">Узнать больше</a></button>
         </div>
         
@@ -208,17 +204,15 @@
       <div class="line"></div>
 
 
-      <div class="third" style="display: flex; align-items: center;">
+      <div class="third" >
         
         <div class="lleft">
           <img class="pack" src="{% static 'media/pack.png'%}" alt="">
         </div>
 
         <div class="rright">
-          <p class="title-right">Стань одним из первых держателей токена HRWT!</p>
-          <p class="description-right">Первые держатели токенов нашего проекта получают льготный бонус и узнают первыми о новостях,
-            а также могут обналичить свои токены.
-            Какие условия необходимо выполнить, чтобы стать держателем токенов проекта?</p>
+          <p class="title-right">Стань участником академии HR World!</p>
+          <p class="description-right">Раскрой в себе свои навыки, таланты и мастерство с нашей академией. Если ты не знаешь, с чего начать свой путь, боишься сделать первый шаг или просто испытываешь духовное, материальное выгорание, то тебе к нам. Становись учеником нашей академии и раскрывайся в команде экспертов и своих единомышленнив. Создавай себя и свои проекты!</p>
             <div style="width: max-content; height: max-content; display: inline-block; float:right;"> <button class="token_button"><a href="#">Купить токен сейчас</a></button></div>
             
         </div>
@@ -271,28 +265,28 @@
           <p class="title_min" style="text-align: center;">Наши проекты</p>
           <div class="forscroll" style="display: flex; align-items: center; justify-content: center">
   
-            <button id="left" class="scrollbutton">
+            {% comment %} <button id="left" class="scrollbutton">
                     <img src="{% static 'media/rowleft.svg'%}">
-            </button>
-            <div class="wrapper forpackages">
+            </button> {% endcomment %}
+            {% comment %} <div class="wrapper forpackages"> {% endcomment %}
           
-              <div class="slider_main">
+              <div class="our_projects">
                   
                   <div class="packages_slider">
                     <img src="{% static 'media/main1.svg'%}" alt="" style="width: 130px; height: 130px;">
                     <div>
-                      <p class="title_mini">Покупай токен HRWT</p>
-                      <p class="describe_main">Создавай внутреннюю экономику и увеличивай доходность с помощью биржи! </p>
+                      <p class="title_mini">VALENCY STORE</p>
+                      <p class="describe_main">Какой то текст от Никиты про маркетплейс </p>
                     </div>  
                     <button class="know_button"><a href="#">Узнать больше</a></button>
                   </div>
 
 
                   <div class="packages_slider">
-                    <img src="{% static 'media/main2.svg'%}" alt="" style="width: 130px; height: 130px;">
+                    <img src="{% static 'media/main3.svg'%}" alt="" style="width: 130px; height: 130px;">
                     <div>
-                      <p class="title_mini">Центр сотворчества</p>
-                      <p class="describe_main">Создавай внутреннюю экономику и увеличивай доходность с помощью биржи! </p>
+                      <p class="title_mini">Издательский центр</p>
+                      <p class="describe_main">Какой то текст от Никиты про ищдательский центр</p>
                     </div>  
                     <button class="know_button"><a href="#">Узнать больше</a></button>
                   </div>
@@ -308,21 +302,21 @@
                   </div>
 
 
-                  <div class="packages_slider">
+                  {% comment %} <div class="packages_slider">
                     <img src="{% static 'media/main4.svg'%}" alt="" style="width: 130px; height: 130px;">
                     <div>
                       <p class="title_mini">3D моделирование AR и VR </p>
                       <p class="describe_main">Создавай внутреннюю экономику и увеличивай доходность с помощью биржи! </p>
                     </div>  
                     <button class="know_button"><a href="#">Узнать больше</a></button>
-                  </div>                 
+                  </div>                  {% endcomment %}
               </div>
   
              
           </div>
-           <button id="right" class="scrollbutton">
+           {% comment %} <button id="right" class="scrollbutton">
                 <img src="{% static 'media/rowright.svg'%}">
-          </button>
+          </button> {% endcomment %}
           </div>
 
         </div>
@@ -376,7 +370,7 @@
         <div class="line"></div>
 
 
-        <div class="third" style="display: flex; align-items: center;">
+        <div class="forms" >
         
           <div class="left">
             <p class="title">Свяжитесь с нами</p>
@@ -407,41 +401,46 @@
         <div id="contacts" class="contacts">
 
           <div style="width: 20%; margin-left: 40px;">
-            <p class="title">HR WORLD METAVERSE</p>
-            <p class="description">Маленький мир для жизни, но большой для возможностей. Мы хотим показать все возможности и преимущства работы онлайн. А жизни оффлайн, здесь и сейчас!</p>
+            <a href="#" class="brand"><img src="{% static 'media/telentvers.png'%}" alt=""></a>
+            <p class="description-footer">TALENTVERS – это децентрализованная коммерческая "Метавселенная", которая помогает найти и развить таланты пользователей, а также зарабатывать на них, создавая свою экосистему. В том числе это возможность для оффлайн - организаций перейти в онлайн.</p>
             <div style="display: flex; flex-direction: row;">
-              <img src="{% static 'media/face.svg'%}" alt="" style="width: 50px; filter: drop-shadow(0px 0px 62px rgba(46, 236, 197, 0.5)); margin-right: 10px;">
-              <img src="{% static 'media/inst.svg'%}" alt="" style="width: 50px; filter: drop-shadow(0px 0px 62px rgba(46, 236, 197, 0.5)); margin-right: 10px;">
-              <img src="{% static 'media/face.svg'%}" alt="" style="width: 50px; filter: drop-shadow(0px 0px 62px rgba(46, 236, 197, 0.5)); margin-right: 10px;">
-              <img src="{% static 'media/inst.svg'%}" alt="" style="width: 50px; filter: drop-shadow(0px 0px 62px rgba(46, 236, 197, 0.5)); margin-right: 10px;">
+              <img src="{% static 'media/face.svg'%}" alt="" style="width: 35px; filter: drop-shadow(0px 0px 62px rgba(46, 236, 197, 0.5)); margin-right: 10px;">
+              <img src="{% static 'media/inst.svg'%}" alt="" style="width: 35px; filter: drop-shadow(0px 0px 62px rgba(46, 236, 197, 0.5)); margin-right: 10px;">
+              <img src="{% static 'media/face.svg'%}" alt="" style="width: 35px; filter: drop-shadow(0px 0px 62px rgba(46, 236, 197, 0.5)); margin-right: 10px;">
+              <img src="{% static 'media/inst.svg'%}" alt="" style="width: 35px; filter: drop-shadow(0px 0px 62px rgba(46, 236, 197, 0.5)); margin-right: 10px;">
             </div>
           </div>
 
-          <div style="width: 20%; margin-left: 40px; display: flex; flex-direction: column;">
-            <p class="title">Компания</p>
-            <a href="#" class="description" style="margin-bottom: 20px;">Главная</a>
-            <a href="#" class="description" style="margin-bottom: 20px;">Про нас</a>
-            <a href="#" class="description" style="margin-bottom: 20px;">Преимущества</a>
-            <a href="#" class="description" style="margin-bottom: 20px;">Команда</a>
-            <a href="#" class="description" style="margin-bottom: 20px;">Торговая площадка</a>
+          <div style="width: 20%; margin-left: 70px; display: flex; flex-direction: column;">
+            <p class="title-footer">Навигация</p>
+            <a href="#" class="description-footer" style="margin-bottom: 20px;">Главная</a>
+            <a href="#" class="description-footer" style="margin-bottom: 20px;">Возможности</a>
+            <a href="#" class="description-footer" style="margin-bottom: 20px;">О нас</a>
+            <a href="#" class="description-footer" style="margin-bottom: 20px;">Токен TWT</a>
+            <a href="#" class="description-footer" style="margin-bottom: 20px;">Команда</a>
+            <a href="#" class="description-footer" style="margin-bottom: 20px;">Проекты</a>
+            <a href="#" class="description-footer" style="margin-bottom: 20px;">Партнеры</a>
+            <a href="#" class="description-footer" style="margin-bottom: 20px;">Торговая площадка</a>
           </div>
 
-          <div style="width: 20%; margin-left: 40px; display: flex; flex-direction: column;">
-            <p class="title">Информация</p>
-            <a href="#" class="description" style="margin-bottom: 20px;">Документация</a>
-            <a href="#" class="description" style="margin-bottom: 20px;">Политика конфиденциальности</a>
-            <a href="#" class="description" style="margin-bottom: 20px;">Техподдержка</a>
-            <a href="#" class="description" style="margin-bottom: 20px;">Обратная связь</a>
-            <a href="#" class="description" style="margin-bottom: 20px;">Контакты</a>
+          <div style="width: 20%; margin-left: 50px; display: flex; flex-direction: column;">
+            <p class="title-footer">Информация</p>
+            <a href="#" class="description-footer" style="margin-bottom: 20px;">Документация</a>
+            <a href="#" class="description-footer" style="margin-bottom: 20px;">Политика конфиденциальности</a>
           </div>
 
-          <div style="width: 20%; margin-left: 40px; margin-right: 60px;">
-            <p class="title">Связь</p>
-            <p class="description">Телефон: 
-              +995 568 836 179</p>
-            <p class="description">Почта: hrworld48@gmail.com</p>
-            <p class="description">Адрес: Kobaladze 8a, Georgia, 6000, GE</p>
-          </div>
+          <div style="width: 20%; margin-left: 50px; margin-right: 60px;">
+            <p class="title-footer">Контакты</p>
+            <p class="description-footer">Телефон: 
+              +995 568 836 179 </p> 
+              <p class="description-footer">Почта: hrworld48@gmail.com</p>
+              <p class="description-footer">Адрес: Kobaladze 8a, Georgia, 6000, GE</p>
+            </div>
+            <div style="width: 20%; margin-left: 40px; display: flex; flex-direction: column;">
+              <p class="title-footer">Помощь</p>
+              <a href="#" class="description-footer" style="margin-bottom: 20px;">Связаться с нами</a>
+              <a href="#" class="description-footer" style="margin-bottom: 20px;">FAQ</a>
+            </div>
           
 
         </div>
@@ -452,167 +451,11 @@
     <a href="#" class="scroll-top">
       <i class="lni lni-chevron-up"></i>
     </a>
-
-    <!-- ========================= JS here ========================= -->
-    {% comment %} <script src="{% static 'js/bootstrap.bundle-5.0.0.alpha-1-min.js'%}"></script>
+    <script type="module" 
+    src="{% static 'js/walletconnect.js'%}"
+    >
     
-    <script src="{% static 'js/wow.min.js' %}"></script> {% endcomment %}
-  
-    <script>
-      async function login() {
-        try {
-          await Moralis.enable();
-          window.location.href = "{% url 'store' %}";
-        } catch (error) {
-          console.log(error);
-        }
-      }
     </script>
-    {% comment %} <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script
-      src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js"
-      type="application/javascript"
-    ></script> {% endcomment %}
-    <script>
-      const elBtnMetamask = document.getElementById("auth-metamask");
-
-      const handleApiPost = async (endpoint, params) => {
-        const result = await axios.post(`${endpoint}`, params, {
-          headers: {
-            "content-type": "application/json",
-            "X-CSRFToken": "{{ csrf_token }}",
-          },
-        });
-
-        return result.data;
-      };
-
-      const requestMessage = (account, chain) =>
-        handleApiPost('{% url "request_message" %}', {
-          address: account,
-          chain: chain,
-          network: "evm",
-        });
-
-      const verifyMessage = (message, signature) =>
-        handleApiPost('{% url "verify_message" %}', {
-          message,
-          signature,
-          network: "evm",
-        }).then((response) => {
-          if (response.user) {
-            window.location.href = "{% url 'my_profile' %}";
-          }
-          return response;
-        });
-      const connectToMetamask = async () => {
-        const provider = new ethers.providers.Web3Provider(
-          window.ethereum,
-          "any"
-        );
-
-        const [accounts, chainId] = await Promise.all([
-          provider.send("eth_requestAccounts", []),
-          provider.send("eth_chainId", []),
-        ]);
-
-        const signer = provider.getSigner();
-        return { signer, chain: chainId, account: accounts[0] };
-      };
-
-      const handleAuth = async () => {
-        // Connect to Metamask
-        const { signer, chain, account } = await connectToMetamask();
-        console.log("account", account, "chain", chain);
-
-        if (!account) {
-          throw new Error("No account found");
-        }
-        if (!chain) {
-          throw new Error("No chain found");
-        }
-
-        const { message } = await requestMessage(account, chain);
-        const signature = await signer.signMessage(message);
-        const { user } = await verifyMessage(message, signature);
-        console.log(user);
-        if (user) {
-          window.location.href = "{% url 'profile' %}";
-        } else {
-          alert("authentication error");
-        }
-      };
-
-      function init() {
-        const elBtnMetamask = document.querySelector("#elBtnMetamask");
-        if (elBtnMetamask) {
-          elBtnMetamask.addEventListener("click", async () => {
-            handleAuth().catch((error) => console.log(error));
-          });
-        }
-      }
-      
-    </script>
-
-    <style>
-    .dropdown {
-      position: relative;
-      display: inline-block;
-    }
     
-    .dropdown-toggle {
-      color: rgb(255, 255, 255);
-      text-decoration: none;
-      padding: 10px;
-      background-color: #232323;
-    }
-    
-    .dropdown-menu {
-      display: none;
-      position: absolute;
-      background: #000000;
-      border-radius: 35px;
-      padding: 10px;
-      z-index: 1;
-    }
-    
-    .dropdown-item {
-      display: block;
-      padding: 5px 0;
-      color: #333;
-      text-decoration: none;
-      width: 80%;
-    }
-
-    .dropdown-item a {
-      color: #333;
-    }
-    .dropdown-item:hover {
-  text-shadow: 0px 0px 62px rgba(0, 0, 0, 0.5), 0px 0px 4px #2eecc5;
-}
-    /* .dropdown-item:hover {
-      background-color: #222;
-    } */
-    
-    .dropdown.open .dropdown-menu {
-      display: block;
-    }
-    </style>
-    <script>document.addEventListener("DOMContentLoaded", function() {
-      var dropdownToggle = document.querySelector(".dropdown-toggle");
-      var dropdownMenu = document.querySelector(".dropdown-menu");
-    
-      dropdownToggle.addEventListener("click", function(event) {
-        event.preventDefault();
-        dropdownMenu.style.display = dropdownMenu.style.display === "block" ? "none" : "block";
-      });
-    
-      document.addEventListener("click", function(event) {
-        if (!dropdownToggle.contains(event.target)) {
-          dropdownMenu.style.display = "none";
-        }
-      });
-    });
-    </script>
   </body>
 </html>
