@@ -17,7 +17,7 @@
     "web3modal": "^1.9.12"
   },
   "scripts": {
-    "start": "python manage.py runserver"
+    "start": "npm run build"
   },
   "name": "velencymarketplace-main",
   "description": "��#\u0000 \u0000v\u0000e\u0000l\u0000e\u0000n\u0000c\u0000y\u0000s\u0000t\u0000o\u0000r\u0000e\u0000\r\u0000 \u0000",
