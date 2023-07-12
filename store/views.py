@@ -73,28 +73,9 @@ def store(request):
 
 # Авторизация и регистрация
 
-
-def request_message(request):
-    data = json.loads(request.body)
-    print(data)
-
-    REQUEST_URL = 'https://authapi.moralis.io/challenge/request/evm'
-    request_object = {
-      "domain": "defi.finance",
-      "chainId": 1,
-      "address": data['address'],
-      "statement": "Please confirm",
-      "uri": "https://defi.finance/",
-      "expirationTime": "2024-01-01T00:00:00.000Z",
-      "notBefore": "2023-01-01T00:00:00.000Z",
-      "timeout": 15
-    }
-    x = requests.post(
-        REQUEST_URL,
-        json=request_object,
-        headers={'X-API-KEY': API_KEY})
-
-    return JsonResponse(json.loads(x.text))
+import json
+from django.contrib.auth import login, authenticate
+from django.http import JsonResponse
 
 def authenticate_wallet(request):
     data = json.loads(request.body)
@@ -114,6 +95,7 @@ def authenticate_wallet(request):
 
     login(request, user)
     return JsonResponse({'success': True})
+
 
 
 def verify_message(request):
@@ -277,8 +259,8 @@ def packet_buy(request):
     if request.method == 'POST':
         form = FeedbackForm(request.POST)
         if form.is_valid():
-            name = form.cleaned_data['name']
-            email = form.cleaned_data['email']
+            name = request.user.customer.name
+            email = request.user.customer.email
             message = form.cleaned_data['message']
 
             try:

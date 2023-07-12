@@ -43,16 +43,16 @@
       <form class="form-contact" method="post" action="{% url 'packet_buy' %}">
         {% csrf_token %}
       <div class="personalarea" style="margin-top: 10px">
-        <p class="for_input">Package</p>
-        <input type="text" id="{{ form.message.id_for_label }}" placeholder="" name="{{ form.message.name }}"/>
+        <p class="for_input">Message</p>
+        <input type="text" id="{{ form.message.id_for_label }}" placeholder="preferred contact method" name="{{ form.message.name }}"/>
       </div>
       <div class="personalarea">
         <p class="for_input">First/Last name</p>
-        <input type="text" id="{{ form.name.id_for_label }}" placeholder="" name="{{ form.name.name }}"/>
+        <p>{{ request.user.customer.name }} </p>
       </div>
       <div class="personalarea">
         <p class="for_input">E-mail</p>
-        <input type="text" placeholder="" id="{{ form.email.id_for_label }}" name="{{ form.email.name }}"/>
+        <p> {{ request.user.customer.email }}</p>
       </div>
   
       <div class="personalarea" style="margin-top: 10px">
