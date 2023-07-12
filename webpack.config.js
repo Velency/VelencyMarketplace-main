@@ -19,11 +19,18 @@ module.exports = {
       buffer: require.resolve("buffer"),
     },
   },
-  plugins: [
-    // fix "process is not defined" error:
-    new webpack.ProvidePlugin({
-      process: "process/browser",
-      Buffer: ["buffer", "Buffer"],
-    }),
-  ],
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: ["@babel/preset-env"],
+          },
+        },
+      },
+    ],
+  },
 };
