@@ -17,7 +17,20 @@
     "web3modal": "^1.9.12"
   },
   "scripts": {
-    "start": "npm run build"
+    "clean": "npm run clean --workspaces --if-present",
+    "lint": "npm run lint --workspaces --if-present",
+    "prettier": "npm run prettier --workspaces --if-present",
+    "build": "npm run build --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "test:ignoreUnhandled": "npm run test:ignoreUnhandled --workspaces --if-present",
+    "check": "npm run lint; npm run build; npm run test",
+    "reset": "npm run clean; npm run check",
+    "new-version": "lerna version --no-private --no-git-tag-version --exact && ./scripts/update_relayer_sdk_version.sh",
+    "pre-publish": "npm run new-version; npm run reset",
+    "npm-publish:rc": "lerna exec --no-private -- npm publish --access public --tag rc",
+    "npm-publish:latest": "lerna exec --no-private -- npm publish --access public --tag latest",
+    "npm-publish:next": "lerna exec --no-private -- npm publish --access public --tag next",
+    "npm-publish:canary": "lerna exec --no-private -- npm publish --access public --tag canary"
   },
   "name": "velencymarketplace-main",
   "description": "��#\u0000 \u0000v\u0000e\u0000l\u0000e\u0000n\u0000c\u0000y\u0000s\u0000t\u0000o\u0000r\u0000e\u0000\r\u0000 \u0000",
