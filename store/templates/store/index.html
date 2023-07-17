@@ -52,14 +52,15 @@
                       </div>
                       <div class="dropdown-menu" aria-labelledby="userDropdown" id="userDropdownMenu">
                         <a class="dropdown-item" href="/my_profile">Мой профиль</a>
-                        <a class="dropdown-item" href="/logout"><b>Выйти</b></a>
+                        <a class="dropdown-item" id='logoutButton'><b>Выйти</b></a>
                       </div>
                     </div>                  
                   </li>
                 {% else %}
-                  <button id="wallet" type="button" class="enter"><a href="#">Connect</a></button>
+                  <button id="wallet" type="button" class="enter"><a>Connect</a></button>
+                {% endif %}  
               </ul>
-              {% endif %}                    
+                                
           </div>
           <!-- <div class="burger">
             <img src="{% static 'media/burgerr.svg'%}" alt="">
@@ -98,7 +99,7 @@
             <div class="pos">
               <div  class="circle" style="position: relative;"> <img src="{% static 'media/circle.png'%}" alt=""></div>
                 <div class="possibil" style="position: absolute;">
-                  <img src="{% static 'media/Group.svg'%}" alt="" style=" width: 130px;">
+                  <img src="{% static 'media/Group.svg'%}" alt="" style="">
                   <p class="title_mini">Покупай</p>
                   <p class="title_mini">за TVT токен</p>
                 </div>
@@ -109,7 +110,7 @@
             <div class="pos">
               <div  class="circle" style="position: relative;"> <img src="{% static 'media/circle.png'%}" alt=""></div>
                 <div class="possibil" style="position: absolute;">
-                  <img src="{% static 'media/43.svg'%}" alt="" style=" width: 130px;">
+                  <img src="{% static 'media/43.svg'%}" alt="" style=" ">
                   <p class="title_mini">Реализуй товары и услуги</p>
                   <p class="title_mini">на маркетплейсе</p>
                 </div>
@@ -122,7 +123,7 @@
             <div class="pos">
               <div  class="circle" style="position: relative;"> <img src="{% static 'media/circle.png'%}" alt=""></div>
                 <div class="possibil" style="position: absolute;">
-                  <img src="{% static 'media/Group3.svg'%}" alt="" style=" width: 130px;">
+                  <img src="{% static 'media/Group3.svg'%}" alt="" style=" ">
                   <p class="title_mini">Инвестируй в токен</p>
                   <p class="title_mini">и принимай решения</p>
                   <p class="title_mini">по проектам</p>
@@ -193,7 +194,7 @@
         
         <div class="right">
             <!-- <div  class="b_photo" style="position: relative;"> <img src="media/b.png" alt=""></div> -->
-            <img class="tree" src="{% static 'media/tree.png'%}" alt="" style="position: absolute;">
+            <img class="tree" src="{% static 'media/tree.png'%}" alt="" style="">
         </div>
 
       </div>
@@ -241,13 +242,13 @@
         <p class="title_min" style="text-align: center; margin-top: 50px;">Наша команда</p>
         <div class="cards">
             {% for member in team_members %}
-            <div class="possibility" style="display: flex; flex-direction: column; align-items: center; width: 400px;">
+            <div class="possibility" style="">
                 <div class="pos">
                     <div class="circle_photo" style="position: relative;">
                         <img src="{% static 'media/circle.png' %}" alt="">
                     </div>
-                    <div class="possibil" style="position: absolute;">
-                        <img src="{{ member.image.url }}" alt="" style="width: 200px; border-radius: 12px; cursor: pointer;">
+                    <div class="possibil_team" style="position: absolute;">
+                        <img src="{{ member.image.url }}" alt="" style=" border-radius: 12px; cursor: pointer;">
                         <p class="title_mini">{{ member.first_name }}</p>
                         <p class="title_mini">{{ member.last_name }}</p>
                     </div>
@@ -465,10 +466,10 @@
       import { Web3Modal } from 'https://unpkg.com/@web3modal/html'
     
       // Equivalent to importing from @wagmi/core
-      const { configureChains, createConfig, getAccount } = WagmiCore
+      const { configureChains, createConfig, getAccount  } = WagmiCore
     
       // Equivalent to importing from @wagmi/core/chains
-      const { mainnet, polygon, avalanche, arbitrum } = WagmiCoreChains
+      const { mainnet, polygon, avalanche, arbitrum,bsc } = WagmiCoreChains
     
       // Equivalent to importing from @wagmi/core/providers
       const { CoinbaseWalletConnector } = WagmiCoreConnectors
@@ -479,10 +480,10 @@
         }
     }    
 
-      const chains = [arbitrum, mainnet, polygon]
+      const chains = [arbitrum, mainnet, polygon,bsc]
       const projectId = '0b1e5c998294f163bf1af4d05e11e4c1'
 
-      const { publicClient } = configureChains(chains, [w3mProvider({ projectId })])
+      const { publicClient, connect, disconnect } = configureChains(chains, [w3mProvider({ projectId })]);  
       const wagmiConfig = createConfig({
         autoConnect: true,
         connectors: w3mConnectors({ projectId, chains }),
@@ -490,61 +491,76 @@
       })
       const ethereumClient = new EthereumClient(wagmiConfig, chains)
       const web3modal = new Web3Modal({ projectId }, ethereumClient)
-
+      {% if not user.is_authenticated %}
       document.getElementById('wallet').addEventListener('click', () => {
         web3modal.openModal()
-      })
-
+      });
       
-
-      
-      
-        
       document.getElementById("wallet").addEventListener("click", async () => {
         try {
           const account = await getAccount();
           console.log(account);
       
-          const csrfToken = Cookies.get("csrftoken")
-        
-            // Проверяем, подключен ли аккаунт
-            if (account.isConnected) {
-              const address = account.address;
-              const additionalInfo = "Дополнительная информация";
-        
-              // Создаем объект с данными
-              const data = { address, additionalInfo };
-        
-              // Создаем объект опций для запроса
-              const options = {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
-                  "X-CSRFToken": csrfToken, // Передаем токен CSRF в заголовке
-                },
-                body: JSON.stringify(data),
-              };
-        
-              // Отправляем запрос на сервер Django
-              const response = await fetch("/authenticate_wallet/", options);
-              const json = await response.json();
-        
-              if (json.success) {
-                window.location.href = "/my_profile"; // Перенаправляем на нужную страницу после успешного входа
-              } else {
-                console.error("Ошибка авторизации или регистрации:", json.error);
-              }
+          const csrfToken = Cookies.get("csrftoken");
+      
+          // Проверяем, подключен ли аккаунт
+          if (account.isConnected) {
+            const address = account.address;
+            const additionalInfo = "Дополнительная информация";
+      
+            // Создаем объект с данными
+            const data = { address, additionalInfo };
+      
+            // Создаем объект опций для запроса
+            const options = {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                "X-CSRFToken": csrfToken, // Передаем токен CSRF в заголовке
+              },
+              body: JSON.stringify(data),
+            };
+      
+            // Отправляем запрос на сервер Django
+            const response = await fetch("/authenticate_wallet/", options);
+            const json = await response.json();
+      
+            if (json.success) {
+              window.location.href = "/my_profile"; // Перенаправляем на нужную страницу после успешного входа
             } else {
-              console.error("Аккаунт не подключен.");
+              console.error("Ошибка авторизации или регистрации:", json.error);
             }
-          } catch (error) {
-            console.error("Ошибка авторизации через WalletConnect:", error);
+          } else {
+            console.error("Аккаунт не подключен.");
           }
-        });
-        
-      
+        } catch (error) {
+          console.error("Ошибка авторизации через WalletConnect:", error);
+        }
+      });
+      ethereumClient.on("accountsChanged", (accounts) => {
+        if (accounts.length > 0) {
+          // User is authenticated, redirect or update the page here
+          window.location.href = "/my_profile"; // Перенаправляем на нужную страницу после успешного входа
+        } else {
+          // User is disconnected, perform necessary actions if needed
+        }
+      });
+        {% else %}
+        const logoutButton = document.getElementById('logoutButton');
 
-      
+        // Add a click event listener to the logoutButton
+        logoutButton.addEventListener('click', handleLogout);
+        
+        // Define the logout handler function
+        function handleLogout() {
+          // Disconnect from the wallet connection (replace with the actual disconnect function)
+          disconnect();
+        
+          // Redirect to the /logout page
+          window.location.href = '/logout';
+        }
+
+        {% endif %}
     </script>
     
     <script src="{% static 'js/main2.js'%}" defer></script>

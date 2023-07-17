@@ -13,7 +13,7 @@ import { Web3Modal } from "https://unpkg.com/@web3modal/html";
 const { configureChains, createConfig, getAccount } = WagmiCore;
 
 // Equivalent to importing from @wagmi/core/chains
-const { mainnet, polygon, avalanche, arbitrum } = WagmiCoreChains;
+const { mainnet, bsc, polygon, avalanche, arbitrum } = WagmiCoreChains;
 
 // Equivalent to importing from @wagmi/core/providers
 const { CoinbaseWalletConnector } = WagmiCoreConnectors;

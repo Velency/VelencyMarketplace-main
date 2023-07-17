@@ -3,9 +3,6 @@ from . import views
 
 urlpatterns = [
     #log/reg pages
-    # path('login/', views.loginPage, name="loginPage"),
-    # path('accounts/login/',views.loginPage, name="loginPage"),
-    # path('register/', views.registerUser, name="reg"),
     path('logout/', views.logoutUser, name="logoutUser"),
     #product pages
     path('product-list/<int:category_id>', views.view_all, name="product-list"),
@@ -36,7 +33,7 @@ urlpatterns = [
  
     #main pages
     path('', views.index, name="index"),
-    path('index', views.index, name="index"),
+    path('index/', views.index, name="index"),
     path('store/', views.store, name="store"),
     path('cart/', views.cart, name="cart"),
     path('tariffs/packet_buy/', views.packet_buy, name="packet_buy"),
