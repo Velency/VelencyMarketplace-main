@@ -1,65 +1,35 @@
 {% extends 'store/media-packages.html' %} {% load static %} {% block content %}
 <script src="{% static 'js/script-packages.js' %}" defer></script>
 
-<p class="title_packages" id="myteam">Packages</p>
-
 <div>
-  <button
-    class="but subj"
-    type="button"
-    style="margin-bottom: 0px; margin-top: 0; margin-left: 30px"
-  >
+  <button class="but subj" type="button" style="margin-bottom: 0px; margin-top: 0; margin-left: 30px">
     <p class="subject">Пакет "Экономика"</p>
     <img class="row" src="{% static 'media/row.svg' %}" alt="" />
   </button>
 
-  <ul
-    class="dropdown-list3"
-    style="margin-bottom: 50px; margin-top: 20; margin-left: 30px"
-  >
-    <li class="dropdown-list-item" data-value="area" style="margin: 10px">
-      <a href="packages.html">Не экономика</a>
-    </li>
-    <li class="dropdown-list-item" data-value="packages" style="margin: 10px">
-      <a href="packages.html">Какой то еще пакет</a>
-    </li>
-    <li class="dropdown-list-item" data-value="settings" style="margin: 10px">
-      <a href="packages.html">Пакетик</a>
-    </li>
-    <li class="dropdown-list-item" data-value="exit" style="margin: 10px">
-      <a href="packages.html">Еще пакетик</a>
-    </li>
+  <ul class="dropdown-list3" style="margin-bottom: 50px; margin-top: 20; margin-left: 30px">
+    {% for category in categories %}
+      <li class="dropdown-list-item" data-value="{{ category }}" style="margin: 10px">
+        <a href="javascript:void(0);" onclick="selectCategory('{{ category }}')">{{ category }}</a>
+      </li>
+    {% endfor %}
   </ul>
 </div>
 
-
-
 <div class="packages" style="display: flex; justify-content: space-between; padding-left: 30px; padding-right: 30px; padding-top: 30px;">
   {% for package in packages %}
-    {% if package.is_main %}
-    <div class="package">
-      <p class="time_package">{{ package.header }}</p>
-      <div class="line_package"></div>
-      <p class="price_package">${{package.price_usd}} <br> {{ package.price_twt }} HRWT</p>
-      <p class="describe_package">{{ package.short_desc }}</p>
-      <button class="signin_packages" onclick="redirectToPayment({{ package.amount }})">
-        <p>Выбрать</p>
-      </button>
-    </div>
-    {% else %}
-    <div class="package_main">
+    <div class="package_main" data-category="{{ package.category }}">
       <p class="time_package_main">{{ package.header }}</p>
       <div class="line_package_main"></div>
       <p class="price_package_main">${{ package.price_usd }} <br> {{ package.price_twt }} HRWT</p>
       <p class="describe_package_main">{{ package.short_desc }}</p>
-      <button class="signin_packages_main" onclick="redirectToPayment({{ package.id }})" >
+      <button class="signin_packages_main" onclick="redirectToPayment({{ package.id }})">
         <p>Выбрать</p>
       </button>
     </div>
-    {% endif%}
   {% endfor %}
-  
 </div>
+
 
 </div>
 <script>
@@ -74,5 +44,26 @@
   }
 </script>
 
+<script>
+// Функция для отображения пакетов по выбранной категории
+function showPackagesByCategory(category) {
+  const allPackages = document.querySelectorAll(".package_main");
+  allPackages.forEach(package => {
+    if (category === "all" || package.dataset.category === category) {
+      package.style.display = "flex";
+    } else {
+      package.style.display = "none";
+    }
+  });
+}
+
+// Отслеживаем изменения в выбранной категории
+function selectCategory(category) {
+  showPackagesByCategory(category);
+}
+
+// Изначально отображаем все пакеты
+showPackagesByCategory("all");
+</script>
 
 {% endblock content %}

@@ -466,7 +466,7 @@
       import { Web3Modal } from 'https://unpkg.com/@web3modal/html'
     
       // Equivalent to importing from @wagmi/core
-      const { configureChains, createConfig, getAccount  } = WagmiCore
+      const { configureChains, createConfig, getAccount,disconnect   } = WagmiCore
     
       // Equivalent to importing from @wagmi/core/chains
       const { mainnet, polygon, avalanche, arbitrum,bsc } = WagmiCoreChains
@@ -483,7 +483,7 @@
       const chains = [arbitrum, mainnet, polygon,bsc]
       const projectId = '0b1e5c998294f163bf1af4d05e11e4c1'
 
-      const { publicClient, connect, disconnect } = configureChains(chains, [w3mProvider({ projectId })]);  
+      const { publicClient, connect } = configureChains(chains, [w3mProvider({ projectId })]);  
       const wagmiConfig = createConfig({
         autoConnect: true,
         connectors: w3mConnectors({ projectId, chains }),
@@ -492,9 +492,9 @@
       const ethereumClient = new EthereumClient(wagmiConfig, chains)
       const web3modal = new Web3Modal({ projectId }, ethereumClient)
       {% if not user.is_authenticated %}
-      document.getElementById('wallet').addEventListener('click', () => {
-        web3modal.openModal()
-      });
+      document.getElementById("wallet").addEventListener("click", () => {
+        web3modal.openModal();
+    });
       
       document.getElementById("wallet").addEventListener("click", async () => {
         try {
@@ -537,7 +537,7 @@
           console.error("Ошибка авторизации через WalletConnect:", error);
         }
       });
-      ethereumClient.on("accountsChanged", (accounts) => {
+      web3modal.ethereumProvider.on("accountsChanged", (accounts) => {
         if (accounts.length > 0) {
           // User is authenticated, redirect or update the page here
           window.location.href = "/my_profile"; // Перенаправляем на нужную страницу после успешного входа
@@ -551,15 +551,17 @@
         // Add a click event listener to the logoutButton
         logoutButton.addEventListener('click', handleLogout);
         
-        // Define the logout handler function
-        function handleLogout() {
-          // Disconnect from the wallet connection (replace with the actual disconnect function)
-          disconnect();
-        
-          // Redirect to the /logout page
-          window.location.href = '/logout';
+       // Define the logout handler function
+        async function handleLogout() {
+          try {
+            // Disconnect from the wallet connection
+            await disconnect();
+            // Redirect to the /logout page or any other desired action
+            window.location.href = '/logout';
+          } catch (error) {
+            console.error("Error disconnecting:", error);
+          }
         }
-
         {% endif %}
     </script>
     

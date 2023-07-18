@@ -18,7 +18,7 @@
   </head>
   <body class="body">
     <div class="buttonsmenu">
-      <a class="logo"   {% url 'index' %}">
+      <a class="logo" href="{% url 'index' %}">
         <img src="{% static 'media/logo.png' %}" />
       </a>
 
@@ -98,7 +98,10 @@
               </li>
               <li class="dropdown-list-item" data-value="exit">
                 <img src="{% static 'media/clock.png' %}" />
-                <a href="{% url 'schedule'%}">Schedule</a>
+                <a
+                  href="https://www.notion.so/Talentverse-df0a7fb38cc84dcbbb66488d77e84300"
+                  >Schedule</a
+                >
               </li>
               <li
                 class="dropdown-list-item"
@@ -121,7 +124,7 @@
   </body>
   <script>
     function goToStore() {
-      window.location.href = "{% url 'store' %}";
+      window.location.href = "{% url 'index' %}";
     }
   </script>
   <script type="module">

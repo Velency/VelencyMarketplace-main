@@ -247,7 +247,7 @@ def tariffs(request):
     cartItems = data['cartItems']
     order = data['order']
     items = data['items']
-    categories = Category.objects.all()
+    categories = packagesCat.objects.all()
     partners = Partnership.objects.all()
 
     # Получаем все пакеты из модели Packages

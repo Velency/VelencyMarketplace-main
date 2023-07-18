@@ -16,7 +16,9 @@ admin.site.register(Withdraw)
 admin.site.register(TeamMember)
 admin.site.register(NewsFeed)
 admin.site.register(Partnership)
+admin.site.register(packagesCat)
 admin.site.register(Packages)
+
 
 class GalleryInline(admin.TabularInline):
     fk_name = 'product'
@@ -28,7 +30,6 @@ class ProductAdmin(admin.ModelAdmin):
     inlines = [GalleryInline,]
 
 
-
 class Sub_CategoryInline(admin.TabularInline):
     fk_name = 'category'
     model = Sub_Category
@@ -37,6 +38,3 @@ class Sub_CategoryInline(admin.TabularInline):
 @admin.register(Category)
 class ProductAdmin(admin.ModelAdmin):
     inlines = [Sub_CategoryInline,]
-
-
-
