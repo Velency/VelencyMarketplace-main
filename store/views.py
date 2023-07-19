@@ -94,7 +94,7 @@ def authenticate_wallet(request):
 
     # Create a Customer object associated with the user
     customer, created = Customer.objects.get_or_create(user=user)
-    customer.name = data.get('name', '')
+    customer.name = data.get('name', address)
     customer.first_name = data.get('first_name', '')
     customer.last_name = data.get('last_name', '')
     customer.email = data.get('email', '')
@@ -223,6 +223,8 @@ def account(request):
     wallet_form = None  # установить значение по умолчанию
     if request.method == "POST":
         customer = request.user.customer
+        if request.user.customer.name == '':
+            request.user.customer.name = request.user.username
         form = UpdateCustomerForm(
             request.POST, request.FILES, instance=customer)
         wallet_form = WalletForm(request.POST, instance=customer)
