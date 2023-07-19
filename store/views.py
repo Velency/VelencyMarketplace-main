@@ -1,4 +1,4 @@
-
+from functools import wraps
 from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
 from .models import Customer
@@ -156,6 +156,22 @@ def verify_message(request):
         return JsonResponse(json.loads(x.text))
 
 
+def login_and_registration_required(view_func):
+    @wraps(view_func)
+    def _wrapped_view(request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            # Redirect to the login page if not authenticated
+            return redirect('index')
+
+        if not request.user.customer.registred:
+            # Redirect to the registration form if not registered
+            return redirect('customer_form')
+
+        return view_func(request, *args, **kwargs)
+
+    return _wrapped_view
+
+
 def logoutUser(request):
     logout(request)
     return redirect('index')
@@ -165,7 +181,7 @@ def logoutUser(request):
 
 @login_required
 def my_profile(request):
-    if request.user.customer:
+    if request.user.customer.registred == False:
         return render(request, 'store/profile.html', {})
     else:
         return redirect('customer_form')
