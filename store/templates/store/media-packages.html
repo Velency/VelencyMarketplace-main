@@ -68,7 +68,7 @@
                 src="{{ request.user.customer.image.url }}"
                 alt=""
               />
-              <p>{{ request.user.customer.name }}</p>
+              <p>Eth address: ...{{ user.username|slice:"-3:" }}</p>
               <img class="row" src="{% static 'media/row.svg' %}" alt="" />
             </button>
             <ul class="dropdown-list2">

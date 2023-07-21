@@ -155,21 +155,20 @@ def verify_message(request):
     else:
         return JsonResponse(json.loads(x.text))
 
+    def login_and_registration_required(view_func):
+        @wraps(view_func)
+        def _wrapped_view(request, *args, **kwargs):
+            if not request.user.is_authenticated:
+                # Redirect to the login page if not authenticated
+                return redirect('index')
 
-def login_and_registration_required(view_func):
-    @wraps(view_func)
-    def _wrapped_view(request, *args, **kwargs):
-        if not request.user.is_authenticated:
-            # Redirect to the login page if not authenticated
-            return redirect('index')
+            if not request.user.customer.registred:
+                # Redirect to the registration form if not registered
+                return redirect('customer_form')
 
-        if not request.user.customer.registred:
-            # Redirect to the registration form if not registered
-            return redirect('customer_form')
+            return view_func(request, *args, **kwargs)
 
-        return view_func(request, *args, **kwargs)
-
-    return _wrapped_view
+        return _wrapped_view
 
 
 def logoutUser(request):
@@ -181,7 +180,7 @@ def logoutUser(request):
 
 @login_required
 def my_profile(request):
-    if request.user.customer.registred == False:
+    if request.user.customer.registred:
         return render(request, 'store/profile.html', {})
     else:
         return redirect('customer_form')

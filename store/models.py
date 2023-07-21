@@ -73,7 +73,7 @@ class Customer(models.Model):
 
     def get_referrals(self):
         return Customer.objects.filter(referral_by=self)
-
+ 
 
 class Referral(models.Model):
     referrer = models.ForeignKey(

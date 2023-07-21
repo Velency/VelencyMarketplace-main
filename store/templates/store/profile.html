@@ -15,7 +15,9 @@
         <h1 class="textleft">Leader:</h1>
       </div>
       <div class="title">
-        <h1 class="textright">{{ request.user.customer.name}}</h1>
+        <h1 class="textright">
+          Eth address: ...{{ user.username|slice:"-3:" }}
+        </h1>
         <h1 class="textright">
           {{ request.user.customer.first_name}}
           {{request.user.customer.last_name}}

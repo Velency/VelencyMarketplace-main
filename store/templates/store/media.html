@@ -76,7 +76,9 @@
                 src="{{ request.user.customer.image.url }}"
                 alt=""
               />
-              <p class="button_drop">{{ request.user.customer.name }}</p>
+              <p class="button_drop">
+                Eth address: ...{{ user.username|slice:"-3:" }}
+              </p>
               <img
                 class="row button_drop"
                 src="{% static 'media/row.svg' %}"
