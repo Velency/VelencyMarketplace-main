@@ -1,5 +1,4 @@
 {% load static %} 
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -10,7 +9,6 @@
       href="{% static 'media/logo.png' %}"
       type="image/png"
     />
-    <meta name="viewport" content="width=device-width" />
     <link rel="stylesheet" href="{% static 'css/main2.css'%}" />
     <link rel="stylesheet" href="{% static 'css/main_dropdown.css'%}" />
     <link
@@ -20,35 +18,31 @@
     
   </head>
   <body class="body">
-    <nav class="navbar">
 
-      <div class="container">
+      <nav class="navbar">
 
-          <a href="index" class="navbar-brand"><img src="{% static 'media/telentvers.png'%}" alt=""></a>
+        <div class="container">
 
-          <div class="navbar-wrap">
-              <ul class="navbar-menu">
-                  <li><a href="#home" class="link">Главная <div style="width: 65px; height: 8px; background: #2CE8C2; box-shadow: 0px 0px 21px rgba(44, 232, 194, 0.35); border-radius: 0px 0px 5px 5px;"></div></a></li>
-                  <li><a href="#possibilities" class="link" >Возможности <div style="width: 110px; height: 8px; background: #2CE8C2; box-shadow: 0px 0px 21px rgba(44, 232, 194, 0.35); border-radius: 0px 0px 5px 5px;"></div></a></li>
-                  <li><a href="#abot" class="link">О нас <div style="width: 45px; height: 8px; background: #2CE8C2; box-shadow: 0px 0px 21px rgba(44, 232, 194, 0.35); border-radius: 0px 0px 5px 5px;"></div></a></li>
-                  <li><a href="#token" class="link">Токен <div style="width: 50px; height: 8px; background: #2CE8C2; box-shadow: 0px 0px 21px rgba(44, 232, 194, 0.35); border-radius: 0px 0px 5px 5px;"></div></a></li>
-                  <li><a href="#projects" class="link">Проекты <div style="width: 77px; height: 8px; background: #2CE8C2; box-shadow: 0px 0px 21px rgba(44, 232, 194, 0.35); border-radius: 0px 0px 5px 5px;"></div></a></li>
-                  <li><a href="#team" class="link">Команда <div style="width: 75px; height: 8px; background: #2CE8C2; box-shadow: 0px 0px 21px rgba(44, 232, 194, 0.35); border-radius: 0px 0px 5px 5px;"></div></a></li>
-                  <li><a href="#partners" class="link">Партнеры <div style="width: 83px; height: 8px; background: #2CE8C2; box-shadow: 0px 0px 21px rgba(44, 232, 194, 0.35); border-radius: 0px 0px 5px 5px;"></div></a></li>
-                  <li><a href="#contacts" class="link">Контакты <div style="width: 83px; height: 8px; background: #2CE8C2; box-shadow: 0px 0px 21px rgba(44, 232, 194, 0.35); border-radius: 0px 0px 5px 5px;"></div></a></li>
-                  {% if user.is_authenticated %}
+            <a href="#" class="navbar-brand"><img src="{% static 'media/telentvers.png'%}" alt=""></a>
+
+            <div class="navbar-wrap">
+                <ul class="navbar-menu">
+                    <li><a href="Home" class="link">Главная <div style="width: 65px; height: 8px; background: #2CE8C2; box-shadow: 0px 0px 21px rgba(44, 232, 194, 0.35); border-radius: 0px 0px 5px 5px;"></div></a></li>
+                    <li><a href="possibilities" class="link" >Возможности <div style="width: 110px; height: 8px; background: #2CE8C2; box-shadow: 0px 0px 21px rgba(44, 232, 194, 0.35); border-radius: 0px 0px 5px 5px;"></div></a></li>
+                    <li><a href="about" class="link">О нас <div style="width: 45px; height: 8px; background: #2CE8C2; box-shadow: 0px 0px 21px rgba(44, 232, 194, 0.35); border-radius: 0px 0px 5px 5px;"></div></a></li>
+                    <li><a href="token" class="link">Токен <div style="width: 50px; height: 8px; background: #2CE8C2; box-shadow: 0px 0px 21px rgba(44, 232, 194, 0.35); border-radius: 0px 0px 5px 5px;"></div></a></li>
+                    <li><a href="projects" class="link">Проекты <div style="width: 77px; height: 8px; background: #2CE8C2; box-shadow: 0px 0px 21px rgba(44, 232, 194, 0.35); border-radius: 0px 0px 5px 5px;"></div></a></li>
+                    <li><a href="team" class="link">Команда <div style="width: 75px; height: 8px; background: #2CE8C2; box-shadow: 0px 0px 21px rgba(44, 232, 194, 0.35); border-radius: 0px 0px 5px 5px;"></div></a></li>
+                    <li><a href="partners" class="link">Партнеры <div style="width: 83px; height: 8px; background: #2CE8C2; box-shadow: 0px 0px 21px rgba(44, 232, 194, 0.35); border-radius: 0px 0px 5px 5px;"></div></a></li>
+                    <li><a href="cotacts" class="link">Контакты <div style="width: 83px; height: 8px; background: #2CE8C2; box-shadow: 0px 0px 21px rgba(44, 232, 194, 0.35); border-radius: 0px 0px 5px 5px;"></div></a></li>
+                    {% if user.is_authenticated %}
                   <li>
                     <div class="dropdown">
                       <div class="dropdown-toggle" id="userDropdown" role="button" aria-haspopup="true" aria-expanded="false">
                         <a  href="#" >
                           Eth address: ...{{ user.username|slice:"-3:" }}
                         </a>
-                        <img class="row" src="{% static 'media/row.svg' %}" alt="" style="
-                          color: #232323;
-                          height: 15px;
-                          width: 15px;
-                          margin-left: 10px;
-                        " />
+                      
                       </div>
                       <div class="dropdown-menu" aria-labelledby="userDropdown" id="userDropdownMenu">
                         <a class="dropdown-item" href="/my_profile">Мой профиль</a>
@@ -59,18 +53,18 @@
                 {% else %}
                   <button id="wallet" type="button" class="enter"><a>Connect</a></button>
                 {% endif %}  
-              </ul>
-                                
-          </div>
-          <!-- <div class="burger">
-            <img src="{% static 'media/burgerr.svg'%}" alt="">
-          </div> -->
-      </div>        
-    </nav>
+            </div>
+
+            <div class="burger">
+              <img src="{% static 'media/burgerr.svg'%}" alt="">
+            </div>
+          
+        </div>
+       
+      </nav>
 
 
-
-      <div id="home" class="first">
+      <div class="first">
         
         <div class="left">
           <p class="title">TALENTVERSE</p>
@@ -80,7 +74,6 @@
         </div>
         
         <div class="right">
-          <div  class="b_photo" style="position: relative;"> <img src="{% static 'media/b.png'%}" alt=""></div>
           <img class="logo" src="{% static 'media/logo1.png'%}" alt="" style="position: absolute;">
         </div>
 
@@ -88,25 +81,27 @@
 
       <div class="line"></div>
 
-      <div id="possibilities" class="second">
+      <div class="second">
 
       <p class="title_min">Возможности на старте проекта</p>
       <p class="descr_min">Создавай внутреннюю экономику и становись партнёром проекта.</p>
 
         <div class="cards">
 
-          <div class="possibility" style="">
+          <div class="possibility" >
             <div class="pos">
               <div  class="circle" style="position: relative;"> <img src="{% static 'media/circle.png'%}" alt=""></div>
                 <div class="possibil" style="position: absolute;">
-                  <img src="{% static 'media/Group.svg'%}" alt="" style="">
+                  <img src="{% static 'media/Group.svg'%}" alt="" style=" ">
                   <p class="title_mini">Покупай</p>
                   <p class="title_mini">за TVT токен</p>
                 </div>
               </div>
               <p class="descr_mini">+25900 учеников, которые прошли обучение и зарабатывают уже сейчас</p>
             </div>
-          <div class="possibility" style="">
+
+
+          <div class="possibility" >
             <div class="pos">
               <div  class="circle" style="position: relative;"> <img src="{% static 'media/circle.png'%}" alt=""></div>
                 <div class="possibil" style="position: absolute;">
@@ -119,7 +114,7 @@
             </div>
 
 
-          <div class="possibility" style="">
+          <div class="possibility" >
             <div class="pos">
               <div  class="circle" style="position: relative;"> <img src="{% static 'media/circle.png'%}" alt=""></div>
                 <div class="possibil" style="position: absolute;">
@@ -140,12 +135,12 @@
 
 
 
-{% comment %} 
-      <div class="second">
+
+      <!-- <div class="second">
 
         <div class="cards">
 
-          <div class="possibility" style="display: flex; flex-direction: column; align-items: center; width: 400px;">
+          <div class="possibility" >
             <div class="pos">
               <div  class="b_photo" style="position: relative;"> <img src="{% static 'media/b.png'%}" alt=""></div>
                 <div class="possibil" style="position: absolute;  width: 400px;">
@@ -179,22 +174,22 @@
       </div>
 
 
-      <div class="line"></div> {% endcomment %}
+      <div class="line"></div> -->
 
 
 
 
-      <div id="about" class="third">
+      <div class="third">
         
         <div class="left">
           <p class="title">О НАС</p>
           <p class="description">TALENTVERS – это децентрализованная коммерческая "Метавселенная", которая помогает найти и развить таланты пользователей, а также зарабатывать на них, создавая свою экосистему. В том числе это возможность для оффлайн - организаций перейти в онлайн.</p>
-          <button class="know_button"><a href="#">Узнать больше</a></button>
+          <button class="know_button"><a href="about">Узнать больше</a></button>
         </div>
         
         <div class="right nonee">
-            <!-- <div  class="b_photo" style="position: relative;"> <img src="media/b.png" alt=""></div> -->
-            <img class="tree" src="{% static 'media/tree.png'%}" alt="" style="">
+          <!-- <div  class="b_photo" style="position: relative;"> <img src="{% static 'media/b.png'%}" alt=""></div> -->
+          <img class="tree" src="{% static 'media/tree.png'%}" alt="" >
         </div>
 
       </div>
@@ -212,11 +207,12 @@
         <div class="rright">
           <p class="title-right">Стань участником академии HR World!</p>
           <p class="description-right">Раскрой в себе свои навыки, таланты и мастерство с нашей академией. Если ты не знаешь, с чего начать свой путь, боишься сделать первый шаг или просто испытываешь духовное, материальное выгорание, то тебе к нам. Становись учеником нашей академии и раскрывайся в команде экспертов и своих единомышленнив. Создавай себя и свои проекты!</p>
-            <div style=""> <button class="token_button"><a href="#">Купить токен сейчас</a></button></div>
+            <div > <button class="token_button"><a href="#">Купить токен сейчас</a></button></div>
             
         </div>
 
       </div>
+
 
 
 
@@ -226,53 +222,55 @@
           <div class="slider-nav">
             <div class="slider-items">
               <div class="item">
-                <a href="https://www.youtube.com/@hrworld6630">
                 <img src="{% static 'media/wrap.png'%}" alt="">
-              </a>
+              </div>
+              <div class="item">
+                <img src="{% static 'media/wrap.png'%}" alt="">
+              </div>
+              <div class="item">
+                <img src="{% static 'media/wrap.png'%}" alt="">
+              </div>
+              <div class="item">
+                <img src="{% static 'media/wrap.png'%}" alt="">
+              </div>
+              <div class="item">
+                <img src="{% static 'media/wrap.png'%}" alt="">
               </div>
             </div>
           </div>
         </div>
       </div>
-      
 
 
+      <div class="second_team">
 
-      <div class="second_team" id="team">
-        <p class="title_min" style="">Наша команда</p>
-        <div class="cards">
+        <p class="title_min" >Наша команда</p>
+  
+          <div class="cards">
             {% for member in team_members %}
-            <div class="team_name" style="">
-                <div class="pos">
-                    <div class="circle_photo" style="">
-                        <img src="{% static 'media/circle.png' %}" alt="">
-                    </div>
-                    <div class="possibil_team" style="position: absolute;">
-                        <img src="{{ member.image.url }}" alt="" style=" border-radius: 12px; cursor: pointer;">
-                        <p class="title_mini">{{ member.first_name }}</p>
-                        <p class="title_mini">{{ member.last_name }}</p>
-                    </div>
+            <div class="team_name" >
+              <div class="pos">
+                <div  class="circle_photo"> <img src="{% static 'media/circle.png'%}" alt="">
                 </div>
+                <div class="possibil_team" >
+                   <img src="{{ member.image.url }}" alt="" style="  border-radius: 12px; cursor: pointer;">
+                   <p class="title_mini">{{ member.first_name }}</p>
+                   <p class="title_mini">{{ member.last_name }}</p>
+                </div>
+              </div>
             </div>
             {% endfor %}
+          </div>
         </div>
-    </div>
-    
-    
   
-        <div id="projects" class="fifth" style="padding-top: 40px;">
+        <div class="fifth" style="padding-top: 40px;">
           <p class="title_min" style="text-align: center;">Наши проекты</p>
           <div class="forscroll" style="display: flex; align-items: center; justify-content: center">
-  
-            {% comment %} <button id="left" class="scrollbutton">
-                    <img src="{% static 'media/rowleft.svg'%}">
-            </button> {% endcomment %}
-            {% comment %} <div class="wrapper forpackages"> {% endcomment %}
           
               <div class="our_projects">
                   
                   <div class="packages_slider">
-                    <img src="{% static 'media/main1.svg'%}" >
+                    <img src="{% static 'media/main1.svg'%}">
                     <div>
                       <p class="title_mini">VALENCY STORE</p>
                       <p class="describe_main">Какой то текст от Никиты про маркетплейс </p>
@@ -282,7 +280,7 @@
 
 
                   <div class="packages_slider">
-                    <img src="{% static 'media/main3.svg'%}" >
+                    <img src="{% static 'media/main3.svg'%}">
                     <div>
                       <p class="title_mini">Издательский центр</p>
                       <p class="describe_main">Какой то текст от Никиты про ищдательский центр</p>
@@ -292,82 +290,75 @@
 
 
                   <div class="packages_slider">
-                    <img src="{% static 'media/main3.svg'%}" >
+                    <img src="{% static 'media/main2.svg'%}">
                     <div>
-                      <p class="title_mini">Академия HR World</p>
-                      <p class="describe_main">Создавай внутреннюю экономику и увеличивай доходность с помощью биржи! </p>
+                      <p class="title_mini">Академия "Talentverse"</p>
+                      <p class="describe_main">Какой то текст от Никиты про академию</p>
                     </div>  
                     <button class="know_button"><a href="#">Узнать больше</a></button>
                   </div>
 
 
-                  {% comment %} <div class="packages_slider">
-                    <img src="{% static 'media/main4.svg'%}" alt="" style="width: 130px; height: 130px;">
-                    <div>
-                      <p class="title_mini">3D моделирование AR и VR </p>
-                      <p class="describe_main">Создавай внутреннюю экономику и увеличивай доходность с помощью биржи! </p>
-                    </div>  
-                    <button class="know_button"><a href="#">Узнать больше</a></button>
-                  </div>                  {% endcomment %}
+        
+  
+                  
+                 
+                  
               </div>
   
              
           </div>
-           {% comment %} <button id="right" class="scrollbutton">
+           <!-- <button id="right" class="scrollbutton">
                 <img src="{% static 'media/rowright.svg'%}">
-          </button> {% endcomment %}
+          </button> -->
           </div>
 
         </div>
 
        
 
-        <div id="partners" class="second">
+        <div class="second">
 
-          <p class="title_min" style="text-align: center; margin-top: 50px;">Партнеры</p>
-  
+          <p class="title_min">Партнеры</p>
+
           <div class="cards">
   
-            <div class="team_name" style="">
+            <div class="team_name">
               <div class="pos">
-                <div  class="b_photo" style="position: relative;"> <img src="{% static 'media/b.png'%}" alt=""></div>
-                  <div class="possibil" style="position: absolute;">
-                    <img src="{% static 'media/heart.svg'%}" alt="" style=" width: 200px; border-radius: 12px; cursor: pointer;">
-                    <p class="title_mini">Благотворительный</p>
-                    <p class="title_mini">фонд “Созидание”</p>
+                <div  class="circle_photo" style="position: relative;"> <img src="{% static 'media/circle.png'%}" alt=""></div>
+                  <div class="possibil_team" >
+                    <img src="{% static 'media/soz.jpeg'%}" alt="" style=" border-radius: 12px; cursor: pointer;">
+                    <p class="title_mini">Благотворительный фоннд</p>
+                    <p class="title_mini">"Созидание"</p>
                   </div>
                 </div>
               </div>
   
   
-              <div class="team_name" style="">
+              <div class="team_name">
                 <div class="pos">
-                  <div  class="b_photo" style="position: relative;"> <img src="{% static 'media/b.png'%}" alt=""></div>
-                    <div class="possibil" style="position: absolute;">
-                      <img src="{% static 'media/heart.svg'%}" alt="" style=" width: 200px; border-radius: 12px; cursor: pointer;">
-                      <p class="title_mini">Благотворительный</p>
-                      <p class="title_mini">фонд “Созидание”</p>
+                  <div  class="circle_photo" style="position: relative;"> <img src="{% static 'media/circle.png'%}" alt=""></div>
+                    <div class="possibil_team" >
+                      <img src="{% static 'media/kid.jpeg'%}" alt="" style="border-radius: 12px; cursor: pointer;">
+                      <p class="title_mini">Детское образовательное комьюнити</p>
+                      <p class="title_mini">"Kid to kid"</p>
                     </div>
                   </div>
                 </div>
   
-
-                <div class="team_name" style="display: flex; flex-direction: column; align-items: center; width: 400px;">
+  
+                <div class="team_name">
                   <div class="pos">
-                    <div  class="b_photo" style="position: relative;"> <img src="{% static 'media/b.png'%}" alt=""></div>
-                      <div class="possibil" style="position: absolute;">
-                        <img src="{% static 'media/heart.svg'%}" alt="" style=" width: 200px; border-radius: 12px; cursor: pointer;">
-                        <p class="title_mini">Благотворительный</p>
-                        <p class="title_mini">фонд “Созидание”</p>
+                    <div  class="circle_photo" style="position: relative;"> <img src="{% static 'media/circle.png'%}" alt=""></div>
+                      <div class="possibil_team" >
+                        <img src="{% static 'media/Me.jpeg'%}" alt="" style=" border-radius: 12px; cursor: pointer;">
+                        <p class="title_mini">Yurii</p>
+                        <p class="title_mini">Starikh</p>
                       </div>
                     </div>
                   </div>
-                </div>
+          </div>
         </div>
-
-
-        <div class="line"></div>
-
 
         <div class="forms" >
         
@@ -383,7 +374,7 @@
               <input type="text" placeholder="Subject">
             </div>
             <div style="display: flex; flex-direction: column;">
-              <textarea name="" id="" cols="30" rows="10" placeholder="Message"></textarea>
+              <textarea name="" id=""  placeholder="Message"></textarea>
               <button class="enter" style="margin: 0; margin-top: 30px;"><a href="#">Отправить</a></button>
             </div>
 
@@ -393,20 +384,25 @@
           <div class="right_map">
             <img class="tree" src="{% static 'media/map.png'%}" alt="">
           </div>
+
+  
         </div>
+
+
+
         <div class="line"></div>
 
 
-        <div id="contacts" class="contacts">
+        <div class="contacts">
 
           <div class="footer_first">
             <a href="#" class="brand"><img src="{% static 'media/telentvers.png'%}" alt=""></a>
             <p class="description-footer">TALENTVERS – это децентрализованная коммерческая "Метавселенная", которая помогает найти и развить таланты пользователей, а также зарабатывать на них, создавая свою экосистему. В том числе это возможность для оффлайн - организаций перейти в онлайн.</p>
             <div style="display: flex; flex-direction: row;">
-              <img src="{% static 'media/face.svg'%}" class="networks" >
-              <img src="{% static 'media/inst.svg'%}" class="networks" >
-              <img src="{% static 'media/face.svg'%}" class="networks" >
-              <img src="{% static 'media/inst.svg'%}" class="networks" >
+              <img class="networks" src="{% static 'media/face.svg'%}">
+              <img class="networks" src="{% static 'media/inst.svg'%}">
+              <img class="networks" src="{% static 'media/face.svg'%}">
+              <img class="networks" src="{% static 'media/inst.svg'%}">
             </div>
           </div>
 
@@ -431,143 +427,140 @@
           <div class="footer_forth">
             <p class="title-footer">Контакты</p>
             <p class="description-footer">Телефон: 
-              +995 568 836 179 </p> 
-              <p class="description-footer">Почта: hrworld48@gmail.com</p>
-              <p class="description-footer">Адрес: Kobaladze 8a, Georgia, 6000, GE</p>
-            </div>
-            <div class="footer_fifth">
-              <p class="title-footer">Помощь</p>
-              <a href="#" class="description-footer">Связаться с нами</a>
-              <a href="#" class="description-footer">FAQ</a>
-            </div>
+              +995 568 836 179</p>
+            <p class="description-footer">Почта: hrworld48@gmail.com</p>
+            <p class="description-footer">Адрес: Kobaladze 8a, Georgia, 6000, GE</p>
+          </div>
+
+          <div class="footer_fifth">
+            <p class="title-footer">Помощь</p>
+            <a href="#" class="description-footer">Связаться с нами</a>
+            <a href="#" class="description-footer">FAQ</a>
+          </div>
+
+          
           
 
         </div>
 
-
-
-    <!-- ========================= scroll-top ========================= -->
-    <a href="#" class="scroll-top">
-      <i class="lni lni-chevron-up"></i>
-    </a>
-    <script src="https://unpkg.com/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
+        <script src="https://unpkg.com/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
 
     
-    <script type="module" >
-      import {
-        EthereumClient,
-        w3mConnectors,
-        w3mProvider,
-        WagmiCore,
-        WagmiCoreChains,
-        WagmiCoreConnectors
-      } from 'https://unpkg.com/@web3modal/ethereum'
+        <script type="module" >
+          import {
+            EthereumClient,
+            w3mConnectors,
+            w3mProvider,
+            WagmiCore,
+            WagmiCoreChains,
+            WagmiCoreConnectors
+          } from 'https://unpkg.com/@web3modal/ethereum'
+        
+          import { Web3Modal } from 'https://unpkg.com/@web3modal/html'
+        
+          // Equivalent to importing from @wagmi/core
+          const { configureChains, createConfig, getAccount,disconnect   } = WagmiCore
+        
+          // Equivalent to importing from @wagmi/core/chains
+          const { mainnet, polygon, avalanche, arbitrum,bsc } = WagmiCoreChains
+        
+          // Equivalent to importing from @wagmi/core/providers
+          const { CoinbaseWalletConnector } = WagmiCoreConnectors
     
-      import { Web3Modal } from 'https://unpkg.com/@web3modal/html'
+          window.process = {
+            env: {
+                NODE_ENV: 'development'
+            }
+        }    
     
-      // Equivalent to importing from @wagmi/core
-      const { configureChains, createConfig, getAccount,disconnect   } = WagmiCore
+          const chains = [arbitrum, mainnet, polygon,bsc]
+          const projectId = '0b1e5c998294f163bf1af4d05e11e4c1'
     
-      // Equivalent to importing from @wagmi/core/chains
-      const { mainnet, polygon, avalanche, arbitrum,bsc } = WagmiCoreChains
-    
-      // Equivalent to importing from @wagmi/core/providers
-      const { CoinbaseWalletConnector } = WagmiCoreConnectors
-
-      window.process = {
-        env: {
-            NODE_ENV: 'development'
-        }
-    }    
-
-      const chains = [arbitrum, mainnet, polygon,bsc]
-      const projectId = '0b1e5c998294f163bf1af4d05e11e4c1'
-
-      const { publicClient, connect } = configureChains(chains, [w3mProvider({ projectId })]);  
-      const wagmiConfig = createConfig({
-        autoConnect: true,
-        connectors: w3mConnectors({ projectId, chains }),
-        publicClient
-      })
-      const ethereumClient = new EthereumClient(wagmiConfig, chains)
-      const web3modal = new Web3Modal({ projectId }, ethereumClient)
-      {% if not user.is_authenticated %}
-      document.getElementById("wallet").addEventListener("click", () => {
-        web3modal.openModal();
-    });
-      
-      document.getElementById("wallet").addEventListener("click", async () => {
-        try {
-          const account = await getAccount();
-          console.log(account);
-      
-          const csrfToken = Cookies.get("csrftoken");
-      
-          // Проверяем, подключен ли аккаунт
-          if (account.isConnected) {
-            const address = account.address;
-            const additionalInfo = "Дополнительная информация";
-      
-            // Создаем объект с данными
-            const data = { address, additionalInfo };
-      
-            // Создаем объект опций для запроса
-            const options = {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-                "X-CSRFToken": csrfToken, // Передаем токен CSRF в заголовке
-              },
-              body: JSON.stringify(data),
-            };
-      
-            // Отправляем запрос на сервер Django
-            const response = await fetch("/authenticate_wallet/", options);
-            const json = await response.json();
-      
-            if (json.success) {
+          const { publicClient, connect } = configureChains(chains, [w3mProvider({ projectId })]);  
+          const wagmiConfig = createConfig({
+            autoConnect: true,
+            connectors: w3mConnectors({ projectId, chains }),
+            publicClient
+          })
+          const ethereumClient = new EthereumClient(wagmiConfig, chains)
+          const web3modal = new Web3Modal({ projectId }, ethereumClient)
+          {% if not user.is_authenticated %}
+          document.getElementById("wallet").addEventListener("click", () => {
+            web3modal.openModal();
+        });
+          
+          document.getElementById("wallet").addEventListener("click", async () => {
+            try {
+              const account = await getAccount();
+              console.log(account);
+          
+              const csrfToken = Cookies.get("csrftoken");
+          
+              // Проверяем, подключен ли аккаунт
+              if (account.isConnected) {
+                const address = account.address;
+                const additionalInfo = "Дополнительная информация";
+          
+                // Создаем объект с данными
+                const data = { address, additionalInfo };
+          
+                // Создаем объект опций для запроса
+                const options = {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRFToken": csrfToken, // Передаем токен CSRF в заголовке
+                  },
+                  body: JSON.stringify(data),
+                };
+          
+                // Отправляем запрос на сервер Django
+                const response = await fetch("/authenticate_wallet/", options);
+                const json = await response.json();
+          
+                if (json.success) {
+                  window.location.href = "/profile"; // Перенаправляем на нужную страницу после успешного входа
+                } else {
+                  console.error("Ошибка авторизации или регистрации:", json.error);
+                }
+              } else {
+                console.error("Аккаунт не подключен.");
+              }
+            } catch (error) {
+              console.error("Ошибка авторизации через WalletConnect:", error);
+            }
+          });
+          web3modal.ethereumProvider.on("accountsChanged", (accounts) => {
+            if (accounts.length > 0) {
+              // User is authenticated, redirect or update the page here
               window.location.href = "/profile"; // Перенаправляем на нужную страницу после успешного входа
             } else {
-              console.error("Ошибка авторизации или регистрации:", json.error);
+              // User is disconnected, perform necessary actions if needed
             }
-          } else {
-            console.error("Аккаунт не подключен.");
-          }
-        } catch (error) {
-          console.error("Ошибка авторизации через WalletConnect:", error);
-        }
-      });
-      web3modal.ethereumProvider.on("accountsChanged", (accounts) => {
-        if (accounts.length > 0) {
-          // User is authenticated, redirect or update the page here
-          window.location.href = "/profile"; // Перенаправляем на нужную страницу после успешного входа
-        } else {
-          // User is disconnected, perform necessary actions if needed
-        }
-      });
-        {% else %}
-        const logoutButton = document.getElementById('logoutButton');
-
-        // Add a click event listener to the logoutButton
-        logoutButton.addEventListener('click', handleLogout);
+          });
+            {% else %}
+            const logoutButton = document.getElementById('logoutButton');
+    
+            // Add a click event listener to the logoutButton
+            logoutButton.addEventListener('click', handleLogout);
+            
+           // Define the logout handler function
+            async function handleLogout() {
+              try {
+                // Disconnect from the wallet connection
+                await disconnect();
+                // Redirect to the /logout page or any other desired action
+                window.location.href = '/logout';
+              } catch (error) {
+                console.error("Error disconnecting:", error);
+              }
+            }
+            {% endif %}
+        </script>
         
-       // Define the logout handler function
-        async function handleLogout() {
-          try {
-            // Disconnect from the wallet connection
-            await disconnect();
-            // Redirect to the /logout page or any other desired action
-            window.location.href = '/logout';
-          } catch (error) {
-            console.error("Error disconnecting:", error);
-          }
-        }
-        {% endif %}
-    </script>
-    
-    <script src="{% static 'js/main2.js'%}" defer></script>
-    
-  
-  
+        <script src="{% static 'js/main2.js'%}" defer></script>
+        
+      
+
   </body>
 </html>
