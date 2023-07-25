@@ -53,16 +53,47 @@
                 {% else %}
                   <button id="wallet" type="button" class="enter"><a>Connect</a></button>
                 {% endif %}  
-            </div>
+            
 
-            <div class="burger">
-              <img src="{% static 'media/burgerr.svg'%}" alt="">
-            </div>
+                <div class="navbar-responsive">
+                  <ul class="navbar-menu-responsive">
+                    <li><a href="Home" class="link">Главная</a></li>
+                    <li><a href="possibilities" class="link">Возможности</a></li>
+                    <li><a href="about" class="link">О нас</a></li>
+                    <li><a href="token" class="link">Токен</a></li>
+                    <li><a href="projects" class="link">Проекты</a></li>
+                    <li><a href="team" class="link">Команда</a></li>
+                    <li><a href="partners" class="link">Партнеры</a></li>
+                    <li><a href="cotacts" class="link">Контакты</a></li>
+                    {% if user.is_authenticated %}
+                    <li>
+                      <div class="dropdown">
+                        <div class="dropdown-toggle" id="userDropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                          <a href="#">
+                            Eth address: ...{{ user.username|slice:"-3:" }}
+                          </a>
+                        </div>
+                        <div class="dropdown-menu" aria-labelledby="userDropdown" id="userDropdownMenu">
+                          <a class="dropdown-item" href="/my_profile">Мой профиль</a>
+                          <a class="dropdown-item" id='logoutButton'><b>Выйти</b></a>
+                        </div>
+                      </div>
+                    </li>
+                    {% else %}
+                    <li>
+                      <button id="wallet" type="button" class="enter"><a>Connect</a></button>
+                    </li>
+                    {% endif %}
+                  </ul>
           
-        </div>
-       
+                 
+                </div>
+          
+                <div class="burger">
+                  <img src="{% static 'media/burgerr.svg'%}" alt="">
+                </div>    
       </nav>
-
+      
 
       <div class="first">
         
@@ -560,7 +591,47 @@
         
         <script src="{% static 'js/main2.js'%}" defer></script>
         
-      
+      <style>
+       
+.navbar-responsive {
+  display: none;
+}
+
+.navbar-menu-responsive {
+  list-style-type: none;
+  padding: 0;
+}
+
+.navbar-menu-responsive li {
+  text-align: center;
+  padding: 10px;
+}
+
+.navbar-menu-responsive li a {
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 30px;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+
+      </style>
+
+      <script>
+                // Ваш JavaScript код
+        const burger = document.querySelector('.burger');
+        const navbarMenu = document.querySelector('.navbar-menu');
+        const navbarResponsive = document.querySelector('.navbar-responsive');
+
+        // Обработчик события для открытия/закрытия меню при нажатии на иконку "Burger"
+        burger.addEventListener('click', () => {
+          navbarMenu.classList.toggle('active'); // Добавляем/удаляем класс для основного меню
+          navbarResponsive.classList.toggle('active'); // Добавляем/удаляем класс для альтернативного меню
+        });
+      </script>
 
   </body>
 </html>
