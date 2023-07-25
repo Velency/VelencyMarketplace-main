@@ -68,7 +68,9 @@
                 src="{{ request.user.customer.image.url }}"
                 alt=""
               />
-              <p>Eth address: ...{{ user.username|slice:"-3:" }}</p>
+              <p class="button_drop">
+                Eth address: ...{{ user.username|slice:"-3:" }}
+              </p>
               <img class="row" src="{% static 'media/row.svg' %}" alt="" />
             </button>
             <ul class="dropdown-list2">
@@ -92,7 +94,7 @@
               </li>
               <li class="dropdown-list-item" data-value="exit">
                 <img src="{% static 'media/exit.png' %}" />
-                <a href="{% url 'logout' %}">Exit</a>
+                <a id="logoutButton">Exit</a>
               </li>
             </ul>
           </div>

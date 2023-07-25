@@ -91,16 +91,15 @@ def authenticate_wallet(request):
     except User.DoesNotExist:
         # Create a new user account
         user = User.objects.create_user(username=address)
-
-    # Create a Customer object associated with the user
-    customer, created = Customer.objects.get_or_create(user=user)
-    customer.name = data.get('name', address)
-    customer.first_name = data.get('first_name', '')
-    customer.last_name = data.get('last_name', '')
-    customer.email = data.get('email', '')
-    customer.mobile = data.get('mobile', '')
-    # Save the Customer object
-    customer.save()
+        # Create a Customer object associated with the user
+        customer, created = Customer.objects.get_or_create(user=user)
+        customer.name = data.get('name', address)
+        customer.first_name = data.get('first_name', '')
+        customer.last_name = data.get('last_name', '')
+        customer.email = data.get('email', '')
+        customer.mobile = data.get('mobile', '')
+        # Save the Customer object
+        customer.save()
 
     # Log in the user
     login(request, user)
@@ -108,67 +107,20 @@ def authenticate_wallet(request):
     return JsonResponse({'success': True})
 
 
-def verify_message(request):
-    data = json.loads(request.body)
-    print(data)
+def login_and_registration_required(view_func):
+    @wraps(view_func)
+    def _wrapped_view(request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            # Redirect to the login page if not authenticated
+            return redirect('index')
 
-    REQUEST_URL = 'https://authapi.moralis.io/challenge/verify/evm'
-    x = requests.post(
-        REQUEST_URL,
-        json=data,
-        headers={'X-API-KEY': API_KEY})
-    print(json.loads(x.text))
-    print(x.status_code)
+        if not request.user.customer.registred:
+            # Redirect to the registration form if not registered
+            return redirect('customer_form')
 
-    user = None  # assign a default value to user
+        return view_func(request, *args, **kwargs)
 
-    if x.status_code == 201:
-        # user can authenticate
-        eth_address = json.loads(x.text).get('address')
-        print("eth address", eth_address)
-        try:
-            user = User.objects.get(username=eth_address)
-        except User.DoesNotExist:
-            user = User(username=eth_address)
-            user.is_staff = False
-            user.is_superuser = False
-            user.save()
-
-            # create a new customer instance with the user
-            customer_data = {'user': user, 'wallet': eth_address}
-            if 'first_name' in data:
-                customer_data['first_name'] = data['first_name']
-            else:
-                customer_data['first_name'] = 'New user'
-            customer = Customer.objects.create(**customer_data)
-
-        if user is not None:
-            if user.is_active:
-                login(request, user)
-                request.session['auth_info'] = data
-                request.session['verified_data'] = json.loads(x.text)
-                # сохраняем id пользователя в сессию
-                request.session['user_id'] = user.id
-                return JsonResponse({'user': user.username})
-            else:
-                return JsonResponse({'error': 'account disabled'})
-    else:
-        return JsonResponse(json.loads(x.text))
-
-    def login_and_registration_required(view_func):
-        @wraps(view_func)
-        def _wrapped_view(request, *args, **kwargs):
-            if not request.user.is_authenticated:
-                # Redirect to the login page if not authenticated
-                return redirect('index')
-
-            if not request.user.customer.registred:
-                # Redirect to the registration form if not registered
-                return redirect('customer_form')
-
-            return view_func(request, *args, **kwargs)
-
-        return _wrapped_view
+    return _wrapped_view
 
 
 def logoutUser(request):
@@ -183,7 +135,7 @@ def my_profile(request):
     if request.user.customer.registred:
         return render(request, 'store/profile.html', {})
     else:
-        return redirect('customer_form')
+        return redirect('account')
 
 
 @login_required
