@@ -19,86 +19,94 @@
   </head>
   <body class="body">
 
-      <nav class="navbar">
+    <nav class="navbar">
 
-        <div class="container">
-
-            <a href="#" class="navbar-brand"><img src="{% static 'media/telentvers.png'%}" alt=""></a>
-
-            <div class="navbar-wrap">
-                <ul class="navbar-menu">
-                    <li><a href="Home" class="link">Главная <div style="width: 65px; height: 8px; background: #2CE8C2; box-shadow: 0px 0px 21px rgba(44, 232, 194, 0.35); border-radius: 0px 0px 5px 5px;"></div></a></li>
-                    <li><a href="possibilities" class="link" >Возможности <div style="width: 110px; height: 8px; background: #2CE8C2; box-shadow: 0px 0px 21px rgba(44, 232, 194, 0.35); border-radius: 0px 0px 5px 5px;"></div></a></li>
-                    <li><a href="about" class="link">О нас <div style="width: 45px; height: 8px; background: #2CE8C2; box-shadow: 0px 0px 21px rgba(44, 232, 194, 0.35); border-radius: 0px 0px 5px 5px;"></div></a></li>
-                    <li><a href="token" class="link">Токен <div style="width: 50px; height: 8px; background: #2CE8C2; box-shadow: 0px 0px 21px rgba(44, 232, 194, 0.35); border-radius: 0px 0px 5px 5px;"></div></a></li>
-                    <li><a href="projects" class="link">Проекты <div style="width: 77px; height: 8px; background: #2CE8C2; box-shadow: 0px 0px 21px rgba(44, 232, 194, 0.35); border-radius: 0px 0px 5px 5px;"></div></a></li>
-                    <li><a href="team" class="link">Команда <div style="width: 75px; height: 8px; background: #2CE8C2; box-shadow: 0px 0px 21px rgba(44, 232, 194, 0.35); border-radius: 0px 0px 5px 5px;"></div></a></li>
-                    <li><a href="partners" class="link">Партнеры <div style="width: 83px; height: 8px; background: #2CE8C2; box-shadow: 0px 0px 21px rgba(44, 232, 194, 0.35); border-radius: 0px 0px 5px 5px;"></div></a></li>
-                    <li><a href="cotacts" class="link">Контакты <div style="width: 83px; height: 8px; background: #2CE8C2; box-shadow: 0px 0px 21px rgba(44, 232, 194, 0.35); border-radius: 0px 0px 5px 5px;"></div></a></li>
-                    {% if user.is_authenticated %}
-                  <li>
-                    <div class="dropdown">
-                      <div class="dropdown-toggle" id="userDropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                        <a  href="#" >
-                          Eth address: ...{{ user.username|slice:"-3:" }}
-                        </a>
-                      
-                      </div>
-                      <div class="dropdown-menu" aria-labelledby="userDropdown" id="userDropdownMenu">
-                        <a class="dropdown-item" href="/my_profile">Мой профиль</a>
-                        <a class="dropdown-item" id='logoutButton'><b>Выйти</b></a>
-                      </div>
-                    </div>                  
-                  </li>
-                {% else %}
-                  <button id="wallet" type="button" class="enter"><a>Connect</a></button>
-                {% endif %}  
-            
-
-                <div class="navbar-responsive">
-                  <ul class="navbar-menu-responsive">
-                    <li><a href="Home" class="link">Главная</a></li>
-                    <li><a href="possibilities" class="link">Возможности</a></li>
-                    <li><a href="about" class="link">О нас</a></li>
-                    <li><a href="token" class="link">Токен</a></li>
-                    <li><a href="projects" class="link">Проекты</a></li>
-                    <li><a href="team" class="link">Команда</a></li>
-                    <li><a href="partners" class="link">Партнеры</a></li>
-                    <li><a href="cotacts" class="link">Контакты</a></li>
-                    {% if user.is_authenticated %}
-                    <li>
-                      <div class="dropdown">
-                        <div class="dropdown-toggle" id="userDropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                          <a href="#">
-                            Eth address: ...{{ user.username|slice:"-3:" }}
-                          </a>
-                        </div>
-                        <div class="dropdown-menu" aria-labelledby="userDropdown" id="userDropdownMenu">
-                          <a class="dropdown-item" href="/my_profile">Мой профиль</a>
-                          <a class="dropdown-item" id='logoutButton'><b>Выйти</b></a>
-                        </div>
-                      </div>
-                    </li>
-                    {% else %}
-                    <li>
-                      <button id="wallet" type="button" class="enter"><a>Connect</a></button>
-                    </li>
-                    {% endif %}
-                  </ul>
-          
-                 
+      <div class="container">
+    
+        <a href="index" class="navbar-brand">
+          <img src="{% static 'media/telentvers.png'%}" alt="">
+        </a>
+    
+        <div class="navbar-wrap">
+          <ul class="navbar-menu">
+            <li>
+              <a href="#home" class="link">Главная
+                <div style="width: 65px; height: 8px; background: #2CE8C2; box-shadow: 0px 0px 21px rgba(44, 232, 194, 0.35); border-radius: 0px 0px 5px 5px;"></div>
+              </a>
+            </li>
+            <li>
+              <a href="#possibilities" class="link">Возможности
+                <div style="width: 110px; height: 8px; background: #2CE8C2; box-shadow: 0px 0px 21px rgba(44, 232, 194, 0.35); border-radius: 0px 0px 5px 5px;"></div>
+              </a>
+            </li>
+            <li>
+              <a href="#about" class="link">О нас
+                <div style="width: 45px; height: 8px; background: #2CE8C2; box-shadow: 0px 0px 21px rgba(44, 232, 194, 0.35); border-radius: 0px 0px 5px 5px;"></div>
+              </a>
+            </li>
+            <li>
+              <a href="#token" class="link">Токен
+                <div style="width: 50px; height: 8px; background: #2CE8C2; box-shadow: 0px 0px 21px rgba(44, 232, 194, 0.35); border-radius: 0px 0px 5px 5px;"></div>
+              </a>
+            </li>
+            <li>
+              <a href="#projects" class="link">Проекты
+                <div style="width: 77px; height: 8px; background: #2CE8C2; box-shadow: 0px 0px 21px rgba(44, 232, 194, 0.35); border-radius: 0px 0px 5px 5px;"></div>
+              </a>
+            </li>
+            <li>
+              <a href="#team" class="link">Команда
+                <div style="width: 75px; height: 8px; background: #2CE8C2; box-shadow: 0px 0px 21px rgba(44, 232, 194, 0.35); border-radius: 0px 0px 5px 5px;"></div>
+              </a>
+            </li>
+            <li>
+              <a href="#partners" class="link">Партнеры
+                <div style="width: 83px; height: 8px; background: #2CE8C2; box-shadow: 0px 0px 21px rgba(44, 232, 194, 0.35); border-radius: 0px 0px 5px 5px;"></div>
+              </a>
+            </li>
+            <li>
+              <a href="#contacts" class="link">Контакты
+                <div style="width: 83px; height: 8px; background: #2CE8C2; box-shadow: 0px 0px 21px rgba(44, 232, 194, 0.35); border-radius: 0px 0px 5px 5px;"></div>
+              </a>
+            </li>
+            {% if user.is_authenticated %}
+            <li>
+              <div class="dropdown">
+                <div class="dropdown-toggle" id="userDropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                  <a href="#">
+                    Eth address: ...{{ user.username|slice:"-3:" }}
+                  </a>
                 </div>
-          
-                <div class="burger">
-                  <img src="{% static 'media/burgerr.svg'%}" alt="">
-                </div>    
-      </nav>
+                <div class="dropdown-menu" aria-labelledby="userDropdown" id="userDropdownMenu">
+                  <a class="dropdown-item" href="/my_profile">Мой профиль</a>
+                  <a class="dropdown-item" id='logoutButton'><b>Выйти</b></a>
+                </div>
+              </div>
+            </li>
+            {% else %}
+            
+              <button id="wallet" type="button" class="enter">
+                <a>Connect</a>
+              </button>
+            
+            {% endif %}
+          </ul>
+    
+          <div class="burger">
+            <img src="{% static 'media/burgerr.svg'%}" alt="">
+          </div>
+        </div>
+    
+      </div>
+    
+    </nav>
+    
       
 
-      <div class="first">
+      <div class="first"  >
         
         <div class="left">
-          <p class="title">TALENTVERSE</p>
+          <p class="title" id="Home">TALENTVERSE</p>
           <p class="title">СТАНЬ ЧАСТЬЮ МЕТАВСЕЛЕННОЙ</p>
           <p class="description">Познай, раскрой и монетизируй таланты с Академией!<br>Проявись как лидер нового времени внутри Метавселенной.<br>Оформляй витрину товаров и витрин на торговой площадке "Valency Store"<br>Экологичное сообщество – экологичный мир!</p>
           
@@ -112,7 +120,7 @@
 
       <div class="line"></div>
 
-      <div class="second">
+      <div class="second" id="possibilities">
 
       <p class="title_min">Возможности на старте проекта</p>
       <p class="descr_min">Создавай внутреннюю экономику и становись партнёром проекта.</p>
@@ -164,53 +172,7 @@
       <div class="line"></div>
 
 
-
-
-
-      <!-- <div class="second">
-
-        <div class="cards">
-
-          <div class="possibility" >
-            <div class="pos">
-              <div  class="b_photo" style="position: relative;"> <img src="{% static 'media/b.png'%}" alt=""></div>
-                <div class="possibil" style="position: absolute;  width: 400px;">
-                  <p class="title">+25900</p>
-                  <p class="descr_mini">учеников, которые прошли обучение и зарабатывают уже сейчас</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="possibility" style="display: flex; flex-direction: column; align-items: center; width: 150px;">
-              <div class="pos">
-                <div  class="b_photo" style="position: relative;"> <img src="{% static 'media/b.png'%}" alt=""></div>
-                  <div class="possibil" style="position: absolute; width: 400px;">
-                    <p class="title">+25900</p>
-                    <p class="descr_mini">учеников, которые прошли обучение и зарабатывают уже сейчас</p>
-                  </div>
-                </div>
-              </div>
-
-
-              <div class="possibility" style="display: flex; flex-direction: column; align-items: center; width: 400px;">
-                <div class="pos">
-                  <div  class="b_photo" style="position: relative;"> <img src="{% static 'media/b.png'%}" alt=""></div>
-                    <div class="possibil" style="position: absolute;  width: 400px;">
-                      <p class="title">+25900</p>
-                      <p class="descr_mini">учеников, которые прошли обучение и зарабатывают уже сейчас</p>
-                    </div>
-                  </div>
-                </div>
-        </div>
-      </div>
-
-
-      <div class="line"></div> -->
-
-
-
-
-      <div class="third">
+      <div class="third" id="about">
         
         <div class="left">
           <p class="title">О НАС</p>
@@ -219,7 +181,6 @@
         </div>
         
         <div class="right nonee">
-          <!-- <div  class="b_photo" style="position: relative;"> <img src="{% static 'media/b.png'%}" alt=""></div> -->
           <img class="tree" src="{% static 'media/tree.png'%}" alt="" >
         </div>
 
@@ -229,7 +190,7 @@
       <div class="line"></div>
 
 
-      <div class="third" >
+      <div class="third" id="token">
         
         <div class="lleft nonee">
           <img class="pack" src="{% static 'media/pack.png'%}" alt="">
@@ -248,7 +209,7 @@
 
 
 
-      <div class="image_wrapper" >
+      <div class="image_wrapper" id="about" >
         <div class="slider">
           <div class="slider-nav">
             <div class="slider-items">
@@ -273,7 +234,7 @@
       </div>
 
 
-      <div class="second_team">
+      <div class="second_team" id="team">
 
         <p class="title_min" >Наша команда</p>
   
@@ -294,7 +255,7 @@
           </div>
         </div>
   
-        <div class="fifth" style="padding-top: 40px;">
+        <div class="fifth" style="padding-top: 40px;" id="projects">
           <p class="title_min" style="text-align: center;">Наши проекты</p>
           <div class="forscroll" style="display: flex; align-items: center; justify-content: center">
           
@@ -339,16 +300,14 @@
   
              
           </div>
-           <!-- <button id="right" class="scrollbutton">
-                <img src="{% static 'media/rowright.svg'%}">
-          </button> -->
+      
           </div>
 
         </div>
 
        
 
-        <div class="second">
+        <div class="second" id="partners">
 
           <p class="title_min">Партнеры</p>
 
@@ -391,7 +350,7 @@
           </div>
         </div>
 
-        <div class="forms" >
+        <div class="forms" id="contacts" >
         
           <div class="left">
             <p class="title">Свяжитесь с нами</p>

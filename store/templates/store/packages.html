@@ -22,6 +22,7 @@
       <p class="time_package_main">{{ package.header }}</p>
       <div class="line_package_main"></div>
       <p class="price_package_main">${{ package.price_usd }} <br> {{ package.price_twt }} HRWT</p>
+      <p class="describe_package_main"> "{{ package.category }}"</p>
       <p class="describe_package_main">{{ package.short_desc }}</p>
       <button class="signin_packages_main" onclick="redirectToPayment({{ package.id }})">
         <p>Выбрать</p>

@@ -100,7 +100,7 @@
         {% for referral in user.customer.get_referrals %}
         <div class="myteam">
           <img class="profileteam" src="{{ referral.image.url }}" alt="" />
-          <p class="team">{{ referral.name }}</p>
+          <p class="team">{{ referral.name |slice:"-3:"}}</p>
           <p class="team">{{ referral.status }}</p>
           <p class="team">{{ referral.balance_hrw}}</p>
         </div>
