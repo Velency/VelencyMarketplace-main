@@ -219,6 +219,10 @@ def packages(request):
     categories = packagesCat.objects.all()
     partners = Partnership.objects.all()
 
+    # Add "All Categories" as the first element in the categories list
+    all_categories = packagesCat(name='All Categories')
+    categories = [all_categories] + list(categories)
+
     # Получаем все пакеты из модели Packages
     packages = Packages.objects.all()
 

@@ -3,14 +3,14 @@
 
 <div>
   <button class="but subj" type="button" style="margin-bottom: 0px; margin-top: 0; margin-left: 30px">
-    <p class="subject">  </p>
+    <p id="selectedCategory" class="subject">Select Category</p>
     <img class="row" src="{% static 'media/row.svg' %}" alt="" />
   </button>
 
   <ul class="dropdown-list3" style="margin-bottom: 50px; margin-top: 20; margin-left: 30px">
     {% for category in categories %}
-      <li class="dropdown-list-item" data-value="{{ category }}" style="margin: 10px">
-        <a href="javascript:void(0);" onclick="selectCategory('{{ category }}')">{{ category }}</a>
+      <li class="dropdown-list-item" data-value="{{ category.name }}" style="margin: 10px">
+        <a href="javascript:void(0);" onclick="selectCategory('{{ category.name }}')">{{ category.name }}</a>
       </li>
     {% endfor %}
   </ul>
@@ -50,12 +50,15 @@
 function showPackagesByCategory(category) {
   const allPackages = document.querySelectorAll(".package_main");
   allPackages.forEach(package => {
-    if (category === "all" || package.dataset.category === category) {
+    if (category === "All Categories" || package.dataset.category === category) {
       package.style.display = "flex";
     } else {
       package.style.display = "none";
     }
   });
+  // Update the selected category in the button
+  const selectedCategoryElement = document.getElementById("selectedCategory");
+  selectedCategoryElement.textContent = category;
 }
 
 // Отслеживаем изменения в выбранной категории
@@ -64,7 +67,7 @@ function selectCategory(category) {
 }
 
 // Изначально отображаем все пакеты
-showPackagesByCategory("all");
+showPackagesByCategory("All Categories");
 </script>
 
 {% endblock content %}
