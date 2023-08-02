@@ -211,7 +211,7 @@ def account(request):
 
 # Пакеты криптовалют и токена
 @login_required
-def tariffs(request):
+def packages(request):
     data = cartData(request)
     cartItems = data['cartItems']
     order = data['order']
