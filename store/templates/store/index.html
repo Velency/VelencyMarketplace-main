@@ -183,9 +183,9 @@
         </div>
 
         <div class="rright">
-          <p class="title-right">Стань участником академии HR World!</p>
+          <p class="title-right">Стань участником "Бирюзовой" академии</p>
           <p class="description-right">Раскрой в себе свои навыки, таланты и мастерство с нашей академией. Если ты не знаешь, с чего начать свой путь, боишься сделать первый шаг или просто испытываешь духовное, материальное выгорание, то тебе к нам. Становись учеником нашей академии и раскрывайся в команде экспертов и своих единомышленнив. Создавай себя и свои проекты!</p>
-            <div > <button class="token_button"><a href="#">Купить токен сейчас</a></button></div>
+            <div > <button class="token_button"><a href="#">Купить сейчас</a></button></div>
             
         </div>
 
@@ -193,7 +193,7 @@
 
 
 
-
+{% comment %} 
 
       <div class="image_wrapper" id="about" >
         <div class="slider">
@@ -217,7 +217,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> {% endcomment %}
 
 
       <div class="second_team" id="team">
@@ -270,7 +270,7 @@
                   <div class="packages_slider">
                     <img src="{% static 'media/main2.svg'%}">
                     <div>
-                      <p class="title_mini">Академия "Talentverse"</p>
+                      <p class="title_mini">"Бирюзовая" Академия </p>
                       <p class="describe_main">Какой то текст от Никиты про академию</p>
                     </div>  
                     <button class="know_button"><a href="#">Узнать больше</a></button>
@@ -545,48 +545,6 @@ document.getElementById("wallet").addEventListener("click", handleWalletConnect)
         </script>
         
         <script src="{% static 'js/main2.js'%}" defer></script>
-        
-      <style>
-       
-.navbar-responsive {
-  display: none;
-}
-
-.navbar-menu-responsive {
-  list-style-type: none;
-  padding: 0;
-}
-
-.navbar-menu-responsive li {
-  text-align: center;
-  padding: 10px;
-}
-
-.navbar-menu-responsive li a {
-  font-family: "Open Sans";
-  font-style: normal;
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 30px;
-  color: #ffffff;
-  text-decoration: none;
-}
-
-
-      </style>
-
-      <script>
-                // Ваш JavaScript код
-        const burger = document.querySelector('.burger');
-        const navbarMenu = document.querySelector('.navbar-menu');
-        const navbarResponsive = document.querySelector('.navbar-responsive');
-
-        // Обработчик события для открытия/закрытия меню при нажатии на иконку "Burger"
-        burger.addEventListener('click', () => {
-          navbarMenu.classList.toggle('active'); // Добавляем/удаляем класс для основного меню
-          navbarResponsive.classList.toggle('active'); // Добавляем/удаляем класс для альтернативного меню
-        });
-      </script>
 
   </body>
 </html>

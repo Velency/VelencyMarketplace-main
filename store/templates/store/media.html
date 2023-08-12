@@ -121,7 +121,10 @@
   </body>
   <script>
     function goToStore() {
-      window.location.href = "{% url 'index' %}";
+      window.location.href = "{% url 'store' %}";
+    }
+    function goToTasks() {
+      window.location.href = "{% url 'tasks' %}";
     }
   </script>
   <script type="module">

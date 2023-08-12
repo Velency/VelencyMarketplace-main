@@ -108,7 +108,7 @@
     </div>
     <script>
       function goToStore() {
-        window.location.href = "{% url 'index' %}";
+        window.location.href = "{% url 'store' %}";
       }
       var goBackLink = document.getElementById("goBackLink");
 
@@ -118,11 +118,7 @@
         history.back(); // Вызываем функцию перехода на предыдущую страницу
       });
     </script>
-    <script>
-      function goToStore() {
-        window.location.href = "{% url 'index' %}";
-      }
-    </script>
+
     <script type="module">
       import {
         EthereumClient,
