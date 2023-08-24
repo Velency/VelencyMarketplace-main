@@ -31,7 +31,8 @@ SECURE_CROSS_ORIGIN_OPENER_POLICY = None
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['velencymarketplace.herokuapp.com/','127.0.0.1']
+ALLOWED_HOSTS = [
+    'https://talentverse-28ccd8c0f294.herokuapp.com/', '127.0.0.1']
 
 
 # Application definition
@@ -50,7 +51,7 @@ INSTALLED_APPS = [
     'ckeditor',
     'ckeditor_uploader',
     'storages',
-       
+
 ]
 
 MIDDLEWARE = [
@@ -63,7 +64,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
 ]
 
 ROOT_URLCONF = 'velencystore.urls'
@@ -83,8 +83,6 @@ TEMPLATES = [
         },
     },
 ]
-
-
 
 
 WSGI_APPLICATION = 'velencystore.wsgi.application'
@@ -156,8 +154,7 @@ MEDIA_URL = '/images/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-
-#JAZZMIN SETTINGS
+# JAZZMIN SETTINGS
 JAZZMIN_SETTINGS = {
     # title of the window (Will default to current_admin_site.site_title if absent or None)
     "site_title": "Admin panel",
@@ -197,10 +194,12 @@ JAZZMIN_SETTINGS = {
     "topmenu_links": [
 
         # Url that gets reversed (Permissions can be added)
-        {"name": "Home",  "url": "admin:index", "permissions": ["auth.view_user"]},
+        {"name": "Home",  "url": "admin:index",
+            "permissions": ["auth.view_user"]},
 
         # external url that opens in a new window (Permissions can be added)
-        {"name": "Support", "url": "https://github.com/farridav/django-jazzmin/issues", "new_window": True},
+        {"name": "Support", "url": "https://github.com/farridav/django-jazzmin/issues",
+            "new_window": True},
 
         # model admin to link to (Permissions checked against model)
         {"model": "auth.User"},
@@ -215,7 +214,8 @@ JAZZMIN_SETTINGS = {
 
     # Additional links to include in the user menu on the top right ("app" url type is not allowed)
     "usermenu_links": [
-        {"name": "Support", "url": "https://github.com/farridav/django-jazzmin/issues", "new_window": True},
+        {"name": "Support", "url": "https://github.com/farridav/django-jazzmin/issues",
+            "new_window": True},
         {"model": "auth.user"}
     ],
 
@@ -241,8 +241,8 @@ JAZZMIN_SETTINGS = {
     # Custom links to append to app groups, keyed on app name
     "custom_links": {
         "books": [{
-            "name": "Make Messages", 
-            "url": "make_messages", 
+            "name": "Make Messages",
+            "url": "make_messages",
             "icon": "fas fa-comments",
             "permissions": ["books.view_book"]
         }]
@@ -325,8 +325,7 @@ JAZZMIN_UI_TWEAKS = {
 }
 
 
-
-#aws settings
+# aws settings
 
 AWS_ACCESS_KEY_ID = 'AKIAQG5DN6JGWMUW5T6Y'
 AWS_SECRET_ACCESS_KEY = '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'
@@ -334,7 +333,7 @@ AWS_STORAGE_BUCKET_NAME = 'valencystore2'
 
 AWS_S3_SIGNATURE_VERSION = "s3v4"
 AWS_REGION_NAME = "us-east-1"
-AWS_S3_REGION_NAME = "us-east-1"           
+AWS_S3_REGION_NAME = "us-east-1"
 
 
 AWS_S3_FILE_OWERWRITE = False
@@ -345,7 +344,7 @@ STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 # CKEditor Settings
 CKEDITOR_UPLOAD_PATH = '/static/uploads/'
 CKEDITOR_IMAGE_BACKEND = "/static/pillow"
-CKEDITOR_JQUERY_URL = '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js' 
+CKEDITOR_JQUERY_URL = '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js'
 CKEDITOR_BASEPATH = '/static/ckeditor/ckeditor/'
 CKEDITOR_CONFIGS = {
     'default': {
@@ -363,7 +362,7 @@ EMAIL_HOST = 'smtp.yandex.ru'
 EMAIL_PORT = 465
 EMAIL_USE_SSL = True
 EMAIL_HOST_USER = 'fidanur23@yandex.ru'
-RECIPIENTS_EMAIL= 'hrworld48@gmail.com'
+RECIPIENTS_EMAIL = 'hrworld48@gmail.com'
 EMAIL_HOST_PASSWORD = 'tlbuzwqrbmpsgvph'
 
 
@@ -373,6 +372,3 @@ if API_KEY == 'WEB3_API_KEY_HERE':
     raise SystemExit
 
 LOGIN_REDIRECT_URL = 'account'
-
-
-
