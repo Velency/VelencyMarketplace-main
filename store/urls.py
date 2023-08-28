@@ -54,5 +54,6 @@ urlpatterns = [
     # walletConnect
     path('authenticate_wallet/', views.authenticate_wallet,
          name='authenticate_wallet'),
+    path('academy/', views.academy, name='academy'),
 
 ]

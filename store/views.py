@@ -123,6 +123,10 @@ def login_and_registration_required(view_func):
     return _wrapped_view
 
 
+def academy(request):
+    return render(request, 'store/academy.html', {})
+
+
 def logoutUser(request):
     logout(request)
     return redirect('index')
