@@ -3,6 +3,11 @@
 <html>
   <head>
     <link
+      rel="shortcut icon"
+      href="{% static 'media/logo.png' %}"
+      type="image/png"
+    />
+    <link
       href="https://fonts.googleapis.com/css?family=Rock+Star&display=swap"
       rel="stylesheet"
     />
@@ -29,7 +34,7 @@
           <li><a class="active" href="#">Home</a></li>
           <li><a href="#">About</a></li>
           <li><a href="#">Services</a></li>
-          <li><a href="#">TalentVerse</a></li>
+          <li><a href="{% url 'index' %}">TalentVerse</a></li>
         </ul>
         <button class="contact-button">Связаться</button>
       </nav>
@@ -356,7 +361,172 @@
       </div>
     </div>
 
-    <div class="CostContainer"></div>
+    <div class="Container">
+      <h1 class="">
+        <div class="Container-title">
+          <span
+            ><span class="span">Сколько это </span
+            ><span class="span2">стоит</span><span class="span">? </span></span
+          >
+        </div>
+      </h1>
+      <div class="CostContainer">
+        <div class="CostContainerText">
+          <div class="Grid">
+            <svg
+              class="Image"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 33 37"
+            >
+              <svg
+                class="vector"
+                width="33"
+                height="37"
+                viewBox="0 0 33 37"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M33 27.75V9.25L16.5 0L0 9.25V27.75L16.5 37L33 27.75Z"
+                  stroke="#000"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </svg>
+            <div class="RowTitle">
+              <span class="Rowspan"
+                >2 месяца обучения с сопровождением персонального ментора<br
+              /></span>
+            </div>
+          </div>
+          <div class="Grid">
+            <svg
+              class="Image"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 33 37"
+            >
+              <svg
+                class="vector"
+                width="33"
+                height="37"
+                viewBox="0 0 33 37"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M33 27.75V9.25L16.5 0L0 9.25V27.75L16.5 37L33 27.75Z"
+                  stroke="#000"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </svg>
+            <div class="RowTitle">
+              <span class="Rowspan"
+                >+1 месяц доступа к материалам для того, чтобы довести продукт
+                до успешного релиза<br
+              /></span>
+            </div>
+          </div>
+          <div class="Grid">
+            <svg
+              class="Image"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 33 37"
+            >
+              <svg
+                class="vector"
+                width="33"
+                height="37"
+                viewBox="0 0 33 37"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M33 27.75V9.25L16.5 0L0 9.25V27.75L16.5 37L33 27.75Z"
+                  stroke="#000"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </svg>
+            <div class="RowTitle">
+              <span class="Rowspan">Онлайн Q&A сессии<br /></span>
+            </div>
+          </div>
+          <div class="Grid">
+            <svg
+              class="Image"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 33 37"
+            >
+              <svg
+                class="vector"
+                width="33"
+                height="37"
+                viewBox="0 0 33 37"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M33 27.75V9.25L16.5 0L0 9.25V27.75L16.5 37L33 27.75Z"
+                  stroke="#000"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </svg>
+            <div class="RowTitle">
+              <span class="Rowspan"
+                >Доступ в закрытый чат в Telegram<br
+              /></span>
+            </div>
+          </div>
+          <div class="Grid">
+            <svg
+              class="Image"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 33 37"
+            >
+              <svg
+                class="vector"
+                width="33"
+                height="37"
+                viewBox="0 0 33 37"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M33 27.75V9.25L16.5 0L0 9.25V27.75L16.5 37L33 27.75Z"
+                  stroke="#000"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </svg>
+            <div class="RowTitle">
+              <span class="Rowspan">Бонусы<br /></span>
+            </div>
+          </div>
+        </div>
+        <div class="CostContainerPrice">
+          <h1 class="">
+            <div class="ContainerCost-title">
+              <span
+                ><span class="Costspan">Стоимость </span
+                ><span class="Costspan2">400$</span></span
+              >
+            </div>
+          </h1>
+        </div>
+      </div>
+    </div>
 
     <div class="footer">
       <div class="frame-34063">
@@ -365,7 +535,7 @@
             <div class="">
               Никогда не сомневайтесь в своем потенциале! "Бирюзовая" Академия –
               это ваш путь к лучшей версии себя.
-              <span>#БирюзоваяАкадемия #РаскройСебя</span>
+              <span class="hashtag">#БирюзоваяАкадемия #РаскройСебя</span>
             </div>
             <div class="frame-34058">
               <div class="frame">
