@@ -42,6 +42,7 @@ urlpatterns = [
     path('update_item/', views.updateItem, name="update_item"),
     path('process_order/', views.processOrder, name="process_order"),
     path('customer_form/', views.account, name='customer_form'),
+    path('account/', views.account, name='account'),
     # #moralis reg
 
     path('my_profile/', views.my_profile, name='my_profile'),
