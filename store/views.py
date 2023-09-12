@@ -125,19 +125,21 @@ def login_and_registration_required(view_func):
 
 def academy(request):
     form = ConnectionForm()
+
     if request.method == 'POST':
         form = ConnectionForm(request.POST)
         if form.is_valid():
             name = form.cleaned_data['name']
             email = form.cleaned_data['email']
-            mobile = form.cleaned_data['mobile']
+            phone = form.cleaned_data['phone']  # Change 'mobile' to 'phone'
             agree_to_processing = form.cleaned_data['agree_to_processing']
             questions = form.cleaned_data['questions']
 
             try:
                 send_mail(
                     'Сообщение из формы обратной связи',
-                    f'От: {name}\nEmail: {email}\n\n{questions}\n \n Phone: {mobile}',
+                    # Change 'mobile' to 'phone'
+                    f'От: {name}\nEmail: {email}\n\n{questions}\n \n Phone: {phone}',
                     EMAIL_HOST_USER, [
                         RECIPIENTS_EMAIL, 'fidanur23@gmail.com', 'f.usmanov@hrworld.live'],
                     fail_silently=False,
@@ -146,11 +148,12 @@ def academy(request):
                 messages.error(request, f'Ошибка отправки сообщения! {e}')
             else:
                 messages.success(request, 'Сообщение успешно отправлено.')
-                form = FeedbackForm()
+                form = ConnectionForm()  # Change 'FeedbackForm' to 'ConnectionForm'
         else:
             print(form.errors)
             messages.error(request, 'Ошибка формы!')
-    return render(request, 'store/academy.html', {})
+
+    return render(request, 'store/academy.html', {'form': form})
 
 
 def logoutUser(request):
