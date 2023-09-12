@@ -5,5 +5,5 @@ static
 db.sqlite3
 store/__pycache__/
 store/templates/store/old_profile.html
-
 store/templates/store/index3.html
+db.sqlite3
