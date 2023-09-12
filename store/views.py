@@ -123,6 +123,10 @@ def login_and_registration_required(view_func):
     return _wrapped_view
 
 
+def academy2(request):
+    return render(request, 'store/academy2.html', {})
+
+
 def academy(request):
     form = ConnectionForm()
 
