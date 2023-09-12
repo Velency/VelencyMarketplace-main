@@ -18,20 +18,24 @@
   <body>
     <header>
       <nav>
-        <ul class="menu">
-          <li><a class="active" href="#">Home</a></li>
-          <li><a href="#">About</a></li>
-          <li><a href="#">Services</a></li>
+        <ul class="mobile-menu">
+          <li><a class="active" href="#Home">Home</a></li>
           <li><a href="{% url 'index' %}">Talentverse</a></li>
         </ul>
-        <button class="contact-button">Связаться</button>
+        <ul class="menu">
+          <li><a class="active" href="#Home">Home</a></li>
+          <li><a href="#About">О нас</a></li>
+          <li><a href="#Price">Цена</a></li>
+          <li><a href="{% url 'index' %}">Talentverse</a></li>
+        </ul>
+        <button id="scroll-to-form" class="contact-button" >Связаться</button>
       </nav>
     </header>
 
     <div class="title-content">
       <div class="MainContent">
         <div>
-          <div class="Title">
+          <div class="Title" id="Home">
             <div>
               <span class="green-text big-text">"Бирюзовая"</span
               ><span class="big-text"> Академия </br> </span>
@@ -167,7 +171,7 @@
       </div>
     </div>
 
-    <div class="Container">
+    <div class="Container" id="About">
       <h1 class="">
         <div class="Container-title">
           <span
@@ -326,7 +330,7 @@
       
     </div>
 
-    <div class="Container">
+    <div class="Container" id="Price">
       <h1 class="">
         <div class="Container-title">
           <span
@@ -493,6 +497,51 @@
       </div>
     </div>
 
+    <div class="FormContainer" id="Form">
+      <h1 class="">
+        <div class="FormContainer-title">
+          <span
+            ><span class="span">Остались </span
+            ><span class="span2">вопросы</span><span class="span">? </span></span
+          >
+        </div>
+      </h1>
+      <div class="FormTitleText">
+        Оставь заявку и мы свяжемся с тобой в ближайшее время
+      </div>
+
+      <!-- Connection form -->
+      <form method="post" name="ConnectionForm">
+        {% csrf_token %}
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr); grid-gap: 40px;">
+            <div class="inputBlock">
+              <span class="inputTitle">имя </span>
+              <input type="text" name="name" placeholder="Имя" >
+            </div>
+            <div class="inputBlock">
+              <span class="inputTitle">номер телефона </span>
+              <input type="text" name="phone" placeholder="Номер телефона" >
+            </div>
+            <div class="inputBlock">
+              <span class="inputTitle">почта</span>
+              <input type="text" name="email" placeholder="почта" >
+            </div>
+            <div class="inputBlock">
+              <span class="inputTitle">ваш вопрос </span>
+              <input type="text" name="questions" placeholder="Например: хочу узнать подоробнее про..." >
+            </div>
+        </div>
+        <div style="margin-top: 30px; height: 2rem; margin-bottom: 2rem;">
+          <input type="checkbox" name="agree_to_processing" class="checkbox-styled"> <span class="inputTitle">Я даю согласие на обработку данных </span>
+          </div>
+          <button class="Contact-Form-Button" name="ConnectionForm" type="submit">Submit</button>
+      </form>
+
+    </div>
+
+
+
+
     <div class="footer">
       <div class="frame-34063">
         <div class="footer-content">
@@ -621,5 +670,15 @@
       </div>
       <div class="copyright"></div>
     </div>
+
+
+    <script>
+      const scrollToFormButton = document.getElementById('scroll-to-form');
+      const formSection = document.getElementById('Form');
+  
+      scrollToFormButton.addEventListener('click', function() {
+          formSection.scrollIntoView({ behavior: 'smooth' });
+      });
+  </script>
   </body>
 </html>

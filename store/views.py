@@ -15,7 +15,7 @@ from .utils import cookieCart, cartData, guestOrder
 from django.db.models.signals import post_save
 
 from django.contrib.auth.forms import UserCreationForm
-from .forms import UpdateCustomerForm, CommentsForm, SupportForm, CustomerOfferForm, WalletForm, WithdrawForm
+from .forms import *
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -124,6 +124,32 @@ def login_and_registration_required(view_func):
 
 
 def academy(request):
+    form = ConnectionForm()
+    if request.method == 'POST':
+        form = ConnectionForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            email = form.cleaned_data['email']
+            mobile = form.cleaned_data['mobile']
+            agree_to_processing = form.cleaned_data['agree_to_processing']
+            questions = form.cleaned_data['questions']
+
+            try:
+                send_mail(
+                    'Сообщение из формы обратной связи',
+                    f'От: {name}\nEmail: {email}\n\n{questions}\n \n Phone: {mobile}',
+                    EMAIL_HOST_USER, [
+                        RECIPIENTS_EMAIL, 'fidanur23@gmail.com', 'f.usmanov@hrworld.live'],
+                    fail_silently=False,
+                )
+            except Exception as e:
+                messages.error(request, f'Ошибка отправки сообщения! {e}')
+            else:
+                messages.success(request, 'Сообщение успешно отправлено.')
+                form = FeedbackForm()
+        else:
+            print(form.errors)
+            messages.error(request, 'Ошибка формы!')
     return render(request, 'store/academy.html', {})
 
 
