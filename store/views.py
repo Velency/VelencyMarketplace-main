@@ -218,6 +218,8 @@ def account(request):
         wallet_form = WalletForm(request.POST, instance=customer)
         if form.is_valid():
             customer.registred = True
+            if customer.status is None:
+                customer.status = 'Ученик'
             # Get the referrer code entered by the customer
             referrer_code = form.cleaned_data.get('referrer_code')
             if referrer_code:
