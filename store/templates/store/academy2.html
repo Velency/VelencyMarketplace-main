@@ -13,6 +13,7 @@
     />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="{% static 'css/academy2.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/teachers.css' %}" rel="stylesheet" /> 
     <title>Академия</title>
   </head>
   <body>
@@ -98,7 +99,19 @@
 
     <div class="Container">
       <span class="span BlueText">Преподавательский состав</span>
-      <p class="RegularText"></p>
+        <div class="teacher-grid">
+          {% for member in team_members %}
+          <div class="team_name" >
+            <div class="pos">
+              <div class="possibil_team" >
+                 <img src="{{ member.image.url }}" alt="" style="  border-radius: 12px; cursor: pointer;">
+                 <p class="title_mini">{{ member.first_name }}</p>
+                 <p class="title_mini">{{ member.last_name }}</p>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
     </div>
 
 
