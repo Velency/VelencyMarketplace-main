@@ -1,551 +1,435 @@
 <!DOCTYPE html>
-{% load static %}
-<html>
-  <head>
-    <link
-      rel="shortcut icon"
-      href="{% static 'media/academy-logo.png' %}"
-      type="image/png"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Anek+Devanagari&display=swap"
-      rel="stylesheet"
-    />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="{% static 'css/academy.css' %}" rel="stylesheet" />
+{% load static %} 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Академия</title>
-  </head>
-  <body>
-    <header>
-      <nav>
-        <ul class="mobile-menu">
-          <li><a class="active" href="{% url 'academy2' %}">О Нас</a></li>
-          <li><a href="{% url 'index' %}">Talentverse</a></li>
-        </ul>
-        <ul class="menu">
-          <li><a class="active" href="#Home">Home</a></li>
-          <li><a href="{% url 'academy2' %}">О нас</a></li>
-          <li><a href="#Price">Цена</a></li>
-          <li><a href="{% url 'index' %}">Talentverse</a></li>
-        </ul>
-        <button id="scroll-to-form" class="contact-button" >Связаться</button>
-      </nav>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/main-academy.css'%}">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div data-wow-duration="5s" class="nav animate__animated animate__fadeIn">
+                <img class="logo" src="{% static 'img/image 1.svg'%}" alt="logo">
+                <div class="logo_text">
+                 <p class="text1">Бирюзовая</p>
+                    <p class="text2">Академия</p></p>
+                </div>
+                <ul class="menu">
+                    <li>
+                        <a href="#">Об академи</a>
+                    </li>
+                    <li>
+                        <a href="#">Направления</a>
+                    </li>
+                    <li>
+                        <a href="#">Метавселенная</a>
+                    </li>
+                    <li>
+                        <a href="#">Блог</a>
+                    </li>
+                </ul>
+                <button class="nav_btn">
+                    <p class="nav_btn_text">Начать бесплатно</p>
+                </button>
+                <button id="menu-open" class="menu-open">
+                        <img id="menu_img" class="menu_img" src="{% static '/img/burger.svg'%}" alt="burger_menu_img">
+                </button>
+            </div>
+            <div class="main_block">
+            <div class="action_text_block">
+                <div id="action_block_title " data-wow-duration="5s"  class="action_block_title animate__animated animate__fadeIn">
+                    <div class="title_litle_text">
+                        <p class="title1">Бирюзовая</p>&nbsp;&nbsp;
+                        <p class="title2">Академия</p>
+                    </div>
+                    <p class="litle_text">ваш компас в мире гармонии и счастья</p>
+                    <p class="litle_text2">Ваши таланты – это уникальный след в этом мире. Дайте им свободу развиться и сверкнуть на полную мощность</p>
+                    <button class="action_btn animate__animated animate__pulse">
+                            <div class="btn_text">
+                                <p class="action_btn_text">Выбрать направление</p>
+                                <img class="btn_arrow" src="{% static '/img/btn_arrow.svg'%}" alt="arrow for btn">
+                            </div>
+                    </button>
+                    <div class="triger_group animate__animated animate__fadeInUp">
+                        <div class="courses">
+                                <p class="numbers">40+</p>
+                                <p  class="text_trigers">Образовательных курсов</p>
+                        </div>
+                        <div class="divider"></div>
+                        <div class="teachers">
+                            <p  class="numbers">20+</p>
+                            <p  class="text_trigers">Крутых преподавателей</p>
+                        </div>
+                        <div class="divider"></div>
+                        <div class="students">
+                            <p  class="numbers">5к+</p>
+                            <p  class="text_trigers">Студентов прошедших наши курсы</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="action-image animate__animated animate__fadeInRight">
+                <div class="round-action-image"></div>
+                <img class="action-image2" src="{% static 'img/action_image.png'%}" />
+              </div>
+              
+        </div>
     </header>
-
-    <div class="title-content">
-      <div class="MainContent">
-        <div>
-          <div class="Title" id="Home">
-            <div>
-              <span class="green-text big-text">"Бирюзовая"</span
-              ><span class="big-text"> Академия </br> </span>
-              <span class="span-title">
-                ваш компас в мире гармонии и счастья.</span
-              >
-            </div>
-            <div class="MainText">
-              Ваши таланты – это ваш уникальный след в этом мире. Дайте им
-              свободу развиться и сверкнуть на полную мощность.
-            </div>
-            <div class="MainButtonGroup">
-              <div class="primary-cta">
-                <div id="scroll-to-form2" class="MainButtonGroupButton">Начать сейчас</div>
-              </div>
-              <div class="MainButtonGroupText"><a href="{% url 'academy2' %}">узнать больше</a></div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="ImageContainer">
-        <img src="{% static 'media/academy-logo.png' %}" alt="Image" />
-      </div>
-    </div>
-    <div class="stats">
-      <div class="frame-15">
-        <div class="_55">40+</div>
-        <div class="">Образовательных<br />курсов</div>
-      </div>
-      <div class="frame-16">
-        <div class="_20">20+</div>
-        <div class="">крутых<br />преподаватей</div>
-      </div>
-      <div class="frame-17">
-        <div class="_560">1000+</div>
-        <div class="">учеников<br /> прошедих курс</div>
-      </div>
-    </div>
-
-    <div class="ExpectaitionsBlock">
-      <div class="ExpectaitionsTittle">
-        <span
-          ><span class="span"> Что </span><span class="span2">тебя</span
-          ><span class="span3"> ждет у нас</span></span
-        >
-      </div>
-      <div class="ExpectaitionsMainBlock">
-        <svg
-          class="vector"
-          width="33"
-          height="37"
-          viewBox="0 0 33 37"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M33 27.75V9.25L16.5 0L0 9.25V27.75L16.5 37L33 27.75Z"
-            stroke="#2EECC5"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-        </svg>
-        <div class="ExpectaitionsText">
-          <span>
-            <span class="span">Открой Таланты!<br /></span
-            ><span class="span2"><br /></span
-            ><span class="span3"
-              >Внутри каждого из нас скрыт огромный потенциал.
-              &quot;Бирюзовая&quot; Академия поможет вам раскрыть ваши
-              врожденные таланты и развить себя в сферах, о которых вы
-              мечтали.</span
-            ></span
-          >
-        </div>
-      </div>
-      <div class="ExpectaitionsMainBlock">
-        <svg
-          class="vector"
-          width="33"
-          height="37"
-          viewBox="0 0 33 37"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M33 27.75V9.25L16.5 0L0 9.25V27.75L16.5 37L33 27.75Z"
-            stroke="#2EECC5"
-            stroke-width="2"
-            
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-        </svg>
-        <div class="ExpectaitionsText">
-          <span>
-            <span class="span">Прокачай Свои Скиллы<br /></span
-            ><span class="span2"><br /></span
-            ><span class="span3"
-              >Хотите стать мастером в своей жизни? &quot;Бирюзовая&quot;
-              Академия предлагает уникальные программы для развития ваших
-              сильных сторон и улучшения ключевых навыков.</span
-            ></span
-          >
-        </div>
-      </div>
-      <div class="ExpectaitionsMainBlock">
-        <svg
-          class="vector"
-          width="33"
-          height="37"
-          viewBox="0 0 33 37"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M33 27.75V9.25L16.5 0L0 9.25V27.75L16.5 37L33 27.75Z"
-            stroke="#2EECC5"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-        </svg>
-        <div class="ExpectaitionsText">
-          <span>
-            <span class="span">Вдохновение и Рост<br /></span
-            ><span class="span2"><br /></span
-            ><span class="span3"
-              >Вдохновение – это начало, а рост – это продолжение. Наши эксперты
-              помогут вам прописать путь к реализации вашей цели.</span
-            ></span
-          >
-        </div>
-      </div>
-    </div>
-
-    <div class="Container" id="About">
-      <h1 class="">
-        <div class="Container-title">
-          <span
-            ><span class="span">Тебе точно к нам, </span
-            ><span class="span2">если ты...</span></span
-          >
-        </div>
-      </h1>
-      <div class="CardContainer">
-        <div class="Card">
-          <div class="CardTitle">"Потеряшка"</div>
-          <p class="CardText">
-            Если ты человек, у которого все события проходят мимо тебя, не
-            знаешь, какой у тебя путь, в чем смысл твоих действий, чем себя
-            занять в жизни, и стремишься найти свое истинное призвание, то наша
-            академия приглашает тебя на увлекательное путешествие по поиску себя
-            и своего пути в этом мире.
-          </p>
-          <img src="{% static 'media/card-image-3.gif' %}" alt="Image 1" />
-        </div>
-        <div class="Card">
-          <div class="CardTitle">Хочешь сменить профессию</div>
-          <p class="CardText">
-            Да, да, каждый человек рано или поздно задумывается о том что бы
-            сменить род деятельности. Задай себе вопрос, «Делаю ли я то, что мне
-            доставляет радость и приносит удовольствие и счастье?» если же нет,
-            то в академии мы вместе найдем миенно то что твое!
-          </p>
-          <img src="{% static 'media/card-image-2.gif' %}" alt="Image 2" />
-        </div>
-        <div class="Card">
-          <div class="CardTitle">Эксперт</div>
-          <p class="CardText">
-            Ты уже нашел себя и знаешь точно, что несешь пользу миру через свои
-            знания, но всё чего то не хватает… Хочется чего то большего,
-            масштабного! Хочется расширения! Найти единомышленников и создавать
-            нечто большое для людей! Выходи на новый уровень вместе с наше
-            академией!
-          </p>
-          <img src="{% static 'media/card-image-1.gif' %}" alt="Image 3" />
-        </div>
-      </div>
-    </div>
-
-    <div class="ContainerTable">
-      <div class="TableTitle">
-        <span
-          ><span class="span">Основная философия наших курсов<br /> </span
-          ><span class="span2">человеческое отношение</span
-          ><span class="span3"> и </span><span class="span2">поддержка</span
-          ><span class="span5">.<br /></span><span class="span6"><br /></span
-        ></span>
-      </div>
-
-      <div class="Grid">
-        <svg class="Image" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 33 37">
-            <svg class="vector">
-                <path d="M33 27.75V9.25L16.5 0L0 9.25V27.75L16.5 37L33 27.75Z" stroke="#2EECC5" fill="transparent" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-        <div class="RowTitle">
-          <span class="Rowspan"
-            >Мы тщательно отбираем преподавателей.<br
-          /></span>
-        </div>
-
-        <p class="RegularText">
-          Наши эксперты – это активные и коммуникабельные профессионалы, которые
-          помогут вам успешно адаптироваться в новой сфере.
-        </p>
-      </div>
-      <div class="Grid">
-        <svg class="Image" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 33 37">
-            <svg class="vector">
-                <path d="M33 27.75V9.25L16.5 0L0 9.25V27.75L16.5 37L33 27.75Z" stroke="#2EECC5" fill="transparent" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-        <div class="RowTitle">
-          <span class="Rowspan"
-            >Курсы включают обширную практику с обратной связью.<br
-          /></span>
-        </div>
-
-        <p class="RegularText">
-          Задания представляют собой задачи, которые эксперты используют в
-          жизни. В случае затруднений помощь окажут преподаватели, прошедшие
-          обучение или бывшие одногруппники.
-        </p>
-      </div>
-      <div class="Grid">
-        <svg class="Image" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 33 37">
-            <svg class="vector">
-                <path d="M33 27.75V9.25L16.5 0L0 9.25V27.75L16.5 37L33 27.75Z" stroke="#2EECC5" fill="transparent" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-        <div class="RowTitle">
-          <span class="Rowspan">С вами наша служба заботы<br /></span>
-        </div>
-
-        <p class="RegularText">
-          Вопросы оперативно решаются в групповом чате или личном с экспертом.
-          Это даст опору и поможет быстрее достигнуть цели
-        </p>
-      </div>
-      
-    </div>
-
-    <div class="Container" id="Price">
-      <h1 class="">
-        <div class="Container-title">
-          <span
-            ><span class="span">Сколько это </span
-            ><span class="span2">стоит</span><span class="span">? </span></span
-          >
-        </div>
-      </h1>
-      <div class="CostContainer">
-        <div class="CostContainerText">
-          <div class="CostGrid" style="margin-top: 0;">
-            <svg class="Image" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 33 37">
-            <svg class="vector">
-                <path d="M33 27.75V9.25L16.5 0L0 9.25V27.75L16.5 37L33 27.75Z" stroke="#000" fill="transparent" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-        </svg>
-            <div class="RowTitle">
-              <span class="Rowspan"
-                >3 месяца обучения с сопровождением персонального ментора<br
-              /></span>
-            </div>
-          </div>
-          <div class="CostGrid">
-            <svg class="Image" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 33 37">
-            <svg class="vector">
-                <path d="M33 27.75V9.25L16.5 0L0 9.25V27.75L16.5 37L33 27.75Z" stroke="#000" stroke-width="2" fill="transparent" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-        </svg>
-            <div class="RowTitle">
-              <span class="Rowspan"
-                >+1 месяц доступа к материалам для того, чтобы лучше усвоить материал<br
-              /></span>
-            </div>
-          </div>
-          <div class="CostGrid">
-            <svg class="Image" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 33 37">
-            <svg class="vector">
-                <path d="M33 27.75V9.25L16.5 0L0 9.25V27.75L16.5 37L33 27.75Z" stroke="#000" stroke-width="2" fill="transparent" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-        </svg>
-            <div class="RowTitle">
-              <span class="Rowspan">Онлайн Q&A сессии<br /></span>
-            </div>
-          </div>
-          <div class="CostGrid">
-            <svg class="Image" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 33 37">
-            <svg class="vector">
-                <path d="M33 27.75V9.25L16.5 0L0 9.25V27.75L16.5 37L33 27.75Z" stroke="#000" stroke-width="2" fill="transparent" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-        </svg>
-            <div class="RowTitle">
-              <span class="Rowspan"
-                >Доступ в закрытый чат в Telegram<br
-              /></span>
-            </div>
-          </div>
-          <div class="CostGrid">
-            <svg class="Image" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 33 37">
-              <svg class="vector">
-                  <path d="M33 27.75V9.25L16.5 0L0 9.25V27.75L16.5 37L33 27.75Z" stroke="#000" stroke-width="2" fill="transparent" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-          </svg>
-            <div class="RowTitle">
-              <span class="Rowspan">Бонусы<br /></span>
-            </div>
-          </div>
-        </div>
-        <!-- <div class="CostContainerPrice">
-          <h1 class="">
-            <div class="ContainerCost-title">
-              <span class="CostSpanTitle"
-                ><span class="Costspan">Стоимость <br/></span
-                ><span class="Costspan2">$488 </span><span class="Costspan">в месяц </span
-                  ></span
-              >
-            </div>
-          </h1>
-          <div class="MainButtonGroup">
-            <div class="primary-cta2">
-              <div id="scroll-to-form3" class="CostButtonGroupButton">Начать сейчас</div>
-            </div>
-            <div class="CostButtonGroupText"><a href="{% url 'academy2' %}">узнать больше</a></div>
-          </div>
-        </div> -->
-      </div>
-    </div>
-
-    <div class="FormContainer" id="Form">
-      <h1 class="">
-        <div class="FormContainer-title">
-          <span
-            ><span class="span">Напиши </span
-            ><span class="span2">нам</span></span
-          >
-        </div>
-      </h1>
-      <div class="FormTitleText">
-        Оставь заявку и мы свяжемся с тобой в ближайшее время
-      </div>
-
-      <!-- Connection form -->
-      <form method="post" name="ConnectionForm">
-        {% csrf_token %}
-        <div class="grids">
-            <div class="inputBlock">
-              <span class="inputTitle">имя </span>
-              <input type="text" name="name" placeholder="Имя" >
-            </div>
-            <div class="inputBlock">
-              <span class="inputTitle">номер телефона </span>
-              <input type="text" name="phone" placeholder="Номер телефона" >
-            </div>
-            <div class="inputBlock">
-              <span class="inputTitle">почта</span>
-              <input type="email" name="email" placeholder="почта" >
-            </div>
-            <div class="inputBlock">
-              <span class="inputTitle">ваше обращение </span>
-              <input type="text" name="questions" placeholder="Например: хочу приобрести..." >
-            </div>
-        </div>
-        <div class="checkboxContainer">
-          <input type="checkbox" name="agree_to_processing" class="checkbox-styled">
-          <span class="inputTitle" style="margin-left: 10px;">Я даю согласие на обработку данных</span>
-      </div>
-      
-          <button class="Contact-Form-Button" name="ConnectionForm" type="submit">Отправить</button>
-      </form>
-
-    </div>
-
-
-
-
-    <div class="footer">
-      <div class="frame-34063">
-        <div class="footer-content">
-          <div class="text">
-            <div class="footerText">
-              <p>Никогда не сомневайтесь в своем потенциале! "Бирюзовая" Академия –
-              это ваш путь к лучшей версии себя.</p>
-              <span class="hashtag">#БирюзоваяАкадемия #РаскройСебя</span>
-            </div>
-            <div class="frame-34058">
-              <div class="frame">
-                <div class="group">
-                  <svg
-                    class="layer-2"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M20.7273 0H3.27273C1.46525 0 0 1.46525 0 3.27273V20.7273C0 22.5347 1.46525 24 3.27273 24H20.7273C22.5347 24 24 22.5347 24 20.7273V3.27273C24 1.46525 22.5347 0 20.7273 0Z"
-                      fill="white"
-                    />
-                    <path
-                      d="M18.5373 6.20455L18.2891 6.29455L4.81912 11.1477C4.72366 11.1772 4.6407 11.2376 4.58323 11.3193C4.52576 11.4011 4.49704 11.4996 4.50156 11.5994C4.50608 11.6992 4.5436 11.7947 4.60822 11.8709C4.67285 11.9471 4.76093 11.9997 4.85866 12.0205L8.34548 12.975L8.99594 14.8841L9.64639 16.7932C9.68376 16.8868 9.7434 16.9698 9.82015 17.0351C9.8969 17.1004 9.98842 17.146 10.0868 17.1679C10.1851 17.1898 10.2874 17.1874 10.3846 17.1608C10.4818 17.1342 10.571 17.0843 10.6446 17.0155L12.4459 15.3136L15.9832 17.7123C16.4155 18.0068 17.0318 17.7886 17.1423 17.3032L19.485 6.95182C19.5996 6.43909 19.0596 6.01773 18.5373 6.20455ZM16.8178 8.50227L10.7318 13.4768L10.4455 13.7114C10.3826 13.7612 10.3415 13.8336 10.3309 13.9132L10.2668 14.4423L10.0909 15.9286C10.0924 15.9467 10.0866 15.9646 10.0748 15.9784C10.0631 15.9923 10.0463 16.0008 10.0282 16.0023C10.0101 16.0037 9.99221 15.9979 9.9784 15.9862C9.96459 15.9744 9.95602 15.9576 9.95457 15.9395L9.45957 14.4545L8.94821 12.9341C8.92658 12.8657 8.92945 12.792 8.95634 12.7255C8.98322 12.6591 9.03242 12.6041 9.09548 12.57L15.4282 8.94L16.62 8.25818C16.7932 8.15727 16.9705 8.37682 16.8178 8.50227Z"
-                      fill="#090F1D"
-                    />
-                  </svg>
+    <div id="courses_block" class="courses_block">
+        <div class="container">
+            <div  class="block_courses">
+            <div id="title_text_courses_block" data-wow-duration="1s" data-wow-delay="1s"  class="title_text_courses_block wow animate__animated animate__fadeIn">
+                <div class="courses_text_block">
+                    <div class="courses_title_block">
+                        <p class="courses_title">8 направлений обучения</p>
+                        <div class="courses_div"></div>
+                    </div>
+                    <p id="courses_desc" 
+                    class="courses_desc">Наши направления обучения в ключевых сферах предоставляют
+                        доступ к специализированным курсам, помогая вам достигнуть 
+                        профессионального и личного роста. 
+                        Присоединяйтесь к нам и идите к успеху!</p>
                 </div>
-              </div>
-              <div class="frame">
-                <div class="group">
-                  <a href="https://www.instagram.com/modern.time.academy/"><img  alt="svgImg" src="{% static 'img/icons8-instagram2.svg' %}"/></a>
+                <button class="courses_btn animate__animated animate__pulse">
+                    <div class="courses_btn_text_block">
+                        <p class="courses_btn_text">Все направления</p>
+                        <img class="btn_arrow_courses" src="{% static '/img/btn_arrow.svg'%}" alt="action_btn_arrow">
+                    </div>
+                </button>
+            </div>
+            <div id="courses_card_block" data-wow-delay="0.5s" class="courses_card_block wow animate__animated animate__fadeInRight">
+                <div class="selfgrow_block">
+                    <div data-wow-duration="2s" class="icon_courses wow animate__animated animate__fadeIn">
+                        <img class="round_icon" src="{% static '/img/icon_round.svg'%}" alt="bg_courses_icon">
+                        <img class="courses_icon" src="{% static '/img/selfgrow_image.svg'%}" alt="course_icon">
+                        <div data-wow-duration="2s" class="selfgrow_desc wow animate__animated animate__fadeIn">
+                            <p class="selfgrow_title">Самопознание</p>
+                            <p class="selfgrow_text">Познание себя для личного роста и развития, повышения самосознания и понимания.</p>
+                        </div>
+                    </div>
                 </div>
-              </div>
-              <div class="frame">
-                <div class="group">
-                  <div class="layer-23">
-                    <svg
-                      class="vector5"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M20.7273 0H3.27273C1.46525 0 0 1.46525 0 3.27273V20.7273C0 22.5347 1.46525 24 3.27273 24H20.7273C22.5347 24 24 22.5347 24 20.7273V3.27273C24 1.46525 22.5347 0 20.7273 0Z"
-                        fill="white"
-                      />
-                    </svg>
-
-                    <svg
-                      class="group2"
-                      width="16"
-                      height="16"
-                      viewBox="0 0 16 16"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M4.64548 2.54545C4.64548 2.95001 4.52551 3.34547 4.30075 3.68185C4.076 4.01822 3.75654 4.28039 3.38278 4.43521C3.00902 4.59002 2.59775 4.63053 2.20097 4.55161C1.80419 4.47268 1.43973 4.27787 1.15367 3.99181C0.867604 3.70575 0.672794 3.34128 0.593869 2.9445C0.514945 2.54772 0.555452 2.13645 0.710267 1.76269C0.865083 1.38894 1.12725 1.06948 1.46363 0.844721C1.8 0.619964 2.19547 0.5 2.60002 0.5C3.14251 0.5 3.66278 0.715503 4.04638 1.0991C4.42997 1.4827 4.64548 2.00297 4.64548 2.54545ZM4.18184 5.95455V14.9914C4.1822 15.058 4.16938 15.1241 4.14411 15.1858C4.11885 15.2475 4.08164 15.3036 4.03463 15.3509C3.98762 15.3981 3.93172 15.4356 3.87017 15.4612C3.80861 15.4868 3.7426 15.5 3.67593 15.5H1.52002C1.45335 15.5002 1.38731 15.4872 1.32568 15.4618C1.26406 15.4363 1.20806 15.399 1.16092 15.3518C1.11378 15.3047 1.07642 15.2487 1.051 15.1871C1.02557 15.1254 1.01257 15.0594 1.01275 14.9927V5.95455C1.01275 5.82001 1.06619 5.69098 1.16133 5.59585C1.25646 5.50072 1.38548 5.44727 1.52002 5.44727H3.67593C3.81023 5.44763 3.93891 5.50124 4.03375 5.59633C4.12858 5.69142 4.18184 5.82024 4.18184 5.95455ZM15.4509 10.6591V15.0336C15.4511 15.0949 15.4392 15.1557 15.4158 15.2123C15.3924 15.269 15.3581 15.3205 15.3147 15.3638C15.2714 15.4071 15.2199 15.4415 15.1632 15.4649C15.1066 15.4882 15.0459 15.5002 14.9846 15.5H12.6664C12.6051 15.5002 12.5444 15.4882 12.4877 15.4649C12.431 15.4415 12.3796 15.4071 12.3362 15.3638C12.2929 15.3205 12.2585 15.269 12.2352 15.2123C12.2118 15.1557 12.1998 15.0949 12.2 15.0336V10.7941C12.2 10.1614 12.3855 8.02318 10.5459 8.02318C9.12093 8.02318 8.83048 9.48636 8.7732 10.1436V15.0336C8.77322 15.1562 8.72502 15.2738 8.63903 15.361C8.55304 15.4483 8.43616 15.4982 8.31366 15.5H6.07457C6.01339 15.5 5.95281 15.4879 5.8963 15.4645C5.8398 15.441 5.78848 15.4066 5.74528 15.3633C5.70208 15.32 5.66786 15.2686 5.64457 15.212C5.62128 15.1554 5.60939 15.0948 5.60957 15.0336V5.915C5.60939 5.85382 5.62128 5.79321 5.64457 5.73663C5.66786 5.68006 5.70208 5.62864 5.74528 5.58531C5.78848 5.54199 5.8398 5.50762 5.8963 5.48416C5.95281 5.46071 6.01339 5.44864 6.07457 5.44864H8.31366C8.43735 5.44864 8.55597 5.49777 8.64343 5.58523C8.73089 5.67269 8.78002 5.79131 8.78002 5.915V6.70318C9.30911 5.90955 10.0932 5.29727 11.7664 5.29727C15.4727 5.29727 15.4509 8.75818 15.4509 10.6591Z"
-                        fill="#090F1D"
-                      />
-                    </svg>
-                  </div>
+                <div class="sales_block">
+                    <div data-wow-duration="2s" class="icon_courses wow animate__animated animate__fadeIn">
+                        <img class="round_icon" src="{% static '/img/icon_round.svg'%}" alt="bg_courses_icon">
+                        <img class="courses_icon" src="{% static '/img/sales_image.svg'%}" alt="course_icon">
+                        <div data-wow-duration="2.5s" class="sales_desc wow animate__animated animate__fadeIn">
+                            <p class="sales_title">Продажи</p>
+                            <p class="sales_text">Убеждение и удовлетворение клиентов через эффективное обслуживание и коммуникации.</p>
+                        </div>
+                    </div>
                 </div>
-              </div>
+                <div class="child_block">
+                    <div data-wow-duration="2s" class="icon_courses wow animate__animated animate__fadeIn">
+                        <img class="round_icon" src="{% static '/img/icon_round.svg'%}" alt="bg_courses_icon">
+                        <img class="courses_icon" src="{% static '/img/child_image.svg'%}" alt="course_icon">
+                        <div data-wow-duration="2.5s" class="child_desc wow animate__animated animate__fadeIn">
+                            <p class="child_title">Детское</p>
+                            <p class="child_text">Развитие и воспитание детей с учетом их потребностей и возрастных особенностей.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="manage_block">
+                    <div data-wow-duration="2s" class="icon_courses wow animate__animated animate__fadeIn">
+                        <img class="round_icon" src="{% static '/img/icon_round.svg'%}" alt="bg_courses_icon">
+                        <img class="courses_icon" src="{% static '/img/manage_image.svg'%}" alt="course_icon">
+                        <div data-wow-duration="2s" class="manage_desc wow animate__animated animate__fadeIn">
+                            <p class="manage_title">Менеджмент</p>
+                            <p class="manage_text">Управление организацией и ресурсами для достижения целей и эффективного руководства.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="market_block">
+                    <div data-wow-duration="2s" class="icon_courses wow animate__animated animate__fadeIn">
+                        <img class="round_icon" src="{% static '/img/icon_round.svg'%}" alt="bg_courses_icon">
+                        <img class="courses_icon" src="{% static '/img/market_image.svg'%}" alt="course_icon">
+                        <div data-wow-duration="2s" class="market_desc wow animate__animated animate__fadeIn">
+                            <p class="market_title">Маркетинг</p>
+                            <p class="market_text">Создание и продвижение продуктов на рынке для достижения успеха и роста бренда.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="pr_block">
+                    <div data-wow-duration="2s" class="icon_courses wow animate__animated animate__fadeIn">
+                        <img class="round_icon" src="{% static '/img/icon_round.svg'%}" alt="bg_courses_icon">
+                        <img class="courses_icon" src="{% static '/img/pr_image.svg'%}" alt="course_icon">
+                        <div data-wow-duration="2s" class="pr_desc wow animate__animated animate__fadeIn">
+                            <p class="pr_title">Продюсирование</p>
+                            <p class="pr_text">Создание и управление процессами производства контента, продуктов или мероприятий.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="finance_block">
+                    <div data-wow-duration="2s" class="icon_courses wow animate__animated animate__fadeIn">
+                        <img class="round_icon" src="{% static '/img/icon_round.svg'%}" alt="bg_courses_icon">
+                        <img class="courses_icon" src="{% static '/img/finance_image.svg'%}" alt="course_icon">
+                        <div data-wow-duration="2s" class="finance_desc wow animate__animated animate__fadeIn">
+                            <p class="finance_title">Экономика</p>
+                            <p class="finance_text">Анализ и управление ресурсами, распределение и изучение факторов, влияющих на рыночные процессы.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="it_block">
+                    <div data-wow-duration="2s" class="icon_courses wow animate__animated animate__fadeIn">
+                        <img class="round_icon" src="{% static '/img/icon_round.svg'%}" alt="bg_courses_icon">
+                        <img class="courses_icon" src="{% static '/img/it_image.svg'%}" alt="course_icon">
+                        <div data-wow-duration="2s" class="it_desc wow animate__animated animate__fadeIn">
+                            <p class="it_title">IT Технологии</p>
+                            <p class="it_text">Разработка, управление, внедрение IT технологий для оптимизации бизнес-процессов и инновационных решений.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-
-        <div class="frame-56">
-          <!-- <div class="frame-51">
-            <div class="explore">Explore</div>
-            <div class="frame-50">
-              <div class="art-sign-in">Art Sign In</div>
-              <div class="collectibles">Collectibles</div>
-              <div class="domain-name">Domain Name</div>
-              <div class="utility">Utility</div>
-            </div>
-          </div> -->
-          <!-- <div class="frame-51">
-            <div class="statistic">Statistic</div>
-            <div class="frame-50">
-              <div class="ranking">Ranking</div>
-              <div class="collectibles">Collectibles</div>
-              <div class="activity">Activity</div>
-            </div>
-          </div>
-          <div class="frame-55">
-            <div class="company">Company</div>
-            <div class="frame-50">
-              <div class="about-us">About Us</div>
-              <div class="career">Career</div>
-              <div class="support">Support</div>
-              <div class="partners">Partners</div>
-            </div>
-          </div> -->
-          <div class="frame-54">
-            <div class="resources">Ресурсы</div>
-            <div class="frame-50">
-              <div class="help-center"><a href="{% url 'index' %}">TalentVerse</a></div>
-              <div class="platform-status"><a href="https://www.instagram.com/modern.time.academy/">Blog</a></div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="copyright"></div>
     </div>
-
-
-    <script>
-      const scrollToFormButton = document.getElementById('scroll-to-form');
-      const formSection = document.getElementById('Form');
+    </div>
+    <div class="expert">
+        <div class="container">
+            <div class="expert_block">
+            <img class="expert_image wow animate__animated animate__fadeInRight" src="{% static '/img/expert_image.png'%}" alt="expert_round_balance">
+            <div class="expert_text_block wow animate__animated animate__fadeInLeft">
+                <p class="expert_title">Прокачай себя!</p>
+                <div class="courses_div"></div>
+                <div class="expert_text">Мы придерживаемся целостного подхода в развитии и знаем что для успешной реализации своего потенциала человеку важно комплексное развитие разума, души и тела и профессиональные знания.
+                    <br> Благодаря сервисам, образовательным программам, базам знаний и нашим технологиям.
+                    <br> Ты лучше познаешь себя и свои сильные стороны, расширишь мировоззрение, чтобы быть в ресурсном состоянии и легко достигать своих целей.</div>
+                    <button class="expert_btn wow animate__animated animate__pulse">
+                        <div class="expert_btn_text_block">
+                            <p class="expert_btn_text">Выбрать направление</p>
+                            <img class="btn_arrow_expert" src="{% static '/img/btn_arrow.svg'%}" alt="action_btn_arrow">
+                        </div>
+                    </button>
+            </div>
+            </div>
+        </div>
+    </div>
+    <div class="trigers">
+            <div class="triger_card_block1 wow animate__animated animate__fadeInRight">
+                <div class="triger_block1">
+                <img class="triger_img1" src="{% static '/img/triger_image1.svg'%}" alt="img_triger">
+                <div data-wow-duration="2.5s" class="triger_text_block1 wow animate__animated animate__fadeIn">
+                    <p  id="triger_title1" class="triger_title1">Раскрывай Таланты</p>
+                    <p class="triger_text1">Внутри каждого из нас скрыт огромный потенциал. 
+                        "Бирюзовая" Академия поможет вам раскрыть ваши врожденные таланты и развить себя в сферах, о которых вы мечтали</p>
+                </div>
+                </div>
+            </div>
+            <div  class="triger_card_block2 wow animate__animated animate__fadeInLeft">
+                <div class="triger_block2">
+                <div data-wow-duration="2.5s" class="triger_text_block2 wow animate__animated animate__fadeIn">
+                    <p  id="triger_title2" class="triger_title2">Прокачай Свои Скиллы</p>
+                    <p class="triger_text2">Хотите стать мастером в своей жизни? 
+                        "Бирюзовая" Академия предлагает уникальные программы для развития ваших сильных сторон и улучшения ключевых навыков.</p>
+                </div>
+                <img class="triger_img2" src="{% static '/img/triger_image2.svg'%}" alt="img_triger">
+                </div>
+            </div>
+            <div class="triger_card_block3 wow animate__animated animate__fadeInRight">
+                <div class="triger_block3">
+                <img class="triger_img3" src="{% static '/img/triger_image3.svg'%}" alt="img_triger">
+                <div data-wow-duration="2.5s" class="triger_text_block3 wow animate__animated animate__fadeIn">
+                    <p  id="triger_title3" class="triger_title3">Вдохновение и Рост</p>
+                    <p class="triger_text3">Вдохновение – это начало, а рост – это продолжение. 
+                        Наши эксперты помогут вам прописать путь к реализации вашей цели.</p>
+                </div>
+                </div>
+            </div>
+        
+    </div>
+    <div class="blog">
+        <div class="blog_title">
+            <p class="title_blog wow animate__animated animate__fadeIn">Наш блог</p>
+            <div class="blog_div wow animate__animated animate__fadeIn"></div>
+            <div class="block_blog_cards wow animate__animated animate__fadeInLeft">
+               <img class="bg_blog" src="{% static '/img/blog_cards_block.png'%}" alt="bg_blog">
+                <div class="block_card_group ">
+                    <div data-wow-duration="2.5s" class="blog_card_group1 wow animate__animated animate__fadeIn">
+                        <img id="blog_img1"  src="{% static '/img/blog_image1.svg'%}" alt="blog_img">
+                        <div class="blog_text1">Nulla a odio sed magna congue condimentum. Pellentesque convallis enim nec libero vulputate, et rhoncus urna placerat. Phasellus mattis, diam vel vehicula facilisis, erat leo dapibus augue, at mollis tellus ex non nisi. Ut faucibus fringilla semper. Aenean nunc ex,...</div>
+                    </div>
+                    <div data-wow-duration="3s" class="blog_card_group2 wow animate__animated animate__fadeIn">
+                        <img id="blog_img2"  src="{% static '/img/blog_image2.svg'%}" alt="blog_img">
+                        <div class="blog_text1">Nulla a odio sed magna congue condimentum. Pellentesque convallis enim nec libero vulputate, et rhoncus urna placerat. Phasellus mattis, diam vel vehicula facilisis, erat leo dapibus augue, at mollis tellus ex non nisi. Ut faucibus fringilla semper. Aenean nunc ex,...</div>
+                    </div>
+                    <div data-wow-duration="3.5s" class="blog_card_group3 wow animate__animated animate__fadeIn">
+                        <img id="blog_img3"  src="{% static '/img/blog_image3.svg'%}" alt="blog_img">
+                        <div class="blog_text1">Nulla a odio sed magna congue condimentum. Pellentesque convallis enim nec libero vulputate, et rhoncus urna placerat. Phasellus mattis, diam vel vehicula facilisis, erat leo dapibus augue, at mollis tellus ex non nisi. Ut faucibus fringilla semper. Aenean nunc ex,...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    <div id="faq" class="faq">
+        <div class="container">
+            <div  class="faq_block">
+            <div  class="title_text_faq_block wow animate__animated animate__fadeInLeft">
+                <div class="faq_text_block">
+                    <div class="faq_title_block">
+                        <p class="faq_title">FAQ</p>
+                        <div class="faq_div"></div>
+                    </div>
+                    <p id="faq_desc"
+                    class="faq_desc">Наши направления обучения в ключевых сферах предоставляют
+                        доступ к специализированным курсам, помогая вам достигнуть 
+                        профессионального и личного роста. 
+                        Присоединяйтесь к нам и идите к успеху!</p>
+                </div>
+                <button class="faq_btn wow animate__animated animate__pulse">
+                    <div class="faq_btn_text_block">
+                        <p class="faq_btn_text">Напиши нам</p>
+                        <img class="btn_arrow_faq" src="{% static '/img/btn_arrow.svg'%}" alt="action_btn_arrow">
+                    </div>
+                </button>
+            </div>
+            <div id="faq_card_block"   class="faq_card_block">
+                <div class="faq_q1_block">
+                    <div data-wow-duration="2.5s" class="icon_faq wow animate__animated animate__fadeIn">
+                        <img class="round_icon_faq" src="{% static '/img/round_icon_faq.svg'%}" alt="bg_faq_icon">
+                        <img class="faq_icon" src="{% static '/img/faq_image.svg'%}" alt="faq_icon">
+                        <div data-wow-duration="2.5s" class="faq_q1_desc wow animate__animated animate__fadeIn">
+                            <p class="faq_q1_title">Вопрос</p>
+                            <p class="faq_q1_text">Познание себя для личного роста и развития, повышения самосознания и понимания.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="faq_q2_block">
+                    <div data-wow-duration="2.5s" class="icon_faq wow animate__animated animate__fadeIn">
+                        <img class="round_icon_faq" src="{% static '/img/round_icon_faq.svg'%}" alt="bg_faq_icon">
+                        <img class="faq_icon" src="{% static '/img/faq_image.svg'%}" alt="faq_icon">
+                        <div data-wow-duration="2.5s" class="sfaq_q2_desc wow animate__animated animate__fadeIn">
+                            <p class="faq_q2_title">Вопрос</p>
+                            <p class="faq_q2_text">Убеждение и удовлетворение клиентов через эффективное обслуживание и коммуникации.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="faq_q3_block">
+                    <div data-wow-duration="2.5s" class="icon_faq wow animate__animated animate__fadeIn">
+                        <img class="round_icon_faq" src="{% static '/img/round_icon_faq.svg'%}" alt="bg_faq_icon">
+                        <img class="faq_icon" src="{% static '/img/faq_image.svg'%}" alt="faq_icon">
+                        <div data-wow-duration="2.5s" class="faq_q3_desc wow animate__animated animate__fadeIn">
+                            <p class="faq_q3_title">Вопрос</p>
+                            <p class="faq_q3_text">Развитие и воспитание детей с учетом их потребностей и возрастных особенностей.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="faq_q4_block">
+                    <div data-wow-duration="2.5s" class="icon_faq wow animate__animated animate__fadeIn">
+                        <img class="round_icon_faq" src="{% static '/img/round_icon_faq.svg'%}" alt="bg_faq_icon">
+                        <img class="faq_icon" src="{% static '/img/faq_image.svg'%}" alt="faq_icon">
+                        <div data-wow-duration="2.5s" class="faq_q4_desc wow animate__animated animate__fadeIn">
+                            <p class="faq_q4_title">Вопрос</p>
+                            <p class="faq_q4_text">Управление организацией и ресурсами для достижения целей и эффективного руководства.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="faq_q5_block">
+                    <div data-wow-duration="2.5s" class="icon_faq wow animate__animated animate__fadeIn">
+                        <img class="round_icon_faq" src="{% static '/img/round_icon_faq.svg'%}" alt="bg_faq_icon">
+                        <img class="faq_icon" src="{% static '/img/faq_image.svg'%}" alt="faq_icon">
+                        <div data-wow-duration="2.5s" class="faq_q5_desc wow animate__animated animate__fadeIn">
+                            <p class="faq_q5_title">Вопрос</p>
+                            <p class="faq_q5_text">Создание и продвижение продуктов на рынке для достижения успеха и роста бренда.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="faq_q6_block">
+                    <div data-wow-duration="2.5s" class="icon_faq wow animate__animated animate__fadeIn">
+                        <img class="round_icon_faq" src="{% static '/img/round_icon_faq.svg'%}" alt="bg_faq_icon">
+                        <img class="faq_icon" src="{% static '/img/faq_image.svg'%}" alt="faq_icon">
+                        <div data-wow-duration="2.5s" class="faq_q6_desc wow animate__animated animate__fadeIn">
+                            <p class="faq_q6_title">Вопрос</p>
+                            <p class="faq_q6_text">Создание и управление процессами производства контента, продуктов или мероприятий.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="faq_q7_block">
+                    <div data-wow-duration="2.5s" class="icon_faq wow animate__animated animate__fadeIn">
+                        <img class="round_icon_faq" src="{% static '/img/round_icon_faq.svg'%}" alt="bg_faq_icon">
+                        <img class="faq_icon" src="{% static '/img/faq_image.svg'%}" alt="faq_icon">
+                        <div data-wow-duration="2.5s" class="faq_q7_desc wow animate__animated animate__fadeIn">
+                            <p class="faq_q7_title">Вопрос</p>
+                            <p class="faq_q7_text">Анализ и управление ресурсами, распределение и изучение факторов, влияющих на рыночные процессы.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="faq_q8_block">
+                    <div data-wow-duration="2.5s" class="icon_faq wow animate__animated animate__fadeIn">
+                        <img class="round_icon_faq" src="{% static '/img/round_icon_faq.svg'%}" alt="bg_faq_icon">
+                        <img class="faq_icon" src="{% static '/img/faq_image.svg'%}" alt="faq_icon">
+                        <div data-wow-duration="2.5s" class="faq_q8_desc wow animate__animated animate__fadeIn">
+                            <p class="faq_q8_title">Вопрос</p>
+                            <p class="faq_q8_text">Разработка, управление, внедрение IT технологий для оптимизации бизнес-процессов и инновационных решений.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer_box">
+            <div data-wow-delay="1s" class="text_block_footer animate__animated animate__fadeInUp">
+            <div class="logo_footer">
+            <img src="{% static 'img/image 1.svg'%}" alt="logo">
+            <div class="logo_text">
+                <p class="text1">Бирюзовая</p>
+                <p class="text2">Академия</p></p>
+            </div>
+            </div>
+            <div class="footer_second_text_block">
+            <div class="footer_text">
+            <p class="footer_text1">Никогда не сомневайтесь в своем потенциале! Бирюзовая Академия – это ваш путь к лучшей версии себя.
+               <br><p class="footer_text2">#БирюзоваяАкадемия #РаскройСебя</p></p>
+               </div>
+               <div class="icon_footer_block">
+                    <div class="facebook">
+                        <div class="round_smm">
+                        <a href="#"><img src="{% static '/img/facebook.svg'%}" alt="facebook"></a>
+                        </div>
+                    </div>
+                    <div class="instargram">
+                        <div class="round_smm">
+                            <a href="#"><img src="{% static '/img/instagram.svg'%}" alt="facebook"></a>
+                        </div>
+                    </div>
+                    <div class="telegram">
+                        <div class="round_smm">
+                            <a href="#"><img src="{% static '/img/telegram.svg'%}" alt="facebook"></a>
+                        </div>
+                    </div>
+               </div>
+            </div>
+            </div>
+            <div id="triger_box" data-wow-delay="1s" class="triger_box animate__animated animate__fadeInUp">
+            <div  id="footer-triger-title" class="footer-triger-title">
+                <span
+                  ><span id="span" class="footer-triger-title-span">Готов начать обучение в </span
+                  ><span id="span2" class="footer-triger-title-span2">Бирюзовой </span
+                  ><span  id="span3" class="footer-triger-title-span3">Академии?</span></span>
+              </div>
+              <button class="footer_btn wow animate__animated animate__pulse">
+                <div class="footer_btn_text_block">
+                    <p class="footer_btn_text">Начать бесплатно</p>
+                    <img class="btn_arrow_footer" src="{% static '/img/btn_arrow.svg'%}" alt="action_btn_arrow">
+                </div>
+            </button>
+            </div>
+        </div> 
+        </div>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+    <script src="{% static 'js/wow.min.js'%}"></script>
+    <script src="{% static 'js/menu-academy.js'%}"></script>
   
-      scrollToFormButton.addEventListener('click', function() {
-          formSection.scrollIntoView({ behavior: 'smooth' });
-      });
-
-      const scrollToFormButton2 = document.getElementById('scroll-to-form2');
-      
-  
-      scrollToFormButton2.addEventListener('click', function() {
-          formSection.scrollIntoView({ behavior: 'smooth' });
-      });
-
-      const scrollToFormButton3 = document.getElementById('scroll-to-form3');
-      
-  
-      scrollToFormButton3.addEventListener('click', function() {
-          formSection.scrollIntoView({ behavior: 'smooth' });
-      });
-  </script>
-  </body>
+              <script>
+              new WOW().init();
+              </script>
+</body>
 </html>
