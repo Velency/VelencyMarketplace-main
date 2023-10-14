@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-{% load static %} 
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -15,10 +14,10 @@
     <header class="header">
         <div class="container">
             <div data-wow-duration="5s" class="nav animate__animated animate__fadeIn">
-                <img class="logo" src="{% static 'img/image 1.svg'%}" alt="logo">
+                <a href="index.html"><img class="logo" src="{% static 'img/image 1.svg'%}" alt="logo"></a>
                 <div class="logo_text">
-                 <p class="text1">Бирюзовая</p>
-                    <p class="text2">Академия</p></p>
+                 <a href="index.html"><p class="text1">Бирюзовая</p></a>
+                    <a href="index.html"><p class="text2">Академия</p></p></a>
                 </div>
                 <ul class="menu">
                     <li>
@@ -34,7 +33,7 @@
                         <a href="#">Блог</a>
                     </li>
                 </ul>
-                <button class="nav_btn">
+                <button id="navButton" class="nav_btn">
                     <p class="nav_btn_text">Начать бесплатно</p>
                 </button>
                 <button id="menu-open" class="menu-open">
@@ -42,6 +41,20 @@
                 </button>
             </div>
             <div class="main_block">
+                <ul id="show-menu" class="show-menu">
+                    <li>
+                        <a href="#">Об академи</a>
+                    </li>
+                    <li>
+                        <a href="#">Направления</a>
+                    </li>
+                    <li>
+                        <a href="#">Метавселенная</a>
+                    </li>
+                    <li>
+                        <a href="#">Блог</a>
+                    </li>
+                </ul>
             <div class="action_text_block">
                 <div id="action_block_title " data-wow-duration="5s"  class="action_block_title animate__animated animate__fadeIn">
                     <div class="title_litle_text">
@@ -245,7 +258,7 @@
         <div class="blog_title">
             <p class="title_blog wow animate__animated animate__fadeIn">Наш блог</p>
             <div class="blog_div wow animate__animated animate__fadeIn"></div>
-          </div>
+            </div>
             <div class="block_blog_cards wow animate__animated animate__fadeInLeft">
                <img class="bg_blog" src="{% static '/img/blog_cards_block.png'%}" alt="bg_blog">
                 <div class="block_card_group ">
@@ -264,7 +277,6 @@
                 </div>
             </div>
         </div>
-        
     </div>
     <div id="faq" class="faq">
         <div class="container">
@@ -281,9 +293,9 @@
                         профессионального и личного роста. 
                         Присоединяйтесь к нам и идите к успеху!</p>
                 </div>
-                <button class="faq_btn wow animate__animated animate__pulse">
+                <button id="faqButton" class="faq_btn wow animate__animated animate__pulse">
                     <div class="faq_btn_text_block">
-                        <p class="faq_btn_text">Напиши нам</p>
+                    <p class="faq_btn_text">Напиши нам</p>
                         <img class="btn_arrow_faq" src="{% static '/img/btn_arrow.svg'%}" alt="action_btn_arrow">
                     </div>
                 </button>
@@ -378,7 +390,7 @@
             <div class="footer_box">
             <div data-wow-delay="1s" class="text_block_footer animate__animated animate__fadeInUp">
             <div class="logo_footer">
-            <img src="{% static 'img/image 1.svg'%}" alt="logo">
+            <a href="index.html"><img src="{% static 'img/image 1.svg'%}" alt="logo"></a>
             <div class="logo_text">
                 <p class="text1">Бирюзовая</p>
                 <p class="text2">Академия</p></p>
@@ -397,12 +409,12 @@
                     </div>
                     <div class="instargram">
                         <div class="round_smm">
-                            <a href="#"><img src="{% static '/img/instagram.svg'%}" alt="facebook"></a>
+                            <a href="https://www.instagram.com/modern.time.academy/"><img src="{% static '/img/instagram.svg'%}" alt="instagram"></a>
                         </div>
                     </div>
                     <div class="telegram">
                         <div class="round_smm">
-                            <a href="#"><img src="{% static '/img/telegram.svg'%}" alt="facebook"></a>
+                            <a href="https://t.me/+Xp5zW6wyF_FmMDU1"><img src="{% static '/img/telegram.svg'%}" alt="telegram"></a>
                         </div>
                     </div>
                </div>
@@ -415,7 +427,7 @@
                   ><span id="span2" class="footer-triger-title-span2">Бирюзовой </span
                   ><span  id="span3" class="footer-triger-title-span3">Академии?</span></span>
               </div>
-              <button class="footer_btn wow animate__animated animate__pulse">
+              <button id="footButton" class="footer_btn wow animate__animated animate__pulse">
                 <div class="footer_btn_text_block">
                     <p class="footer_btn_text">Начать бесплатно</p>
                     <img class="btn_arrow_footer" src="{% static '/img/btn_arrow.svg'%}" alt="action_btn_arrow">
@@ -428,9 +440,23 @@
     <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
     <script src="{% static 'js/wow.min.js'%}"></script>
     <script src="{% static 'js/menu-academy.js'%}"></script>
-  
               <script>
               new WOW().init();
+              // JavaScript для обработки клика на кнопке и перехода на другую страницу
+                document.getElementById("navButton").addEventListener("click", function() {
+                    // Используйте window.location.href для перехода на другую страницу
+                    window.location.href = "contact.html"; // Замените "новая_страница.html" на URL вашей целевой страницы
+                });
+                // JavaScript для обработки клика на кнопке и перехода на другую страницу
+                document.getElementById("footButton").addEventListener("click", function() {
+                    // Используйте window.location.href для перехода на другую страницу
+                    window.location.href = "contact.html"; // Замените "новая_страница.html" на URL вашей целевой страницы
+                });
+                // JavaScript для обработки клика на кнопке и перехода на другую страницу
+                document.getElementById("faqButton").addEventListener("click", function() {
+                    // Используйте window.location.href для перехода на другую страницу
+                    window.location.href = "contact.html"; // Замените "новая_страница.html" на URL вашей целевой страницы
+                });
               </script>
 </body>
 </html>
