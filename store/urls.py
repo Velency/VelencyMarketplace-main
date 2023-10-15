@@ -57,5 +57,6 @@ urlpatterns = [
          name='authenticate_wallet'),
     path('academy/', views.academy, name='academy'),
     path('about_academy/', views.academy2, name='academy2'),
+    path('contact/', views.contact, name='contact'),
 
 ]

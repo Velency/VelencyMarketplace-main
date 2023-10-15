@@ -133,6 +133,11 @@ def academy2(request):
     return render(request, 'store/academy2.html', {})
 
 
+def contact(request):
+
+    return render(request, 'store/contact.html', {})
+
+
 def academy(request):
     form = ConnectionForm()
 
