@@ -134,8 +134,8 @@ def academy2(request):
 
 
 def contact(request):
-
-    return render(request, 'store/contact.html', {})
+    context = {}
+    return render(request, 'store/contact.html', context)
 
 
 def academy(request):
