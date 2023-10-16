@@ -192,7 +192,7 @@
     </footer>
     <script src="{% static 'https://code.jquery.com/jquery-3.7.1.slim.min.js'%}" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
     <script src="{% static 'js/menu-academy.js'%}"></script>
-    <!-- <script src="{% static 'js/contact-academy.js'%}"></script> -->
+    <script src="{% static 'js/contact-academy.js'%}"></script>
     <script src="{% static 'js/wow.min.js'%}"></script>
     <script>
         new WOW().init();
@@ -213,43 +213,5 @@
           });
         </script>
 
-        <script>
-           document.addEventListener("DOMContentLoaded", function () {
-    var showButton = document.getElementById("type_mes");
-    var hiddenElement = document.getElementById("dropdown_mes");
-    var selectedMessengerElement = document.getElementById("selectedMessenger");
-    var messengerValueInput = document.querySelector("input[name='messenger_value']");
-    let isHidden = true;
-
-    showButton.addEventListener("click", function (event) {
-        if (isHidden) {
-            hiddenElement.style.display = "block";
-        } else {
-            hiddenElement.style.display = "none";
-        }
-        isHidden = !isHidden;
-        event.stopPropagation(); // Prevent the click from propagating to the document click listener
-    });
-
-    hiddenElement.addEventListener("click", function (event) {
-        if (event.target.tagName === "IMG") {
-            const selectedMessenger = event.target.getAttribute("alt");
-            selectedMessengerElement.innerHTML = event.target.outerHTML;
-            messengerValueInput.style.display = "block"; // Show the input field
-            hiddenElement.style.display = "none"; // Close the dropdown
-            isHidden = true;
-        }
-    });
-
-    // Close the dropdown when clicking outside
-    document.addEventListener("click", function (event) {
-        if (event.target !== showButton && !hiddenElement.contains(event.target)) {
-            hiddenElement.style.display = "none";
-            isHidden = true;
-        }
-    });
-});
-
-        </script>
 </body>
 </html>
