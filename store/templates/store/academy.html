@@ -16,23 +16,23 @@
     <header class="header">
         <div class="container">
             <div data-wow-duration="5s" class="nav animate__animated animate__fadeIn">
-                <a href="index.html"><img class="logo" src="{% static 'img/image 1.svg'%}" alt="logo"></a>
+                <a href="{% url 'academy' %}"><img class="logo" src="{% static 'img/image 1.svg'%}" alt="logo"></a>
                 <div class="logo_text">
-                 <a href="index.html"><p class="text1">Бирюзовая</p></a>
-                    <a href="index.html"><p class="text2">Академия</p></p></a>
+                 <a href="{% url 'academy' %}"><p class="text1">Бирюзовая</p></a>
+                    <a href="{% url 'academy' %}"><p class="text2">Академия</p></p></a>
                 </div>
                 <ul class="menu">
                     <li>
-                        <a href="#">Об академи</a>
+                        <a href="{% url 'about_academy' %}">Об академии</a>
                     </li>
                     <li>
                         <a href="#">Направления</a>
                     </li>
                     <li>
-                        <a href="#">Метавселенная</a>
+                        <a href="{% url 'index' %}">Метавселенная</a>
                     </li>
                     <li>
-                        <a href="#">Блог</a>
+                        <a href="{% url 'index' %}">Блог</a>
                     </li>
                 </ul>
                 <button id="navButton" class="nav_btn" href="{% url 'contact' %}">
@@ -392,7 +392,7 @@
             <div class="footer_box">
             <div data-wow-delay="1s" class="text_block_footer animate__animated animate__fadeInUp">
             <div class="logo_footer">
-            <a href="index.html"><img src="{% static 'img/image 1.svg'%}" alt="logo"></a>
+            <a href="{% url 'academy' %}"><img src="{% static 'img/image 1.svg'%}" alt="logo"></a>
             <div class="logo_text">
                 <p class="text1">Бирюзовая</p>
                 <p class="text2">Академия</p></p>

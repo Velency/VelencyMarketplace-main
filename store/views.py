@@ -134,27 +134,21 @@ def academy2(request):
 
 
 def contact(request):
-    context = {}
-    return render(request, 'store/contact.html', context)
-
-
-def academy(request):
     form = ConnectionForm()
 
     if request.method == 'POST':
         form = ConnectionForm(request.POST)
         if form.is_valid():
             name = form.cleaned_data['name']
-            email = form.cleaned_data['email']
-            phone = form.cleaned_data['phone']  # Change 'mobile' to 'phone'
-            agree_to_processing = form.cleaned_data['agree_to_processing']
-            questions = form.cleaned_data['questions']
-
+            sur_name = form.cleaned_data['sur_name']
+            phone = form.cleaned_data['phone']
+            messenger_type = form.cleaned_data['messenger_type']
+            messenger_value = form.cleaned_data['messenger_value']
             try:
                 send_mail(
                     'Сообщение из формы обратной связи',
                     # Change 'mobile' to 'phone'
-                    f'От: {name}\nEmail: {email}\n\n{questions}\n \n Phone: {phone}',
+                    f'От: {name}  {sur_name}\n\n\nСпособ свзяи -{messenger_type}\n{messenger_value} \n Phone: {phone}',
                     EMAIL_HOST_USER, [
                         RECIPIENTS_EMAIL, 'fidanur23@gmail.com', 'f.usmanov@hrworld.live'],
                     fail_silently=False,
@@ -167,8 +161,13 @@ def academy(request):
         else:
             print(form.errors)
             messages.error(request, 'Ошибка формы!')
+    context = {'form': form}
+    return render(request, 'store/contact.html', context)
 
-    return render(request, 'store/academy.html', {'form': form})
+
+def academy(request):
+
+    return render(request, 'store/academy.html', {})
 
 
 def logoutUser(request):

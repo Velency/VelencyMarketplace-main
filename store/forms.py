@@ -74,13 +74,22 @@ class FeedbackForm(forms.Form):
         attrs={'placeholder': 'Введите количество токенов которые хотели бы приобрести, и как мы сможем с вами связаться помимо почты'}), )
 
 
+MESSENGER_CHOICES = [
+    ('Telegram', 'Telegram'),
+    ('Instagram', 'Instagram'),
+    ('WhatsApp', 'WhatsApp'),
+    ('Viber', 'Viber'),
+]
+
+
 class ConnectionForm(forms.Form):
-    name = forms.CharField(max_length=100)
-    phone = forms.CharField(max_length=15)
-    email = forms.EmailField()
-    questions = forms.CharField(widget=forms.Textarea)
-    agree_to_processing = forms.BooleanField(
-        required=True,
-        label='Я согласен на обработку данных',
-        widget=forms.CheckboxInput(attrs={'class': 'checkbox-styled'})
-    )
+    name = forms.CharField(max_length=100, widget=forms.TextInput(
+        attrs={'class': 'input_block'}))
+    sur_name = forms.CharField(
+        max_length=100, widget=forms.TextInput(attrs={'class': 'input_block'}))
+    phone = forms.CharField(max_length=15, widget=forms.TextInput(
+        attrs={'class': 'input_block'}))
+    messenger_type = forms.ChoiceField(
+        choices=MESSENGER_CHOICES, widget=forms.Select(attrs={'class': 'drop_text'}))
+    messenger_value = forms.CharField(
+        max_length=50, widget=forms.TextInput(attrs={'class': 'input_mes'}))

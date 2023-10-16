@@ -16,23 +16,23 @@
     <header class="header">
         <div class="container">
     <div data-wow-duration="5s" class="nav animate__animated animate__fadeIn">
-        <a href="index.html"><img class="logo" src="{% static 'img/image 1.svg'%}" alt="logo"></a>
+        <a href="{% url 'academy' %}"><img class="logo" src="{% static 'img/image 1.svg'%}" alt="logo"></a>
         <div class="logo_text">
-            <a href="index.html"><p class="text1">Бирюзовая</p></a>
-               <a href="index.html"><p class="text2">Академия</p></p></a>
+            <a href="{% url 'academy' %}"><p class="text1">Бирюзовая</p></a>
+               <a href="{% url 'academy' %}"><p class="text2">Академия</p></p></a>
         </div>
         <ul class="menu">
             <li>
-                <a href="#">Об академи</a>
+                <a href="{% url 'about_academy' %}">Об академи</a>
             </li>
             <li>
                 <a href="#">Направления</a>
             </li>
             <li>
-                <a href="#">Метавселенная</a>
+                <a href="{% url 'index' %}">Метавселенная</a>
             </li>
             <li>
-                <a href="#">Блог</a>
+                <a href="{% url 'index' %}">Блог</a>
             </li>
         </ul>
         <button id="navButton" class="nav_btn">
@@ -44,8 +44,8 @@
     </div>
         </div>
     </header>
-    <div class="contact">
-        <ul id="show-menu" class="show-menu">
+    <div class="contact" >
+        <ul id="show-menu" class="show-menu" style="display: none;">
             <li>
                 <a href="#">Об академи</a>
             </li>
@@ -65,51 +65,63 @@
             <div class="divider_title"></div>
             </div>
             <div class="block_form animate__animated animate__fadeIn" data-wow-duration="5s">
-                <div class="contact_form">
-                    <p class="form_title">Оставьте заявку и мы свяжемся с вами</p>
-                    <div class="input_group">
-                        <div class="name_group">
-                            <p class="name">Имя</p>
-                            <input type="text" placeholder="Ваше Имя" class="input_block">
-                        </div>
-                        <div class="last_name_group">
-                            <p class="last_name">Фамилия</p>
-                            <input type="text" placeholder="Ваша Фамилия" class="input_block">
-                        </div>
-                        <div class="tel_group">
-                            <p class="tel">Телефон</p>
-                            <input type="number" placeholder="Ваш телефон" class="input_block">
-                        </div>
-                        <div class="mes_group">
-                            <p class="mes">Мессенджер</p>
-                            <div class="input_block_mes">
-                                <button id="type_mes" class="mes_type_btn" ><p class="text_btn_mes">Тип</p><img class="btn_arrow" src="{% static 'img/btn_arrow.svg'%}"></button>
-                                <input type="text" placeholder="Ваш Никнейм" class="input_mes">
-                                <div id="dropdown_mes" class="dropdown_menu">
-                                    <ul class="drop_menu">
-                                        <li class="drop_item">
-                                            <p class="drop_text">Telegram</p>
-                                        </li>
-                                        <li class="drop_item">
-                                            <p class="drop_text">Instagram</p>
-                                        </li>
-                                        <li class="drop_item">
-                                            <p class="drop_text">WatsApp</p>
-                                        </li>
-                                        <li class="drop_item">
-                                            <p class="drop_text">Viber</p>
-                                        </li>
-                                    </ul>
+                <form name="contact-form" method="post" action="{% url 'contact' %}">
+                    {% csrf_token %}
+                    <div class="contact_form">
+                        <p class="form_title">Оставьте заявку и мы свяжемся с вами</p>
+                        <div class="input_group">
+                            <div class="name_group">
+                                <p class="name">Имя</p>
+                                <input type="text" placeholder="Ваше Имя" name="name" class="input_block">
+                            </div>
+                            <div class="last_name_group">
+                                <p class="last_name">Фамилия</p>
+                                <input type="text" placeholder="Ваша Фамилия" name="sur_name" class="input_block">
+                            </div>
+                            <div class="tel_group">
+                                <p class="tel">Телефон</p>
+                                <input type="number" placeholder="Ваш телефон" name="phone" class="input_block">
+                            </div>
+                            <div class="mes_group">
+                                <p class="mes">Мессенджер</p>
+                                <div class="input_block_mes">
+                                    <button id="type_mes" class="mes_type_btn" type="button">
+                                        <p class="text_btn_mes" id="selectedMessenger">Тип</p>
+                                        <img class="btn_arrow" src="{% static 'img/btn_arrow.svg' %}" alt="arrow">
+                                    </button>
+                                    <input type="text" placeholder="Ваш Никнейм" name="messenger_value" class="input_mes">
+                                    <div id="dropdown_mes" class="dropdown_menu">
+                                        <ul class="drop_menu">
+                                            <li class="drop_item" data-messenger="Telegram">
+                                                <img class="messenger_icon" src="{% static 'img/telegram.svg' %}" style="margin: 0;height: 25px;" alt="Telegram">
+                                            </li>
+                                            <li class="drop_item" data-messenger="Instagram">
+                                                <img class="messenger_icon" src="{% static 'img/instagram.svg' %}" style="margin: 0;height: 25px;" alt="Instagram">
+                                            </li>
+                                            <li class="drop_item" data-messenger="WhatsApp">
+                                                <img class="messenger_icon" src="{% static 'img/whatsapp.svg' %}" style="margin: 0;height: 25px;" alt="WhatsApp">
+                                            </li>
+                                            <li class="drop_item" data-messenger="Viber">
+                                                <img class="messenger_icon" src="{% static 'img/viber.svg' %}" style="margin: 0;height: 25px;" alt="Viber">
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
+                            
+                            
+                            
+                            
+                        </div>
+                        <div class="btn_contact">
+                            <button class="contact_btn" type="submit" name="UpdateCustomerForm">
+                                <p class="btn_text">Отправить заявку</p>
+                            </button>
                         </div>
                     </div>
-                    <div class="btn_contact">
-                        <button class="contact_btn">
-                            <p class="btn_text">Отправить заявку</p>
-                        </button>
-                        </div>
-                </div>
+                </form>
+                
+                
                 <div class="contact_info_block">
                     <p class="contact_form_title">Контакты</p>
                     <div class="contact_group">
@@ -131,7 +143,7 @@
             <div class="footer_box">
             <div data-wow-delay="1s" class="text_block_footer animate__animated animate__fadeInUp">
             <div class="logo_footer">
-            <a href="index.html"><img src="{% static 'img/image 1.svg'%}" alt="logo"></a>
+            <a href="{% url 'academy' %}"><img src="{% static 'img/image 1.svg'%}" alt="logo"></a>
             <div class="logo_text">
                 <p class="text1">Бирюзовая</p>
                 <p class="text2">Академия</p></p>
@@ -180,7 +192,7 @@
     </footer>
     <script src="{% static 'https://code.jquery.com/jquery-3.7.1.slim.min.js'%}" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
     <script src="{% static 'js/menu-academy.js'%}"></script>
-    <script src="{% static 'js/contact-academy.js'%}"></script>
+    <!-- <script src="{% static 'js/contact-academy.js'%}"></script> -->
     <script src="{% static 'js/wow.min.js'%}"></script>
     <script>
         new WOW().init();
@@ -199,6 +211,45 @@
               // Используйте window.location.href для перехода на другую страницу
               window.location.href = "/contact"; // Замените "новая_страница.html" на URL вашей целевой страницы
           });
+        </script>
+
+        <script>
+           document.addEventListener("DOMContentLoaded", function () {
+    var showButton = document.getElementById("type_mes");
+    var hiddenElement = document.getElementById("dropdown_mes");
+    var selectedMessengerElement = document.getElementById("selectedMessenger");
+    var messengerValueInput = document.querySelector("input[name='messenger_value']");
+    let isHidden = true;
+
+    showButton.addEventListener("click", function (event) {
+        if (isHidden) {
+            hiddenElement.style.display = "block";
+        } else {
+            hiddenElement.style.display = "none";
+        }
+        isHidden = !isHidden;
+        event.stopPropagation(); // Prevent the click from propagating to the document click listener
+    });
+
+    hiddenElement.addEventListener("click", function (event) {
+        if (event.target.tagName === "IMG") {
+            const selectedMessenger = event.target.getAttribute("alt");
+            selectedMessengerElement.innerHTML = event.target.outerHTML;
+            messengerValueInput.style.display = "block"; // Show the input field
+            hiddenElement.style.display = "none"; // Close the dropdown
+            isHidden = true;
+        }
+    });
+
+    // Close the dropdown when clicking outside
+    document.addEventListener("click", function (event) {
+        if (event.target !== showButton && !hiddenElement.contains(event.target)) {
+            hiddenElement.style.display = "none";
+            isHidden = true;
+        }
+    });
+});
+
         </script>
 </body>
 </html>

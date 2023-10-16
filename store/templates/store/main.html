@@ -599,12 +599,7 @@
                 </div>
 
                 <!-- User -->
-                {% if request.user.customer is none %}
-                <a id="auth-metamask" type="button" class="btn"> Connect </a>
-                <button id="walletconnect-button">
-                  Connect with WalletConnect
-                </button>
-                {% else %}
+                {% if request.user.customer is none %} {% else %}
                 <div class="dropdown nav-logo-group" style="margin-left: 15px">
                   <a
                     class="text-reset dropdown-toggle me-3 hidden-arrow"
