@@ -23,7 +23,7 @@
         </div>
         <ul class="menu">
             <li>
-                <a href="{% url 'about_academy' %}">Об академи</a>
+                <a href="{% url 'academy2' %}">Об академи</a>
             </li>
             <li>
                 <a href="#">Направления</a>
@@ -65,61 +65,64 @@
             <div class="divider_title"></div>
             </div>
             <div class="block_form animate__animated animate__fadeIn" data-wow-duration="5s">
-                <form name="contact-form" method="post" action="{% url 'contact' %}">
-                    {% csrf_token %}
-                    <div class="contact_form">
-                        <p class="form_title">Оставьте заявку и мы свяжемся с вами</p>
-                        <div class="input_group">
-                            <div class="name_group">
-                                <p class="name">Имя</p>
-                                <input type="text" placeholder="Ваше Имя" name="name" class="input_block">
-                            </div>
-                            <div class="last_name_group">
-                                <p class="last_name">Фамилия</p>
-                                <input type="text" placeholder="Ваша Фамилия" name="sur_name" class="input_block">
-                            </div>
-                            <div class="tel_group">
-                                <p class="tel">Телефон</p>
-                                <input type="number" placeholder="Ваш телефон" name="phone" class="input_block">
-                            </div>
-                            <div class="mes_group">
-                                <p class="mes">Мессенджер</p>
-                                <div class="input_block_mes">
-                                    <button id="type_mes" class="mes_type_btn" type="button">
-                                        <p class="text_btn_mes" id="selectedMessenger">Тип</p>
-                                        <img class="btn_arrow" src="{% static 'img/btn_arrow.svg' %}" alt="arrow">
-                                    </button>
-                                    <input type="text" placeholder="Ваш Никнейм" name="messenger_value" class="input_mes">
-                                    <div id="dropdown_mes" class="dropdown_menu">
-                                        <ul class="drop_menu">
-                                            <li class="drop_item" data-messenger="Telegram">
-                                                <img class="messenger_icon" src="{% static 'img/telegram.svg' %}" style="margin: 0;height: 25px;" alt="Telegram">
-                                            </li>
-                                            <li class="drop_item" data-messenger="Instagram">
-                                                <img class="messenger_icon" src="{% static 'img/instagram.svg' %}" style="margin: 0;height: 25px;" alt="Instagram">
-                                            </li>
-                                            <li class="drop_item" data-messenger="WhatsApp">
-                                                <img class="messenger_icon" src="{% static 'img/whatsapp.svg' %}" style="margin: 0;height: 25px;" alt="WhatsApp">
-                                            </li>
-                                            <li class="drop_item" data-messenger="Viber">
-                                                <img class="messenger_icon" src="{% static 'img/viber.svg' %}" style="margin: 0;height: 25px;" alt="Viber">
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            
-                            
-                            
-                        </div>
-                        <div class="btn_contact">
-                            <button class="contact_btn" type="submit" name="UpdateCustomerForm">
-                                <p class="btn_text">Отправить заявку</p>
-                            </button>
-                        </div>
+                <!-- Updated HTML -->
+<!-- Updated HTML -->
+<form name="contact-form" method="post" action="{% url 'contact' %}">
+    {% csrf_token %}
+    <div class="contact_form">
+        <p class="form_title">Оставьте заявку и мы свяжемся с вами</p>
+        <div class="input_group">
+            <div class="name_group">
+                <p class="name">Имя</p>
+                <input type="text" placeholder="Ваше Имя" name="name" class="input_block">
+            </div>
+            <div class="last_name_group">
+                <p class="last_name">Фамилия</p>
+                <input type="text" placeholder="Ваша Фамилия" name="sur_name" class="input_block">
+            </div>
+            <div class="tel_group">
+                <p class="tel">Телефон</p>
+                <input type="text" placeholder="Ваш телефон" name="phone" class="input_block" pattern="[0-9]*" title="Введите только цифры">
+
+            </div>
+            <div class="mes_group">
+                <p class="mes">Мессенджер</p>
+                <div class="input_block_mes">
+                    <button id="type_mes" class="mes_type_btn" type="button">
+                        <p class="text_btn_mes" id="selectedMessenger">Тип</p>
+                        <img class="btn_arrow" src="{% static 'img/btn_arrow.svg' %}" alt="arrow">
+                    </button>
+                    <input type="text" placeholder="Ваш Никнейм" name="messenger_value" class="input_mes">
+                    <div id="dropdown_mes" class="dropdown_menu">
+                        <ul class="drop_menu">
+                            <li class="drop_item" data-messenger="Telegram" value="Telegram">
+                                <p class="drop_text">Telegram</p>
+                            </li>
+                            <li class="drop_item" data-messenger="Instagram" value="Instagram">
+                                <p class="drop_text">Instagram</p>
+                            </li>
+                            <li class="drop_item" data-messenger="WhatsApp" value="WhatsApp">
+                                <p class="drop_text">WhatsApp</p>
+                            </li>
+                            <li class="drop_item" data-messenger="Viber" value="Viber">
+                                <p class="drop_text">Viber</p>
+                            </li>
+                        </ul>
                     </div>
-                </form>
+                    
+                </div>
+                
+            </div>
+        </div>
+        <div class="btn_contact">
+            <button class="contact_btn" type="submit" name="UpdateCustomerForm">
+                <p class="btn_text">Отправить заявку</p>
+            </button>
+        </div>
+    </div>
+</form>
+
+
                 
                 
                 <div class="contact_info_block">
@@ -213,5 +216,8 @@
           });
         </script>
 
+
+
+        
 </body>
 </html>
