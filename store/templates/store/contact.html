@@ -66,61 +66,65 @@
             </div>
             <div class="block_form animate__animated animate__fadeIn" data-wow-duration="5s">
                 <!-- Updated HTML -->
-<!-- Updated HTML -->
-<form name="contact-form" method="post" action="{% url 'contact' %}">
-    {% csrf_token %}
-    <div class="contact_form">
-        <p class="form_title">Оставьте заявку и мы свяжемся с вами</p>
-        <div class="input_group">
-            <div class="name_group">
-                <p class="name">Имя</p>
-                <input type="text" placeholder="Ваше Имя" name="name" class="input_block">
-            </div>
-            <div class="last_name_group">
-                <p class="last_name">Фамилия</p>
-                <input type="text" placeholder="Ваша Фамилия" name="sur_name" class="input_block">
-            </div>
-            <div class="tel_group">
-                <p class="tel">Телефон</p>
-                <input type="text" placeholder="Ваш телефон" name="phone" class="input_block" pattern="[0-9]*" title="Введите только цифры">
+            <!-- Updated HTML -->
+            <form name="contact-form" method="post" action="{% url 'contact' %}">
+                {% csrf_token %}
+                <div class="contact_form">
+                    <p class="form_title">Оставьте заявку и мы свяжемся с вами</p>
+                    <div class="input_group">
+                        <div class="name_group">
+                            <p class="name">Имя</p>
+                            <input type="text" placeholder="Ваше Имя" name="name" class="input_block">
+                        </div>
+                        <div class="last_name_group">
+                            <p class="last_name">Фамилия</p>
+                            <input type="text" placeholder="Ваша Фамилия" name="sur_name" class="input_block">
+                        </div>
+                        <div class="tel_group">
+                            <p class="tel">Телефон</p>
+                            <input type="text" placeholder="Ваш телефон" name="phone" class="input_block" pattern="[0-9]*" title="Введите только цифры">
 
-            </div>
-            <div class="mes_group">
-                <p class="mes">Мессенджер</p>
-                <div class="input_block_mes">
-                    <button id="type_mes" class="mes_type_btn" type="button">
-                        <p class="text_btn_mes" id="selectedMessenger">Тип</p>
-                        <img class="btn_arrow" src="{% static 'img/btn_arrow.svg' %}" alt="arrow">
-                    </button>
-                    <input type="text" placeholder="Ваш Никнейм" name="messenger_value" class="input_mes">
-                    <div id="dropdown_mes" class="dropdown_menu">
-                        <ul class="drop_menu">
-                            <li class="drop_item" data-messenger="Telegram" value="Telegram">
-                                <p class="drop_text">Telegram</p>
-                            </li>
-                            <li class="drop_item" data-messenger="Instagram" value="Instagram">
-                                <p class="drop_text">Instagram</p>
-                            </li>
-                            <li class="drop_item" data-messenger="WhatsApp" value="WhatsApp">
-                                <p class="drop_text">WhatsApp</p>
-                            </li>
-                            <li class="drop_item" data-messenger="Viber" value="Viber">
-                                <p class="drop_text">Viber</p>
-                            </li>
-                        </ul>
+                        </div>
+                        <div class="mes_group">
+                            <p class="mes">Мессенджер</p>
+                            <div class="input_block_mes">
+                                <button id="type_mes" class="mes_type_btn" type="button">
+                                    <p class="text_btn_mes" id="selectedMessenger">Тип</p>
+                                    <img class="btn_arrow" id="btn_arrow" src="{% static 'img/btn_arrow.svg' %}" alt="arrow">
+                                </button>
+                                <input type="text" name="messenger_value" class="input_mes">
+                                <select name="messenger_type" style="display: none;"> <!-- Скрытый select -->
+                                    <option value="Telegram">Telegram</option>
+                                    <option value="Instagram">Instagram</option>
+                                    <option value="WhatsApp">WhatsApp</option>
+                                    <option value="Viber">Viber</option>
+                                </select>
+                                <div id="dropdown_mes" class="dropdown_menu">
+                                    <ul class="drop_menu">
+                                        <li class="drop_item">
+                                            <p class="drop_text">Telegram</p>
+                                        </li>
+                                        <li class="drop_item">
+                                            <p class="drop_text">Instagram</p>
+                                        </li>
+                                        <li class="drop_item">
+                                            <p class="drop_text">WhatsApp</p>
+                                        </li>
+                                        <li class="drop_item">
+                                            <p class="drop_text">Viber</p>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    
+                    <div class="btn_contact">
+                        <button class="contact_btn" type="submit" name="UpdateCustomerForm">
+                            <p class="btn_text">Отправить заявку</p>
+                        </button>
+                    </div>
                 </div>
-                
-            </div>
-        </div>
-        <div class="btn_contact">
-            <button class="contact_btn" type="submit" name="UpdateCustomerForm">
-                <p class="btn_text">Отправить заявку</p>
-            </button>
-        </div>
-    </div>
-</form>
+            </form>
 
 
                 
@@ -211,12 +215,10 @@
           });
           // JavaScript для обработки клика на кнопке и перехода на другую страницу
           document.getElementById("faqButton").addEventListener("click", function() {
-              // Используйте window.location.href для перехода на другую страницу
-              window.location.href = "/contact"; // Замените "новая_страница.html" на URL вашей целевой страницы
+              
+              window.location.href = "/contact"; // Переход на страницу
           });
         </script>
-
-
 
         
 </body>
