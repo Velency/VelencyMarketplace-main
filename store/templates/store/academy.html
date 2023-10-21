@@ -45,16 +45,16 @@
             <div class="main_block">
                 <ul id="show-menu" class="show-menu">
                     <li>
-                        <a href="#">Об академи</a>
+                        <a href="{% url 'academy2' %}">Об академии</a>
                     </li>
                     <li>
                         <a href="#">Направления</a>
                     </li>
                     <li>
-                        <a href="#">Метавселенная</a>
+                        <a href="{% url 'index' %}">Метавселенная</a>
                     </li>
                     <li>
-                        <a href="#">Блог</a>
+                        <a href="{% url 'index' %}">Блог</a>
                     </li>
                 </ul>
             <div class="action_text_block">
@@ -447,17 +447,17 @@
               // JavaScript для обработки клика на кнопке и перехода на другую страницу
                 document.getElementById("navButton").addEventListener("click", function() {
                     // Используйте window.location.href для перехода на другую страницу
-                    window.location.href = "/contact"; // Замените "новая_страница.html" на URL вашей целевой страницы
+                    window.location.href = "{% url 'contact' %}"; // Замените "новая_страница.html" на URL вашей целевой страницы
                 });
                 // JavaScript для обработки клика на кнопке и перехода на другую страницу
                 document.getElementById("footButton").addEventListener("click", function() {
                     // Используйте window.location.href для перехода на другую страницу
-                    window.location.href = "/contact"; // Замените "новая_страница.html" на URL вашей целевой страницы
+                    window.location.href = "{% url 'contact' %}"; // Замените "новая_страница.html" на URL вашей целевой страницы
                 });
                 // JavaScript для обработки клика на кнопке и перехода на другую страницу
                 document.getElementById("faqButton").addEventListener("click", function() {
                     // Используйте window.location.href для перехода на другую страницу
-                    window.location.href = "/contact"; // Замените "новая_страница.html" на URL вашей целевой страницы
+                    window.location.href = "{% url 'contact' %}"; // Замените "новая_страница.html" на URL вашей целевой страницы
                 });
               </script>
 </body>

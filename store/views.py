@@ -124,13 +124,13 @@ def login_and_registration_required(view_func):
 
 
 def academy2(request):
-    news_feed = NewsFeed.objects.all()
-    team_members = TeamMember.objects.all()
-    item_count = news_feed.count()
-    # partners = Partnership.objects.all()
-    context = {'news_feed': news_feed, 'item_count': item_count,
-               'team_members': team_members, }
+    context = {}
     return render(request, 'store/academy2.html', {})
+
+
+def all_courses(request):
+    context = {}
+    return render(request, 'store/all_courses.html', {})
 
 
 def contact(request):

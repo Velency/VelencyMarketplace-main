@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %} 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Контакты</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/all_courses-academy.css'%}">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+    <div data-wow-duration="5s" class="nav animate__animated animate__fadeIn">
+        <a href="{% url 'academy' %}"><img class="logo" src="{% static 'img/image 1.svg'%}" alt="logo"></a>
+        <div class="logo_text">
+            <a href="{% url 'academy' %}"><p class="text1">Бирюзовая</p></a>
+               <a href="{% url 'academy' %}"><p class="text2">Академия</p></p></a>
+        </div>
+        <ul class="menu">
+            <li>
+                <a href="{% url 'academy2' %}">Об академи</a>
+            </li>
+            <li>
+                <a href="#">Направления</a>
+            </li>
+            <li>
+                <a href="{% url 'index' %}">Метавселенная</a>
+            </li>
+            <li>
+                <a href="#">Блог</a>
+            </li>
+        </ul>
+        <button id="navButton" class="nav_btn">
+            <p class="nav_btn_text">Начать бесплатно</p>
+        </button>
+        <button id="menu-open" class="menu-open">
+                <img id="menu_img" class="menu_img" src="{% static 'img/burger.svg'%}" alt="burger_menu_img">
+        </button>
+    </div>
+        </div>
+    </header>
+    <div class="courses">
+        <ul id="show-menu" class="show-menu">
+            <li>
+                <a href="{% url 'academy2' %}">Об академи</a>
+            </li>
+            <li>
+                <a href="#">Направления</a>
+            </li>
+            <li>
+                <a href="{% url 'index' %}">Метавселенная</a>
+            </li>
+            <li>
+                <a href="#">Блог</a>
+            </li>
+        </ul>
+        <div class="courses_block">
+            <div class="title_block">
+            <p class="courses_title">Все направления</p>
+            <div class="divider_title"></div>
+            </div>
+            <div id="courses_card_block" class="courses_card_block animate__animated animate__fadeIn" data-wow-duration="5s">
+                <div class="selfgrow_block">
+                    <div class="img_text_group">
+                        <img class="round_icon" src="{% static 'img/icon_round.svg'%}" alt="bg_courses_icon">
+                        <img class="courses_icon" src="{% static 'img/selfgrow_image.svg'%}" alt="course_icon">
+                        <div class="selfgrow_desc">
+                            <p class="selfgrow_title">Самопознание</p>
+                            <p class="selfgrow_text">Познание себя для личного роста и развития, повышения самосознания и понимания.</p>
+                        </div>
+                        <div class="small_text">
+                            <p class="numb_courses">15 Курсов</p>
+                            <div class="price_courses">
+                                <p class="price1">6000 &#8381;/мес</p>&nbsp;&nbsp;
+                                <p class="price2">на 24 мес.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="market_block">
+                    <div class="img_text_group">
+                        <img class="round_icon" src="{% static 'img/icon_round.svg'%}" alt="bg_courses_icon">
+                        <img class="courses_icon" src="{% static 'img/market_image.svg'%}" alt="course_icon">
+                        <div class="market_desc">
+                            <p class="market_title">Маркетинг</p>
+                            <p class="market_text">Создание и продвижение продуктов на рынке для достижения успеха и роста бренда.</p>
+                        </div>
+                        <div class="small_text">
+                            <p class="numb_courses">15 Курсов</p>
+                            <div class="price_courses">
+                                <p class="price1">6000 &#8381;/мес</p>&nbsp;&nbsp;
+                                <p class="price2">на 24 мес.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="sales_block">
+                    <div class="img_text_group">
+                        <img class="round_icon" src="{% static 'img/icon_round.svg'%}" alt="bg_courses_icon">
+                        <img class="courses_icon" src="{% static 'img/sales_image.svg'%}" alt="course_icon">
+                        <div class="sales_desc">
+                            <p class="sales_title">Продажи</p>
+                            <p class="sales_text">Убеждение и удовлетворение клиентов через эффективное обслуживание и коммуникации.</p>
+                        </div>
+                        <div class="small_text">
+                            <p class="numb_courses">15 Курсов</p>
+                            <div class="price_courses">
+                                <p class="price1">6000 &#8381;/мес</p>&nbsp;&nbsp;
+                                <p class="price2">на 24 мес.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="child_block">
+                    <div class="img_text_group">
+                        <img class="round_icon" src="{% static 'img/icon_round.svg'%}" alt="bg_courses_icon">
+                        <img class="courses_icon" src="{% static 'img/child_image.svg'%}" alt="course_icon">
+                        <div class="child_desc">
+                            <p class="child_title">Детское</p>
+                            <p class="child_text">Развитие и воспитание детей с учетом их потребностей и возрастных особенностей.</p>
+                        </div>
+                        <div class="small_text">
+                            <p class="numb_courses">15 Курсов</p>
+                            <div class="price_courses">
+                                <p class="price1">6000 &#8381;/мес</p>&nbsp;&nbsp;
+                                <p class="price2">на 24 мес.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="manage_block">
+                    <div class="img_text_group">
+                        <img class="round_icon" src="{% static 'img/icon_round.svg'%}" alt="bg_courses_icon">
+                        <img class="courses_icon" src="{% static 'img/manage_image.svg'%}" alt="course_icon">
+                        <div class="manage_desc">
+                            <p class="manage_title">Менеджмент</p>
+                            <p class="manage_text">Управление организацией и ресурсами для достижения целей и эффективного руководства.</p>
+                        </div>
+                        <div class="small_text">
+                            <p class="numb_courses">15 Курсов</p>
+                            <div class="price_courses">
+                                <p class="price1">6000 &#8381;/мес</p>&nbsp;&nbsp;
+                                <p class="price2">на 24 мес.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pr_block">
+                    <div class="img_text_group">
+                        <img class="round_icon" src="{% static 'img/icon_round.svg'%}" alt="bg_courses_icon">
+                        <img class="courses_icon" src="{% static 'img/pr_image.svg'%}" alt="course_icon">
+                        <div class="pr_desc">
+                            <p class="pr_title">Продюсирование</p>
+                            <p class="pr_text">Создание и управление процессами производства контента, продуктов или мероприятий.</p>
+                        </div>
+                        <div class="small_text">
+                            <p class="numb_courses">15 Курсов</p>
+                            <div class="price_courses">
+                                <p class="price1">6000 &#8381;/мес</p>&nbsp;&nbsp;
+                                <p class="price2">на 24 мес.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="finance_block">
+                    <div class="img_text_group">
+                        <img class="round_icon" src="{% static 'img/icon_round.svg'%}" alt="bg_courses_icon">
+                        <img class="courses_icon" src="{% static 'img/finance_image.svg'%}" alt="course_icon">
+                        <div class="finance_desc">
+                            <p class="finance_title">Экономика</p>
+                            <p class="finance_text">Анализ и управление ресурсами, распределение и изучение факторов, влияющих на рыночные процессы.</p>
+                        </div>
+                        <div class="small_text">
+                            <p class="numb_courses">15 Курсов</p>
+                            <div class="price_courses">
+                                <p class="price1">6000 &#8381;/мес</p>&nbsp;&nbsp;
+                                <p class="price2">на 24 мес.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="it_block">
+                    <div class="img_text_group">
+                        <img class="round_icon" src="{% static 'img/icon_round.svg'%}" alt="bg_courses_icon">
+                        <img class="courses_icon" src="{% static 'img/it_image.svg'%}" alt="course_icon">
+                        <div class="it_desc">
+                            <p class="it_title">IT Технологии</p>
+                            <p class="it_text">Разработка, управление, внедрение IT технологий для оптимизации бизнес-процессов и инновационных решений.</p>
+                        </div>
+                        <div class="small_text">
+                            <p class="numb_courses">15 Курсов</p>
+                            <div class="price_courses">
+                                <p class="price1">6000 &#8381;/мес</p>&nbsp;&nbsp;
+                                <p class="price2">на 24 мес.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer_box">
+            <div data-wow-delay="1s" class="text_block_footer animate__animated animate__fadeInUp">
+            <div class="logo_footer">
+            <a href="{% url 'academy' %}"><img src="{% static 'img/image 1.svg'%}" alt="logo"></a>
+            <div class="logo_text">
+                <p class="text1">Бирюзовая</p>
+                <p class="text2">Академия</p></p>
+            </div>
+            </div>
+            <div class="footer_second_text_block">
+            <div class="footer_text">
+            <p class="footer_text1">Никогда не сомневайтесь в своем потенциале! Бирюзовая Академия – это ваш путь к лучшей версии себя.
+               <br><p class="footer_text2">#БирюзоваяАкадемия #РаскройСебя</p></p>
+               </div>
+               <div class="icon_footer_block">
+                    <div class="facebook">
+                        <div class="round_smm">
+                        <a href="#"><img src="{% static 'img/facebook.svg'%}" alt="facebook"></a>
+                        </div>
+                    </div>
+                    <div class="instargram">
+                        <div class="round_smm">
+                            <a href="https://www.instagram.com/modern.time.academy/"><img src="{% static 'img/instagram.svg'%}" alt="instagram"></a>
+                        </div>
+                    </div>
+                    <div class="telegram">
+                        <div class="round_smm">
+                            <a href="https://t.me/+Xp5zW6wyF_FmMDU1"><img src="{% static 'img/telegram.svg'%}" alt="telegram"></a>
+                        </div>
+                    </div>
+               </div>
+            </div>
+            </div>
+            <div id="triger_box" data-wow-delay="1s" class="triger_box animate__animated animate__fadeInUp">
+            <div  id="footer-triger-title" class="footer-triger-title">
+                <span
+                  ><span id="span" class="footer-triger-title-span">Готов начать обучение в </span
+                  ><span id="span2" class="footer-triger-title-span2">Бирюзовой </span
+                  ><span  id="span3" class="footer-triger-title-span3">Академии?</span></span>
+              </div>
+              <button id="footButton" class="footer_btn wow animate__animated animate__pulse">
+                <div class="footer_btn_text_block">
+                    <p class="footer_btn_text">Начать бесплатно</p>
+                    <img class="btn_arrow_footer" src="{% static 'img/btn_arrow.svg'%}" alt="action_btn_arrow">
+                </div>
+            </button>
+            </div>
+            <div data-wow-delay="1s" class="law_info_block animate__animated animate__fadeInUp">
+                <ul class="list_info">
+                    <li class="ip">ИП Мокрецова Марина Владимировна</li>
+                    <li class="inn">ИНН 890409100814</li>
+                    <li class="ogrnip">ОГРНИП 323237500416580</li>
+                    <li class="number">+995 568 836 179</li>
+                    <li class="mail">biruzacademy@gmail.com</li>
+                </ul>
+                <p class="lable" >© 2023 Бирюзовая Академия</p>
+            </div>
+        </div> 
+        </div>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+    <script src="{% static 'js/menu-academy.js'%}"></script>
+    <script src="{% static 'js/contact-academy.js'%}"></script>
+    <script src="{% static 'js/wow.min.js'%}"></script>
+              <script>
+              new WOW().init();
+              // JavaScript для обработки клика на кнопке и перехода на другую страницу
+              document.getElementById("navButton").addEventListener("click", function() {
+                // Используйте window.location.href для перехода на другую страницу
+                window.location.href = "{% url 'contact' %}"; // Замените "новая_страница.html" на URL вашей целевой страницы
+            });
+            // JavaScript для обработки клика на кнопке и перехода на другую страницу
+            document.getElementById("footButton").addEventListener("click", function() {
+                // Используйте window.location.href для перехода на другую страницу
+                window.location.href = "{% url 'contact' %}"; // Замените "новая_страница.html" на URL вашей целевой страницы
+            });
+
+              </script>
+</body>
+</html>
