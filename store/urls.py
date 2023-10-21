@@ -33,7 +33,7 @@ urlpatterns = [
     path('politic/', views.politic, name="politic"),
 
     # main pages
-    path('', views.index, name="index"),
+    #     path('index', views.index, name="index"),
     path('index/', views.index, name="index"),
     path('store/', views.store, name="store"),
     path('cart/', views.cart, name="cart"),
@@ -55,7 +55,7 @@ urlpatterns = [
     # walletConnect
     path('authenticate_wallet/', views.authenticate_wallet,
          name='authenticate_wallet'),
-    path('academy/', views.academy, name='academy'),
+    path('', views.academy, name='academy'),
     path('about_academy/', views.academy2, name='academy2'),
     path('contact/', views.contact, name='contact'),
     path('all_courses/', views.all_courses, name='all_courses')

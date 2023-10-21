@@ -26,7 +26,7 @@
                         <a href="{% url 'academy2' %}">Об академии</a>
                     </li>
                     <li>
-                        <a href="#">Направления</a>
+                        <a href="{% url 'all_courses' %}">Направления</a>
                     </li>
                     <li>
                         <a href="{% url 'index' %}">Метавселенная</a>
@@ -48,7 +48,7 @@
                         <a href="{% url 'academy2' %}">Об академии</a>
                     </li>
                     <li>
-                        <a href="#">Направления</a>
+                        <a href="{% url 'all_courses' %}">Направления</a>
                     </li>
                     <li>
                         <a href="{% url 'index' %}">Метавселенная</a>
@@ -65,7 +65,7 @@
                     </div>
                     <p class="litle_text">ваш компас в мире гармонии и счастья</p>
                     <p class="litle_text2">Ваши таланты – это уникальный след в этом мире. Дайте им свободу развиться и сверкнуть на полную мощность</p>
-                    <button class="action_btn animate__animated animate__pulse">
+                    <button id="coursesButton1" class="action_btn animate__animated animate__pulse">
                             <div class="btn_text">
                                 <p class="action_btn_text">Выбрать направление</p>
                                 <img class="btn_arrow" src="{% static '/img/btn_arrow.svg'%}" alt="arrow for btn">
@@ -111,7 +111,7 @@
                         профессионального и личного роста. 
                         Присоединяйтесь к нам и идите к успеху!</p>
                 </div>
-                <button class="courses_btn animate__animated animate__pulse">
+                <button id="coursesButton2" class="courses_btn animate__animated animate__pulse">
                     <div class="courses_btn_text_block">
                         <p class="courses_btn_text">Все направления</p>
                         <img class="btn_arrow_courses" src="{% static '/img/btn_arrow.svg'%}" alt="action_btn_arrow">
@@ -213,7 +213,7 @@
                 <div class="expert_text">Мы придерживаемся целостного подхода в развитии и знаем что для успешной реализации своего потенциала человеку важно комплексное развитие разума, души и тела и профессиональные знания.
                     <br> Благодаря сервисам, образовательным программам, базам знаний и нашим технологиям.
                     <br> Ты лучше познаешь себя и свои сильные стороны, расширишь мировоззрение, чтобы быть в ресурсном состоянии и легко достигать своих целей.</div>
-                    <button class="expert_btn wow animate__animated animate__pulse">
+                    <button id="coursesButton3" class="expert_btn wow animate__animated animate__pulse">
                         <div class="expert_btn_text_block">
                             <p class="expert_btn_text">Выбрать направление</p>
                             <img class="btn_arrow_expert" src="{% static '/img/btn_arrow.svg'%}" alt="action_btn_arrow">
@@ -458,6 +458,16 @@
                 document.getElementById("faqButton").addEventListener("click", function() {
                     // Используйте window.location.href для перехода на другую страницу
                     window.location.href = "{% url 'contact' %}"; // Замените "новая_страница.html" на URL вашей целевой страницы
+                });
+                document.getElementById("coursesButton1").addEventListener("click", function() {
+                    // Используйте window.location.href для перехода на другую страницу
+                    window.location.href = "{% url 'all_courses' %}"; // Замените "новая_страница.html" на URL вашей целевой страницы
+                });document.getElementById("coursesButton2").addEventListener("click", function() {
+                    // Используйте window.location.href для перехода на другую страницу
+                    window.location.href = "{% url 'all_courses' %}"; // Замените "новая_страница.html" на URL вашей целевой страницы
+                });document.getElementById("coursesButton3").addEventListener("click", function() {
+                    // Используйте window.location.href для перехода на другую страницу
+                    window.location.href = "{% url 'all_courses' %}"; // Замените "новая_страница.html" на URL вашей целевой страницы
                 });
               </script>
 </body>
