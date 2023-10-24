@@ -32,7 +32,7 @@ SECURE_CROSS_ORIGIN_OPENER_POLICY = None
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'https://talentverse-28ccd8c0f294.herokuapp.com/', '127.0.0.1']
+    'https://talentverse-28ccd8c0f294.herokuapp.com/', 'https://www.talentverse.network/', '127.0.0.1']
 
 
 # Application definition
