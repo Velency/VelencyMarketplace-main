@@ -261,25 +261,42 @@
             <p class="title_blog wow animate__animated animate__fadeIn">Команда</p>
             <div class="blog_div wow animate__animated animate__fadeIn"></div>
             </div>
-            <div class="block_blog_cards wow animate__animated animate__fadeInLeft">
-               <img class="bg_blog" src="{% static '/img/blog_cards_block.png'%}" alt="bg_blog">
-                <div class="block_card_group ">
-                    <div data-wow-duration="2.5s" class="blog_card_group1 wow animate__animated animate__fadeIn">
-                        <img id="blog_img1"  src="{% static '/img/blog_image1.svg'%}" alt="blog_img">
+            <img class="bg_blog" src="/img/blog_cards_block.png" alt="bg_blog">
+            <div class="cont_block">
+            <div class="slider wow animate__animated animate__fadeInLeft">
+                <div class="slider-line">
+                    <div data-wow-duration="2.5s" class="card_group_item wow animate__animated animate__fadeIn">
+                        <img id="blog_img"  src="{% static '/img/blog_image1.svg'%}" alt="blog_img">
                         <div class="blog_text1">Nulla a odio sed magna congue condimentum. Pellentesque convallis enim nec libero vulputate, et rhoncus urna placerat. Phasellus mattis, diam vel vehicula facilisis, erat leo dapibus augue, at mollis tellus ex non nisi. Ut faucibus fringilla semper. Aenean nunc ex,...</div>
                     </div>
-                    <div data-wow-duration="3s" class="blog_card_group2 wow animate__animated animate__fadeIn">
-                        <img id="blog_img2"  src="{% static '/img/blog_image2.svg'%}" alt="blog_img">
+                    <div data-wow-duration="3s" class="card_group_item wow animate__animated animate__fadeIn">
+                        <img id="blog_img"  src="{% static '/img/blog_image1.svg'%}" alt="blog_img">
                         <div class="blog_text1">Nulla a odio sed magna congue condimentum. Pellentesque convallis enim nec libero vulputate, et rhoncus urna placerat. Phasellus mattis, diam vel vehicula facilisis, erat leo dapibus augue, at mollis tellus ex non nisi. Ut faucibus fringilla semper. Aenean nunc ex,...</div>
                     </div>
-                    <div data-wow-duration="3.5s" class="blog_card_group3 wow animate__animated animate__fadeIn">
-                        <img id="blog_img3"  src="{% static '/img/blog_image3.svg'%}" alt="blog_img">
+                    <div data-wow-duration="3.5s" class="card_group_item wow animate__animated animate__fadeIn">
+                        <img id="blog_img"  src="{% static '/img/blog_image1.svg'%}" alt="blog_img">
+                        <div class="blog_text1">Nulla a odio sed magna congue condimentum. Pellentesque convallis enim nec libero vulputate, et rhoncus urna placerat. Phasellus mattis, diam vel vehicula facilisis, erat leo dapibus augue, at mollis tellus ex non nisi. Ut faucibus fringilla semper. Aenean nunc ex,...</div>
+                    </div>
+                    <div data-wow-duration="2.5s" class="card_group_item wow animate__animated animate__fadeIn">
+                        <img id="blog_img"  src="{% static '/img/blog_image1.svg'%}" alt="blog_img">
+                        <div class="blog_text1">Nulla a odio sed magna congue condimentum. Pellentesque convallis enim nec libero vulputate, et rhoncus urna placerat. Phasellus mattis, diam vel vehicula facilisis, erat leo dapibus augue, at mollis tellus ex non nisi. Ut faucibus fringilla semper. Aenean nunc ex,...</div>
+                    </div>
+                    <div data-wow-duration="3s" class="card_group_item wow animate__animated animate__fadeIn">
+                        <img id="blog_img"  src="{% static '/img/blog_image1.svg'%}" alt="blog_img">
+                        <div class="blog_text1">Nulla a odio sed magna congue condimentum. Pellentesque convallis enim nec libero vulputate, et rhoncus urna placerat. Phasellus mattis, diam vel vehicula facilisis, erat leo dapibus augue, at mollis tellus ex non nisi. Ut faucibus fringilla semper. Aenean nunc ex,...</div>
+                    </div>
+                    <div data-wow-duration="3.5s" class="card_group_item wow animate__animated animate__fadeIn">
+                        <img id="blog_img"  src="{% static '/img/blog_image1.svg'%}" alt="blog_img">
                         <div class="blog_text1">Nulla a odio sed magna congue condimentum. Pellentesque convallis enim nec libero vulputate, et rhoncus urna placerat. Phasellus mattis, diam vel vehicula facilisis, erat leo dapibus augue, at mollis tellus ex non nisi. Ut faucibus fringilla semper. Aenean nunc ex,...</div>
                     </div>
                 </div>
             </div>
+            <div id="button_group" class="button_group">
+                <img class="btn_prew" id="btn_prew" src="{% static '/img/arrow_btn_prev.png'%}" onclick="btnPrew()" alt="">
+                <img class="btn_next" id="btn_next" src="{% static '/img/arrow_btn_next.png'%}" onclick="btnNext()" alt="">
+            </div>
+            </div>
         </div>
-    </div>
     <div id="faq" class="faq">
         <div class="container">
             <div  class="faq_block">
@@ -452,6 +469,7 @@
     <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
     <script src="{% static 'js/wow.min.js'%}"></script>
     <script src="{% static 'js/menu-academy.js'%}"></script>
+    <script src="{% static 'js/slider_team_academy.js'%}"></script>
               <script>
               new WOW().init();
               // JavaScript для обработки клика на кнопке и перехода на другую страницу
