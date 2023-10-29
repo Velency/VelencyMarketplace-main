@@ -56,7 +56,7 @@ urlpatterns = [
     path('authenticate_wallet/', views.authenticate_wallet,
          name='authenticate_wallet'),
     path('', views.academy, name='academy'),
-    path('academy', views.academy, name='academy'),
+    path('academy/', views.academy, name='academy'),
     path('about_academy/', views.academy2, name='academy2'),
     path('contact/', views.contact, name='contact'),
     path('all_courses/', views.all_courses, name='all_courses')
