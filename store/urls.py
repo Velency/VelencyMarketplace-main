@@ -59,6 +59,6 @@ urlpatterns = [
     path('academy/', views.academy, name='academy'),
     path('about_academy/', views.academy2, name='academy2'),
     path('contact/', views.contact, name='contact'),
-    path('all_courses/', views.all_courses, name='all_courses')
-
+    path('all_courses/', views.all_courses, name='all_courses'),
+    path('courses_info/', views.show_managment, name='show_managment')
 ]
