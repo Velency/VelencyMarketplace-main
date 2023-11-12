@@ -150,7 +150,7 @@ def contact(request):
                     # Change 'mobile' to 'phone'
                     f'От: {name}  {sur_name}\n\n\nСпособ свзяи -{messenger_type}\n{messenger_value} \n Phone: {phone}',
                     EMAIL_HOST_USER, [
-                        RECIPIENTS_EMAIL, 'fidanur23@gmail.com', 'f.usmanov@hrworld.live'],
+                        RECIPIENTS_EMAIL, 'fidanur23@gmail.com', 'imarmxa@gmail.com', 'f.usmanov@hrworld.live'],
                     fail_silently=False,
                 )
             except Exception as e:
