@@ -127,9 +127,11 @@ def academy2(request):
     context = {}
     return render(request, 'store/academy2.html', {})
 
+
 def show_managment(request):
     context = {}
     return render(request, 'store/show_managment.html', {})
+
 
 def all_courses(request):
     context = {}
@@ -175,7 +177,7 @@ def academy(request):
 
 def logoutUser(request):
     logout(request)
-    return redirect('index')
+    return redirect('store')
 
 # Работа с аккаунтами
 
