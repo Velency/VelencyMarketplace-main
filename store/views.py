@@ -147,7 +147,7 @@ def contact(request):
             try:
                 send_mail(
                     'Сообщение из формы обратной связи',
-                    # Change 'mobile' to 'phone'
+
                     f'От: {name}  {sur_name}\n\n\nСпособ свзяи -{messenger_type}\n{messenger_value} \n Phone: {phone}',
                     EMAIL_HOST_USER, [
                         RECIPIENTS_EMAIL, 'fidanur23@gmail.com', 'imarmxa@gmail.com', 'f.usmanov@hrworld.live'],
@@ -157,7 +157,7 @@ def contact(request):
                 messages.error(request, f'Ошибка отправки сообщения! {e}')
             else:
                 messages.success(request, 'Сообщение успешно отправлено.')
-                form = ConnectionForm()  # Change 'FeedbackForm' to 'ConnectionForm'
+                form = ConnectionForm()
         else:
             print(form.errors)
             messages.error(request, 'Ошибка формы!')
