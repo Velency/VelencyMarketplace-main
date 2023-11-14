@@ -568,8 +568,9 @@
                                 </div>
                             </div>
                                 <div class="price_form_block">
-                                        <p class="form_title">Выбрать способ оплаты</p>
-                                        <div class="btn_group">
+                                    <p id="title2" class="form_title">Выбрать способ оплаты</p>
+                                    <p id="title1" class="form_title1">Заполние форму и выберете способ оплаты</p>
+                                        <div id="btn_group" class="btn_group">
                                             <tinkoff-create-button
                                                         size="M"
                                                         subtext=""
@@ -581,7 +582,10 @@
                                                         <button class="full_price_btn"><p class="btn_full_text">Купить со скидкой 7500 ₽</p></button>
                                         </div>
                                         <div class="block_form animate__animated animate__fadeIn" data-wow-duration="5s">
-                                            <form name="contact-form" method="post" action="{% url 'contact' %}">
+                                            <div id="success_block" class="success_form_block">
+                                                <p class="succsess_text">Благоларим за отправку!</p>
+                                            </div>
+                                            <form id="input_grup" name="contact-form" method="post" action="{% url 'contact' %}">
                                                  {% csrf_token %}
                                                 <div class="contact_form">
                                                     <div class="input_group">
@@ -627,7 +631,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="btn_contact">
-                                                            <button class="contact_btn" type="submit" name="UpdateCustomerForm">
+                                                            <button id="form_btn" class="contact_btn" type="submit" name="UpdateCustomerForm">
                                                                 <p class="btn_text">Отправить заявку</p>
                                                             </button>
                                                         </div>
@@ -706,6 +710,7 @@
     <script src="{% static 'js/dropdown-academy.js'%}"></script>
     <script src="{% static 'js/menu-academy.js'%}"></script>
     <script src="{% static 'js/contact-academy.js'%}"></script>
+    <script src="{% static 'js/sale_form_function.js'%}"></script>
     <script src="{% static 'js/wow.min.js'%}"></script>
 </body>
 </html>
