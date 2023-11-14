@@ -73,7 +73,7 @@ class Customer(models.Model):
 
     def get_referrals(self):
         return Customer.objects.filter(referral_by=self)
- 
+
 
 class Referral(models.Model):
     referrer = models.ForeignKey(
@@ -92,6 +92,46 @@ class TeamMember(models.Model):
 
     def __str__(self):
         return self.first_name
+
+
+class Course(models.Model):
+    Course_cat = (
+        ('Основные курсы', 'Основные курсы'),
+        ('Занятие телом', 'Занятие телом'),
+        ('Игры', 'Игры'),
+    )
+    name = models.CharField(max_length=100)
+    teacher = models.ForeignKey(
+        TeamMember, null=False, on_delete=models.CASCADE)
+    description = RichTextField(default="", null=True)
+    Category = models.CharField(
+        max_length=20, choices=Course_cat, default='Основные курсы')
+
+    def __str__(self):
+        return self.name
+
+
+class Direction(models.Model):
+    name = models.CharField(max_length=100)
+    description = models.TextField()
+    courses = models.ManyToManyField(Course)
+    video_presentation = models.URLField()
+    description2 = models.TextField()
+    description3 = models.TextField()
+
+    def get_all_teachers(self):
+        # Используем values() для получения словарей с данными по курсам и преподавателям
+        teachers_data = self.courses.values(
+            'teacher__id', 'teacher__first_name', 'teacher__last_name').distinct()
+
+        # Преобразуем словари в объекты TeamMember
+        teachers = [TeamMember(**teacher_data)
+                    for teacher_data in teachers_data]
+
+        return teachers
+
+    def __str__(self):
+        return self.name
 
 
 class Withdraw(models.Model):

@@ -20,6 +20,23 @@ admin.site.register(packagesCat)
 admin.site.register(Packages)
 
 
+@admin.register(Course)
+class CourseAdmin(admin.ModelAdmin):
+    list_display = ('name', 'teacher', 'Category')
+    list_filter = ('Category',)  # Добавляем фильтр по категории
+    # Добавляем поиск по имени, фамилии преподавателя
+    search_fields = ('name', 'teacher__first_name', 'teacher__last_name')
+    # Другие настройки админки для Course, если необходимо
+
+
+@admin.register(Direction)
+class DirectionAdmin(admin.ModelAdmin):
+    list_display = ('name',)
+    # Добавляем возможность выбора курсов через горизонтальное поле
+    filter_horizontal = ('courses',)
+    # Другие настройки админки для Direction, если необходимо
+
+
 class GalleryInline(admin.TabularInline):
     fk_name = 'product'
     model = Gallery
