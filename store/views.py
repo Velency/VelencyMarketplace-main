@@ -129,8 +129,15 @@ def academy2(request):
 
 def show_managment(request, id):
     direction_instance = Direction.objects.filter(id=id).first()
-    context = {'direction': direction_instance}
-    return render(request, 'store/show_managment.html', context)
+    if direction_instance:
+        hard_lines = direction_instance.hard_skills.split('\n')
+        soft_lines = direction_instance.soft_skills.split('\n')
+        context = {'direction': direction_instance,
+                   'hard_lines': hard_lines, 'soft_lines': soft_lines}
+        return render(request, 'store/show_managment.html', context)
+    else:
+        # Обработка ситуации, когда направление не найдено
+        return redirect('all_courses')
 
 
 def all_courses(request):

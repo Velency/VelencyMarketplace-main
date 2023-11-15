@@ -116,8 +116,8 @@ class Direction(models.Model):
     description = models.TextField()
     courses = models.ManyToManyField(Course)
     video_presentation = models.URLField()
-    description2 = models.TextField()
-    description3 = models.TextField()
+    hard_skills = models.TextField()
+    soft_skills = models.TextField()
 
     def get_all_teachers(self):
         # Используем values() для получения словарей с данными по курсам и преподавателям

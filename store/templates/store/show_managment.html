@@ -71,7 +71,7 @@
                             </div>
                     </button>
                 </div>
-                <iframe class="video_block animate__animated animate__fadeInUp" width="560" height="315" src="https://www.youtube.com/embed/ToXfaJvAk5k?si=_o58iRuZ1CUsESri" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                <iframe class="video_block animate__animated animate__fadeInUp" width="560" height="315" src="{{ direction.video_presentation}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </div>
         </div>
     </header>
@@ -87,7 +87,9 @@
                         <p class="hart_title">Hard skills</p>
                         <div class="hart">
                             <ul class="hart_colum">
-                                <li class="soft_item"> {{ direction.description2|linebreaks|safe }}</li>
+                                {% for line in hard_lines %}
+                                    <li class="soft_item">{{ line }}</li>
+                                {% endfor %}
                             </ul>
                         </div>
                     </div>
@@ -95,7 +97,9 @@
                         <p class="soft_title">Soft skills</p>
                         <div class="soft">
                             <ul class="soft_colum">
-                                <li class="soft_item"> {{ direction.description3|linebreaks|safe }}</li>
+                                {% for line in soft_lines %}
+                                <li class="soft_item">{{ line }}</li>
+                            {% endfor %}
                             </ul>
                         </div>
                     </div>
