@@ -61,9 +61,9 @@
                 <div id="action_block_title " data-wow-duration="5s"  class="action_block_title animate__animated animate__fadeIn">
                     <div class="title_litle_text">
                         <p class="title1">Направление</p>
-                        <p class="title2">"Менеджмент"</p>
+                        <p class="title2">{{ direction.name }}</p>
                     </div>
-                    <p class="litle_text">Учим лидерству, развиваем навыки управления, формируем будущих руководителей.</p>
+                    <p class="litle_text">{{ direction.description }}</p>
                 </div>
                     <button class="action_btn animate__animated animate__pulse">
                             <div id="coursesButton" class="btn_text">
@@ -85,14 +85,10 @@
                 </div>
                 <div class="two_colms_block">
                     <div class="hart_block">
-                        <p class="hart_title">Hart skills</p>
+                        <p class="hart_title">Hard skills</p>
                         <div class="hart">
                             <ul class="hart_colum">
-                                <li class="hart_item">Коммуникабельность</li>
-                                <li class="hart_item">Настойчивость</li>
-                                <li class="hart_item">Устойчивость</li>
-                                <li class="hart_item">Внимание к деталям</li>
-                                <li class="hart_item">Аналитическое мышление</li>
+                                <li class="soft_item"> {{ direction.description2|linebreaks|safe }}</li>
                             </ul>
                         </div>
                     </div>
@@ -100,11 +96,7 @@
                         <p class="soft_title">Soft skills</p>
                         <div class="soft">
                             <ul class="soft_colum">
-                                <li class="soft_item">Коммуникабельность</li>
-                                <li class="soft_item">Настойчивость</li>
-                                <li class="soft_item">Устойчивость</li>
-                                <li class="soft_item">Внимание к деталям</li>
-                                <li class="soft_item">Аналитическое мышление</li>
+                                <li class="soft_item"> {{ direction.description3|linebreaks|safe }}</li>
                             </ul>
                         </div>
                     </div>
@@ -124,26 +116,7 @@
                         <img id="blog_img" src="{% static 'img/blog_image11.jpg'%}" alt="blog_img">
                         <div class="blog_text1"><p class="blog_text2">Фамилия Имя</p></div>
                     </div>
-                    <div data-wow-duration="3s" class="card_group_item wow animate__animated animate__fadeIn">
-                        <img id="blog_img"  src="{% static 'img/blog_image11.jpg'%}" alt="blog_img">
-                        <div class="blog_text1"><p class="blog_text2">Фамилия Имя</p></div>    
-                    </div>                
-                    <div data-wow-duration="3.5s" class="card_group_item wow animate__animated animate__fadeIn">
-                        <img id="blog_img"  src="{% static 'img/blog_image11.jpg'%}" alt="blog_img">
-                        <div class="blog_text1"><p class="blog_text2">Фамилия Имя</p></div>   
-                    </div>                
-                    <div data-wow-duration="2.5s" class="card_group_item wow animate__animated animate__fadeIn">
-                        <img id="blog_img"  src="{% static 'img/blog_image11.jpg'%}" alt="blog_img">
-                        <div class="blog_text1"><p class="blog_text2">Фамилия Имя</p></div>   
-                    </div>                
-                    <div data-wow-duration="3s" class="card_group_item wow animate__animated animate__fadeIn">
-                        <img id="blog_img"  src="{% static 'img/blog_image11.jpg'%}" alt="blog_img">
-                        <div class="blog_text1"><p class="blog_text2">Фамилия Имя</p></div>  
-                    </div>               
-                    <div data-wow-duration="3.5s" class="card_group_item wow animate__animated animate__fadeIn">
-                        <img id="blog_img" src="{% static 'img/blog_image11.jpg'%}" alt="blog_img">
-                        <div class="blog_text1"><p class="blog_text2">Фамилия Имя</p></div> 
-                    </div>                 
+                                    
                 </div>
             </div>
             </div>
