@@ -1,7 +1,6 @@
 from functools import wraps
 from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
-from .models import Customer
 from django.contrib.auth import login
 from django.http import JsonResponse
 from django.contrib.auth import login, authenticate
@@ -128,9 +127,10 @@ def academy2(request):
     return render(request, 'store/academy2.html', {})
 
 
-def show_managment(request):
-    context = {}
-    return render(request, 'store/show_managment.html', {})
+def show_managment(request, id):
+    direction_instance = Direction.objects.filter(id=id).first()
+    context = {'direction': direction_instance}
+    return render(request, 'store/show_managment.html', context)
 
 
 def all_courses(request):
