@@ -135,287 +135,33 @@
             <div class="dropdown_div wow animate__animated animate__fadeIn"></div>
             </div>
             <div class="courses_dropdown">
-                <p class="main_dropdown_title">Основные курсы</p>
-                <div id="first" class="dropdown_item">
+                {% if direction.courses.all %}
+        {% for course in direction.courses.all %}
+            {% ifchanged %}
+                <p class="main_dropdown_title">{{ course.Category }}</p>
+                <div id="{{ course.name|slugify }}" class="dropdown_item">
                     <div class="text_item">
-                        <p class="name_item">Талант-менеджмент</p>
+                        <p class="name_item">{{ course.name }}</p>
                         <img class="item_img" src="{% static '/img/dropdown_arrow.png'%}" alt="">
                     </div>
                 </div>
                 <div class="item_container">
                     <ul class="topick_group">
-                        <li class="topick_name">Tема 1</li>
-                        <li class="topick_name">Tема 2</li>
-                        <li class="topick_name">Tема 3</li>
-                        <li class="topick_name">Tема 4</li>
-                        <li class="topick_name">Tема 5</li>
-                        <li class="topick_name">Tема 6</li>
-                        <li class="topick_name">Tема 7</li>
-                        <li class="topick_name">Tема 8</li>
-                        <li class="topick_name">Tема 9</li>
-                        <li class="topick_name">Tема 10</li>
-                        <li class="topick_name">Tема 11</li>
-                        <li class="topick_name">Tема 12</li>
+            {% endifchanged %}
+                            <li class="topick_name">{{ course.name }}</li>
+            {% for topic in course.topics.all %}
+                            <li class="topick_name">{{ topic }}</li>
+            {% endfor %}
                     </ul>
                 </div>
-                <div class="dropdown_item">
-                    <div class="text_item">
-                        <p class="name_item">Тайм-менеджмент</p>
-                        <img class="item_img" src="{% static '/img/dropdown_arrow.png'%}" alt="">
-                    </div>
-                </div>
-                <div class="item_container">
-                    <ul class="topick_group">
-                        <li class="topick_name">Tема 1</li>
-                        <li class="topick_name">Tема 2</li>
-                        <li class="topick_name">Tема 3</li>
-                        <li class="topick_name">Tема 4</li>
-                        <li class="topick_name">Tема 5</li>
-                        <li class="topick_name">Tема 6</li>
-                        <li class="topick_name">Tема 7</li>
-                        <li class="topick_name">Tема 8</li>
-                        <li class="topick_name">Tема 9</li>
-                        <li class="topick_name">Tема 10</li>
-                        <li class="topick_name">Tема 11</li>
-                        <li class="topick_name">Tема 12</li>
-                    </ul>
-                </div>
-                <div class="dropdown_item">
-                    <div class="text_item">
-                        <p class="name_item">Нумерология</p>
-                        <img class="item_img" src="{% static '/img/dropdown_arrow.png'%}" alt="">
-                    </div>
-                </div>
-                <div class="item_container">
-                    <ul class="topick_group">
-                        <li class="topick_name">Tема 1</li>
-                        <li class="topick_name">Tема 2</li>
-                        <li class="topick_name">Tема 3</li>
-                        <li class="topick_name">Tема 4</li>
-                        <li class="topick_name">Tема 5</li>
-                        <li class="topick_name">Tема 6</li>
-                        <li class="topick_name">Tема 7</li>
-                        <li class="topick_name">Tема 8</li>
-                        <li class="topick_name">Tема 9</li>
-                        <li class="topick_name">Tема 10</li>
-                        <li class="topick_name">Tема 11</li>
-                        <li class="topick_name">Tема 12</li>
-                    </ul>
-                </div>
-                <div class="dropdown_item">
-                    <div class="text_item">
-                        <p class="name_item">Свобода воли</p>
-                        <img class="item_img" src="{% static '/img/dropdown_arrow.png'%}" alt="">
-                    </div>
-                </div>
-                <div class="item_container">
-                    <ul class="topick_group">
-                        <li class="topick_name">Tема 1</li>
-                        <li class="topick_name">Tема 2</li>
-                        <li class="topick_name">Tема 3</li>
-                        <li class="topick_name">Tема 4</li>
-                        <li class="topick_name">Tема 5</li>
-                        <li class="topick_name">Tема 6</li>
-                        <li class="topick_name">Tема 7</li>
-                        <li class="topick_name">Tема 8</li>
-                        <li class="topick_name">Tема 9</li>
-                        <li class="topick_name">Tема 10</li>
-                        <li class="topick_name">Tема 11</li>
-                        <li class="topick_name">Tема 12</li>
-                    </ul>
-                </div>
-                <div class="dropdown_item">
-                    <div class="text_item">
-                        <p class="name_item">Финансовый менеджмент</p>
-                        <img class="item_img" src="{% static '/img/dropdown_arrow.png'%}" alt="">
-                    </div>
-                </div>
-                <div class="item_container">
-                    <ul class="topick_group">
-                        <li class="topick_name">Tема 1</li>
-                        <li class="topick_name">Tема 2</li>
-                        <li class="topick_name">Tема 3</li>
-                        <li class="topick_name">Tема 4</li>
-                        <li class="topick_name">Tема 5</li>
-                        <li class="topick_name">Tема 6</li>
-                        <li class="topick_name">Tема 7</li>
-                        <li class="topick_name">Tема 8</li>
-                        <li class="topick_name">Tема 9</li>
-                        <li class="topick_name">Tема 10</li>
-                        <li class="topick_name">Tема 11</li>
-                        <li class="topick_name">Tема 12</li>
-                    </ul>
-                </div>
-                <div class="dropdown_item">
-                    <div class="text_item">
-                        <p class="name_item">Управление личными финансам</p>
-                        <img class="item_img" src="{% static '/img/dropdown_arrow.png'%}" alt="">
-                    </div>
-                </div>
-                <div class="item_container">
-                    <ul class="topick_group">
-                        <li class="topick_name">Tема 1</li>
-                        <li class="topick_name">Tема 2</li>
-                        <li class="topick_name">Tема 3</li>
-                        <li class="topick_name">Tема 4</li>
-                        <li class="topick_name">Tема 5</li>
-                        <li class="topick_name">Tема 6</li>
-                        <li class="topick_name">Tема 7</li>
-                        <li class="topick_name">Tема 8</li>
-                        <li class="topick_name">Tема 9</li>
-                        <li class="topick_name">Tема 10</li>
-                        <li class="topick_name">Tема 11</li>
-                        <li class="topick_name">Tема 12</li>
-                    </ul>
-                </div>
-                <div class="dropdown_item">
-                    <div class="text_item">
-                        <p class="name_item">Бирюзовая коммуникация</p>
-                        <img class="item_img" src="{% static '/img/dropdown_arrow.png'%}" alt="">
-                    </div>
-                </div>
-                <div class="item_container">
-                    <ul class="topick_group">
-                        <li class="topick_name">Tема 1</li>
-                        <li class="topick_name">Tема 2</li>
-                        <li class="topick_name">Tема 3</li>
-                        <li class="topick_name">Tема 4</li>
-                        <li class="topick_name">Tема 5</li>
-                        <li class="topick_name">Tема 6</li>
-                        <li class="topick_name">Tема 7</li>
-                        <li class="topick_name">Tема 8</li>
-                        <li class="topick_name">Tема 9</li>
-                        <li class="topick_name">Tема 10</li>
-                        <li class="topick_name">Tема 11</li>
-                        <li class="topick_name">Tема 12</li>
-                    </ul>
-                </div>
-                <div class="dropdown_item">
-                    <div class="text_item">
-                        <p class="name_item">Управление проектами и задачами</p>
-                        <img class="item_img" src="{% static '/img/dropdown_arrow.png'%}" alt="">
-                    </div>
-                </div>
-                <div class="item_container">
-                    <ul class="topick_group">
-                        <li class="topick_name">Tема 1</li>
-                        <li class="topick_name">Tема 2</li>
-                        <li class="topick_name">Tема 3</li>
-                        <li class="topick_name">Tема 4</li>
-                        <li class="topick_name">Tема 5</li>
-                        <li class="topick_name">Tема 6</li>
-                        <li class="topick_name">Tема 7</li>
-                        <li class="topick_name">Tема 8</li>
-                        <li class="topick_name">Tема 9</li>
-                        <li class="topick_name">Tема 10</li>
-                        <li class="topick_name">Tема 11</li>
-                        <li class="topick_name">Tема 12</li>
-                    </ul>
-                </div>
-                <div class="dropdown_item">
-                    <div class="text_item">
-                        <p class="name_item">Профориентология</p>
-                        <img class="item_img" src="{% static '/img/dropdown_arrow.png'%}" alt="">
-                    </div>
-                </div>
-                <div class="item_container">
-                    <ul class="topick_group">
-                        <li class="topick_name">Tема 1</li>
-                        <li class="topick_name">Tема 2</li>
-                        <li class="topick_name">Tема 3</li>
-                        <li class="topick_name">Tема 4</li>
-                        <li class="topick_name">Tема 5</li>
-                        <li class="topick_name">Tема 6</li>
-                        <li class="topick_name">Tема 7</li>
-                        <li class="topick_name">Tема 8</li>
-                        <li class="topick_name">Tема 9</li>
-                        <li class="topick_name">Tема 10</li>
-                        <li class="topick_name">Tема 11</li>
-                        <li class="topick_name">Tема 12</li>
-                    </ul>
-                </div>
-                <div id="last" class="dropdown_item">
-                    <div class="text_item">
-                        <p class="name_item">Структурирование данных в Notion</p>
-                        <img class="item_img" src="{% static '/img/dropdown_arrow.png'%}" alt="">
-                    </div>
-                </div>
-                <div class="item_container">
-                    <ul class="topick_group">
-                        <li class="topick_name">Tема 1</li>
-                        <li class="topick_name">Tема 2</li>
-                        <li class="topick_name">Tема 3</li>
-                        <li class="topick_name">Tема 4</li>
-                        <li class="topick_name">Tема 5</li>
-                        <li class="topick_name">Tема 6</li>
-                        <li class="topick_name">Tема 7</li>
-                        <li class="topick_name">Tема 8</li>
-                        <li class="topick_name">Tема 9</li>
-                        <li class="topick_name">Tема 10</li>
-                        <li class="topick_name">Tема 11</li>
-                        <li class="topick_name">Tема 12</li>
-                    </ul>
-                </div>
-                <p class="second_dropdown_title">Занятие телом</p>
-                <div id="first" class="dropdown_item">
-                    <div class="text_item">
-                        <p class="name_item">Ораторское искуство</p>
-                        <img class="item_img" src="{% static '/img/dropdown_arrow.png'%}" alt="">
-                    </div>
-                </div>
-                <div class="item_container">
-                    <ul class="topick_group">
-                        <li class="topick_name">Tема 1</li>
-                        <li class="topick_name">Tема 2</li>
-                        <li class="topick_name">Tема 3</li>
-                        <li class="topick_name">Tема 4</li>
-                        <li class="topick_name">Tема 5</li>
-                        <li class="topick_name">Tема 6</li>
-                        <li class="topick_name">Tема 7</li>
-                        <li class="topick_name">Tема 8</li>
-                        <li class="topick_name">Tема 9</li>
-                        <li class="topick_name">Tема 10</li>
-                        <li class="topick_name">Tема 11</li>
-                        <li class="topick_name">Tема 12</li>
-                    </ul>
-                </div>
-                <div id="last" class="dropdown_item">
-                    <div class="text_item">
-                        <p class="name_item">Йога</p>
-                        <img class="item_img" src="{% static '/img/dropdown_arrow.png'%}" alt="">
-                    </div>
-                </div>
-                <div class="item_container">
-                    <ul class="topick_group">
-                        <li class="topick_name">Tема 1</li>
-                        <li class="topick_name">Tема 2</li>
-                        <li class="topick_name">Tема 3</li>
-                        <li class="topick_name">Tема 4</li>
-                        <li class="topick_name">Tема 5</li>
-                        <li class="topick_name">Tема 6</li>
-                        <li class="topick_name">Tема 7</li>
-                        <li class="topick_name">Tема 8</li>
-                        <li class="topick_name">Tема 9</li>
-                        <li class="topick_name">Tема 10</li>
-                        <li class="topick_name">Tема 11</li>
-                        <li class="topick_name">Tема 12</li>
-                    </ul>
-                </div>
-                <p class="last_dropdown_title">Игры</p>
-                <div id="one" class="dropdown_item">
-                    <div class="text_item">
-                        <p class="name_item">"Мыслить масштабно"</p>
-                        <img class="item_img" src="{% static '/img/dropdown_arrow.png'%}" alt="">
-                    </div>
-                </div>
-                <div class="item_container">
-                    <ul class="topick_group">
-                        <li class="topick_name">Tема 1</li>
-                        <li class="topick_name">Tема 2</li>
-                        <li class="topick_name">Tема 3</li>
-                        <li class="topick_name">Tема 4</li>
-                    </ul>
-                </div>
+        {% endfor %}
+    {% else %}
+        <p>No courses available.</p>
+    {% endif %}
+
+            
+
+
             </div>
     </div>
     <div class="smm_block">
