@@ -132,8 +132,18 @@ def show_managment(request, id):
     if direction_instance:
         hard_lines = direction_instance.hard_skills.split('\n')
         soft_lines = direction_instance.soft_skills.split('\n')
-        context = {'direction': direction_instance,
-                   'hard_lines': hard_lines, 'soft_lines': soft_lines}
+
+        # Получаем всех преподавателей для направления
+        all_teachers = TeamMember.objects.filter(
+            course__direction=direction_instance).distinct()
+
+        context = {
+            'direction': direction_instance,
+            'hard_lines': hard_lines,
+            'soft_lines': soft_lines,
+            'all_teachers': all_teachers,  # Добавляем данные о преподавателях в контекст
+        }
+
         return render(request, 'store/show_managment.html', context)
     else:
         # Обработка ситуации, когда направление не найдено

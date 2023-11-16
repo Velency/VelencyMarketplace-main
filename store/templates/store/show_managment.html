@@ -66,9 +66,9 @@
                     <p class="litle_text">{{ direction.description }}</p>
                 </div>
                     <button class="action_btn animate__animated animate__pulse">
-                            <div id="coursesButton" class="btn_text">
+                            <a href="#price-form"><div id="coursesButton" class="btn_text">
                                 <p class="action_btn_text">Начать обучение</p>
-                            </div>
+                            </div></a>
                     </button>
                 </div>
                 <iframe class="video_block animate__animated animate__fadeInUp" width="560" height="315" src="{{ direction.video_presentation}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
@@ -115,11 +115,14 @@
             <div class="cont_block">
             <div class="slider wow animate__animated animate__fadeInLeft">
                 <div class="slider-line">
+                    {% for teacher in all_teachers %}
                     <div data-wow-duration="2.5s" class="card_group_item wow animate__animated animate__fadeIn">
-                        <img id="blog_img" src="{% static 'img/blog_image11.jpg'%}" alt="blog_img">
-                        <div class="blog_text1"><p class="blog_text2">Фамилия Имя</p></div>
+                        <img id="blog_img" src="{{ teacher.image.url }}" alt="blog_img">
+                        <div class="blog_text1">
+                            <p class="blog_text2">{{ teacher.first_name }} {{ teacher.last_name }}</p>
+                        </div>
                     </div>
-                                    
+                    {% endfor %}
                 </div>
             </div>
             </div>
@@ -216,8 +219,8 @@
                     <iframe class="eng_img" src="https://www.youtube.com/embed/Jb2WCzY5WZI?si=EHAbywtJxrOF0szq" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                     <div class="eng_text_block">
                         <p class="eng_text">Все начинается с МЕЧТЫ 🙌🏻 Привет, меня зовут Милла. Я владею 3мя языками, играю на фортепиано и мечтаю помочь деткам свободно говорить на иностранных языках. Приглашаю вас на уроки английского для того что бы открыть возможности и общаться с детьми по всему миру.</p>
-                        <button class="eng_btn animate__animated animate__pulse">
-                            <p class="eng_btn_text">Я хочу курс!</p>
+                        <button  class="eng_btn animate__animated animate__pulse">
+                            <a href="#price-form"><p class="eng_btn_text">Я хочу курс!</p> </a>
                     </button>
                     </div>
                 </div>
@@ -259,7 +262,7 @@
                         </div>
                     </div>
             </div>
-            <div class="price_block">
+            <div id="price-form" class="price_block">
                 <div class="price_card">
                     <div class="price_title">
                         <p class="title_price wow animate__animated animate__fadeIn">Стоимость направления “Менеджмент”</p>
