@@ -91,7 +91,7 @@ class TeamMember(models.Model):
         default='user_photos/img.jpg', upload_to='user_photos')
 
     def __str__(self):
-        return self.first_name
+        return f"{self.first_name} {self.last_name}"
 
 
 class Course(models.Model):
@@ -102,7 +102,7 @@ class Course(models.Model):
     )
     name = models.CharField(max_length=100)
     teacher = models.ForeignKey(
-        TeamMember, null=False, on_delete=models.CASCADE)
+        TeamMember, null=True, on_delete=models.CASCADE)
     description = RichTextField(default="", null=True)
     Category = models.CharField(
         max_length=20, choices=Course_cat, default='Основные курсы')
