@@ -67,7 +67,7 @@
                     <p class="litle_text2">Ваши таланты – это уникальный след в этом мире. Дайте им свободу развиться и сверкнуть на полную мощность</p>
                     <button id="coursesButton1" class="action_btn animate__animated animate__pulse">
                             <div class="btn_text">
-                                <p class="action_btn_text">Выбрать направление</p>
+                                <p id= class="action_btn_text">Выбрать направление</p>
                                 <img class="btn_arrow" src="{% static '/img/btn_arrow.svg'%}" alt="arrow for btn">
                             </div>
                     </button>
@@ -120,15 +120,17 @@
             </div>
             <div id="courses_card_block" data-wow-delay="0.5s" class="courses_card_block wow animate__animated animate__fadeInRight">
                 <div class="selfgrow_block">
-                    <div data-wow-duration="2s" class="icon_courses wow animate__animated animate__fadeIn">
-                        <img class="round_icon" src="{% static '/img/icon_round.svg'%}" alt="bg_courses_icon">
-                        <img class="courses_icon" src="{% static '/img/selfgrow_image.svg'%}" alt="course_icon">
-                        <div data-wow-duration="2s" class="selfgrow_desc wow animate__animated animate__fadeIn">
-                            <p class="selfgrow_title">Самопознание</p>
-                            <p class="selfgrow_text">Понимание себя - это ключ к успеху. У нас вы найдете курсы, помогающие раскрыть свой потенциал и развить лидерские качества.
-                            </p>
+                    <a href=''>
+                        <div data-wow-duration="2s" class="icon_courses wow animate__animated animate__fadeIn">
+                            <img class="round_icon" src="{% static '/img/icon_round.svg'%}" alt="bg_courses_icon">
+                            <img class="courses_icon" src="{% static '/img/selfgrow_image.svg'%}" alt="course_icon">
+                            <div data-wow-duration="2s" class="selfgrow_desc wow animate__animated animate__fadeIn">
+                                <p class="selfgrow_title">Самопознание</p>
+                                <p class="selfgrow_text">Понимание себя - это ключ к успеху. У нас вы найдете курсы, помогающие раскрыть свой потенциал и развить лидерские качества.
+                                </p>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
                 <div class="sales_block">
                     <div data-wow-duration="2s" class="icon_courses wow animate__animated animate__fadeIn">
@@ -488,10 +490,10 @@
                     window.location.href = "{% url 'contact' %}"; // Замените "новая_страница.html" на URL вашей целевой страницы
                 });
                 // JavaScript для обработки клика на кнопке и перехода на другую страницу
-                document.getElementById("faqButton").addEventListener("click", function() {
+                {% comment %} document.getElementById("faqButton").addEventListener("click", function() {
                     // Используйте window.location.href для перехода на другую страницу
                     window.location.href = "{% url 'contact' %}"; // Замените "новая_страница.html" на URL вашей целевой страницы
-                });
+                }); {% endcomment %}
                 document.getElementById("coursesButton1").addEventListener("click", function() {
                     // Используйте window.location.href для перехода на другую страницу
                     window.location.href = "{% url 'all_courses' %}"; // Замените "новая_страница.html" на URL вашей целевой страницы
