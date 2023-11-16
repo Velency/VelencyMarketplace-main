@@ -67,7 +67,7 @@
                     <p class="litle_text2">Ваши таланты – это уникальный след в этом мире. Дайте им свободу развиться и сверкнуть на полную мощность</p>
                     <button id="coursesButton1" class="action_btn animate__animated animate__pulse">
                             <div class="btn_text">
-                                <p class="action_btn_text">Выбрать направление</p>
+                                <p id= class="action_btn_text">Выбрать направление</p>
                                 <img class="btn_arrow" src="{% static '/img/btn_arrow.svg'%}" alt="arrow for btn">
                             </div>
                     </button>
@@ -120,17 +120,20 @@
             </div>
             <div id="courses_card_block" data-wow-delay="0.5s" class="courses_card_block wow animate__animated animate__fadeInRight">
                 <div class="selfgrow_block">
-                    <div data-wow-duration="2s" class="icon_courses wow animate__animated animate__fadeIn">
-                        <img class="round_icon" src="{% static '/img/icon_round.svg'%}" alt="bg_courses_icon">
-                        <img class="courses_icon" src="{% static '/img/selfgrow_image.svg'%}" alt="course_icon">
-                        <div data-wow-duration="2s" class="selfgrow_desc wow animate__animated animate__fadeIn">
-                            <p class="selfgrow_title">Самопознание</p>
-                            <p class="selfgrow_text">Понимание себя - это ключ к успеху. У нас вы найдете курсы, помогающие раскрыть свой потенциал и развить лидерские качества.
-                            </p>
+                    <a href='course/3'>
+                        <div data-wow-duration="2s" class="icon_courses wow animate__animated animate__fadeIn">
+                            <img class="round_icon" src="{% static '/img/icon_round.svg'%}" alt="bg_courses_icon">
+                            <img class="courses_icon" src="{% static '/img/selfgrow_image.svg'%}" alt="course_icon">
+                            <div data-wow-duration="2s" class="selfgrow_desc wow animate__animated animate__fadeIn">
+                                <p class="selfgrow_title">Самопознание</p>
+                                <p class="selfgrow_text">Понимание себя - это ключ к успеху. У нас вы найдете курсы, помогающие раскрыть свой потенциал и развить лидерские качества.
+                                </p>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
                 <div class="sales_block">
+                    <a href='course/4'>
                     <div data-wow-duration="2s" class="icon_courses wow animate__animated animate__fadeIn">
                         <img class="round_icon" src="{% static '/img/icon_round.svg'%}" alt="bg_courses_icon">
                         <img class="courses_icon" src="{% static '/img/sales_image.svg'%}" alt="course_icon">
@@ -139,9 +142,10 @@
                             <p class="sales_text">Убеждение и удовлетворение клиентов через эффективное обслуживание и коммуникации.</p>
                         </div>
                     </div>
+                </a>
                 </div>
                 <div class="child_block">
-                    <div data-wow-duration="2s" class="icon_courses wow animate__animated animate__fadeIn">
+                    <a href='course/6'><div data-wow-duration="2s" class="icon_courses wow animate__animated animate__fadeIn">
                         <img class="round_icon" src="{% static '/img/icon_round.svg'%}" alt="bg_courses_icon">
                         <img class="courses_icon" src="{% static '/img/child_image.svg'%}" alt="course_icon">
                         <div data-wow-duration="2.5s" class="child_desc wow animate__animated animate__fadeIn">
@@ -149,9 +153,10 @@
                             <p class="child_text">Мы предлагаем специализированные программы для развития мощности потенциала ребенка.</p>
                         </div>
                     </div>
+                </a>
                 </div>
                 <div class="manage_block">
-                    <div data-wow-duration="2s" class="icon_courses wow animate__animated animate__fadeIn">
+                    <a href='course/1'><div data-wow-duration="2s" class="icon_courses wow animate__animated animate__fadeIn">
                         <img class="round_icon" src="{% static '/img/icon_round.svg'%}" alt="bg_courses_icon">
                         <img class="courses_icon" src="{% static '/img/manage_image.svg'%}" alt="course_icon">
                         <div data-wow-duration="2s" class="manage_desc wow animate__animated animate__fadeIn">
@@ -160,9 +165,10 @@
                             </p>
                         </div>
                     </div>
+                </a>
                 </div>
                 <div class="market_block">
-                    <div data-wow-duration="2s" class="icon_courses wow animate__animated animate__fadeIn">
+                    <a href='course/2'><div data-wow-duration="2s" class="icon_courses wow animate__animated animate__fadeIn">
                         <img class="round_icon" src="{% static '/img/icon_round.svg'%}" alt="bg_courses_icon">
                         <img class="courses_icon" src="{% static '/img/market_image.svg'%}" alt="course_icon">
                         <div data-wow-duration="2s" class="market_desc wow animate__animated animate__fadeIn">
@@ -171,9 +177,10 @@
                                 </p>
                         </div>
                     </div>
+                </a>
                 </div>
                 <div class="pr_block">
-                    <div data-wow-duration="2s" class="icon_courses wow animate__animated animate__fadeIn">
+                    <a href='course/8'><div data-wow-duration="2s" class="icon_courses wow animate__animated animate__fadeIn">
                         <img class="round_icon" src="{% static '/img/icon_round.svg'%}" alt="bg_courses_icon">
                         <img class="courses_icon" src="{% static '/img/pr_image.svg'%}" alt="course_icon">
                         <div data-wow-duration="2s" class="pr_desc wow animate__animated animate__fadeIn">
@@ -183,9 +190,10 @@
                             </p>
                         </div>
                     </div>
+                </a>
                 </div>
                 <div class="finance_block">
-                    <div data-wow-duration="2s" class="icon_courses wow animate__animated animate__fadeIn">
+                    <a href='course/5'><div data-wow-duration="2s" class="icon_courses wow animate__animated animate__fadeIn">
                         <img class="round_icon" src="{% static '/img/icon_round.svg'%}" alt="bg_courses_icon">
                         <img class="courses_icon" src="{% static '/img/finance_image.svg'%}" alt="course_icon">
                         <div data-wow-duration="2s" class="finance_desc wow animate__animated animate__fadeIn">
@@ -193,9 +201,10 @@
                             <p class="finance_text">Анализ и управление ресурсами, распределение и изучение факторов, влияющих на рыночные процессы.</p>
                         </div>
                     </div>
+                </a>
                 </div>
                 <div class="it_block">
-                    <div data-wow-duration="2s" class="icon_courses wow animate__animated animate__fadeIn">
+                    <a href='course/7'><div data-wow-duration="2s" class="icon_courses wow animate__animated animate__fadeIn">
                         <img class="round_icon" src="{% static '/img/icon_round.svg'%}" alt="bg_courses_icon">
                         <img class="courses_icon" src="{% static '/img/it_image.svg'%}" alt="course_icon">
                         <div data-wow-duration="2s" class="it_desc wow animate__animated animate__fadeIn">
@@ -204,6 +213,7 @@
                             </p>
                         </div>
                     </div>
+                </a>
                 </div>
             </div>
         </div>
@@ -488,10 +498,10 @@
                     window.location.href = "{% url 'contact' %}"; // Замените "новая_страница.html" на URL вашей целевой страницы
                 });
                 // JavaScript для обработки клика на кнопке и перехода на другую страницу
-                document.getElementById("faqButton").addEventListener("click", function() {
+                {% comment %} document.getElementById("faqButton").addEventListener("click", function() {
                     // Используйте window.location.href для перехода на другую страницу
                     window.location.href = "{% url 'contact' %}"; // Замените "новая_страница.html" на URL вашей целевой страницы
-                });
+                }); {% endcomment %}
                 document.getElementById("coursesButton1").addEventListener("click", function() {
                     // Используйте window.location.href для перехода на другую страницу
                     window.location.href = "{% url 'all_courses' %}"; // Замените "новая_страница.html" на URL вашей целевой страницы
