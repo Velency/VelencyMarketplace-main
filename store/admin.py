@@ -21,10 +21,11 @@ admin.site.register(Packages)
 
 
 class CourseAdmin(admin.ModelAdmin):
-    list_display = ('name', 'get_teachers', 'description', 'Category')
+    list_display = ('name', 'display_teachers', 'Category')
 
-    def get_teachers(self, obj):
-        return ", ".join([str(teacher) for teacher in obj.teachers.all()])
+    def display_teachers(self, obj):
+        return ", ".join([teacher.first_name for teacher in obj.teachers.all()])
+    display_teachers.short_description = 'Teachers'
 
 
 admin.site.register(Course, CourseAdmin)

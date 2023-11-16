@@ -101,8 +101,8 @@ class Course(models.Model):
         ('Игры', 'Игры'),
     )
     name = models.CharField(max_length=100)
-    teacher = models.ForeignKey(
-        TeamMember, null=True, on_delete=models.CASCADE)
+    # Изменили ForeignKey на ManyToManyField
+    teachers = models.ManyToManyField(TeamMember)
     description = RichTextField(default="", null=True)
     Category = models.CharField(
         max_length=20, choices=Course_cat, default='Основные курсы')
