@@ -2,3 +2,4 @@ staticfiles
 *.pyc
 static
 store/templates/store/main-academy.css
+db.sqlite3

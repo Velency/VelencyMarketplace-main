@@ -20,13 +20,14 @@ admin.site.register(packagesCat)
 admin.site.register(Packages)
 
 
-@admin.register(Course)
 class CourseAdmin(admin.ModelAdmin):
-    list_display = ('name', 'teacher', 'Category')
-    list_filter = ('Category',)  # Добавляем фильтр по категории
-    # Добавляем поиск по имени, фамилии преподавателя
-    search_fields = ('name', 'teacher__first_name', 'teacher__last_name')
-    # Другие настройки админки для Course, если необходимо
+    list_display = ('name', 'get_teachers', 'description', 'Category')
+
+    def get_teachers(self, obj):
+        return ", ".join([str(teacher) for teacher in obj.teachers.all()])
+
+
+admin.site.register(Course, CourseAdmin)
 
 
 @admin.register(Direction)
