@@ -1,6 +1,7 @@
 staticfiles
 *.pyc
-db.sqlite3
 static
 store/templates/store/main-academy.css
 db.sqlite3
+ptest
+__pycache__
