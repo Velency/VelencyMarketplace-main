@@ -99,7 +99,7 @@
                             <ul class="soft_colum">
                                 {% for line in soft_lines %}
                                 <li class="soft_item">{{ line }}</li>
-                            {% endfor %}
+                                {% endfor %}
                             </ul>
                         </div>
                     </div>
@@ -138,34 +138,73 @@
             <div class="dropdown_div wow animate__animated animate__fadeIn"></div>
             </div>
             <div class="courses_dropdown">
-                {% if direction.courses.all %}
-        {% for course in direction.courses.all %}
-            {% ifchanged %}
-                <p class="main_dropdown_title">{{ course.Category }}</p>
-                <div id="{{ course.name|slugify }}" class="dropdown_item">
-                    <div class="text_item">
-                        <p class="name_item">{{ course.name }}</p>
-                        <img class="item_img" src="{% static '/img/dropdown_arrow.png'%}" alt="">
-                    </div>
-                </div>
-                <div class="item_container">
-                    <ul class="topick_group">
-            {% endifchanged %}
-                            <li class="topick_name">{{ course.name }}</li>
-            {% for topic in course.topics.all %}
-                            <li class="topick_name">{{ topic }}</li>
-            {% endfor %}
-                    </ul>
-                </div>
-        {% endfor %}
-    {% else %}
-        <p>No courses available.</p>
-    {% endif %}
-
+                    {% for course in direction.courses.all %}
+                        {% if course.Category == "Основные курсы" %}
+                            {% ifchanged %}
+                                <p class="main_dropdown_title">{{ course.get_Category_display }}</p>
+                            {% endifchanged %}
+                            <div id="{{ course.name|slugify }}" class="dropdown_item">
+                                <div class="text_item">
+                                    <p class="name_item">{{ course.name }}</p>
+                                    <img class="item_img" src="{% static '/img/dropdown_arrow.png'%}" alt="">
+                                </div>
+                            </div>
+                            
+                            <div class="item_container">
+                                <ul class="topick_group">
+                                    {% for line in course.get_topics %}
+                                        <li class="topick_name">{{ line|safe|linebreaksbr }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                    {% for course in direction.courses.all %}
+                        {% if course.Category == "Занятие телом" %}
+                            {% ifchanged %}
+                                <p class="main_dropdown_title">{{ course.get_Category_display }}</p>
+                            {% endifchanged %}
+                            <div id="{{ course.name|slugify }}" class="dropdown_item">
+                                <div class="text_item">
+                                    <p class="name_item">{{ course.name }}</p>
+                                    <img class="item_img" src="{% static '/img/dropdown_arrow.png'%}" alt="">
+                                </div>
+                            </div>
             
-
-
+                            <div class="item_container">
+                                <ul class="topick_group">
+                                    {% for line in course.get_topics %}
+                                        <li class="topick_name">{{ line|safe|linebreaksbr }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                    {% for course in direction.courses.all %}
+                        {% if course.Category == "Игры" %}
+                            {% ifchanged %}
+                                <p class="main_dropdown_title">{{ course.get_Category_display }}</p>
+                            {% endifchanged %}
+                            <div id="{{ course.name|slugify }}" class="dropdown_item">
+                                <div class="text_item">
+                                    <p class="name_item">{{ course.name }}</p>
+                                    <img class="item_img" src="{% static '/img/dropdown_arrow.png'%}" alt="">
+                                </div>
+                            </div>
+            
+                            <div class="item_container">
+                                <ul class="topick_group">
+                                    {% for line in course.get_topics %}
+                                        <li class="topick_name">{{ line|safe|linebreaksbr }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
             </div>
+            
+            
+        </div>
     </div>
     <div class="smm_block">
         <div class="smm_title">
@@ -310,7 +349,7 @@
                                             <div id="success_block" class="success_form_block">
                                                 <p class="succsess_text">Благоларим за отправку!</p>
                                             </div>
-                                            <form id="input_grup" name="contact-form" method="post" action="{% url 'contact' %}">
+                                            <form id="input_grup" name="contact-form" method="post">
                                                  {% csrf_token %}
                                                 <div class="contact_form">
                                                     <div class="input_group">
@@ -430,12 +469,42 @@
                 </div> 
                 </div>
             </footer>
+    
+            
 
+                
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="{% static 'js/slider_teachers_academy.js'%}"></script>
     <script src="{% static 'js/dropdown-academy.js'%}"></script>
     <script src="{% static 'js/menu-academy.js'%}"></script>
     <script src="{% static 'js/contact-academy.js'%}"></script>
     <script src="{% static 'js/sale_form_function.js'%}"></script>
     <script src="{% static 'js/wow.min.js'%}"></script>
+
+
+    <script>
+        $(document).ready(function () {
+            $("#input_grup").submit(function (e) {
+                e.preventDefault(); // Предотвращаем обычную отправку формы
+                var formData = new FormData(this);
+        
+                $.ajax({
+                    type: 'POST',
+                    url: $(this).attr('action'),
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (response) {
+                        // Обработка успешного ответа (например, отображение сообщения)
+                        console.log("ты супер");
+                    },
+                    error: function (error) {
+                        // Обработка ошибки (например, отображение сообщения об ошибке)
+                        console.log(error);
+                    }
+                });
+            });
+        });
+        </script>
 </body>
 </html>

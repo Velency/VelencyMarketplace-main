@@ -1,3 +1,5 @@
+from itertools import groupby
+from django.db.models import F, IntegerField, Case, When, Value
 from functools import wraps
 from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
@@ -24,7 +26,7 @@ from django.utils import timezone
 
 # mail
 from django.core.mail import send_mail
-from .forms import FeedbackForm
+
 
 # metamask
 from web3 import Web3
@@ -132,21 +134,47 @@ def show_managment(request, id):
     if direction_instance:
         hard_lines = direction_instance.hard_skills.split('\n')
         soft_lines = direction_instance.soft_skills.split('\n')
-
-        # Получаем всех преподавателей для направления
+        all_courses = direction_instance.courses.order_by('Category', 'id')
+        grouped_courses = {key: list(group) for key, group in groupby(
+            all_courses, key=lambda x: x.Category)}
         all_teachers = TeamMember.objects.filter(
             course__direction=direction_instance).distinct()
+        form = ConnectionFormSale()
 
+        if request.method == 'POST':
+            form = ConnectionFormSale(request.POST)
+            if form.is_valid():
+                name = form.cleaned_data['name']
+                phone = form.cleaned_data['phone']
+                messenger_type = form.cleaned_data['messenger_type']
+                messenger_value = form.cleaned_data['messenger_value']
+                try:
+                    send_mail(
+                        'Сообщение из формы обратной связи На странице курса',
+
+                        f'От: {name} \n\n\nСпособ свзяи -{messenger_type}\n{messenger_value} \n Phone: {phone}',
+                        EMAIL_HOST_USER, [
+                            RECIPIENTS_EMAIL, 'fidanur23@gmail.com', 'f.usmanov@hrworld.live'],
+                        fail_silently=False,
+                    )
+                except Exception as e:
+                    messages.error(request, f'Ошибка отправки сообщения! {e}')
+                else:
+                    messages.success(request, 'Сообщение успешно отправлено.')
+                    form = ConnectionFormSale()
+            else:
+                print(form.errors)
+                messages.error(request, 'Ошибка формы!')
         context = {
             'direction': direction_instance,
             'hard_lines': hard_lines,
             'soft_lines': soft_lines,
-            'all_teachers': all_teachers,  # Добавляем данные о преподавателях в контекст
+            'grouped_courses': grouped_courses,
+            'all_teachers': all_teachers,
+            'form': form,
         }
-
         return render(request, 'store/show_managment.html', context)
     else:
-        # Обработка ситуации, когда направление не найдено
         return redirect('all_courses')
 
 

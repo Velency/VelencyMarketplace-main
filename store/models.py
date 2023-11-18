@@ -101,11 +101,13 @@ class Course(models.Model):
         ('Игры', 'Игры'),
     )
     name = models.CharField(max_length=100)
-    # Изменили ForeignKey на ManyToManyField
     teachers = models.ManyToManyField(TeamMember)
-    description = RichTextField(default="", null=True)
+    description = models.TextField(null=True)
     Category = models.CharField(
         max_length=20, choices=Course_cat, default='Основные курсы')
+
+    def get_topics(self):
+        return self.description.split('\n')
 
     def __str__(self):
         return self.name

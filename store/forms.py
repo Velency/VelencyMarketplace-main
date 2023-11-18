@@ -93,3 +93,14 @@ class ConnectionForm(forms.Form):
         choices=MESSENGER_CHOICES, widget=forms.Select(attrs={'class': 'drop_text'}))
     messenger_value = forms.CharField(
         max_length=50, widget=forms.TextInput(attrs={'class': 'input_mes'}))
+
+
+class ConnectionFormSale(forms.Form):
+    name = forms.CharField(max_length=100, widget=forms.TextInput(
+        attrs={'class': 'input_block'}))
+    phone = forms.CharField(max_length=15, widget=forms.TextInput(
+        attrs={'class': 'input_block'}))
+    messenger_type = forms.ChoiceField(
+        choices=MESSENGER_CHOICES, widget=forms.Select(attrs={'class': 'drop_text'}))
+    messenger_value = forms.CharField(
+        max_length=50, widget=forms.TextInput(attrs={'class': 'input_mes'}))
