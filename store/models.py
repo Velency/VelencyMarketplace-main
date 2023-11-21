@@ -105,6 +105,7 @@ class Course(models.Model):
     description = models.TextField(null=True)
     Category = models.CharField(
         max_length=20, choices=Course_cat, default='Основные курсы')
+    order = models.PositiveIntegerField(default=0)  # Новое поле для сортировки
 
     def get_topics(self):
         return self.description.split('\n')

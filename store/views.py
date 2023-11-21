@@ -134,9 +134,10 @@ def show_managment(request, id):
     if direction_instance:
         hard_lines = direction_instance.hard_skills.split('\n')
         soft_lines = direction_instance.soft_skills.split('\n')
-        all_courses = direction_instance.courses.order_by('Category', 'id')
-        grouped_courses = {key: list(group) for key, group in groupby(
-            all_courses, key=lambda x: x.Category)}
+        courses_by_category = {}
+        for category, _ in Course.Course_cat:
+            courses_by_category[category] = direction_instance.courses.filter(
+                Category=category)
         all_teachers = TeamMember.objects.filter(
             course__direction=direction_instance).distinct()
         form = ConnectionFormSale()
@@ -169,9 +170,9 @@ def show_managment(request, id):
             'direction': direction_instance,
             'hard_lines': hard_lines,
             'soft_lines': soft_lines,
-            'grouped_courses': grouped_courses,
             'all_teachers': all_teachers,
             'form': form,
+            'courses_by_category': courses_by_category,
         }
         return render(request, 'store/show_managment.html', context)
     else:

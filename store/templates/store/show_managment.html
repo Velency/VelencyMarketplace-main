@@ -136,72 +136,42 @@
         <div class="dropdown_title">
             <p class="title_dropdown wow animate__animated animate__fadeIn">Какие курсы включает направление</p>
             <div class="dropdown_div wow animate__animated animate__fadeIn"></div>
-            </div>
-            <div class="courses_dropdown">
-                    {% for course in direction.courses.all %}
-                        {% if course.Category == "Основные курсы" %}
-                            {% ifchanged %}
-                                <p class="main_dropdown_title">{{ course.get_Category_display }}</p>
-                            {% endifchanged %}
-                            <div id="{{ course.name|slugify }}" class="dropdown_item">
-                                <div class="text_item">
-                                    <p class="name_item">{{ course.name }}</p>
-                                    <img class="item_img" src="{% static '/img/dropdown_arrow.png'%}" alt="">
-                                </div>
-                            </div>
-                            
-                            <div class="item_container">
-                                <ul class="topick_group">
-                                    {% for line in course.get_topics %}
-                                        <li class="topick_name">{{ line|safe|linebreaksbr }}</li>
-                                    {% endfor %}
-                                </ul>
-                            </div>
-                        {% endif %}
-                    {% endfor %}
-                    {% for course in direction.courses.all %}
-                        {% if course.Category == "Занятие телом" %}
-                            {% ifchanged %}
-                                <p class="main_dropdown_title">{{ course.get_Category_display }}</p>
-                            {% endifchanged %}
-                            <div id="{{ course.name|slugify }}" class="dropdown_item">
-                                <div class="text_item">
-                                    <p class="name_item">{{ course.name }}</p>
-                                    <img class="item_img" src="{% static '/img/dropdown_arrow.png'%}" alt="">
-                                </div>
-                            </div>
+        </div>
+        <div class="courses_dropdown">
+            {% for category, courses in courses_by_category.items %}
+            {% for course in courses %}
+                {% ifchanged %}
+                    <p class="main_dropdown_title">{{ course.get_Category_display }}</p>
+                {% endifchanged %}
+        
+                <div 
+                {% if forloop.first and forloop.last %}id="one"{% endif %} 
+                {% if forloop.last %}id="last"{% endif %}
+                {% if forloop.first %}id="first"{% endif %} 
+                
+                
+
+
+                     class="dropdown_item">
+                    <div class="text_item">
+                        <p class="name_item">{{ course.name }}</p>
+                        <img class="item_img" src="{% static '/img/dropdown_arrow.png'%}" alt="">
+                    </div>
+                </div>
+        
+                <div class="item_container">
+                    <ul class="topick_group">
+                        {% for line in course.get_topics %}
+                            <li class="topick_name">{{ line|safe|linebreaksbr }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endfor %}
+        {% endfor %}
+        
+
             
-                            <div class="item_container">
-                                <ul class="topick_group">
-                                    {% for line in course.get_topics %}
-                                        <li class="topick_name">{{ line|safe|linebreaksbr }}</li>
-                                    {% endfor %}
-                                </ul>
-                            </div>
-                        {% endif %}
-                    {% endfor %}
-                    {% for course in direction.courses.all %}
-                        {% if course.Category == "Игры" %}
-                            {% ifchanged %}
-                                <p class="main_dropdown_title">{{ course.get_Category_display }}</p>
-                            {% endifchanged %}
-                            <div id="{{ course.name|slugify }}" class="dropdown_item">
-                                <div class="text_item">
-                                    <p class="name_item">{{ course.name }}</p>
-                                    <img class="item_img" src="{% static '/img/dropdown_arrow.png'%}" alt="">
-                                </div>
-                            </div>
-            
-                            <div class="item_container">
-                                <ul class="topick_group">
-                                    {% for line in course.get_topics %}
-                                        <li class="topick_name">{{ line|safe|linebreaksbr }}</li>
-                                    {% endfor %}
-                                </ul>
-                            </div>
-                        {% endif %}
-                    {% endfor %}
-            </div>
+        </div>
             
             
         </div>
