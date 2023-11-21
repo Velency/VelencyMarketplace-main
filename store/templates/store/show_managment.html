@@ -293,11 +293,11 @@
                                 </div>
                                 <div class="sale_info_text">
                                     <ul class="sale_info_group">
-                                        <li class="sale_info_item">Преимущество первое</li>
-                                        <li class="sale_info_item">Преимущество второе</li>
-                                        <li class="sale_info_item">Преимущество третье</li>
-                                        <li class="sale_info_item">Преимущество четвертое</li>
-                                        <li class="sale_info_item">Преимущество пятое</li>
+                                        <li class="sale_info_item">&#10149; Расширение сознания</li>
+                                        <li class="sale_info_item">&#10149; Среда единомышлеников</li>
+                                        <li class="sale_info_item">&#10149; Раскрытие потенциала</li>
+                                        <li class="sale_info_item">&#10149; Монетизаци своих навыков</li>
+                                        <li class="sale_info_item">&#10149; Внутреняя свобода</li>
                                     </ul>
                                 </div>
                             </div>
@@ -306,18 +306,19 @@
                                     <p id="title1" class="form_title1">Заполние форму и выберете способ оплаты</p>
                                         <div id="btn_group" class="btn_group">
                                             <tinkoff-create-button
-                                                        size="M"
-                                                        subtext=""
-                                                        shopId="SHOP_ID"
-                                                        showcaseId="SHOWCASE_ID"
-                                                        ui-data="productType=installment&useReturnLinks=true&view=newTab"
-                                                        payment-data="demoFlow=sms&items.0.name=Hasta&items.0.price=19626.15&items.0.quantity=1&items.1.name=Hasta&items.1.price=1444.50&items.1.quantity=1&items.2.name=Hasta&items.2.price=84.15&items.2.quantity=1&promoCode=installment_0_0_6_5,85&sum=21154.80&values.contact.fio.firstName=Иван&values.contact.fio.lastName=Петров&values.contact.fio.middleName=Иванович&values.contact.mobilePhone=+7 (988) 777-66-55"
-                                                        ></tinkoff-create-button>
+                                            size="M"
+                                            subtext="от 3400 ₽ в месяц"
+                                            shopId="b846bfc3-b390-4e5f-a0c3-db7c584b6afb"
+                                            showcaseId="a10e81c0-a515-45c9-bb24-5a5f2091b2bf"
+                                           
+                                            payment-data="demoFlow=sms&initialStage=filling&items.0.name=Hasta&items.0.price=19626.15&items.0.quantity=1&items.1.name=Hasta&items.1.price=1444.50&items.1.quantity=1&items.2.name=Hasta&items.2.price=84.15&items.2.quantity=1&promoCode=installment_0_0_24_20,5&sum=21154.80&values.contact.fio.firstName=Иван&values.contact.fio.lastName=Петров&values.contact.mobilePhone=+7 (988) 777-66-55"
+                                            ui-data="productType=installment&useReturnLinks=true&view=newTab"
+                                            ></tinkoff-create-button>
                                                         <button class="full_price_btn"><p class="btn_full_text">Купить со скидкой 7500 ₽</p></button>
                                         </div>
                                         <div class="block_form animate__animated animate__fadeIn" data-wow-duration="5s">
                                             <div id="success_block" class="success_form_block">
-                                                <p class="succsess_text">Благоларим за отправку!</p>
+                                                <p class="succsess_text">Благодарим за отправку!</p>
                                             </div>
                                             <form id="input_grup" name="contact-form" method="post">
                                                  {% csrf_token %}
