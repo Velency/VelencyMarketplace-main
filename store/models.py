@@ -116,12 +116,13 @@ class Course(models.Model):
 
 class Direction(models.Model):
     name = models.CharField(max_length=100)
+    sale_name = models.CharField(max_length=100, null=True)
     description = models.TextField()
     courses = models.ManyToManyField(Course)
     video_presentation = models.URLField()
     hard_skills = models.TextField()
     soft_skills = models.TextField()
-    price = models.DecimalField(max_digits=7, decimal_places=2, null=True)
+    price = models.DecimalField(max_digits=15, decimal_places=2, null=True)
 
     def get_all_teachers(self):
         # Используем values() для получения словарей с данными по курсам и преподавателям
