@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Личный кабинет</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/academy_cab_main-academy.css'%}">
+</head>
+<body>
+    <header class="head_block">
+        <nav class="nav_line">
+            <div class="logo_block">
+                <img src="{% static 'img/burger.svg'%}" alt="" class="menu_drop">
+                <img class="logo" src="{% static 'img/image 1.svg"'%}" alt="logo">
+                <div class="logo_text">
+                   <p class="text1">Бирюзовая</p>
+                       <p class="text2">Академия</p></p>
+                </div>
+            </div>
+            <div class="nav_btn_group">
+               <ul class="btn_list">
+                <li class="main_menu_item">
+                    <a class="link_img"  href="/all_courses.html"><img class="item_img" src="{% static 'img/marketplace.png'%}" alt=""></a>
+                </li>
+                <li class="main_menu_item">
+                    <a class="link_img" href="#"><img class="item_img" src="{% static 'img/crypto.png'%}" alt=""></a>
+                </li>
+                <li class="main_menu_item">
+                    <a class="link_img"  href="#"><img class="item_img" src="{% static 'img/metaverse.png'%}" alt=""></a>
+                </li>
+                <li class="main_menu_item">
+                    <a class="link_img"  href="#"><img class="item_img" src="{% static 'img/hrw.png'%}" alt=""></a>
+                </li>
+               </ul>
+               <div class="profile_drop">
+                <img src="/img/фиданур.webp" alt="" class="profile_img">
+                    <p class="profile_name">Eth address: ...345</p>
+                    <img class="arrow_down" src="{% static 'img/arrow_down.png'%}" alt="">
+               </div>
+                <ul class="drop_menu_list">
+                    <li class="drop_menu_item main">
+                        <img class="drop_menu_img" src="{% static 'img/main_icon.png'%}" alt="">
+                        <p class="drop_menu_text" >Главная</p>
+                    </li></a>
+                    <a href="/all_courses.html"><li class="drop_menu_item">
+                        <img class="drop_menu_img" src="{% static 'img/package_icon.png'%}" alt="">
+                        <p class="drop_menu_text">Пакеты</p>
+                    </li></a>
+                    <a href="/all_courses.html"><li class="drop_menu_item">
+                        <img class="drop_menu_img" src="{% static 'img/settings_icon.png"'%}" alt="">
+                        <p class="drop_menu_text">Настройки</p>
+                    </li></a>
+                    <a href="/all_courses.html"><li class="drop_menu_item">
+                        <img class="drop_menu_img" src="{% static 'img/exit_icon.png'%}" alt="">
+                        <p class="drop_menu_text">Выход</p>
+                    </li></a>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <div class="main-block">
+        <!-- боковое меню -->
+        <div class="side_menu">
+            <ul class="menu_group">
+                <li class="menu_item study_btn">
+                    <div class="study">
+                        <img class="item_menu_img" src="{% static 'img/study.png'%}" alt="">
+                    </div>
+                    <a href="#"><p class="item_text">Обучение</p></a>
+                </li>
+                <li class="menu_item practic_btn">
+                    <div class="study">
+                        <img class="item_menu_img" src="{% static 'img/practic.png'%}" alt="">
+                    </div>
+                    <a href="#"><p class="item_text">Практика</p></a>
+                </li>
+                <li class="menu_item desitions_btn">
+                    <div class="study">
+                        <img class="item_menu_img" src="{% static 'img/desitions.png'%}" alt="">
+                    </div>
+                    <a href="#"><p class="item_text">Мои успехи</p></a>
+                </li>
+                <li class="menu_item partnership_btn">
+                    <div class="study">
+                        <img class="item_menu_img" src="{% static 'img/partnership.png'%}" alt="">
+                    </div>
+                    <a href="#"><p class="item_text">Партнерство</p></a>
+                </li>
+                <li class="menu_item home_work_btn">
+                    <div class="study">
+                        <img class="item_menu_img" src="{% static 'img/home_work.png'%}" alt="">
+                    </div>
+                    <a href="#"><p class="item_text">Чат по ДЗ</p></a>
+                </li>
+                <li class="menu_item support_btn">
+                    <div class="study">
+                        <img class="item_menu_img" src="{% static 'img/support.png'%}" alt="">
+                    </div>
+                    <a href="#"><p class="item_text">Поддержка</p></a>
+                </li>
+            </ul>
+        </div>
+        <div class="main_display">
+            <!-- главная -->
+            <div class="main_page">
+            <div class="user_dashbord_blocks">
+                <div class="user_info_block">
+                    <img src="/img/фиданур.webp" alt="" class="profile_img_big">
+                        <ul class="info_list">
+                            <li class="info_item">
+                                    <p class="info_lable">Username:</p>
+                                    <p class="info_text">nikitakap16020</p>
+                            </li>
+                                <li class="info_item">
+                                    <p class="info_lable">First/Last name:</p>
+                                    <p class="info_text">Nikita Kostava</p>
+                            </li>
+                                <li class="info_item">
+                                    <p class="info_lable">Mobile:</p>
+                                    <p class="info_text">+995568836179</p>
+                            </li>
+                                <li class="info_item">
+                                    <p class="info_lable">Referal code:</p>
+                                    <p class="info_text">smkndscnsdkv</p>
+                            </li>
+                                <li class="info_item">
+                                    <p class="info_lable">Status:</p>
+                                    <p class="info_text">Student</p>
+                            </li>
+                                <li class="info_item">
+                                    <p class="info_lable">Leader:</p>
+                                    <p class="info_text">Academy</p>
+                            </li>
+                        </ul>
+                </div>
+                <div class="dashbord">
+                    <p class="dashbord_title">Ваша статистика</p>
+                    <ul class="dashbord_text">
+                        <li class="dashbord_item">
+                            <p class="dashbord_lable">Привелчено людей:</p>
+                            <p class="dashbord_text1 leads">125 человек</p>
+                        </li>
+                        <li class="dashbord_item">
+                            <p class="dashbord_lable">Уровень сети:</p>
+                            <p class="dashbord_text1 level">5 уровень</p>
+                        </li>
+                        <li class="dashbord_item">
+                            <p class="dashbord_lable">Ваш оборот:</p>
+                            <div class="dashbord_text_block">
+                                <p class="dashbord_text1">150 000 ₽</p>
+                                <p class="dashbord_text2">150 USDT</p>
+                                <p class="dashbord_text3">300 000 TVT</p>
+                            </div>
+                        </li>
+                        <li class="dashbord_item">
+                            <p class="dashbord_lable">Оборот рефералов:</p>
+                            <div class="dashbord_text_block">
+                                <p class="dashbord_text1">150 000 ₽</p>
+                                <p class="dashbord_text2">150 USDT</p>
+                                <p class="dashbord_text3">300 000 TVT</p>
+                            </div>
+                        </li>
+                        <li class="dashbord_item">
+                            <p class="dashbord_lable">Бонус с продаж:</p>
+                            <div class="dashbord_text_block">
+                                <p class="dashbord_text1">150 000 ₽</p>
+                                <p class="dashbord_text2">150 USDT</p>
+                                <p class="dashbord_text3">300 000 TVT</p>
+                            </div>
+                        </li>
+                        <li class="dashbord_item">
+                            <p class="dashbord_lable">Бонус с сети:</p>
+                            <div class="dashbord_text_block">
+                                <p class="dashbord_text1">150 000 ₽</p>
+                                <p class="dashbord_text2">150 USDT</p>
+                                <p class="dashbord_text3">300 000 TVT</p>
+                            </div>
+                        </li>
+                        <li class="dashbord_item">
+                            <p class="dashbord_lable">Доступно для вывода:</p>
+                            <div class="dashbord_text_block">
+                                <p class="dashbord_text1">150 000 ₽</p>
+                                <p class="dashbord_text2">150 USDT</p>
+                                <p class="dashbord_text3">300 000 TVT</p>
+                            </div>
+                        </li>
+                        <li class="dashbord_item btn_wth">
+                            <button class="dashbord_btn_withdraw">
+                                <p class="dashbord_btn_withdraw_text">Вывести средства</p>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="weekly_board">
+                    <ul class="weakly_lessons_board_text">
+                        <li class="weakly_lessons_item">
+                            <div class="mondey_title_block">
+                                <p class="mondey_title">Понедельник</p>
+                                <div class="weakly_lessons_underline"></div>
+                            </div>
+                            <div class="lesson_block_main">
+                                <div class="lessons_info_block">
+                                <p class="lessons_info_time">11:30-12:30</p>
+                                <p class="lessons_info_subj">Талант-мен...</p>
+                                <div class="lessons_info_subj_full_block">
+                                <p class="lessons_info_subj_full">Талант-менеджмент</p>
+                                </div>
+                                </div>
+                                <div class="weakly_lessons_underline"></div>
+                            </div>
+                            <div class="lesson_block">
+                                <div class="lessons_info_block">
+                                <p class="lessons_info_time">11:30-12:30</p>
+                                <p class="lessons_info_subj">Талант-мен...</p>
+                                <div class="lessons_info_subj_full_block">
+                                    <p class="lessons_info_subj_full">Талант-менеджмент</p>
+                                    </div>
+                                </div>
+                                <div class="weakly_lessons_underline"></div>
+                            </div>
+                            <div class="lesson_block">
+                                <div class="lessons_info_block">
+                                <p class="lessons_info_time">11:30-12:30</p>
+                                <p class="lessons_info_subj">Талант-мен...</p>
+                                <div class="lessons_info_subj_full_block">
+                                    <p class="lessons_info_subj_full">Талант-менеджмент</p>
+                                    </div>
+                                </div>
+                                <div class="weakly_lessons_underline"></div>
+                            </div>
+                            <div class="lesson_block">
+                                <div class="lessons_info_block">
+                                <p class="lessons_info_time">11:30-12:30</p>
+                                <p class="lessons_info_subj">Талант-мен...</p>
+                                <div class="lessons_info_subj_full_block">
+                                    <p class="lessons_info_subj_full">Талант-менеджмент</p>
+                                    </div>
+                                </div>
+                                <div class="weakly_lessons_underline"></div>
+                            </div>
+                            <div class="lesson_block">
+                                <div class="lessons_info_block">
+                                <p class="lessons_info_time">11:30-12:30</p>
+                                <p class="lessons_info_subj">Талант-мен...</p>
+                                <div class="lessons_info_subj_full_block">
+                                    <p class="lessons_info_subj_full">Талант-менеджмент</p>
+                                    </div>
+                                </div>
+                                <div class="weakly_lessons_underline"></div>
+                            </div>
+                        </li>
+                        <li class="weakly_lessons_item">
+                            <div class="mondey_title_block">
+                                <p class="mondey_title">Вторник</p>
+                                <div class="weakly_lessons_underline"></div>
+                            </div>
+                            <div class="lesson_block_main">
+                                <div class="lessons_info_block">
+                                <p class="lessons_info_time">11:30-12:30</p>
+                                <p class="lessons_info_subj">Талант-мен...</p>
+                                <div class="lessons_info_subj_full_block">
+                                <p class="lessons_info_subj_full">Талант-менеджмент</p>
+                                </div>
+                                </div>
+                                <div class="weakly_lessons_underline"></div>
+                            </div>
+                            <div class="lesson_block">
+                                <div class="lessons_info_block">
+                                <p class="lessons_info_time">11:30-12:30</p>
+                                <p class="lessons_info_subj">Талант-мен...</p>
+                                <div class="lessons_info_subj_full_block">
+                                    <p class="lessons_info_subj_full">Талант-менеджмент</p>
+                                    </div>
+                                </div>
+                                <div class="weakly_lessons_underline"></div>
+                            </div>
+                            <div class="lesson_block">
+                                <div class="lessons_info_block">
+                                <p class="lessons_info_time">11:30-12:30</p>
+                                <p class="lessons_info_subj">Талант-мен...</p>
+                                <div class="lessons_info_subj_full_block">
+                                    <p class="lessons_info_subj_full">Талант-менеджмент</p>
+                                    </div>
+                                </div>
+                                <div class="weakly_lessons_underline"></div>
+                            </div>
+                            <div class="lesson_block">
+                                <div class="lessons_info_block">
+                                <p class="lessons_info_time">11:30-12:30</p>
+                                <p class="lessons_info_subj">Талант-мен...</p>
+                                <div class="lessons_info_subj_full_block">
+                                    <p class="lessons_info_subj_full">Талант-менеджмент</p>
+                                    </div>
+                                </div>
+                                <div class="weakly_lessons_underline"></div>
+                            </div>
+                            <div class="lesson_block">
+                                <div class="lessons_info_block">
+                                <p class="lessons_info_time">11:30-12:30</p>
+                                <p class="lessons_info_subj">Талант-мен...</p>
+                                <div class="lessons_info_subj_full_block">
+                                    <p class="lessons_info_subj_full">Талант-менеджмент</p>
+                                    </div>
+                                </div>
+                                <div class="weakly_lessons_underline"></div>
+                            </div>
+                        </li>
+                        <li class="weakly_lessons_item">
+                            <div class="mondey_title_block">
+                                <p class="mondey_title">Среда</p>
+                                <div class="weakly_lessons_underline"></div>
+                            </div>
+                            <div class="lesson_block_main">
+                                <div class="lessons_info_block">
+                                <p class="lessons_info_time">11:30-12:30</p>
+                                <p class="lessons_info_subj">Талант-мен...</p>
+                                <div class="lessons_info_subj_full_block">
+                                <p class="lessons_info_subj_full">Талант-менеджмент</p>
+                                </div>
+                                </div>
+                                <div class="weakly_lessons_underline"></div>
+                            </div>
+                            <div class="lesson_block">
+                                <div class="lessons_info_block">
+                                <p class="lessons_info_time">11:30-12:30</p>
+                                <p class="lessons_info_subj">Талант-мен...</p>
+                                <div class="lessons_info_subj_full_block">
+                                    <p class="lessons_info_subj_full">Талант-менеджмент</p>
+                                    </div>
+                                </div>
+                                <div class="weakly_lessons_underline"></div>
+                            </div>
+                            <div class="lesson_block">
+                                <div class="lessons_info_block">
+                                <p class="lessons_info_time">11:30-12:30</p>
+                                <p class="lessons_info_subj">Талант-мен...</p>
+                                <div class="lessons_info_subj_full_block">
+                                    <p class="lessons_info_subj_full">Талант-менеджмент</p>
+                                    </div>
+                                </div>
+                                <div class="weakly_lessons_underline"></div>
+                            </div>
+                            <div class="lesson_block">
+                                <div class="lessons_info_block">
+                                <p class="lessons_info_time">11:30-12:30</p>
+                                <p class="lessons_info_subj">Талант-мен...</p>
+                                <div class="lessons_info_subj_full_block">
+                                    <p class="lessons_info_subj_full">Талант-менеджмент</p>
+                                    </div>
+                                </div>
+                                <div class="weakly_lessons_underline"></div>
+                            </div>
+                            <div class="lesson_block">
+                                <div class="lessons_info_block">
+                                <p class="lessons_info_time">11:30-12:30</p>
+                                <p class="lessons_info_subj">Талант-мен...</p>
+                                <div class="lessons_info_subj_full_block">
+                                    <p class="lessons_info_subj_full">Талант-менеджмент</p>
+                                    </div>
+                                </div>
+                                <div class="weakly_lessons_underline"></div>
+                            </div>
+                        </li>
+                        <li class="weakly_lessons_item">
+                            <div class="mondey_title_block">
+                                <p class="mondey_title">Четверг</p>
+                                <div class="weakly_lessons_underline"></div>
+                            </div>
+                            <div class="lesson_block_main">
+                                <div class="lessons_info_block">
+                                <p class="lessons_info_time">11:30-12:30</p>
+                                <p class="lessons_info_subj">Талант-мен...</p>
+                                <div class="lessons_info_subj_full_block">
+                                <p class="lessons_info_subj_full">Талант-менеджмент</p>
+                                </div>
+                                </div>
+                                <div class="weakly_lessons_underline"></div>
+                            </div>
+                            <div class="lesson_block">
+                                <div class="lessons_info_block">
+                                <p class="lessons_info_time">11:30-12:30</p>
+                                <p class="lessons_info_subj">Талант-мен...</p>
+                                <div class="lessons_info_subj_full_block">
+                                    <p class="lessons_info_subj_full">Талант-менеджмент</p>
+                                    </div>
+                                </div>
+                                <div class="weakly_lessons_underline"></div>
+                            </div>
+                            <div class="lesson_block">
+                                <div class="lessons_info_block">
+                                <p class="lessons_info_time">11:30-12:30</p>
+                                <p class="lessons_info_subj">Талант-мен...</p>
+                                <div class="lessons_info_subj_full_block">
+                                    <p class="lessons_info_subj_full">Талант-менеджмент</p>
+                                    </div>
+                                </div>
+                                <div class="weakly_lessons_underline"></div>
+                            </div>
+                            <div class="lesson_block">
+                                <div class="lessons_info_block">
+                                <p class="lessons_info_time">11:30-12:30</p>
+                                <p class="lessons_info_subj">Талант-мен...</p>
+                                <div class="lessons_info_subj_full_block">
+                                    <p class="lessons_info_subj_full">Талант-менеджмент</p>
+                                    </div>
+                                </div>
+                                <div class="weakly_lessons_underline"></div>
+                            </div>
+                            <div class="lesson_block">
+                                <div class="lessons_info_block">
+                                <p class="lessons_info_time">11:30-12:30</p>
+                                <p class="lessons_info_subj">Талант-мен...</p>
+                                <div class="lessons_info_subj_full_block">
+                                    <p class="lessons_info_subj_full">Талант-менеджмент</p>
+                                    </div>
+                                </div>
+                                <div class="weakly_lessons_underline"></div>
+                            </div>
+                        </li>
+                        <li class="weakly_lessons_item">
+                            <div class="mondey_title_block">
+                                <p class="mondey_title">Пятница</p>
+                                <div class="weakly_lessons_underline"></div>
+                            </div>
+                            <div class="lesson_block_main">
+                                <div class="lessons_info_block">
+                                <p class="lessons_info_time">11:30-12:30</p>
+                                <p class="lessons_info_subj">Талант-мен...</p>
+                                <div class="lessons_info_subj_full_block">
+                                <p class="lessons_info_subj_full">Талант-менеджмент</p>
+                                </div>
+                                </div>
+                                <div class="weakly_lessons_underline"></div>
+                            </div>
+                            <div class="lesson_block">
+                                <div class="lessons_info_block">
+                                <p class="lessons_info_time">11:30-12:30</p>
+                                <p class="lessons_info_subj">Талант-мен...</p>
+                                <div class="lessons_info_subj_full_block">
+                                    <p class="lessons_info_subj_full">Талант-менеджмент</p>
+                                    </div>
+                                </div>
+                                <div class="weakly_lessons_underline"></div>
+                            </div>
+                            <div class="lesson_block">
+                                <div class="lessons_info_block">
+                                <p class="lessons_info_time">11:30-12:30</p>
+                                <p class="lessons_info_subj">Талант-мен...</p>
+                                <div class="lessons_info_subj_full_block">
+                                    <p class="lessons_info_subj_full">Талант-менеджмент</p>
+                                    </div>
+                                </div>
+                                <div class="weakly_lessons_underline"></div>
+                            </div>
+                            <div class="lesson_block">
+                                <div class="lessons_info_block">
+                                <p class="lessons_info_time">11:30-12:30</p>
+                                <p class="lessons_info_subj">Талант-мен...</p>
+                                <div class="lessons_info_subj_full_block">
+                                    <p class="lessons_info_subj_full">Талант-менеджмент</p>
+                                    </div>
+                                </div>
+                                <div class="weakly_lessons_underline"></div>
+                            </div>
+                            <div class="lesson_block">
+                                <div class="lessons_info_block">
+                                <p class="lessons_info_time">11:30-12:30</p>
+                                <p class="lessons_info_subj">Талант-мен...</p>
+                                <div class="lessons_info_subj_full_block">
+                                    <p class="lessons_info_subj_full">Талант-менеджмент</p>
+                                    </div>
+                                </div>
+                                <div class="weakly_lessons_underline"></div>
+                            </div>
+                        </li>
+                    </ul>
+            </div>
+            </div>
+            <!-- обучение -->
+            <div class="study_page">
+                <div class="study_content">
+            <div class="title_menu_block">
+                <p class="study_title">Ваше направление "Менеджмент"</p>
+            </div>
+            <ul class="potok_menu_group">
+                <a href="#"><li class="potok_item first">
+                    <img class="potok_img" src="{% static 'img/knock_open.png'%}" alt="">
+                    <div class="potok_text_block">
+                    <p class="potok_text">Поток 1</p>
+                    <div class="underline"></div>
+                    </div>
+                </li></a>
+                <a href="#"><li class="potok_item second">
+                    <img class="potok_img" src="{% static 'img/knock_close.png'%}" alt="">
+                    <div class="potok_text_block">
+                        <p class="potok_text">Поток 2</p>
+                        <div class="underline"></div>
+                        </div>
+                </li></a>
+                <a href="#"><li class="potok_item third">
+                    <img class="potok_img" src="{% static 'img/knock_close.png'%}" alt="">
+                    <div class="potok_text_block">
+                        <p class="potok_text">Поток 3</p>
+                        <div class="underline"></div>
+                        </div>
+                </li></a>
+            </ul>
+            <div class="potok_1_block">
+            <div class="drop_block">
+                <div class="courses_drop_block">
+                    <p class="courses_drop_text">Выберите курс</p>
+                    <div class="drop_courses_p1">
+                        <p class="courses_text">Талант-менеджмент</p>
+                        <img class="courses_drop_img_p1" src="{% static 'img/arrow_down.png'%}" alt="">
+                    </div>
+                    <ul class="drop_courses_list_p1">
+                        <li class="drop_courses_item main">
+                            <p class="drop_courses_text" >Талант-менеджмент</p>
+                        </li>
+                            <li class="drop_courses_item">
+                            <p class="drop_courses_text">Свобода воли</p>
+                        </li>
+                        <li class="drop_courses_item">
+                            <p class="drop_courses_text">Нумерология для гармоничных отношений</p>
+                        </li>
+                        <li class="drop_courses_item">
+                            <p class="drop_courses_text">Йога</p>
+                        </li>
+                        <li class="drop_courses_item">
+                            <p class="drop_courses_text">Гармония. Основы тантры</p>
+                        </li>
+                        <li class="drop_courses_item">
+                            <p class="drop_courses_text">Проффориентология</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="lessons_drop_block">
+                    <p class="lessons_drop_text">Выберите урок</p>
+                    <div class="drop_lessons_p1">
+                        <img class="lessons_drop_img_knock" src="{% static 'img/knock_open.png'%}" alt="">
+                        <p class="lessons_text">Демо</p>
+                        <img class="lessons_drop_img_p1" src="{% static 'img/arrow_down.png'%}" alt="">
+                    </div>
+                    <ul class="drop_lessons_list_p1">
+                        <li class="drop_lessons_item main">
+                            <img class="lessons_item_img" src="{% static 'img/knock_open.png'%}" alt="">
+                            <p class="drop_lessons_text" >Демо</p>
+                        </li>
+                            <li class="drop_lessons_item">
+                                <img class="lessons_item_img" src="{% static 'img/knock_close.png'%}" alt="">
+                            <p class="drop_lessons_text">Урок 1</p>
+                        </li>
+                        <li class="drop_lessons_item">
+                            <img class="lessons_item_img" src="{% static 'img/knock_close.png'%}" alt="">
+                            <p class="drop_lessons_text">Урок 2</p>
+                        </li>
+                        <li class="drop_lessons_item">
+                            <img class="lessons_item_img" src="{% static 'img/knock_close.png'%}" alt="">
+                            <p class="drop_lessons_text">Урок 3</p>
+                        </li>
+                        <li class="drop_lessons_item">
+                            <img class="lessons_item_img" src="{% static 'img/knock_close.png'%}" alt="">
+                            <p class="drop_lessons_text">Урок 4</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="topic_drop_block">
+                <p class="topic_title">Тема урока “Название темы урока”</p>
+                <div class="topic_dropdown">
+                    <div id="first_topic" class="dropdown_topic_item">
+                        <div class="text_item_topic">
+                            <p class="name_item_topic">Кабинет Zoom</p>
+                            <img class="item_topic_img" src="{% static 'img/dropdown_arrow.png'%}" alt="">
+                        </div>
+                    </div>
+                    <div class="item_container_topic">
+                        <ul class="topick_group">
+                            <iframe class="video_block animate__animated animate__fadeInUp" width="560" height="315" src="https://www.youtube.com/embed/ToXfaJvAk5k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                            <li class="topick_name">&#10149; Здесь актуальная ссылка на zoom урок</li>
+                        </ul>
+                    </div>
+                    <div id="midle_topic" class="dropdown_topic_item">
+                        <div class="text_item_topic">
+                            <p class="name_item_topic">Запись урока</p>
+                            <img class="item_topic_img" src="{% static 'img/dropdown_arrow.png'%}" alt="">
+                        </div>
+                    </div>
+                    <div class="item_container_topic">
+                        <ul class="topick_group">
+                            <iframe class="video_block animate__animated animate__fadeInUp" width="560" height="315" src="https://www.youtube.com/embed/ToXfaJvAk5k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                            <li class="topick_name">&#10149; Здесь актуальная запрись zoom урока</li>
+                        </ul>
+                    </div>
+                    <div id="last_topic" class="dropdown_topic_item">
+                        <div class="text_item_topic">
+                            <p class="name_item_topic">Домашнее задание</p>
+                            <img class="item_topic_img" src="{% static 'img/dropdown_arrow.png'%}" alt="">
+                        </div>
+                    </div>
+                    <div class="item_container_topic">
+                        <ul class="topick_group">
+                            <iframe class="video_block animate__animated animate__fadeInUp" width="560" height="315" src="https://www.youtube.com/embed/ToXfaJvAk5k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                            <li class="topick_name">&#10149; Здесь актуальная ссылка на zoom урок</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <div class="potok_2_block">
+            <div class="drop_block">
+                <div class="courses_drop_block">
+                    <p class="courses_drop_text">Выберите курс</p>
+                    <div class="drop_courses_p2">
+                        <p class="courses_text">Талант-менеджмент</p>
+                        <img class="courses_drop_img_p1" src="{% static 'img/arrow_down.png'%}" alt="">
+                    </div>
+                    <ul class="drop_courses_list_p2">
+                        <li class="drop_courses_item main">
+                            <p class="drop_courses_text" >Талант-менеджмент</p>
+                        </li>
+                            <li class="drop_courses_item">
+                            <p class="drop_courses_text">Свобода воли</p>
+                        </li>
+                        <li class="drop_courses_item">
+                            <p class="drop_courses_text">Нумерология для гармоничных отношений</p>
+                        </li>
+                        <li class="drop_courses_item">
+                            <p class="drop_courses_text">Йога</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="lessons_drop_block">
+                    <p class="lessons_drop_text">Выберите урок</p>
+                    <div class="drop_lessons_p2">
+                        <img class="lessons_drop_img_knock" src="{% static 'img/knock_open.png'%}" alt="">
+                        <p class="lessons_text">Урок 1</p>
+                        <img class="lessons_drop_img_p2" src="{% static 'img/arrow_down.png'%}" alt="">
+                    </div>
+                    <ul class="drop_lessons_list_p2">
+                        <li class="drop_lessons_item main">
+                            <img class="lessons_item_img" src="{% static 'img/knock_open.png'%}" alt="">
+                            <p class="drop_lessons_text" >Демо</p>
+                        </li>
+                            <li class="drop_lessons_item">
+                                <img class="lessons_item_img" src="{% static 'img/knock_close.png'%}" alt="">
+                            <p class="drop_lessons_text">Урок 1</p>
+                        </li>
+                        <li class="drop_lessons_item">
+                            <img class="lessons_item_img" src="{% static 'img/knock_close.png'%}" alt="">
+                            <p class="drop_lessons_text">Урок 2</p>
+                        </li>
+                        <li class="drop_lessons_item">
+                            <img class="lessons_item_img" src="{% static 'img/knock_close.png'%}" alt="">
+                            <p class="drop_lessons_text">Урок 3</p>
+                        </li>
+                        <li class="drop_lessons_item">
+                            <img class="lessons_item_img" src="{% static 'img/knock_close.png'%}" alt="">
+                            <p class="drop_lessons_text">Урок 4</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="topic_drop_block">
+                <p class="topic_title">Тема урока “Название темы урока”</p>
+                <div class="topic_dropdown">
+                    <div id="first_topic" class="dropdown_topic_item">
+                        <div class="text_item_topic">
+                            <p class="name_item_topic">Кабинет Zoom</p>
+                            <img class="item_topic_img" src="{% static 'img/dropdown_arrow.png'%}" alt="">
+                        </div>
+                    </div>
+                    <div class="item_container_topic">
+                        <ul class="topick_group">
+                            <iframe class="video_block animate__animated animate__fadeInUp" width="560" height="315" src="https://www.youtube.com/embed/ToXfaJvAk5k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                            <li class="topick_name">&#10149; Здесь актуальная ссылка на zoom урок</li>
+                        </ul>
+                    </div>
+                    <div id="midle_topic" class="dropdown_topic_item">
+                        <div class="text_item_topic">
+                            <p class="name_item_topic">Запись урока</p>
+                            <img class="item_topic_img" src="{% static 'img/dropdown_arrow.png'%}" alt="">
+                        </div>
+                    </div>
+                    <div class="item_container_topic">
+                        <ul class="topick_group">
+                            <iframe class="video_block animate__animated animate__fadeInUp" width="560" height="315" src="https://www.youtube.com/embed/ToXfaJvAk5k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                            <li class="topick_name">&#10149; Здесь актуальная запрись zoom урока</li>
+                        </ul>
+                    </div>
+                    <div id="last_topic" class="dropdown_topic_item">
+                        <div class="text_item_topic">
+                            <p class="name_item_topic">Домашнее задание</p>
+                            <img class="item_topic_img" src="{% static 'img/dropdown_arrow.png'%}" alt="">
+                        </div>
+                    </div>
+                    <div class="item_container_topic">
+                        <ul class="topick_group">
+                            <iframe class="video_block animate__animated animate__fadeInUp" width="560" height="315" src="https://www.youtube.com/embed/ToXfaJvAk5k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                            <li class="topick_name">&#10149; Здесь актуальная ссылка на zoom урок</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <div class="potok_3_block">
+            <div class="drop_block">
+                <div class="courses_drop_block">
+                    <p class="courses_drop_text">Выберите курс</p>
+                    <div class="drop_courses_p3">
+                        <p class="courses_text">Талант-менеджмент</p>
+                        <img class="courses_drop_img_p1" src="{% static 'img/arrow_down.png'%}" alt="">
+                    </div>
+                    <ul class="drop_courses_list_p3">
+                        <li class="drop_courses_item main">
+                            <p class="drop_courses_text" >Талант-менеджмент</p>
+                        </li>
+                            <li class="drop_courses_item">
+                            <p class="drop_courses_text">Свобода воли</p>
+                        </li>
+                        <li class="drop_courses_item">
+                            <p class="drop_courses_text">Нумерология для гармоничных отношений</p>
+                        </li>
+                        <li class="drop_courses_item">
+                            <p class="drop_courses_text">Йога</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="lessons_drop_block">
+                    <p class="lessons_drop_text">Выберите урок</p>
+                    <div class="drop_lessons_p3">
+                        <img class="lessons_drop_img_knock" src="{% static 'img/knock_open.png'%}" alt="">
+                        <p class="lessons_text">Урок 1</p>
+                        <img class="lessons_drop_img_p3" src="{% static 'img/arrow_down.png'%}" alt="">
+                    </div>
+                    <ul class="drop_lessons_list_p3">
+                        <li class="drop_lessons_item main">
+                            <img class="lessons_item_img" src="{% static 'img/knock_open.png'%}" alt="">
+                            <p class="drop_lessons_text" >Демо</p>
+                        </li>
+                            <li class="drop_lessons_item">
+                                <img class="lessons_item_img" src="{% static 'img/knock_close.png'%}" alt="">
+                            <p class="drop_lessons_text">Урок 1</p>
+                        </li>
+                        <li class="drop_lessons_item">
+                            <img class="lessons_item_img" src="{% static 'img/knock_close.png'%}" alt="">
+                            <p class="drop_lessons_text">Урок 2</p>
+                        </li>
+                        <li class="drop_lessons_item">
+                            <img class="lessons_item_img" src="{% static 'img/knock_close.png'%}" alt="">
+                            <p class="drop_lessons_text">Урок 3</p>
+                        </li>
+                        <li class="drop_lessons_item">
+                            <img class="lessons_item_img" src="{% static 'img/knock_close.png'%}" alt="">
+                            <p class="drop_lessons_text">Урок 4</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="topic_drop_block">
+                <p class="topic_title">Тема урока “Название темы урока”</p>
+                <div class="topic_dropdown">
+                    <div id="first_topic" class="dropdown_topic_item">
+                        <div class="text_item_topic">
+                            <p class="name_item_topic">Кабинет Zoom</p>
+                            <img class="item_topic_img" src="{% static 'img/dropdown_arrow.png'%}" alt="">
+                        </div>
+                    </div>
+                    <div class="item_container_topic">
+                        <ul class="topick_group">
+                            <iframe class="video_block animate__animated animate__fadeInUp" width="560" height="315" src="https://www.youtube.com/embed/ToXfaJvAk5k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                            <li class="topick_name">&#10149; Здесь актуальная ссылка на zoom урок</li>
+                        </ul>
+                    </div>
+                    <div id="midle_topic" class="dropdown_topic_item">
+                        <div class="text_item_topic">
+                            <p class="name_item_topic">Запись урока</p>
+                            <img class="item_topic_img" src="{% static 'img/dropdown_arrow.png'%}" alt="">
+                        </div>
+                    </div>
+                    <div class="item_container_topic">
+                        <ul class="topick_group">
+                            <iframe class="video_block animate__animated animate__fadeInUp" width="560" height="315" src="https://www.youtube.com/embed/ToXfaJvAk5k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                            <li class="topick_name">&#10149; Здесь актуальная запрись zoom урока</li>
+                        </ul>
+                    </div>
+                    <div id="last_topic" class="dropdown_topic_item">
+                        <div class="text_item_topic">
+                            <p class="name_item_topic">Домашнее задание</p>
+                            <img class="item_topic_img" src="{% static 'img/dropdown_arrow.png'%}" alt="">
+                        </div>
+                    </div>
+                    <div class="item_container_topic">
+                        <ul class="topick_group">
+                            <iframe class="video_block animate__animated animate__fadeInUp" width="560" height="315" src="https://www.youtube.com/embed/ToXfaJvAk5k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                            <li class="topick_name">&#10149; Здесь актуальная ссылка на zoom урок</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            </div>
+            </div>
+            </div>
+            <!-- практика -->
+            <div class="practic_page">
+                практика
+            </div>
+            <!-- достижение -->
+            <div class="desitions_page">
+                успехи
+            </div>
+            <!-- партнерство -->
+            <div class="partnership_page">
+                партнерство
+            </div>
+            <!-- чат по дз -->
+            <div class="home_work_page">
+                домашка
+            </div>
+            <!-- поддержка -->
+            <div class="support_page">
+                поддержка
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'js/side_menu_hover-academy.js'%}"></script>
+    <script src="{% static 'js/drop_menu_cab-academy.js'%}" ></script>
+    <script src="{% static 'study_page_cab-academy.js'%}"></script>
+</body>
+</html>
