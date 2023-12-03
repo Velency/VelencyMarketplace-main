@@ -221,6 +221,11 @@ def academy(request):
     return render(request, 'store/academy.html', {})
 
 
+@login_required
+def academy_profile(request):
+    return render(request, 'store/academy_cab_main.html', {})
+
+
 def logoutUser(request):
     logout(request)
     return redirect('store')
