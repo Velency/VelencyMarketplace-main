@@ -17,7 +17,7 @@
         <nav class="nav_line">
             <div class="logo_block">
                 <img src="{% static 'img/burger.svg'%}" alt="" class="menu_drop">
-                <img class="logo" src="{% static 'img/image 1.svg"'%}" alt="logo">
+                <img class="logo" src="{% static 'img/image 1.svg'%}" alt="logo">
                 <div class="logo_text">
                    <p class="text1">Бирюзовая</p>
                        <p class="text2">Академия</p></p>
@@ -53,7 +53,7 @@
                         <p class="drop_menu_text">Пакеты</p>
                     </li></a>
                     <a href="/all_courses.html"><li class="drop_menu_item">
-                        <img class="drop_menu_img" src="{% static 'img/settings_icon.png"'%}" alt="">
+                        <img class="drop_menu_img" src="{% static 'img/settings_icon.png'%}" alt="">
                         <p class="drop_menu_text">Настройки</p>
                     </li></a>
                     <a href="/all_courses.html"><li class="drop_menu_item">
@@ -111,7 +111,7 @@
             <div class="main_page">
             <div class="user_dashbord_blocks">
                 <div class="user_info_block">
-                    <img src="/img/фиданур.webp" alt="" class="profile_img_big">
+                    <img src="{{ request.user.customer.image.url }}" alt="" class="profile_img_big">
                         <ul class="info_list">
                             <li class="info_item">
                                     <p class="info_lable">Username:</p>
