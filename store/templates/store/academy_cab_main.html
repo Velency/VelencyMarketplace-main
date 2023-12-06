@@ -40,7 +40,7 @@
                </ul>
                <div class="profile_drop">
                 <img src="{{ request.user.customer.image.url }}" alt="" class="profile_img">
-                    <p class="profile_name">Eth address: ...345</p>
+                    <p class="profile_name">Eth address: ...{{ user.username|slice:"-3:" }}</p>
                     <img class="arrow_down" src="{% static 'img/arrow_down.png'%}" alt="">
                </div>
                 <ul class="drop_menu_list">
@@ -115,27 +115,28 @@
                         <ul class="info_list">
                             <li class="info_item">
                                     <p class="info_lable">Username:</p>
-                                    <p class="info_text">nikitakap16020</p>
+                                    <p class="info_text">Eth address: ...{{ user.username|slice:"-3:" }}</p>
                             </li>
                                 <li class="info_item">
                                     <p class="info_lable">First/Last name:</p>
-                                    <p class="info_text">Nikita Kostava</p>
+                                    <p class="info_text">{{ request.user.customer.first_name}}
+                                        {{request.user.customer.last_name}}</p>
                             </li>
                                 <li class="info_item">
                                     <p class="info_lable">Mobile:</p>
-                                    <p class="info_text">+995568836179</p>
+                                    <p class="info_text">{{ request.user.customer.mobile}}</p>
                             </li>
                                 <li class="info_item">
                                     <p class="info_lable">Referal code:</p>
-                                    <p class="info_text">smkndscnsdkv</p>
+                                    <p class="info_text">{{ request.user.customer.referral_code}}</p>
                             </li>
                                 <li class="info_item">
                                     <p class="info_lable">Status:</p>
-                                    <p class="info_text">Student</p>
+                                    <p class="info_text">{{ request.user.customer.status}}</p>
                             </li>
                                 <li class="info_item">
                                     <p class="info_lable">Leader:</p>
-                                    <p class="info_text">Academy</p>
+                                    <p class="info_text">{{ request.user.customer.referral_by.name}}</p>
                             </li>
                         </ul>
                 </div>
