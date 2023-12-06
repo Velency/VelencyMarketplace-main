@@ -94,6 +94,17 @@ class TeamMember(models.Model):
         return f"{self.first_name} {self.last_name}"
 
 
+class lesson(models.Model):
+    name = models.CharField(max_length=100)
+    zoom_link = models.URLField()
+    zoom_rec = models.URLField()
+    homework = models.TextField()
+    teachers = models.ManyToManyField(TeamMember)
+
+    def __str__(self):
+        return self.name
+
+
 class Course(models.Model):
     Course_cat = (
         ('Основные курсы', 'Основные курсы'),
@@ -106,6 +117,7 @@ class Course(models.Model):
     Category = models.CharField(
         max_length=20, choices=Course_cat, default='Основные курсы')
     order = models.PositiveIntegerField(default=0)  # Новое поле для сортировки
+    lesson = models.ManyToManyField(lesson)
 
     def get_topics(self):
         return self.description.split('\n')
@@ -137,6 +149,28 @@ class Direction(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Purchase(models.Model):
+    purchase_date = models.DateField()
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    payment_status = models.CharField(max_length=20)
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    direction = models.ForeignKey(Direction, on_delete=models.CASCADE)
+
+
+class Payment(models.Model):
+    user = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    payment_status = models.BooleanField()
+    direction = models.ForeignKey(Direction, on_delete=models.CASCADE)
+    purchase = models.ForeignKey(Purchase, on_delete=models.CASCADE)
+
+
+class Stream(models.Model):
+    direction = models.ForeignKey(Direction, on_delete=models.CASCADE)
+    name = models.CharField(max_length=50)
+    end_date = models.DateField()
+    customers = models.ManyToManyField(Customer)
 
 
 class Withdraw(models.Model):
