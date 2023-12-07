@@ -48,15 +48,15 @@
                         <img class="drop_menu_img" src="{% static 'img/main_icon.png'%}" alt="">
                         <p class="drop_menu_text" >Главная</p>
                     </li></a>
-                    <a href="/all_courses.html"><li class="drop_menu_item">
+                    <a href="#"><li class="drop_menu_item">
                         <img class="drop_menu_img" src="{% static 'img/package_icon.png'%}" alt="">
                         <p class="drop_menu_text">Пакеты</p>
                     </li></a>
-                    <a href="/all_courses.html"><li class="drop_menu_item">
+                    <a href="#"><li class="drop_menu_item">
                         <img class="drop_menu_img" src="{% static 'img/settings_icon.png'%}" alt="">
                         <p class="drop_menu_text">Настройки</p>
                     </li></a>
-                    <a href="/all_courses.html"><li class="drop_menu_item">
+                    <a href="#"><li id="logoutButton" class="drop_menu_item">
                         <img class="drop_menu_img" src="{% static 'img/exit_icon.png'%}" alt="">
                         <p class="drop_menu_text">Выход</p>
                     </li></a>
@@ -834,5 +834,23 @@
     <script src="{% static 'js/side_menu_hover-academy.js'%}"></script>
     <script src="{% static 'js/drop_menu_cab-academy.js'%}" ></script>
     <script src="{% static 'js/study_page_cab-academy.js'%}"></script>
+    <script>
+        const logoutButton = document.getElementById('logoutButton');
+                
+                        // Add a click event listener to the logoutButton
+                        logoutButton.addEventListener('click', handleLogout);
+                        
+                      // Define the logout handler function
+                        async function handleLogout() {
+                          try {
+                            // Disconnect from the wallet connection
+                            await disconnect();
+                            // Redirect to the /logout page or any other desired action
+                            window.location.href = '/academy';
+                          } catch (error) {
+                            console.error("Error disconnecting:", error);
+                          }
+                        }
+    </script>
 </body>
 </html>

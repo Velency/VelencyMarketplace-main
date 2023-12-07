@@ -44,17 +44,23 @@
     </header>
     <div class="courses">
         <ul id="show-menu" class="show-menu">
+            <li class="login_btn">
+                <p class="login_btn_text">Начать бесплатно</p>
+            </li>
             <li>
                 <a href="{% url 'academy2' %}">Об академии</a>
             </li>
             <li>
                 <a href="{% url 'all_courses' %}">Направления</a>
-                        </li>
+            </li>
             <li>
                 <a href="{% url 'index' %}">Метавселенная</a>
             </li>
             <li>
                 <a href="{% url 'store' %}">Маркетплейс</a>
+            </li>
+            <li class="support_btn">
+                <a class="support_btn_text" href="{% url 'contact' %}">Связатся с нами</a>
             </li>
         </ul>
         <div class="courses_block">
