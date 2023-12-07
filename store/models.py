@@ -4,6 +4,9 @@ from ckeditor.fields import RichTextField
 import random
 import string
 import secrets
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from django.utils import timezone
 
 
 # Create your models here.
@@ -169,8 +172,21 @@ class Payment(models.Model):
 class Stream(models.Model):
     direction = models.ForeignKey(Direction, on_delete=models.CASCADE)
     name = models.CharField(max_length=50)
-    end_date = models.DateField()
+    start_date = models.DateField(null=True)
+    end_date = models.DateField(null=True)
     customers = models.ManyToManyField(Customer)
+    isavaliable = models.BooleanField(default=False)
+
+
+@receiver(post_save, sender=Stream)
+def set_isavaliable(sender, instance, **kwargs):
+    # Проверяем, если текущая дата в пределах start_date и end_date
+    if instance.start_date <= timezone.now().date() <= instance.end_date:
+        instance.isavaliable = True
+    else:
+        instance.isavaliable = False
+
+    instance.save()
 
 
 class Withdraw(models.Model):
