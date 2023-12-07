@@ -44,7 +44,7 @@
             </div>
             <div class="main_block">
                 <ul id="show-menu" class="show-menu">
-                    <li class="login_btn">
+                    <li id="navButtonMobile" class="login_btn">
                         <p class="login_btn_text">Начать бесплатно</p>
                     </li>
                     <li>
@@ -523,7 +523,9 @@
 
     
         <script type="module">
-          import {
+           
+
+            import {
             EthereumClient,
             w3mConnectors,
             w3mProvider,
@@ -563,9 +565,9 @@
 
           {% if not user.is_authenticated %}
             document.getElementById("navButton").addEventListener("click", () => {
-              web3modal.openModal();
+                web3modal.openModal();
             });
-
+      
             // Define the main function to handle wallet connection and authentication/registration
             async function handleWalletConnect() {
               try {
@@ -616,6 +618,7 @@
 
             // Call the main function to handle wallet connection and authentication/registration
             document.getElementById("navButton").addEventListener("click", handleWalletConnect);
+            document.getElementById("navButtonMobile").addEventListener("click", handleWalletConnect);
 
                       
             if (web3modal && web3modal.ethereum) {
@@ -630,6 +633,10 @@
                     }
 
           {% else %}
+          document.getElementById("navButton").addEventListener("click", ()=>{window.location.href = '/academy_profile';});
+          document.getElementById("navButtonMobile").addEventListener("click", ()=>{window.location.href = '/academy_profile';});
+          
+          {% comment %} 
                         const logoutButton = document.getElementById('logoutButton');
                 
                         // Add a click event listener to the logoutButton
@@ -645,8 +652,8 @@
                           } catch (error) {
                             console.error("Error disconnecting:", error);
                           }
-                        }
-                        {%endif%}
+                        }{% endcomment %}
+                        {%endif%} 
 
         </script>
 </body>

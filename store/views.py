@@ -228,7 +228,7 @@ def academy_profile(request):
 
 def logoutUser(request):
     logout(request)
-    return redirect('store')
+    return redirect('academy')
 
 # Работа с аккаунтами
 
