@@ -116,10 +116,15 @@
             <div class="slider wow animate__animated animate__fadeInLeft">
                 <div class="slider-line">
                     {% for teacher in all_teachers %}
-                    <div data-wow-duration="2.5s" class="card_group_item wow animate__animated animate__fadeIn">
+                    <div data-wow-duration="2.5s" class="card_group_item">
+                        <div class="card_front">
                         <img id="blog_img" src="{{ teacher.image.url }}" alt="blog_img">
                         <div class="blog_text1">
                             <p class="blog_text2">{{ teacher.first_name }} {{ teacher.last_name }}</p>
+                        </div>
+                    </div>
+                    <div class="card_back">
+                        <iframe class="card_group_item_video" src="https://www.youtube.com/embed/ToXfaJvAk5k" frameborder="0"></iframe>
                         </div>
                     </div>
                     {% endfor %}
