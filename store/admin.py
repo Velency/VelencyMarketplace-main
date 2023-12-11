@@ -18,7 +18,7 @@ admin.site.register(NewsFeed)
 admin.site.register(Partnership)
 admin.site.register(packagesCat)
 admin.site.register(Packages)
-admin.site.register(Payment)
+admin.site.register(StudyGroup)
 admin.site.register(Purchase)
 admin.site.register(lesson)
 

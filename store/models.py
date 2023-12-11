@@ -138,6 +138,7 @@ class Direction(models.Model):
     hard_skills = models.TextField()
     soft_skills = models.TextField()
     price = models.DecimalField(max_digits=15, decimal_places=2, null=True)
+    lessons = models.ManyToManyField(lesson, related_name='direction_lessons')
 
     def get_all_teachers(self):
         # Используем values() для получения словарей с данными по курсам и преподавателям
@@ -157,16 +158,15 @@ class Direction(models.Model):
 class Purchase(models.Model):
     purchase_date = models.DateField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
-    payment_status = models.CharField(max_length=20)
+    payment_status = models.BooleanField(default=False)
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     direction = models.ForeignKey(Direction, on_delete=models.CASCADE)
 
 
-class Payment(models.Model):
-    user = models.ForeignKey(Customer, on_delete=models.CASCADE)
-    payment_status = models.BooleanField()
+class StudyGroup(models.Model):
     direction = models.ForeignKey(Direction, on_delete=models.CASCADE)
-    purchase = models.ForeignKey(Purchase, on_delete=models.CASCADE)
+    name = models.CharField(max_length=50)
+    students = models.ManyToManyField(Customer)
 
 
 class Stream(models.Model):
