@@ -97,17 +97,6 @@ class TeamMember(models.Model):
         return f"{self.first_name} {self.last_name}"
 
 
-class lesson(models.Model):
-    name = models.CharField(max_length=100)
-    zoom_link = models.URLField()
-    zoom_rec = models.URLField()
-    homework = models.TextField()
-    teachers = models.ManyToManyField(TeamMember)
-
-    def __str__(self):
-        return self.name
-
-
 class Course(models.Model):
     Course_cat = (
         ('Основные курсы', 'Основные курсы'),
@@ -120,13 +109,31 @@ class Course(models.Model):
     Category = models.CharField(
         max_length=20, choices=Course_cat, default='Основные курсы')
     order = models.PositiveIntegerField(default=0)  # Новое поле для сортировки
-    lesson = models.ManyToManyField(lesson)
 
     def get_topics(self):
         return self.description.split('\n')
 
     def __str__(self):
         return self.name
+
+
+class Lesson(models.Model):
+    name = models.CharField(max_length=100)
+    zoom_rec = models.URLField()
+    homework = models.TextField()
+    teachers = models.ManyToManyField(TeamMember)
+    Course = models.ForeignKey(Course, on_delete=models.CASCADE, null=True)
+
+    def __str__(self):
+        return self.name
+
+
+class ZoomLink(models.Model):
+    link = models.URLField()
+    Lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE, null=True)
+
+    def __str__(self):
+        return self.link
 
 
 class Direction(models.Model):
@@ -138,7 +145,7 @@ class Direction(models.Model):
     hard_skills = models.TextField()
     soft_skills = models.TextField()
     price = models.DecimalField(max_digits=15, decimal_places=2, null=True)
-    lessons = models.ManyToManyField(lesson, related_name='direction_lessons')
+    lessons = models.ManyToManyField(Lesson, related_name='direction_lessons')
 
     def get_all_teachers(self):
         # Используем values() для получения словарей с данными по курсам и преподавателям

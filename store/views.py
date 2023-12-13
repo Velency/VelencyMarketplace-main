@@ -181,7 +181,7 @@ def show_managment(request, id):
 
 def all_courses(request):
     context = {}
-    return render(request, 'store/all_courses.html', {})
+    return render(request, 'store/all_courses.html', context)
 
 
 def contact(request):
@@ -223,6 +223,7 @@ def academy(request):
 
 @login_required
 def academy_profile(request):
+
     return render(request, 'store/academy_cab_main.html', {})
 
 

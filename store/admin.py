@@ -20,7 +20,6 @@ admin.site.register(packagesCat)
 admin.site.register(Packages)
 admin.site.register(StudyGroup)
 admin.site.register(Purchase)
-admin.site.register(lesson)
 
 
 class StreamCustomersInline(admin.TabularInline):
@@ -62,6 +61,16 @@ class GalleryInline(admin.TabularInline):
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     inlines = [GalleryInline,]
+
+
+class ZoomLinkInline(admin.TabularInline):
+    fk_name = 'Lesson'
+    model = ZoomLink
+
+
+@admin.register(Lesson)
+class LessonAdmin(admin.ModelAdmin):
+    inlines = [ZoomLinkInline,]
 
 
 class Sub_CategoryInline(admin.TabularInline):
