@@ -551,25 +551,31 @@
             <div class="study_page">
                 <div class="study_content">
             <div class="title_menu_block">
-                <p class="study_title">Ваше направление "Менеджмент"</p>
+                <p class="study_title">Ваше направление {{direction.name}}</p>
             </div>
             <ul class="potok_menu_group">
                 <a href="#"><li class="potok_item first">
+                    {% if False %}
                     <img class="potok_img" src="{% static 'img/knock_open.png'%}" alt="">
+                    {% endif %}
                     <div class="potok_text_block">
                     <p class="potok_text">Поток 1</p>
                     <div class="underline"></div>
                     </div>
                 </li></a>
                 <a href="#"><li class="potok_item second">
-                    <img class="potok_img" src="{% static 'img/knock_close.png'%}" alt="">
+                    {% if True %}
+                    <img class="potok_img" src="{% static 'img/knock_open.png'%}" alt="">
+                    {% endif %}
                     <div class="potok_text_block">
                         <p class="potok_text">Поток 2</p>
                         <div class="underline"></div>
                         </div>
                 </li></a>
                 <a href="#"><li class="potok_item third">
-                    <img class="potok_img" src="{% static 'img/knock_close.png'%}" alt="">
+                    {% if True %}
+                    <img class="potok_img" src="{% static 'img/knock_open.png'%}" alt="">
+                    {% endif %}
                     <div class="potok_text_block">
                         <p class="potok_text">Поток 3</p>
                         <div class="underline"></div>
@@ -577,62 +583,35 @@
                 </li></a>
             </ul>
             <div class="potok_1_block">
-            <div class="drop_block">
-                <div class="courses_drop_block">
-                    <p class="courses_drop_text">Выберите курс</p>
-                    <div class="drop_courses_p1">
-                        <p class="courses_text">Талант-менеджмент</p>
-                        <img class="courses_drop_img_p1" src="{% static 'img/arrow_down.png'%}" alt="">
+                <div class="drop_block">
+                    <div class="courses_drop_block">
+                        <p class="courses_drop_text">Выберите курс</p>
+                        <div class="drop_courses_p1">
+                            <p class="courses_text">Талант Менеджмент</p>
+                            <img class="courses_drop_img_p1" src="{% static 'img/arrow_down.png'%}" alt="">
+                        </div>
+                        <ul class="drop_courses_list_p1">
+                            {% for course in courses %}                                
+                            <li class="drop_courses_item main" onclick="selectCourse('{{ course.name }}', {{ course.id }})">
+                                <p class="drop_courses_text">{{ course.name }}</p>
+                            </li>
+                        {% endfor %}
+                        </ul>
                     </div>
-                    <ul class="drop_courses_list_p1">
-                        <li class="drop_courses_item main">
-                            <p class="drop_courses_text" >Талант-менеджмент</p>
-                        </li>
-                            <li class="drop_courses_item">
-                            <p class="drop_courses_text">Свобода воли</p>
-                        </li>
-                        <li class="drop_courses_item">
-                            <p class="drop_courses_text">Нумерология для гармоничных отношений</p>
-                        </li>
-                        <li class="drop_courses_item">
-                            <p class="drop_courses_text">Йога</p>
-                        </li>
-                        <li class="drop_courses_item">
-                            <p class="drop_courses_text">Гармония. Основы тантры</p>
-                        </li>
-                        <li class="drop_courses_item">
-                            <p class="drop_courses_text">Проффориентология</p>
-                        </li>
-                    </ul>
-                </div>
-                <div class="lessons_drop_block">
-                    <p class="lessons_drop_text">Выберите урок</p>
+                    <div class="lessons_drop_block">
+                        <p class="lessons_drop_text">Выберите урок</p>
                     <div class="drop_lessons_p1">
                         <img class="lessons_drop_img_knock" src="{% static 'img/knock_open.png'%}" alt="">
                         <p class="lessons_text">Демо</p>
                         <img class="lessons_drop_img_p1" src="{% static 'img/arrow_down.png'%}" alt="">
                     </div>
                     <ul class="drop_lessons_list_p1">
+                        {% for lesson in lessons %}
                         <li class="drop_lessons_item main">
                             <img class="lessons_item_img" src="{% static 'img/knock_open.png'%}" alt="">
-                            <p class="drop_lessons_text" >Демо</p>
+                            <p class="drop_lessons_text" >{{lesson.name}}</p>
                         </li>
-                            <li class="drop_lessons_item">
-                                <img class="lessons_item_img" src="{% static 'img/knock_close.png'%}" alt="">
-                            <p class="drop_lessons_text">Урок 1</p>
-                        </li>
-                        <li class="drop_lessons_item">
-                            <img class="lessons_item_img" src="{% static 'img/knock_close.png'%}" alt="">
-                            <p class="drop_lessons_text">Урок 2</p>
-                        </li>
-                        <li class="drop_lessons_item">
-                            <img class="lessons_item_img" src="{% static 'img/knock_close.png'%}" alt="">
-                            <p class="drop_lessons_text">Урок 3</p>
-                        </li>
-                        <li class="drop_lessons_item">
-                            <img class="lessons_item_img" src="{% static 'img/knock_close.png'%}" alt="">
-                            <p class="drop_lessons_text">Урок 4</p>
-                        </li>
+                        {% endfor %}
                     </ul>
                 </div>
             </div>
@@ -961,6 +940,40 @@
                           console.error("Error disconnecting:", error);
                         }
                     }
+    </script>
+
+    <script>
+        function selectCourse(courseName, courseId) {
+            document.getElementById('selectedCourse').innerText = courseName;
+    
+            // Отправка данных на сервер Django через AJAX
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "/update_courses_lessons/", true);
+            xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    // Обработка ответа от сервера
+                    var lessonsList = document.getElementById('lessonsList');
+                    lessonsList.innerHTML = ''; // Очищаем текущий список уроков
+    
+                    var lessons = JSON.parse(xhr.responseText).lessons;
+                    for (var i = 0; i < lessons.length; i++) {
+                        var lessonItem = document.createElement('li');
+                        lessonItem.className = 'drop_lessons_item main';
+                        lessonItem.innerHTML = '<p class="drop_lessons_text">' + lessons[i].name + '</p>';
+                        lessonsList.appendChild(lessonItem);
+                    }
+                }
+            };
+    
+            var data = {
+                'course_id': courseId
+                // Дополнительные данные, если необходимо
+            };
+    
+            xhr.send(JSON.stringify(data));
+        }
     </script>
 </body>
 </html>

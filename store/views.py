@@ -1,3 +1,4 @@
+from django.views.decorators.csrf import csrf_exempt
 from itertools import groupby
 from django.db.models import F, IntegerField, Case, When, Value
 from functools import wraps
@@ -126,7 +127,7 @@ def login_and_registration_required(view_func):
 
 def academy2(request):
     context = {}
-    return render(request, 'store/academy2.html', {})
+    return render(request, 'store/academy2.html', context)
 
 
 def show_managment(request, id):
@@ -224,7 +225,43 @@ def academy(request):
 @login_required
 def academy_profile(request):
 
-    return render(request, 'store/academy_cab_main.html', {})
+    selected_course_id = request.GET.get('course_id')
+    selected_course = Course.objects.get(
+        id=selected_course_id) if selected_course_id else None
+
+    direction_instance = Direction.objects.filter(name='Демо').first()
+    courses = direction_instance.courses.all()
+    lessons = Lesson.objects.filter(
+        course_id=selected_course.id) if selected_course else None
+
+    context = {
+        'direction': direction_instance,
+        'courses': courses,
+        'lessons': lessons,
+        'selected_course': selected_course,
+    }
+    return render(request, 'store/academy_cab_main.html', context)
+
+
+@csrf_exempt
+def update_courses_lessons(request):
+    if request.method == 'POST':
+        # Получите данные из тела POST-запроса
+        data = json.loads(request.body)
+        course_id = data.get('course_id')
+
+        # Обработайте выбранный курс
+        lessons = Lesson.objects.filter(
+            course_id=course_id).values('id', 'name')
+
+        # Верните JSON-ответ
+        response_data = {
+            'status': 'success',
+            'lessons': list(lessons),
+        }
+        return JsonResponse(response_data)
+    else:
+        return JsonResponse({'status': 'error', 'message': 'Invalid request method'})
 
 
 def logoutUser(request):

@@ -62,4 +62,7 @@ urlpatterns = [
     path('all_courses/', views.all_courses, name='all_courses'),
     path('course/<str:id>', views.show_managment, name="courses_info"),
     path('academy_profile', views.academy_profile, name="academy_profile"),
+    path('update_courses_lessons/', views.update_courses_lessons,
+         name='update_courses_lessons'),
+
 ]
