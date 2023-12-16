@@ -587,32 +587,28 @@
                     <div class="courses_drop_block">
                         <p class="courses_drop_text">Выберите курс</p>
                         <div class="drop_courses_p1">
-                            <p class="courses_text">Талант Менеджмент</p>
+                            <p class="courses_text" id="selectedCourse">
+                                {{ selected_course_id|default:"Выберите курс" }}
+                            </p>
                             <img class="courses_drop_img_p1" src="{% static 'img/arrow_down.png'%}" alt="">
                         </div>
                         <ul class="drop_courses_list_p1">
                             {% for course in courses %}                                
-                            <li class="drop_courses_item main" onclick="selectCourse('{{ course.name }}', {{ course.id }})">
-                                <p class="drop_courses_text">{{ course.name }}</p>
-                            </li>
-                        {% endfor %}
+                                <li class="drop_courses_item main" onclick="selectCourse('{{ course.name }}', {{ course.id }})">
+                                    <p class="drop_courses_text">{{ course.name }}</p>
+                                </li>
+                            {% endfor %}
                         </ul>
                     </div>
-                    <div class="lessons_drop_block">
+                    <div class="lessons_drop_block" id="lessonsBlock">
                         <p class="lessons_drop_text">Выберите урок</p>
-                    <div class="drop_lessons_p1">
-                        <img class="lessons_drop_img_knock" src="{% static 'img/knock_open.png'%}" alt="">
-                        <p class="lessons_text">Демо</p>
-                        <img class="lessons_drop_img_p1" src="{% static 'img/arrow_down.png'%}" alt="">
+                        <div class="drop_lessons_p1">
+                            <img class="lessons_drop_img_knock" src="{% static 'img/knock_open.png'%}" alt="">
+                            <p class="lessons_text">Демо</p>
+                            <img class="lessons_drop_img_p1" src="{% static 'img/arrow_down.png'%}" alt="">
+                        </div>
+                        {% include 'store/lessons_partial.html' %}
                     </div>
-                    <ul class="drop_lessons_list_p1">
-                        {% for lesson in lessons %}
-                        <li class="drop_lessons_item main">
-                            <img class="lessons_item_img" src="{% static 'img/knock_open.png'%}" alt="">
-                            <p class="drop_lessons_text" >{{lesson.name}}</p>
-                        </li>
-                        {% endfor %}
-                    </ul>
                 </div>
             </div>
             <div class="topic_drop_block">

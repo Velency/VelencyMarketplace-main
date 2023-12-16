@@ -1,3 +1,5 @@
+from django.shortcuts import get_object_or_404
+from django.template.loader import render_to_string
 from django.views.decorators.csrf import csrf_exempt
 from itertools import groupby
 from django.db.models import F, IntegerField, Case, When, Value
@@ -224,22 +226,57 @@ def academy(request):
 
 @login_required
 def academy_profile(request):
+    if request.method == 'POST':
+        selected_course_id = request.POST.get('course_id')
 
-    selected_course_id = request.GET.get('course_id')
-    selected_course = Course.objects.get(
-        id=selected_course_id) if selected_course_id else None
+        direction_instance = Direction.objects.filter(name='Демо').first()
+        courses = direction_instance.courses.all()
+
+        lessons = Lesson.objects.filter(course_id=selected_course_id)
+
+        context = {
+            'direction': direction_instance,
+            'courses': courses,
+            'lessons': lessons,
+        }
+
+        html_content = render_to_string('store/lessons_partial.html', context)
+        return JsonResponse({'html_content': html_content})
 
     direction_instance = Direction.objects.filter(name='Демо').first()
     courses = direction_instance.courses.all()
-    lessons = Lesson.objects.filter(
-        course_id=selected_course.id) if selected_course else None
 
     context = {
         'direction': direction_instance,
         'courses': courses,
-        'lessons': lessons,
-        'selected_course': selected_course,
     }
+
+    return render(request, 'store/academy_cab_main.html', context)
+
+
+@login_required
+def update_courses_lessons(request):
+    if request.method == 'POST':
+        selected_course_id = request.POST.get('course_id')
+
+        # Используйте get_object_or_404, чтобы получить объект курса или вернуть 404, если курс не найден
+        selected_course = get_object_or_404(Course, id=selected_course_id)
+
+        # Фильтруем уроки по выбранному курсу
+        lessons = Lesson.objects.filter(course=selected_course)
+
+        context = {
+            'selected_course': selected_course,
+            'lessons': lessons,
+        }
+
+        # Возможно, вам нужно добавить дополнительную логику в зависимости от ваших требований
+
+        return render(request, 'store/academy_cab_main.html', context)
+
+    # Обработка других случаев, например, GET-запроса
+    # ...
+
     return render(request, 'store/academy_cab_main.html', context)
 
 
