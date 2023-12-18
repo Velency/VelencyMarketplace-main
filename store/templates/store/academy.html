@@ -2,665 +2,1196 @@
 {% load static %}
 
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+    />
     <title>Академия</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'css/main-academy.css'%}">
-</head>
-<body>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{% static 'css/main-academy.css'%}" />
+  </head>
+  <body>
     <header class="header">
-        <div class="container">
-            <div data-wow-duration="5s" class="nav animate__animated animate__fadeIn">
-                <a href="{% url 'academy' %}"><img class="logo" src="{% static 'img/image 1.svg'%}" alt="logo"></a>
-                <div class="logo_text">
-                 <a href="{% url 'academy' %}"><p class="text1">Бирюзовая</p></a>
-                    <a href="{% url 'academy' %}"><p class="text2">Академия</p></p></a>
-                </div>
-                <ul class="menu">
-                    <li>
-                        <a href="{% url 'academy2' %}">Об академии</a>
-                    </li>
-                    <li>
-                        <a href="{% url 'all_courses' %}">Направления</a>
-                    </li>
-                    <li>
-                        <a href="{% url 'index' %}">Метавселенная</a>
-                    </li>
-                    <li>
-                        <a href="{% url 'store' %}">Маркетплейс</a>
-                    </li>
-                </ul>
-                <button id="navButton" class="nav_btn" href="#">
-                    <p class="nav_btn_text">Начать бесплатно</p>
-                </button>
-                <button id="menu-open" class="menu-open">
-                        <img id="menu_img" class="menu_img" src="{% static '/img/burger.svg'%}" alt="burger_menu_img">
-                </button>
-            </div>
-            <div class="main_block">
-                <ul id="show-menu" class="show-menu">
-                    <li id="navButtonMobile" class="login_btn">
-                        <p class="login_btn_text">Начать бесплатно</p>
-                    </li>
-                    <li>
-                        <a href="{% url 'academy2' %}">Об академии</a>
-                    </li>
-                    <li>
-                        <a href="{% url 'all_courses' %}">Направления</a>
-                    </li>
-                    <li>
-                        <a href="{% url 'index' %}">Метавселенная</a>
-                    </li>
-                    <li>
-                        <a href="{% url 'store' %}">Маркетплейс</a>
-                    </li>
-                    <li class="support_btn">
-                        <a class="support_btn_text" href="{% url 'contact' %}">Связатся с нами</a>
-                    </li>
-                </ul>
-            <div class="action_text_block">
-                <div id="action_block_title " data-wow-duration="5s"  class="action_block_title animate__animated animate__fadeIn">
-                    <div class="title_litle_text">
-                        <p class="title1">Бирюзовая</p>&nbsp;&nbsp;
-                        <p class="title2">Академия</p>
-                    </div>
-                    <p class="litle_text">ваш компас в мире гармонии и счастья</p>
-                    <p class="litle_text2">Ваши таланты – это уникальный след в этом мире. Дайте им свободу развиться и сверкнуть на полную мощность</p>
-                    <button id="coursesButton1" class="action_btn animate__animated animate__pulse">
-                            <div class="btn_text">
-                                <p class="action_btn_text">Выбрать направление</p>
-                                <img class="btn_arrow" src="{% static '/img/btn_arrow.svg'%}" alt="arrow for btn">
-                            </div>
-                    </button>
-                    <div class="triger_group animate__animated animate__fadeInUp">
-                        <div class="courses">
-                                <p class="numbers">40+</p>
-                                <p  class="text_trigers">Образовательных курсов</p>
-                        </div>
-                        <div class="divider"></div>
-                        <div class="teachers">
-                            <p  class="numbers">20+</p>
-                            <p  class="text_trigers">Крутых преподавателей</p>
-                        </div>
-                        <div class="divider"></div>
-                        <div class="students">
-                            <p  class="numbers">5к+</p>
-                            <p  class="text_trigers">Студентов прошедших наши курсы</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="action-image animate__animated animate__fadeInRight">
-                <div class="round-action-image"></div>
-                <img class="action-image2" src="{% static 'img/action_image.png'%}" />
-              </div>
-              
+      <div class="container">
+        <div
+          data-wow-duration="5s"
+          class="nav animate__animated animate__fadeIn"
+        >
+          <a href="{% url 'academy' %}"
+            ><img class="logo" src="{% static 'img/image 1.svg'%}" alt="logo"
+          /></a>
+          <div class="logo_text">
+            <a href="{% url 'academy' %}"><p class="text1">Бирюзовая</p></a>
+            <a href="{% url 'academy' %}"><p class="text2">Академия</p></a>
+          </div>
+          <ul class="menu">
+            <li>
+              <a href="{% url 'academy2' %}">Об академии</a>
+            </li>
+            <li>
+              <a href="{% url 'all_courses' %}">Направления</a>
+            </li>
+            <li>
+              <a href="{% url 'index' %}">Метавселенная</a>
+            </li>
+            <li>
+              <a href="{% url 'store' %}">Маркетплейс</a>
+            </li>
+          </ul>
+          <button id="navButton" class="nav_btn" href="#">
+            <p class="nav_btn_text">Начать бесплатно</p>
+          </button>
+          <button id="menu-open" class="menu-open">
+            <img
+              id="menu_img"
+              class="menu_img"
+              src="{% static '/img/burger.svg'%}"
+              alt="burger_menu_img"
+            />
+          </button>
         </div>
+        <div class="main_block">
+          <ul id="show-menu" class="show-menu">
+            <li id="navButtonMobile" class="login_btn">
+              <p class="login_btn_text">Начать бесплатно</p>
+            </li>
+            <li>
+              <a href="{% url 'academy2' %}">Об академии</a>
+            </li>
+            <li>
+              <a href="{% url 'all_courses' %}">Направления</a>
+            </li>
+            <li>
+              <a href="{% url 'index' %}">Метавселенная</a>
+            </li>
+            <li>
+              <a href="{% url 'store' %}">Маркетплейс</a>
+            </li>
+            <li class="support_btn">
+              <a class="support_btn_text" href="{% url 'contact' %}"
+                >Связатся с нами</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div class="action_text_block">
+          <div
+            id="action_block_title "
+            data-wow-duration="5s"
+            class="action_block_title animate__animated animate__fadeIn"
+          >
+            <div class="title_litle_text">
+              <p class="title1">Бирюзовая</p>
+              &nbsp;&nbsp;
+              <p class="title2">Академия</p>
+            </div>
+            <p class="litle_text">ваш компас в мире гармонии и счастья</p>
+            <p class="litle_text2">
+              Ваши таланты – это уникальный след в этом мире. Дайте им свободу
+              развиться и сверкнуть на полную мощность
+            </p>
+            <button
+              id="coursesButton1"
+              class="action_btn animate__animated animate__pulse"
+            >
+              <div class="btn_text">
+                <p class="action_btn_text">Выбрать направление</p>
+                <img
+                  class="btn_arrow"
+                  src="{% static '/img/btn_arrow.svg'%}"
+                  alt="arrow for btn"
+                />
+              </div>
+            </button>
+            <div class="triger_group animate__animated animate__fadeInUp">
+              <div class="courses">
+                <p class="numbers">40+</p>
+                <p class="text_trigers">Образовательных курсов</p>
+              </div>
+              <div class="divider"></div>
+              <div class="teachers">
+                <p class="numbers">20+</p>
+                <p class="text_trigers">Крутых преподавателей</p>
+              </div>
+              <div class="divider"></div>
+              <div class="students">
+                <p class="numbers">5к+</p>
+                <p class="text_trigers">Студентов прошедших наши курсы</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="action-image animate__animated animate__fadeInRight">
+          <div class="round-action-image"></div>
+          <img class="action-image2" src="{% static 'img/action_image.png'%}" />
+        </div>
+      </div>
     </header>
     <div id="courses_block" class="courses_block">
-        <div class="container">
-            <div  class="block_courses">
-            <div id="title_text_courses_block" data-wow-duration="1s" data-wow-delay="1s"  class="title_text_courses_block wow animate__animated animate__fadeIn">
-                <div class="courses_text_block">
-                    <div class="courses_title_block">
-                        <p class="courses_title">8 направлений обучения</p>
-                        <div class="courses_div"></div>
-                    </div>
-                    <p id="courses_desc" 
-                    class="courses_desc">Наши направления обучения в ключевых сферах предоставляют
-                        доступ к специализированным курсам, помогая вам достигнуть 
-                        профессионального и личного роста. 
-                        Присоединяйтесь к нам и идите к успеху!</p>
-                </div>
-                <button id="coursesButton2" class="courses_btn animate__animated animate__pulse">
-                    <div class="courses_btn_text_block">
-                        <p class="courses_btn_text">Все направления</p>
-                        <img class="btn_arrow_courses" src="{% static '/img/btn_arrow.svg'%}" alt="action_btn_arrow">
-                    </div>
-                </button>
+      <div class="container">
+        <div class="block_courses">
+          <div
+            id="title_text_courses_block"
+            data-wow-duration="1s"
+            data-wow-delay="1s"
+            class="title_text_courses_block wow animate__animated animate__fadeIn"
+          >
+            <div class="courses_text_block">
+              <div class="courses_title_block">
+                <p class="courses_title">8 направлений обучения</p>
+                <div class="courses_div"></div>
+              </div>
+              <p id="courses_desc" class="courses_desc">
+                Наши направления обучения в ключевых сферах предоставляют доступ
+                к специализированным курсам, помогая вам достигнуть
+                профессионального и личного роста. Присоединяйтесь к нам и идите
+                к успеху!
+              </p>
             </div>
-            <div id="courses_card_block" data-wow-delay="0.5s" class="courses_card_block wow animate__animated animate__fadeInRight">
-                <div class="selfgrow_block">
-                    <a href='/course/3'>
-                        <div data-wow-duration="2s" class="icon_courses wow animate__animated animate__fadeIn">
-                            <img class="round_icon" src="{% static '/img/icon_round.svg'%}" alt="bg_courses_icon">
-                            <img class="courses_icon" src="{% static '/img/selfgrow_image.svg'%}" alt="course_icon">
-                            <div data-wow-duration="2s" class="selfgrow_desc wow animate__animated animate__fadeIn">
-                                <p class="selfgrow_title">Самопознание</p>
-                                <p class="selfgrow_text">Понимание себя - это ключ к успеху. У нас вы найдете курсы, помогающие раскрыть свой потенциал и развить лидерские качества.
-                                </p>
-                            </div>
-                        </div>
-                    </a>
+            <button
+              id="coursesButton2"
+              class="courses_btn animate__animated animate__pulse"
+            >
+              <div class="courses_btn_text_block">
+                <p class="courses_btn_text">Все направления</p>
+                <img
+                  class="btn_arrow_courses"
+                  src="{% static '/img/btn_arrow.svg'%}"
+                  alt="action_btn_arrow"
+                />
+              </div>
+            </button>
+          </div>
+          <div
+            id="courses_card_block"
+            data-wow-delay="0.5s"
+            class="courses_card_block wow animate__animated animate__fadeInRight"
+          >
+            <div class="selfgrow_block">
+              <a href="/course/3">
+                <div
+                  data-wow-duration="2s"
+                  class="icon_courses wow animate__animated animate__fadeIn"
+                >
+                  <img
+                    class="round_icon"
+                    src="{% static '/img/icon_round.svg'%}"
+                    alt="bg_courses_icon"
+                  />
+                  <img
+                    class="courses_icon"
+                    src="{% static '/img/selfgrow_image.svg'%}"
+                    alt="course_icon"
+                  />
+                  <div
+                    data-wow-duration="2s"
+                    class="selfgrow_desc wow animate__animated animate__fadeIn"
+                  >
+                    <p class="selfgrow_title">Самопознание</p>
+                    <p class="selfgrow_text">
+                      Понимание себя - это ключ к успеху. У нас вы найдете
+                      курсы, помогающие раскрыть свой потенциал и развить
+                      лидерские качества.
+                    </p>
+                  </div>
                 </div>
-                <div class="sales_block">
-                    <a href='/course/4'>
-                    <div data-wow-duration="2s" class="icon_courses wow animate__animated animate__fadeIn">
-                        <img class="round_icon" src="{% static '/img/icon_round.svg'%}" alt="bg_courses_icon">
-                        <img class="courses_icon" src="{% static '/img/sales_image.svg'%}" alt="course_icon">
-                        <div data-wow-duration="2.5s" class="sales_desc wow animate__animated animate__fadeIn">
-                            <p class="sales_title">Продажи</p>
-                            <p class="sales_text">Убеждение и удовлетворение клиентов через эффективное обслуживание и коммуникации.</p>
-                        </div>
-                    </div>
-                </a>
-                </div>
-                <div class="child_block">
-                    <a href='/course/6'><div data-wow-duration="2s" class="icon_courses wow animate__animated animate__fadeIn">
-                        <img class="round_icon" src="{% static '/img/icon_round.svg'%}" alt="bg_courses_icon">
-                        <img class="courses_icon" src="{% static '/img/child_image.svg'%}" alt="course_icon">
-                        <div data-wow-duration="2.5s" class="child_desc wow animate__animated animate__fadeIn">
-                            <p class="child_title">Детское Направление</p>
-                            <p class="child_text">Мы предлагаем специализированные программы для развития мощности потенциала ребенка.</p>
-                        </div>
-                    </div>
-                </a>
-                </div>
-                <div class="manage_block">
-                    <a href='/course/1'><div data-wow-duration="2s" class="icon_courses wow animate__animated animate__fadeIn">
-                        <img class="round_icon" src="{% static '/img/icon_round.svg'%}" alt="bg_courses_icon">
-                        <img class="courses_icon" src="{% static '/img/manage_image.svg'%}" alt="course_icon">
-                        <div data-wow-duration="2s" class="manage_desc wow animate__animated animate__fadeIn">
-                            <p class="manage_title">Менеджмент</p>
-                            <p class="manage_text">Узнайте секреты эффективного руководства, которые применимы в любой компании.
-                            </p>
-                        </div>
-                    </div>
-                </a>
-                </div>
-                <div class="market_block">
-                    <a href='/course/2'><div data-wow-duration="2s" class="icon_courses wow animate__animated animate__fadeIn">
-                        <img class="round_icon" src="{% static '/img/icon_round.svg'%}" alt="bg_courses_icon">
-                        <img class="courses_icon" src="{% static '/img/market_image.svg'%}" alt="course_icon">
-                        <div data-wow-duration="2s" class="market_desc wow animate__animated animate__fadeIn">
-                            <p class="market_title">Маркетинг</p>
-                            <p class="market_text">Наши курсы помогут вам стать мастером в продвижении и создании бренда, независимо от сферы деятельности.
-                                </p>
-                        </div>
-                    </div>
-                </a>
-                </div>
-                <div class="pr_block">
-                    <a href='/course/8'><div data-wow-duration="2s" class="icon_courses wow animate__animated animate__fadeIn">
-                        <img class="round_icon" src="{% static '/img/icon_round.svg'%}" alt="bg_courses_icon">
-                        <img class="courses_icon" src="{% static '/img/pr_image.svg'%}" alt="course_icon">
-                        <div data-wow-duration="2s" class="pr_desc wow animate__animated animate__fadeIn">
-                            <p class="pr_title">Продюсирование</p>
-                            <p class="pr_text">Вы сможете освоить искусство создания и управления проектами, будь то медиа-контент или события.
-
-                            </p>
-                        </div>
-                    </div>
-                </a>
-                </div>
-                <div class="finance_block">
-                    <a href='/course/5'><div data-wow-duration="2s" class="icon_courses wow animate__animated animate__fadeIn">
-                        <img class="round_icon" src="{% static '/img/icon_round.svg'%}" alt="bg_courses_icon">
-                        <img class="courses_icon" src="{% static '/img/finance_image.svg'%}" alt="course_icon">
-                        <div data-wow-duration="2s" class="finance_desc wow animate__animated animate__fadeIn">
-                            <p class="finance_title">Экономика</p>
-                            <p class="finance_text">Анализ и управление ресурсами, распределение и изучение факторов, влияющих на рыночные процессы.</p>
-                        </div>
-                    </div>
-                </a>
-                </div>
-                <div class="it_block">
-                    <a href='/course/7'><div data-wow-duration="2s" class="icon_courses wow animate__animated animate__fadeIn">
-                        <img class="round_icon" src="{% static '/img/icon_round.svg'%}" alt="bg_courses_icon">
-                        <img class="courses_icon" src="{% static '/img/it_image.svg'%}" alt="course_icon">
-                        <div data-wow-duration="2s" class="it_desc wow animate__animated animate__fadeIn">
-                            <p class="it_title">IT Направление</p>
-                            <p class="it_text">Оставайтесь в курсе современных технологий и освойте навыки, востребованные в мире цифровой трансформации.
-                            </p>
-                        </div>
-                    </div>
-                </a>
-                </div>
+              </a>
             </div>
+            <div class="sales_block">
+              <a href="/course/4">
+                <div
+                  data-wow-duration="2s"
+                  class="icon_courses wow animate__animated animate__fadeIn"
+                >
+                  <img
+                    class="round_icon"
+                    src="{% static '/img/icon_round.svg'%}"
+                    alt="bg_courses_icon"
+                  />
+                  <img
+                    class="courses_icon"
+                    src="{% static '/img/sales_image.svg'%}"
+                    alt="course_icon"
+                  />
+                  <div
+                    data-wow-duration="2.5s"
+                    class="sales_desc wow animate__animated animate__fadeIn"
+                  >
+                    <p class="sales_title">Продажи</p>
+                    <p class="sales_text">
+                      Убеждение и удовлетворение клиентов через эффективное
+                      обслуживание и коммуникации.
+                    </p>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div class="child_block">
+              <a href="/course/6"
+                ><div
+                  data-wow-duration="2s"
+                  class="icon_courses wow animate__animated animate__fadeIn"
+                >
+                  <img
+                    class="round_icon"
+                    src="{% static '/img/icon_round.svg'%}"
+                    alt="bg_courses_icon"
+                  />
+                  <img
+                    class="courses_icon"
+                    src="{% static '/img/child_image.svg'%}"
+                    alt="course_icon"
+                  />
+                  <div
+                    data-wow-duration="2.5s"
+                    class="child_desc wow animate__animated animate__fadeIn"
+                  >
+                    <p class="child_title">Детское Направление</p>
+                    <p class="child_text">
+                      Мы предлагаем специализированные программы для развития
+                      мощности потенциала ребенка.
+                    </p>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div class="manage_block">
+              <a href="/course/1"
+                ><div
+                  data-wow-duration="2s"
+                  class="icon_courses wow animate__animated animate__fadeIn"
+                >
+                  <img
+                    class="round_icon"
+                    src="{% static '/img/icon_round.svg'%}"
+                    alt="bg_courses_icon"
+                  />
+                  <img
+                    class="courses_icon"
+                    src="{% static '/img/manage_image.svg'%}"
+                    alt="course_icon"
+                  />
+                  <div
+                    data-wow-duration="2s"
+                    class="manage_desc wow animate__animated animate__fadeIn"
+                  >
+                    <p class="manage_title">Менеджмент</p>
+                    <p class="manage_text">
+                      Узнайте секреты эффективного руководства, которые
+                      применимы в любой компании.
+                    </p>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div class="market_block">
+              <a href="/course/2"
+                ><div
+                  data-wow-duration="2s"
+                  class="icon_courses wow animate__animated animate__fadeIn"
+                >
+                  <img
+                    class="round_icon"
+                    src="{% static '/img/icon_round.svg'%}"
+                    alt="bg_courses_icon"
+                  />
+                  <img
+                    class="courses_icon"
+                    src="{% static '/img/market_image.svg'%}"
+                    alt="course_icon"
+                  />
+                  <div
+                    data-wow-duration="2s"
+                    class="market_desc wow animate__animated animate__fadeIn"
+                  >
+                    <p class="market_title">Маркетинг</p>
+                    <p class="market_text">
+                      Наши курсы помогут вам стать мастером в продвижении и
+                      создании бренда, независимо от сферы деятельности.
+                    </p>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div class="pr_block">
+              <a href="/course/8"
+                ><div
+                  data-wow-duration="2s"
+                  class="icon_courses wow animate__animated animate__fadeIn"
+                >
+                  <img
+                    class="round_icon"
+                    src="{% static '/img/icon_round.svg'%}"
+                    alt="bg_courses_icon"
+                  />
+                  <img
+                    class="courses_icon"
+                    src="{% static '/img/pr_image.svg'%}"
+                    alt="course_icon"
+                  />
+                  <div
+                    data-wow-duration="2s"
+                    class="pr_desc wow animate__animated animate__fadeIn"
+                  >
+                    <p class="pr_title">Продюсирование</p>
+                    <p class="pr_text">
+                      Вы сможете освоить искусство создания и управления
+                      проектами, будь то медиа-контент или события.
+                    </p>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div class="finance_block">
+              <a href="/course/5"
+                ><div
+                  data-wow-duration="2s"
+                  class="icon_courses wow animate__animated animate__fadeIn"
+                >
+                  <img
+                    class="round_icon"
+                    src="{% static '/img/icon_round.svg'%}"
+                    alt="bg_courses_icon"
+                  />
+                  <img
+                    class="courses_icon"
+                    src="{% static '/img/finance_image.svg'%}"
+                    alt="course_icon"
+                  />
+                  <div
+                    data-wow-duration="2s"
+                    class="finance_desc wow animate__animated animate__fadeIn"
+                  >
+                    <p class="finance_title">Экономика</p>
+                    <p class="finance_text">
+                      Анализ и управление ресурсами, распределение и изучение
+                      факторов, влияющих на рыночные процессы.
+                    </p>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div class="it_block">
+              <a href="/course/7"
+                ><div
+                  data-wow-duration="2s"
+                  class="icon_courses wow animate__animated animate__fadeIn"
+                >
+                  <img
+                    class="round_icon"
+                    src="{% static '/img/icon_round.svg'%}"
+                    alt="bg_courses_icon"
+                  />
+                  <img
+                    class="courses_icon"
+                    src="{% static '/img/it_image.svg'%}"
+                    alt="course_icon"
+                  />
+                  <div
+                    data-wow-duration="2s"
+                    class="it_desc wow animate__animated animate__fadeIn"
+                  >
+                    <p class="it_title">IT Направление</p>
+                    <p class="it_text">
+                      Оставайтесь в курсе современных технологий и освойте
+                      навыки, востребованные в мире цифровой трансформации.
+                    </p>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
         </div>
-    </div>
+      </div>
     </div>
     <div class="expert">
-        <div class="container">
-            <div class="expert_block">
-            <img class="expert_image wow animate__animated animate__fadeInRight" src="{% static '/img/expert_image.png'%}" alt="expert_round_balance">
-            <div class="expert_text_block wow animate__animated animate__fadeInLeft">
-                <p class="expert_title">Прокачай себя!</p>
-                <div class="courses_div"></div>
-                <div class="expert_text">В Академии нет ограничений в выборе конкретной профессии, потому что мы смотрим дальше!<br><br> Наша Академия ориентирована на практическое освоение навыков, которые можно применять в разных областях и профессиях.<br><br> Уверены, что будущее принадлежит тем, кто готов адаптироваться и использовать разносторонние компетенции.
-                </div>
-                    <button id="coursesButton3" class="expert_btn wow animate__animated animate__pulse">
-                        <div class="expert_btn_text_block">
-                            <p class="expert_btn_text">Выбрать направление</p>
-                            <img class="btn_arrow_expert" src="{% static '/img/btn_arrow.svg'%}" alt="action_btn_arrow">
-                        </div>
-                    </button>
+      <div class="container">
+        <div class="expert_block">
+          <img
+            class="expert_image wow animate__animated animate__fadeInRight"
+            src="{% static '/img/expert_image.png'%}"
+            alt="expert_round_balance"
+          />
+          <div
+            class="expert_text_block wow animate__animated animate__fadeInLeft"
+          >
+            <p class="expert_title">Прокачай себя!</p>
+            <div class="courses_div"></div>
+            <div class="expert_text">
+              В Академии нет ограничений в выборе конкретной профессии, потому
+              что мы смотрим дальше!<br /><br />
+              Наша Академия ориентирована на практическое освоение навыков,
+              которые можно применять в разных областях и профессиях.<br /><br />
+              Уверены, что будущее принадлежит тем, кто готов адаптироваться и
+              использовать разносторонние компетенции.
             </div>
-            </div>
+            <button
+              id="coursesButton3"
+              class="expert_btn wow animate__animated animate__pulse"
+            >
+              <div class="expert_btn_text_block">
+                <p class="expert_btn_text">Выбрать направление</p>
+                <img
+                  class="btn_arrow_expert"
+                  src="{% static '/img/btn_arrow.svg'%}"
+                  alt="action_btn_arrow"
+                />
+              </div>
+            </button>
+          </div>
         </div>
+      </div>
     </div>
     <div class="trigers">
-            <div class="triger_card_block1 wow animate__animated animate__fadeInRight">
-                <div class="triger_block1">
-                <img class="triger_img1" src="{% static '/img/triger_image1.svg'%}" alt="img_triger">
-                <div data-wow-duration="2.5s" class="triger_text_block1 wow animate__animated animate__fadeIn">
-                    <p  id="triger_title1" class="triger_title1">Раскрывай Таланты</p>
-                    <p class="triger_text1">Внутри каждого из нас скрыт огромный потенциал. 
-                        "Бирюзовая" Академия поможет вам раскрыть ваши врожденные таланты и развить себя в сферах, о которых вы мечтали</p>
-                </div>
-                </div>
-            </div>
-            <div  class="triger_card_block2 wow animate__animated animate__fadeInLeft">
-                <div class="triger_block2">
-                <div data-wow-duration="2.5s" class="triger_text_block2 wow animate__animated animate__fadeIn">
-                    <p  id="triger_title2" class="triger_title2">Прокачай Свои Скиллы</p>
-                    <p class="triger_text2">Хотите стать мастером в своей жизни? 
-                        "Бирюзовая" Академия предлагает уникальные программы для развития ваших сильных сторон и улучшения ключевых навыков.</p>
-                </div>
-                <img class="triger_img2" src="{% static '/img/triger_image2.svg'%}" alt="img_triger">
-                </div>
-            </div>
-            <div class="triger_card_block3 wow animate__animated animate__fadeInRight">
-                <div class="triger_block3">
-                <img class="triger_img3" src="{% static '/img/triger_image3.svg'%}" alt="img_triger">
-                <div data-wow-duration="2.5s" class="triger_text_block3 wow animate__animated animate__fadeIn">
-                    <p  id="triger_title3" class="triger_title3">Вдохновение и Рост</p>
-                    <p class="triger_text3">Вдохновение – это начало, а рост – это продолжение. 
-                        Наши эксперты помогут вам прописать путь к реализации вашей цели.</p>
-                </div>
-                </div>
-            </div>
-        
+      <div
+        class="triger_card_block1 wow animate__animated animate__fadeInRight"
+      >
+        <div class="triger_block1">
+          <img
+            class="triger_img1"
+            src="{% static '/img/triger_image1.svg'%}"
+            alt="img_triger"
+          />
+          <div
+            data-wow-duration="2.5s"
+            class="triger_text_block1 wow animate__animated animate__fadeIn"
+          >
+            <p id="triger_title1" class="triger_title1">Раскрывай Таланты</p>
+            <p class="triger_text1">
+              Внутри каждого из нас скрыт огромный потенциал. "Бирюзовая"
+              Академия поможет вам раскрыть ваши врожденные таланты и развить
+              себя в сферах, о которых вы мечтали
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="triger_card_block2 wow animate__animated animate__fadeInLeft">
+        <div class="triger_block2">
+          <div
+            data-wow-duration="2.5s"
+            class="triger_text_block2 wow animate__animated animate__fadeIn"
+          >
+            <p id="triger_title2" class="triger_title2">Прокачай Свои Скиллы</p>
+            <p class="triger_text2">
+              Хотите стать мастером в своей жизни? "Бирюзовая" Академия
+              предлагает уникальные программы для развития ваших сильных сторон
+              и улучшения ключевых навыков.
+            </p>
+          </div>
+          <img
+            class="triger_img2"
+            src="{% static '/img/triger_image2.svg'%}"
+            alt="img_triger"
+          />
+        </div>
+      </div>
+      <div
+        class="triger_card_block3 wow animate__animated animate__fadeInRight"
+      >
+        <div class="triger_block3">
+          <img
+            class="triger_img3"
+            src="{% static '/img/triger_image3.svg'%}"
+            alt="img_triger"
+          />
+          <div
+            data-wow-duration="2.5s"
+            class="triger_text_block3 wow animate__animated animate__fadeIn"
+          >
+            <p id="triger_title3" class="triger_title3">Вдохновение и Рост</p>
+            <p class="triger_text3">
+              Вдохновение – это начало, а рост – это продолжение. Наши эксперты
+              помогут вам прописать путь к реализации вашей цели.
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="blog">
-        <div class="blog_title">
-            <p class="title_blog wow animate__animated animate__fadeIn">Команда</p>
-            <div class="blog_div wow animate__animated animate__fadeIn"></div>
-            </div>
-            <img class="bg_blog" src="{% static '/img/blog_cards_block.png'%}" alt="bg_blog">
-            <div class="cont_block">
-            <div class="slider wow animate__animated animate__fadeInLeft">
-                <div class="slider-line">
-                    <div data-wow-duration="2.5s" class="card_group_item wow animate__animated animate__fadeIn">
-                        <img id="blog_img"  src="{% static '/img/гузель.jpg'%}" alt="blog_img">
-                        <div class="blog_text1"><b>Гузель Усманова</b> - сооснователь Академии и преподаватель предметов "Талант-менеджмент" и "Свобода воли". Предоставляет возможность каждому раскрыть свой потенциал и достичь успеха в том, что они делают с удовольствием.</div>
-                    </div>
-                    <div data-wow-duration="3s" class="card_group_item wow animate__animated animate__fadeIn">
-                        <img id="blog_img"  src="{% static '/img/полина_главная.jpg'%}" alt="blog_img">
-                        <div class="blog_text1"><b>Полина Беляева</b> - Лидер Академии и эксперт в ораторском искусстве. Полина окончила академию имени Гнесенных и имеет опыт управления и обучения. Она также основала две успешные школы в Москве и организовала онлайн проекты.</div>
-                    </div>
-                    <div data-wow-duration="3.5s" class="card_group_item wow animate__animated animate__fadeIn">
-                        <img id="blog_img"  src="{% static '/img/марина.jpg'%}" alt="blog_img">
-                        <div class="blog_text1"><b>Марина Мокрицова</b> - Лидер отдела по заботе о единомышлениках. Марина следит за тем что бы каждый в сообществе был услышан и проинформирован, а не получали заготовленые ответы. Чувстовал себя оркуженным заботой.</div>
-                    </div>
-                    <div data-wow-duration="2.5s" class="card_group_item wow animate__animated animate__fadeIn">
-                        <img id="blog_img"  src="{% static '/img/никита.jpg'%}" alt="blog_img">
-                        <div class="blog_text1"><b>Никита Костава</b> - Сооснователь и CEO Академии, преподаватель по "Notion” и игре “Мыслить масштабно”. Поможет развить объемное и креативное видение, что особенно важно при профессиональной деятельности.</div>
-                    </div>
-                    <div data-wow-duration="3s" class="card_group_item wow animate__animated animate__fadeIn">
-                        <img id="blog_img"  src="{% static '/img/эльза.jpg'%}" alt="blog_img">
-                        <div class="blog_text1"><b>Эльза Шаяхметова</b> - Практикующий нумеролог и лидер PR-направления, соорганизатор Академии. Покажет на практике как создавать собственный бренд в социальных сетях для личного использования и продвижения.</div>
-                    </div>
-                    <div data-wow-duration="3.5s" class="card_group_item wow animate__animated animate__fadeIn">
-                        <img id="blog_img"  src="{% static '/img/фиданур.webp'%}" alt="blog_img">
-                        <div class="blog_text1"><b>Фиданур Усманов</b> - Преподаватель it-технологий и backend разработчик проекта академия, в совершенстве владеющий Python, Java Script и Java. С более чем пятилетним опытом обучения взрослых и детей.</div>
-                    </div>
-                </div>
-            </div>
-            <div id="button_group" class="button_group">
-                <img class="btn_prew" id="btn_prew" src="{% static '/img/arrow_btn_prew.png'%}" onclick="btnPrew()" alt="">
-                <img class="btn_next" id="btn_next" src="{% static '/img/arrow_btn_next.png'%}" onclick="btnNext()" alt="">
-            </div>
-            </div>
-        </div>
-    {% comment %} <div id="faq" class="faq">
-        <div class="container">
-            <div  class="faq_block">
-            <div  class="title_text_faq_block wow animate__animated animate__fadeInLeft">
-                <div class="faq_text_block">
-                    <div class="faq_title_block">
-                        <p class="faq_title">FAQ</p>
-                        <div class="faq_div"></div>
-                    </div>
-                    <p id="faq_desc"
-                    class="faq_desc">Наши направления обучения в ключевых сферах предоставляют
-                        доступ к специализированным курсам, помогая вам достигнуть 
-                        профессионального и личного роста. 
-                        Присоединяйтесь к нам и идите к успеху!</p>
-                </div>
-                <button id="faqButton" class="faq_btn wow animate__animated animate__pulse">
-                    <div class="faq_btn_text_block">
-                    <p class="faq_btn_text">Напиши нам</p>
-                        <img class="btn_arrow_faq" src="{% static '/img/btn_arrow.svg'%}" alt="action_btn_arrow">
-                    </div>
-                </button>
-            </div>
-            <div id="faq_card_block"   class="faq_card_block">
-                <div class="faq_q1_block">
-                    <div data-wow-duration="2.5s" class="icon_faq wow animate__animated animate__fadeIn">
-                        <img class="round_icon_faq" src="{% static '/img/round_icon_faq.svg'%}" alt="bg_faq_icon">
-                        <img class="faq_icon" src="{% static '/img/faq_image.svg'%}" alt="faq_icon">
-                        <div data-wow-duration="2.5s" class="faq_q1_desc wow animate__animated animate__fadeIn">
-                            <p class="faq_q1_title">Вопрос</p>
-                            <p class="faq_q1_text">Познание себя для личного роста и развития, повышения самосознания и понимания.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="faq_q2_block">
-                    <div data-wow-duration="2.5s" class="icon_faq wow animate__animated animate__fadeIn">
-                        <img class="round_icon_faq" src="{% static '/img/round_icon_faq.svg'%}" alt="bg_faq_icon">
-                        <img class="faq_icon" src="{% static '/img/faq_image.svg'%}" alt="faq_icon">
-                        <div data-wow-duration="2.5s" class="sfaq_q2_desc wow animate__animated animate__fadeIn">
-                            <p class="faq_q2_title">Вопрос</p>
-                            <p class="faq_q2_text">Убеждение и удовлетворение клиентов через эффективное обслуживание и коммуникации.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="faq_q3_block">
-                    <div data-wow-duration="2.5s" class="icon_faq wow animate__animated animate__fadeIn">
-                        <img class="round_icon_faq" src="{% static '/img/round_icon_faq.svg'%}" alt="bg_faq_icon">
-                        <img class="faq_icon" src="{% static '/img/faq_image.svg'%}" alt="faq_icon">
-                        <div data-wow-duration="2.5s" class="faq_q3_desc wow animate__animated animate__fadeIn">
-                            <p class="faq_q3_title">Вопрос</p>
-                            <p class="faq_q3_text">Развитие и воспитание детей с учетом их потребностей и возрастных особенностей.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="faq_q4_block">
-                    <div data-wow-duration="2.5s" class="icon_faq wow animate__animated animate__fadeIn">
-                        <img class="round_icon_faq" src="{% static '/img/round_icon_faq.svg'%}" alt="bg_faq_icon">
-                        <img class="faq_icon" src="{% static '/img/faq_image.svg'%}" alt="faq_icon">
-                        <div data-wow-duration="2.5s" class="faq_q4_desc wow animate__animated animate__fadeIn">
-                            <p class="faq_q4_title">Вопрос</p>
-                            <p class="faq_q4_text">Управление организацией и ресурсами для достижения целей и эффективного руководства.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="faq_q5_block">
-                    <div data-wow-duration="2.5s" class="icon_faq wow animate__animated animate__fadeIn">
-                        <img class="round_icon_faq" src="{% static '/img/round_icon_faq.svg'%}" alt="bg_faq_icon">
-                        <img class="faq_icon" src="{% static '/img/faq_image.svg'%}" alt="faq_icon">
-                        <div data-wow-duration="2.5s" class="faq_q5_desc wow animate__animated animate__fadeIn">
-                            <p class="faq_q5_title">Вопрос</p>
-                            <p class="faq_q5_text">Создание и продвижение продуктов на рынке для достижения успеха и роста бренда.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="faq_q6_block">
-                    <div data-wow-duration="2.5s" class="icon_faq wow animate__animated animate__fadeIn">
-                        <img class="round_icon_faq" src="{% static '/img/round_icon_faq.svg'%}" alt="bg_faq_icon">
-                        <img class="faq_icon" src="{% static '/img/faq_image.svg'%}" alt="faq_icon">
-                        <div data-wow-duration="2.5s" class="faq_q6_desc wow animate__animated animate__fadeIn">
-                            <p class="faq_q6_title">Вопрос</p>
-                            <p class="faq_q6_text">Создание и управление процессами производства контента, продуктов или мероприятий.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="faq_q7_block">
-                    <div data-wow-duration="2.5s" class="icon_faq wow animate__animated animate__fadeIn">
-                        <img class="round_icon_faq" src="{% static '/img/round_icon_faq.svg'%}" alt="bg_faq_icon">
-                        <img class="faq_icon" src="{% static '/img/faq_image.svg'%}" alt="faq_icon">
-                        <div data-wow-duration="2.5s" class="faq_q7_desc wow animate__animated animate__fadeIn">
-                            <p class="faq_q7_title">Вопрос</p>
-                            <p class="faq_q7_text">Анализ и управление ресурсами, распределение и изучение факторов, влияющих на рыночные процессы.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="faq_q8_block">
-                    <div data-wow-duration="2.5s" class="icon_faq wow animate__animated animate__fadeIn">
-                        <img class="round_icon_faq" src="{% static '/img/round_icon_faq.svg'%}" alt="bg_faq_icon">
-                        <img class="faq_icon" src="{% static '/img/faq_image.svg'%}" alt="faq_icon">
-                        <div data-wow-duration="2.5s" class="faq_q8_desc wow animate__animated animate__fadeIn">
-                            <p class="faq_q8_title">Вопрос</p>
-                            <p class="faq_q8_text">Разработка, управление, внедрение IT технологий для оптимизации бизнес-процессов и инновационных решений.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div> {% endcomment %}
-    <footer class="footer">
-        <div class="container">
-            <div class="footer_main">
-            <div class="footer_box">
-            <div data-wow-delay="1s" class="text_block_footer animate__animated animate__fadeInUp">
-            <div class="logo_footer">
-            <a href="{% url 'academy' %}"><img src="{% static 'img/image 1.svg'%}" alt="logo"></a>
-            <div class="logo_text">
-                <p class="text1">Бирюзовая</p>
-                <p class="text2">Академия</p></p>
-            </div>
-            </div>
-            <div class="footer_second_text_block">
-            <div class="footer_text">
-            <p class="footer_text1">Никогда не сомневайтесь в своем потенциале! Бирюзовая Академия – это ваш путь к лучшей версии себя.
-               <br><p class="footer_text2">#БирюзоваяАкадемия #РаскройСебя</p></p>
-               </div>
-               <div class="icon_footer_block">
-                    <div class="facebook">
-                        <div class="round_smm">
-                        <a href="#"><img src="{% static 'img/facebook.svg'%}" alt="facebook"></a>
-                        </div>
-                    </div>
-                    <div class="instargram">
-                        <div class="round_smm">
-                            <a href="https://www.instagram.com/modern.time.academy/"><img src="{% static 'img/instagram.svg'%}" alt="instagram"></a>
-                        </div>
-                    </div>
-                    <div class="telegram">
-                        <div class="round_smm">
-                            <a href="https://t.me/+Xp5zW6wyF_FmMDU1"><img src="{% static 'img/telegram.svg'%}" alt="telegram"></a>
-                        </div>
-                    </div>
-               </div>
-            </div>
-            </div>
-            <div id="triger_box" data-wow-delay="1s" class="triger_box animate__animated animate__fadeInUp">
-            <div  id="footer-triger-title" class="footer-triger-title">
-                <span
-                  ><span id="span" class="footer-triger-title-span">Готов начать практику в </span
-                  ><span id="span2" class="footer-triger-title-span2">Бирюзовой </span
-                  ><span  id="span3" class="footer-triger-title-span3">Академии?</span></span>
+      <div class="blog_title">
+        <p class="title_blog wow animate__animated animate__fadeIn">Команда</p>
+        <div class="blog_div wow animate__animated animate__fadeIn"></div>
+      </div>
+      <img
+        class="bg_blog"
+        src="{% static '/img/blog_cards_block.png'%}"
+        alt="bg_blog"
+      />
+      <div class="cont_block">
+        <div class="slider wow animate__animated animate__fadeInLeft">
+          <div class="slider-line">
+            <div
+              data-wow-duration="2.5s"
+              class="card_group_item wow animate__animated animate__fadeIn"
+            >
+              <img
+                id="blog_img"
+                src="{% static '/img/гузель.jpg'%}"
+                alt="blog_img"
+              />
+              <div class="blog_text1">
+                <b>Гузель Усманова</b> - сооснователь Академии и преподаватель
+                предметов "Талант-менеджмент" и "Свобода воли". Предоставляет
+                возможность каждому раскрыть свой потенциал и достичь успеха в
+                том, что они делают с удовольствием.
               </div>
-              <button id="footButton" class="footer_btn wow animate__animated animate__pulse">
-                <div class="footer_btn_text_block">
-                    <p class="footer_btn_text">Начать бесплатно</p>
-                    <img class="btn_arrow_footer" src="{% static 'img/btn_arrow.svg'%}" alt="action_btn_arrow">
-                </div>
+            </div>
+            <div
+              data-wow-duration="3s"
+              class="card_group_item wow animate__animated animate__fadeIn"
+            >
+              <img
+                id="blog_img"
+                src="{% static '/img/полина_главная.jpg'%}"
+                alt="blog_img"
+              />
+              <div class="blog_text1">
+                <b>Полина Беляева</b> - Лидер Академии и эксперт в ораторском
+                искусстве. Полина окончила академию имени Гнесенных и имеет опыт
+                управления и обучения. Она также основала две успешные школы в
+                Москве и организовала онлайн проекты.
+              </div>
+            </div>
+            <div
+              data-wow-duration="3.5s"
+              class="card_group_item wow animate__animated animate__fadeIn"
+            >
+              <img
+                id="blog_img"
+                src="{% static '/img/марина.jpg'%}"
+                alt="blog_img"
+              />
+              <div class="blog_text1">
+                <b>Марина Мокрицова</b> - Лидер отдела по заботе о
+                единомышлениках. Марина следит за тем что бы каждый в сообществе
+                был услышан и проинформирован, а не получали заготовленые
+                ответы. Чувстовал себя оркуженным заботой.
+              </div>
+            </div>
+            <div
+              data-wow-duration="2.5s"
+              class="card_group_item wow animate__animated animate__fadeIn"
+            >
+              <img
+                id="blog_img"
+                src="{% static '/img/никита.jpg'%}"
+                alt="blog_img"
+              />
+              <div class="blog_text1">
+                <b>Никита Костава</b> - Сооснователь и CEO Академии,
+                преподаватель по "Notion” и игре “Мыслить масштабно”. Поможет
+                развить объемное и креативное видение, что особенно важно при
+                профессиональной деятельности.
+              </div>
+            </div>
+            <div
+              data-wow-duration="3s"
+              class="card_group_item wow animate__animated animate__fadeIn"
+            >
+              <img
+                id="blog_img"
+                src="{% static '/img/эльза.jpg'%}"
+                alt="blog_img"
+              />
+              <div class="blog_text1">
+                <b>Эльза Шаяхметова</b> - Практикующий нумеролог и лидер
+                PR-направления, соорганизатор Академии. Покажет на практике как
+                создавать собственный бренд в социальных сетях для личного
+                использования и продвижения.
+              </div>
+            </div>
+            <div
+              data-wow-duration="3.5s"
+              class="card_group_item wow animate__animated animate__fadeIn"
+            >
+              <img
+                id="blog_img"
+                src="{% static '/img/фиданур.webp'%}"
+                alt="blog_img"
+              />
+              <div class="blog_text1">
+                <b>Фиданур Усманов</b> - Преподаватель it-технологий и backend
+                разработчик проекта академия, в совершенстве владеющий Python,
+                Java Script и Java. С более чем пятилетним опытом обучения
+                взрослых и детей.
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="button_group" class="button_group">
+          <img
+            class="btn_prew"
+            id="btn_prew"
+            src="{% static '/img/arrow_btn_prew.png'%}"
+            onclick="btnPrew()"
+            alt=""
+          />
+          <img
+            class="btn_next"
+            id="btn_next"
+            src="{% static '/img/arrow_btn_next.png'%}"
+            onclick="btnNext()"
+            alt=""
+          />
+        </div>
+      </div>
+    </div>
+    {% comment %}
+    <div id="faq" class="faq">
+      <div class="container">
+        <div class="faq_block">
+          <div
+            class="title_text_faq_block wow animate__animated animate__fadeInLeft"
+          >
+            <div class="faq_text_block">
+              <div class="faq_title_block">
+                <p class="faq_title">FAQ</p>
+                <div class="faq_div"></div>
+              </div>
+              <p id="faq_desc" class="faq_desc">
+                Наши направления обучения в ключевых сферах предоставляют доступ
+                к специализированным курсам, помогая вам достигнуть
+                профессионального и личного роста. Присоединяйтесь к нам и идите
+                к успеху!
+              </p>
+            </div>
+            <button
+              id="faqButton"
+              class="faq_btn wow animate__animated animate__pulse"
+            >
+              <div class="faq_btn_text_block">
+                <p class="faq_btn_text">Напиши нам</p>
+                <img
+                  class="btn_arrow_faq"
+                  src="{% static '/img/btn_arrow.svg'%}"
+                  alt="action_btn_arrow"
+                />
+              </div>
             </button>
-            </div>
-            <div data-wow-delay="1s" class="law_info_block animate__animated animate__fadeInUp">
-                <ul class="list_info">
-                    <li class="ip">ИП Мокрецова Марина Владимировна</li>
-                    <li class="inn">ИНН 890409100814</li>
-                    <li class="ogrnip">ОГРНИП 323237500416580</li>
-                    <li class="number"> +995 568 836 179</li>
-                    <li class="mail"> talentversesup.academy@gmail.com</li>
-                </ul>
-            </div>
-        </div>
-            <div class="doc_line">
-                <div class="doc_list">
-                    <a class="docs" href="https://drive.google.com/file/d/1ep8I55KZW_uh3PSI7a44t0Z-8L_dOHS2/view?usp=drive_link">Оферта</a><a class="docs" href="https://drive.google.com/file/d/1nKo_XiytxuVaBBAFqtRZ7jTGuz-mSvlU/view?usp=sharing">Пользовотельское соглашение</a><a class="docs" href="https://drive.google.com/file/d/1rt2P9qtgjZ19m8PzV1sQbahndV5TMws6/view?usp=sharing">Политика конфиденциальности</a><p class="lable" >© 2023 Бирюзовая Академия</p>
+          </div>
+          <div id="faq_card_block" class="faq_card_block">
+            <div class="faq_q1_block">
+              <div
+                data-wow-duration="2.5s"
+                class="icon_faq wow animate__animated animate__fadeIn"
+              >
+                <img
+                  class="round_icon_faq"
+                  src="{% static '/img/round_icon_faq.svg'%}"
+                  alt="bg_faq_icon"
+                />
+                <img
+                  class="faq_icon"
+                  src="{% static '/img/faq_image.svg'%}"
+                  alt="faq_icon"
+                />
+                <div
+                  data-wow-duration="2.5s"
+                  class="faq_q1_desc wow animate__animated animate__fadeIn"
+                >
+                  <p class="faq_q1_title">Вопрос</p>
+                  <p class="faq_q1_text">
+                    Познание себя для личного роста и развития, повышения
+                    самосознания и понимания.
+                  </p>
                 </div>
+              </div>
             </div>
-        </div> 
+            <div class="faq_q2_block">
+              <div
+                data-wow-duration="2.5s"
+                class="icon_faq wow animate__animated animate__fadeIn"
+              >
+                <img
+                  class="round_icon_faq"
+                  src="{% static '/img/round_icon_faq.svg'%}"
+                  alt="bg_faq_icon"
+                />
+                <img
+                  class="faq_icon"
+                  src="{% static '/img/faq_image.svg'%}"
+                  alt="faq_icon"
+                />
+                <div
+                  data-wow-duration="2.5s"
+                  class="sfaq_q2_desc wow animate__animated animate__fadeIn"
+                >
+                  <p class="faq_q2_title">Вопрос</p>
+                  <p class="faq_q2_text">
+                    Убеждение и удовлетворение клиентов через эффективное
+                    обслуживание и коммуникации.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="faq_q3_block">
+              <div
+                data-wow-duration="2.5s"
+                class="icon_faq wow animate__animated animate__fadeIn"
+              >
+                <img
+                  class="round_icon_faq"
+                  src="{% static '/img/round_icon_faq.svg'%}"
+                  alt="bg_faq_icon"
+                />
+                <img
+                  class="faq_icon"
+                  src="{% static '/img/faq_image.svg'%}"
+                  alt="faq_icon"
+                />
+                <div
+                  data-wow-duration="2.5s"
+                  class="faq_q3_desc wow animate__animated animate__fadeIn"
+                >
+                  <p class="faq_q3_title">Вопрос</p>
+                  <p class="faq_q3_text">
+                    Развитие и воспитание детей с учетом их потребностей и
+                    возрастных особенностей.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="faq_q4_block">
+              <div
+                data-wow-duration="2.5s"
+                class="icon_faq wow animate__animated animate__fadeIn"
+              >
+                <img
+                  class="round_icon_faq"
+                  src="{% static '/img/round_icon_faq.svg'%}"
+                  alt="bg_faq_icon"
+                />
+                <img
+                  class="faq_icon"
+                  src="{% static '/img/faq_image.svg'%}"
+                  alt="faq_icon"
+                />
+                <div
+                  data-wow-duration="2.5s"
+                  class="faq_q4_desc wow animate__animated animate__fadeIn"
+                >
+                  <p class="faq_q4_title">Вопрос</p>
+                  <p class="faq_q4_text">
+                    Управление организацией и ресурсами для достижения целей и
+                    эффективного руководства.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="faq_q5_block">
+              <div
+                data-wow-duration="2.5s"
+                class="icon_faq wow animate__animated animate__fadeIn"
+              >
+                <img
+                  class="round_icon_faq"
+                  src="{% static '/img/round_icon_faq.svg'%}"
+                  alt="bg_faq_icon"
+                />
+                <img
+                  class="faq_icon"
+                  src="{% static '/img/faq_image.svg'%}"
+                  alt="faq_icon"
+                />
+                <div
+                  data-wow-duration="2.5s"
+                  class="faq_q5_desc wow animate__animated animate__fadeIn"
+                >
+                  <p class="faq_q5_title">Вопрос</p>
+                  <p class="faq_q5_text">
+                    Создание и продвижение продуктов на рынке для достижения
+                    успеха и роста бренда.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="faq_q6_block">
+              <div
+                data-wow-duration="2.5s"
+                class="icon_faq wow animate__animated animate__fadeIn"
+              >
+                <img
+                  class="round_icon_faq"
+                  src="{% static '/img/round_icon_faq.svg'%}"
+                  alt="bg_faq_icon"
+                />
+                <img
+                  class="faq_icon"
+                  src="{% static '/img/faq_image.svg'%}"
+                  alt="faq_icon"
+                />
+                <div
+                  data-wow-duration="2.5s"
+                  class="faq_q6_desc wow animate__animated animate__fadeIn"
+                >
+                  <p class="faq_q6_title">Вопрос</p>
+                  <p class="faq_q6_text">
+                    Создание и управление процессами производства контента,
+                    продуктов или мероприятий.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="faq_q7_block">
+              <div
+                data-wow-duration="2.5s"
+                class="icon_faq wow animate__animated animate__fadeIn"
+              >
+                <img
+                  class="round_icon_faq"
+                  src="{% static '/img/round_icon_faq.svg'%}"
+                  alt="bg_faq_icon"
+                />
+                <img
+                  class="faq_icon"
+                  src="{% static '/img/faq_image.svg'%}"
+                  alt="faq_icon"
+                />
+                <div
+                  data-wow-duration="2.5s"
+                  class="faq_q7_desc wow animate__animated animate__fadeIn"
+                >
+                  <p class="faq_q7_title">Вопрос</p>
+                  <p class="faq_q7_text">
+                    Анализ и управление ресурсами, распределение и изучение
+                    факторов, влияющих на рыночные процессы.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="faq_q8_block">
+              <div
+                data-wow-duration="2.5s"
+                class="icon_faq wow animate__animated animate__fadeIn"
+              >
+                <img
+                  class="round_icon_faq"
+                  src="{% static '/img/round_icon_faq.svg'%}"
+                  alt="bg_faq_icon"
+                />
+                <img
+                  class="faq_icon"
+                  src="{% static '/img/faq_image.svg'%}"
+                  alt="faq_icon"
+                />
+                <div
+                  data-wow-duration="2.5s"
+                  class="faq_q8_desc wow animate__animated animate__fadeIn"
+                >
+                  <p class="faq_q8_title">Вопрос</p>
+                  <p class="faq_q8_text">
+                    Разработка, управление, внедрение IT технологий для
+                    оптимизации бизнес-процессов и инновационных решений.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
+    </div>
+    {% endcomment %}
+    <footer class="footer">
+      <div class="container">
+        <div class="footer_main">
+          <div class="footer_box">
+            <div
+              data-wow-delay="1s"
+              class="text_block_footer animate__animated animate__fadeInUp"
+            >
+              <div class="logo_footer">
+                <a href="{% url 'academy' %}"
+                  ><img src="{% static 'img/image 1.svg'%}" alt="logo"
+                /></a>
+                <div class="logo_text">
+                  <p class="text1">Бирюзовая</p>
+                  <p class="text2">Академия</p>
+                </div>
+              </div>
+              <div class="footer_second_text_block">
+                <div class="footer_text">
+                  <p class="footer_text1">
+                    Никогда не сомневайтесь в своем потенциале! Бирюзовая
+                    Академия – это ваш путь к лучшей версии себя. <br />
+                    <p class="footer_text2">#БирюзоваяАкадемия #РаскройСебя</p>
+                  </p>
+                </div>
+                <div class="icon_footer_block">
+                  <div class="facebook">
+                    <div class="round_smm">
+                      <a href="#"
+                        ><img
+                          src="{% static 'img/facebook.svg'%}"
+                          alt="facebook"
+                      /></a>
+                    </div>
+                  </div>
+                  <div class="instargram">
+                    <div class="round_smm">
+                      <a href="https://www.instagram.com/modern.time.academy/"
+                        ><img
+                          src="{% static 'img/instagram.svg'%}"
+                          alt="instagram"
+                      /></a>
+                    </div>
+                  </div>
+                  <div class="telegram">
+                    <div class="round_smm">
+                      <a href="https://t.me/+Xp5zW6wyF_FmMDU1"
+                        ><img
+                          src="{% static 'img/telegram.svg'%}"
+                          alt="telegram"
+                      /></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              id="triger_box"
+              data-wow-delay="1s"
+              class="triger_box animate__animated animate__fadeInUp"
+            >
+              <div id="footer-triger-title" class="footer-triger-title">
+                <span
+                  ><span id="span" class="footer-triger-title-span"
+                    >Готов начать практику в </span
+                  ><span id="span2" class="footer-triger-title-span2"
+                    >Бирюзовой </span
+                  ><span id="span3" class="footer-triger-title-span3"
+                    >Академии?</span
+                  ></span
+                >
+              </div>
+              <button
+                id="footButton"
+                class="footer_btn wow animate__animated animate__pulse"
+              >
+                <div class="footer_btn_text_block">
+                  <p class="footer_btn_text">Начать бесплатно</p>
+                  <img
+                    class="btn_arrow_footer"
+                    src="{% static 'img/btn_arrow.svg'%}"
+                    alt="action_btn_arrow"
+                  />
+                </div>
+              </button>
+            </div>
+            <div
+              data-wow-delay="1s"
+              class="law_info_block animate__animated animate__fadeInUp"
+            >
+              <ul class="list_info">
+                <li class="ip">ИП Мокрецова Марина Владимировна</li>
+                <li class="inn">ИНН 890409100814</li>
+                <li class="ogrnip">ОГРНИП 323237500416580</li>
+                <li class="number">+995 568 836 179</li>
+                <li class="mail">talentversesup.academy@gmail.com</li>
+              </ul>
+            </div>
+          </div>
+          <div class="doc_line">
+            <div class="doc_list">
+              <a
+                class="docs"
+                href="https://drive.google.com/file/d/1ep8I55KZW_uh3PSI7a44t0Z-8L_dOHS2/view?usp=drive_link"
+                >Оферта</a
+              ><a
+                class="docs"
+                href="https://drive.google.com/file/d/1nKo_XiytxuVaBBAFqtRZ7jTGuz-mSvlU/view?usp=sharing"
+                >Пользовотельское соглашение</a
+              ><a
+                class="docs"
+                href="https://drive.google.com/file/d/1rt2P9qtgjZ19m8PzV1sQbahndV5TMws6/view?usp=sharing"
+                >Политика конфиденциальности</a
+              >
+              <p class="lable">© 2023 Бирюзовая Академия</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </footer>
-    <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.slim.min.js"
+      integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8="
+      crossorigin="anonymous"
+    ></script>
     <script src="{% static 'js/wow.min.js'%}"></script>
     <script src="{% static 'js/menu-academy.js'%}"></script>
     <script src="{% static 'js/slider_team_academy.js'%}"></script>
-              <script>
-              new WOW().init();
-              // JavaScript для обработки клика на кнопке и перехода на другую страницу
-                {% comment %} document.getElementById("navButton").addEventListener("click", function() {
-                    // Используйте window.location.href для перехода на другую страницу
-                    window.location.href = "{% url 'contact' %}"; // Замените "новая_страница.html" на URL вашей целевой страницы
-                }); {% endcomment %}
-                // JavaScript для обработки клика на кнопке и перехода на другую страницу
-                document.getElementById("footButton").addEventListener("click", function() {
-                    // Используйте window.location.href для перехода на другую страницу
-                    window.location.href = "{% url 'contact' %}"; // Замените "новая_страница.html" на URL вашей целевой страницы
-                });
-                // JavaScript для обработки клика на кнопке и перехода на другую страницу
-                {% comment %} document.getElementById("faqButton").addEventListener("click", function() {
-                    // Используйте window.location.href для перехода на другую страницу
-                    window.location.href = "{% url 'contact' %}"; // Замените "новая_страница.html" на URL вашей целевой страницы
-                }); {% endcomment %}
-                document.getElementById("coursesButton1").addEventListener("click", function() {
-                    // Используйте window.location.href для перехода на другую страницу
-                    window.location.href = "{% url 'all_courses' %}"; // Замените "новая_страница.html" на URL вашей целевой страницы
-                });document.getElementById("coursesButton2").addEventListener("click", function() {
-                    // Используйте window.location.href для перехода на другую страницу
-                    window.location.href = "{% url 'all_courses' %}"; // Замените "новая_страница.html" на URL вашей целевой страницы
-                });document.getElementById("coursesButton3").addEventListener("click", function() {
-                    // Используйте window.location.href для перехода на другую страницу
-                    window.location.href = "{% url 'all_courses' %}"; // Замените "новая_страница.html" на URL вашей целевой страницы
-                });
-              </script>
-              <script src="https://unpkg.com/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
+    <script>
+      new WOW().init();
+      // JavaScript для обработки клика на кнопке и перехода на другую страницу
+        {% comment %} document.getElementById("navButton").addEventListener("click", function() {
+            // Используйте window.location.href для перехода на другую страницу
+            window.location.href = "{% url 'contact' %}"; // Замените "новая_страница.html" на URL вашей целевой страницы
+        }); {% endcomment %}
+        // JavaScript для обработки клика на кнопке и перехода на другую страницу
+        document.getElementById("footButton").addEventListener("click", function() {
+            // Используйте window.location.href для перехода на другую страницу
+            window.location.href = "{% url 'contact' %}"; // Замените "новая_страница.html" на URL вашей целевой страницы
+        });
+        // JavaScript для обработки клика на кнопке и перехода на другую страницу
+        {% comment %} document.getElementById("faqButton").addEventListener("click", function() {
+            // Используйте window.location.href для перехода на другую страницу
+            window.location.href = "{% url 'contact' %}"; // Замените "новая_страница.html" на URL вашей целевой страницы
+        }); {% endcomment %}
+        document.getElementById("coursesButton1").addEventListener("click", function() {
+            // Используйте window.location.href для перехода на другую страницу
+            window.location.href = "{% url 'all_courses' %}"; // Замените "новая_страница.html" на URL вашей целевой страницы
+        });document.getElementById("coursesButton2").addEventListener("click", function() {
+            // Используйте window.location.href для перехода на другую страницу
+            window.location.href = "{% url 'all_courses' %}"; // Замените "новая_страница.html" на URL вашей целевой страницы
+        });document.getElementById("coursesButton3").addEventListener("click", function() {
+            // Используйте window.location.href для перехода на другую страницу
+            window.location.href = "{% url 'all_courses' %}"; // Замените "новая_страница.html" на URL вашей целевой страницы
+        });
+    </script>
+    <script src="https://unpkg.com/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
 
-    
-        <script type="module">
-           
+    <script type="module">
 
-            import {
-            EthereumClient,
-            w3mConnectors,
-            w3mProvider,
-            WagmiCore,
-            WagmiCoreChains,
-            WagmiCoreConnectors
-          } from 'https://unpkg.com/@web3modal/ethereum'
-        
-          import { Web3Modal } from 'https://unpkg.com/@web3modal/html'
-        
-          // Equivalent to importing from @wagmi/core
-          const { configureChains, createConfig, getAccount,disconnect   } = WagmiCore
-        
-          // Equivalent to importing from @wagmi/core/chains
-          const { mainnet, polygon, avalanche, arbitrum,bsc } = WagmiCoreChains
-        
-          // Equivalent to importing from @wagmi/core/providers
-          const { CoinbaseWalletConnector } = WagmiCoreConnectors
-    
-          window.process = {
-            env: {
-                NODE_ENV: 'development'
-            }
-          }    
-    
-          const chains = [arbitrum, mainnet, polygon,bsc]
-          const projectId = '0b1e5c998294f163bf1af4d05e11e4c1'
-    
-          const { publicClient, connect } = configureChains(chains, [w3mProvider({ projectId })]);  
-          const wagmiConfig = createConfig({
-            autoConnect: true,
-            connectors: w3mConnectors({ projectId, chains }),
-            publicClient
-          })
-          const ethereumClient = new EthereumClient(wagmiConfig, chains)
-          const web3modal = new Web3Modal({ projectId }, ethereumClient)
 
-          {% if not user.is_authenticated %}
-            document.getElementById("navButton").addEventListener("click", () => {
-                web3modal.openModal();
-            });
-      
-            // Define the main function to handle wallet connection and authentication/registration
-            async function handleWalletConnect() {
-              try {
-                console.log("Wallet button clicked. Connecting to the wallet...");
-                const account = await getAccount();
-                console.log("Account information:", account);
-                window.csrfToken = "{{ csrf_token }}";
-                const csrfToken = window.csrfToken;
+        import {
+        EthereumClient,
+        w3mConnectors,
+        w3mProvider,
+        WagmiCore,
+        WagmiCoreChains,
+        WagmiCoreConnectors
+      } from 'https://unpkg.com/@web3modal/ethereum'
 
-                // Проверяем, подключен ли аккаунт
-                if (account.isConnected) {
-                  console.log("Account is connected.");
-                  const address = account.address;
-                  const additionalInfo = "Дополнительная информация";
+      import { Web3Modal } from 'https://unpkg.com/@web3modal/html'
 
-                  // Создаем объект с данными
-                  const data = { address, additionalInfo };
+      // Equivalent to importing from @wagmi/core
+      const { configureChains, createConfig, getAccount,disconnect   } = WagmiCore
 
-                  // Создаем объект опций для запроса
-                  const options = {
-                    method: "POST",
-                    headers: {
-                      "Content-Type": "application/json",
-                      "X-CSRFToken": csrfToken, // Use the correct token value
-                    },
-                    body: JSON.stringify(data),
-                  };
-                  
+      // Equivalent to importing from @wagmi/core/chains
+      const { mainnet, polygon, avalanche, arbitrum,bsc } = WagmiCoreChains
 
-                  // Отправляем запрос на сервер Django
-                  const response = await fetch("/authenticate_wallet/", options);
-                  const json = await response.json();
+      // Equivalent to importing from @wagmi/core/providers
+      const { CoinbaseWalletConnector } = WagmiCoreConnectors
 
-                  if (json.success) {
-                    console.log("Authentication or registration success!");
-                    window.location.href = "/academy_profile"; // Перенаправляем на нужную страницу после успешного входа
-                  } else {
-                    console.error("Ошибка авторизации или регистрации:", json.error);
-                  }
-                } else {
-                  console.log("Account is not connected. Waiting for the connection to complete...");
-                  setTimeout(handleWalletConnect, 1000); // Retry after 1 second
-                }
-              } catch (error) {
-                console.error("Ошибка авторизации через WalletConnect:", error);
+      window.process = {
+        env: {
+            NODE_ENV: 'development'
+        }
+      }
+
+      const chains = [arbitrum, mainnet, polygon,bsc]
+      const projectId = '0b1e5c998294f163bf1af4d05e11e4c1'
+
+      const { publicClient, connect } = configureChains(chains, [w3mProvider({ projectId })]);
+      const wagmiConfig = createConfig({
+        autoConnect: true,
+        connectors: w3mConnectors({ projectId, chains }),
+        publicClient
+      })
+      const ethereumClient = new EthereumClient(wagmiConfig, chains)
+      const web3modal = new Web3Modal({ projectId }, ethereumClient)
+
+      {% if not user.is_authenticated %}
+        document.getElementById("navButton").addEventListener("click", () => {
+            web3modal.openModal();
+        });
+
+        // Define the main function to handle wallet connection and authentication/registration
+        async function handleWalletConnect() {
+          try {
+            console.log("Wallet button clicked. Connecting to the wallet...");
+            const account = await getAccount();
+            console.log("Account information:", account);
+            window.csrfToken = "{{ csrf_token }}";
+            const csrfToken = window.csrfToken;
+
+            // Проверяем, подключен ли аккаунт
+            if (account.isConnected) {
+              console.log("Account is connected.");
+              const address = account.address;
+              const additionalInfo = "Дополнительная информация";
+
+              // Создаем объект с данными
+              const data = { address, additionalInfo };
+
+              // Создаем объект опций для запроса
+              const options = {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                  "X-CSRFToken": csrfToken, // Use the correct token value
+                },
+                body: JSON.stringify(data),
+              };
+
+
+              // Отправляем запрос на сервер Django
+              const response = await fetch("/authenticate_wallet/", options);
+              const json = await response.json();
+
+              if (json.success) {
+                console.log("Authentication or registration success!");
+                window.location.href = "/academy_profile"; // Перенаправляем на нужную страницу после успешного входа
+              } else {
+                console.error("Ошибка авторизации или регистрации:", json.error);
               }
+            } else {
+              console.log("Account is not connected. Waiting for the connection to complete...");
+              setTimeout(handleWalletConnect, 1000); // Retry after 1 second
             }
+          } catch (error) {
+            console.error("Ошибка авторизации через WalletConnect:", error);
+          }
+        }
 
-            // Call the main function to handle wallet connection and authentication/registration
-            document.getElementById("navButton").addEventListener("click", handleWalletConnect);
-            document.getElementById("navButtonMobile").addEventListener("click", handleWalletConnect);
+        // Call the main function to handle wallet connection and authentication/registration
+        document.getElementById("navButton").addEventListener("click", handleWalletConnect);
+        document.getElementById("navButtonMobile").addEventListener("click", handleWalletConnect);
 
-                      
-            if (web3modal && web3modal.ethereum) {
-              web3modal.ethereum.on("accountsChanged", (accounts) => {
-                if (accounts.length > 0) {
-                          // User is authenticated, redirect or update the page here
-                          window.location.href = "/academy_profile"; // Перенаправляем на нужную страницу после успешного входа
-                        } else {
-                          // User is disconnected
-                        }
-                      });
+
+        if (web3modal && web3modal.ethereum) {
+          web3modal.ethereum.on("accountsChanged", (accounts) => {
+            if (accounts.length > 0) {
+                      // User is authenticated, redirect or update the page here
+                      window.location.href = "/academy_profile"; // Перенаправляем на нужную страницу после успешного входа
+                    } else {
+                      // User is disconnected
                     }
+                  });
+                }
 
-          {% else %}
-          document.getElementById("navButton").addEventListener("click", ()=>{window.location.href = '/academy_profile';});
-          document.getElementById("navButtonMobile").addEventListener("click", ()=>{window.location.href = '/academy_profile';});
-          
-          {% comment %} 
-                        const logoutButton = document.getElementById('logoutButton');
-                
-                        // Add a click event listener to the logoutButton
-                        logoutButton.addEventListener('click', handleLogout);
-                        
-                      // Define the logout handler function
-                        async function handleLogout() {
-                          try {
-                            // Disconnect from the wallet connection
-                            await disconnect();
-                            // Redirect to the /logout page or any other desired action
-                            window.location.href = '/logout';
-                          } catch (error) {
-                            console.error("Error disconnecting:", error);
-                          }
-                        }{% endcomment %}
-                        {%endif%} 
+      {% else %}
+      document.getElementById("navButton").addEventListener("click", ()=>{window.location.href = '/academy_profile';});
+      document.getElementById("navButtonMobile").addEventListener("click", ()=>{window.location.href = '/academy_profile';});
 
-        </script>
-</body>
+      {% comment %}
+                    const logoutButton = document.getElementById('logoutButton');
+
+                    // Add a click event listener to the logoutButton
+                    logoutButton.addEventListener('click', handleLogout);
+
+                  // Define the logout handler function
+                    async function handleLogout() {
+                      try {
+                        // Disconnect from the wallet connection
+                        await disconnect();
+                        // Redirect to the /logout page or any other desired action
+                        window.location.href = '/logout';
+                      } catch (error) {
+                        console.error("Error disconnecting:", error);
+                      }
+                    }{% endcomment %}
+                    {%endif%}
+    </script>
+  </body>
 </html>

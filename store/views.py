@@ -226,22 +226,39 @@ def academy(request):
 
 @login_required
 def academy_profile(request):
+
+    customer = request.user.customer  # Определите customer здесь
+
     if request.method == 'POST':
-        selected_course_id = request.POST.get('course_id')
+        # Заполняем форму UpdateCustomerForm
+        form = UpdateCustomerForm(
+            request.POST, request.FILES, instance=customer)
+        wallet_form = WalletForm(request.POST, instance=customer)
+        if form.is_valid():
+            customer.registred = True
+            if customer.status is None:
+                customer.status = 'Ученик'
 
-        direction_instance = Direction.objects.filter(name='Демо').first()
-        courses = direction_instance.courses.all()
+            referrer_code = form.cleaned_data.get('referrer_code')
+            if referrer_code:
+                referrer = Customer.objects.filter(
+                    referral_code=referrer_code).first()
+                if referrer:
+                    Referral.objects.create(
+                        referrer=request.user, invitee=referrer.user)
+                    customer.referral_by = referrer
+            form.save()
+            messages.success(request, 'Profile was updated')
+            return redirect('academy_profile')
 
-        lessons = Lesson.objects.filter(course_id=selected_course_id)
+        if wallet_form.is_valid():
+            wallet_form.save()
+            messages.success(request, 'Wallet was updated')
+            return JsonResponse({'success': True})
 
-        context = {
-            'direction': direction_instance,
-            'courses': courses,
-            'lessons': lessons,
-        }
-
-        html_content = render_to_string('store/lessons_partial.html', context)
-        return JsonResponse({'html_content': html_content})
+    else:
+        form = UpdateCustomerForm(instance=customer)
+        wallet_form = WalletForm(instance=customer)
 
     direction_instance = Direction.objects.filter(name='Демо').first()
     courses = direction_instance.courses.all()
@@ -249,33 +266,9 @@ def academy_profile(request):
     context = {
         'direction': direction_instance,
         'courses': courses,
+        'form': form,
+        'wallet_form': wallet_form,
     }
-
-    return render(request, 'store/academy_cab_main.html', context)
-
-
-@login_required
-def update_courses_lessons(request):
-    if request.method == 'POST':
-        selected_course_id = request.POST.get('course_id')
-
-        # Используйте get_object_or_404, чтобы получить объект курса или вернуть 404, если курс не найден
-        selected_course = get_object_or_404(Course, id=selected_course_id)
-
-        # Фильтруем уроки по выбранному курсу
-        lessons = Lesson.objects.filter(course=selected_course)
-
-        context = {
-            'selected_course': selected_course,
-            'lessons': lessons,
-        }
-
-        # Возможно, вам нужно добавить дополнительную логику в зависимости от ваших требований
-
-        return render(request, 'store/academy_cab_main.html', context)
-
-    # Обработка других случаев, например, GET-запроса
-    # ...
 
     return render(request, 'store/academy_cab_main.html', context)
 
