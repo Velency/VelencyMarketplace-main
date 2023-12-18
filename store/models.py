@@ -122,7 +122,7 @@ class Lesson(models.Model):
     zoom_rec = models.URLField()
     homework = models.TextField()
     teachers = models.ManyToManyField(TeamMember)
-    Course = models.ForeignKey(Course, on_delete=models.CASCADE, null=True)
+    course = models.ForeignKey(Course, null=True, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
