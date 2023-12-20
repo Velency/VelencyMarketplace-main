@@ -1314,10 +1314,7 @@
     </script>
 
     <script>
-      function selectCourse(courseName, courseId) {
-        document.getElementById("selectedCourse").innerText = courseName;
-
-        // Отправка данных на сервер Django через AJAX
+      document.addEventListener("DOMContentLoaded", function () {
         var xhr = new XMLHttpRequest();
         xhr.open("POST", "/update_courses_lessons/", true);
         xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
@@ -1326,15 +1323,20 @@
           if (xhr.readyState == 4 && xhr.status == 200) {
             // Обработка ответа от сервера
             var lessonsList = document.getElementById("lessonsList");
-            lessonsList.innerHTML = ""; // Очищаем текущий список уроков
 
-            var lessons = JSON.parse(xhr.responseText).lessons;
-            for (var i = 0; i < lessons.length; i++) {
-              var lessonItem = document.createElement("li");
-              lessonItem.className = "drop_lessons_item main";
-              lessonItem.innerHTML =
-                '<p class="drop_lessons_text">' + lessons[i].name + "</p>";
-              lessonsList.appendChild(lessonItem);
+            if (lessonsList) {
+              lessonsList.innerHTML = ""; // Очищаем текущий список уроков
+
+              var lessons = JSON.parse(xhr.responseText).lessons;
+              for (var i = 0; i < lessons.length; i++) {
+                var lessonItem = document.createElement("li");
+                lessonItem.className = "drop_lessons_item main";
+                lessonItem.innerHTML =
+                  '<p class="drop_lessons_text">' + lessons[i].name + "</p>";
+                lessonsList.appendChild(lessonItem);
+              }
+            } else {
+              console.error("Element with id 'lessonsList' not found");
             }
           }
         };
@@ -1345,7 +1347,7 @@
         };
 
         xhr.send(JSON.stringify(data));
-      }
+      });
     </script>
   </body>
 </html>
