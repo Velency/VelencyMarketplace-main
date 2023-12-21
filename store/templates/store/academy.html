@@ -64,7 +64,7 @@
         </div>
         <div class="main_block">
           <ul id="show-menu" class="show-menu">
-            <li id="navButtonMobile" class="login_btn">
+            <li id="MobileAuth" class="login_btn">
               <p class="login_btn_text">Начать бесплатно</p>
             </li>
             <li>
@@ -1037,11 +1037,7 @@
     <script src="{% static 'js/slider_team_academy.js'%}"></script>
     <script>
       new WOW().init();
-      // JavaScript для обработки клика на кнопке и перехода на другую страницу
-        {% comment %} document.getElementById("navButton").addEventListener("click", function() {
-            // Используйте window.location.href для перехода на другую страницу
-            window.location.href = "{% url 'contact' %}"; // Замените "новая_страница.html" на URL вашей целевой страницы
-        }); {% endcomment %}
+
         // JavaScript для обработки клика на кнопке и перехода на другую страницу
         document.getElementById("footButton").addEventListener("click", function() {
             // Используйте window.location.href для перехода на другую страницу
@@ -1110,6 +1106,9 @@
         document.getElementById("navButton").addEventListener("click", () => {
             web3modal.openModal();
         });
+        document.getElementById("MobileAuth").addEventListener("click", () => {
+          web3modal.openModal();
+      });
 
         // Define the main function to handle wallet connection and authentication/registration
         async function handleWalletConnect() {
@@ -1161,7 +1160,7 @@
 
         // Call the main function to handle wallet connection and authentication/registration
         document.getElementById("navButton").addEventListener("click", handleWalletConnect);
-        document.getElementById("navButtonMobile").addEventListener("touchend", () => {
+        document.getElementById("MobileAuth").addEventListener("touchend", () => {
           console.log("Mobile button touched");
           handleWalletConnect();
         });
@@ -1180,7 +1179,7 @@
 
       {% else %}
       document.getElementById("navButton").addEventListener("click", ()=>{window.location.href = '/academy_profile';});
-      document.getElementById("navButtonMobile").addEventListener("click", ()=>{window.location.href = '/academy_profile';});
+      document.getElementById("MobileAuth").addEventListener("click", ()=>{window.location.href = '/academy_profile';});
 
       {% comment %}
                     const logoutButton = document.getElementById('logoutButton');
