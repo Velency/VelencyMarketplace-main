@@ -23,120 +23,97 @@
   </head>
   <body>
     <header class="header">
-      <div class="container">
-        <div
-          data-wow-duration="5s"
-          class="nav animate__animated animate__fadeIn"
-        >
-          <a href="{% url 'academy' %}"
-            ><img class="logo" src="{% static 'img/image 1.svg'%}" alt="logo"
-          /></a>
-          <div class="logo_text">
-            <a href="{% url 'academy' %}"><p class="text1">Бирюзовая</p></a>
-            <a href="{% url 'academy' %}"><p class="text2">Академия</p></a>
-          </div>
-          <ul class="menu">
-            <li>
-              <a href="{% url 'academy2' %}">Об академии</a>
-            </li>
-            <li>
-              <a href="{% url 'all_courses' %}">Направления</a>
-            </li>
-            <li>
-              <a href="{% url 'index' %}">Метавселенная</a>
-            </li>
-            <li>
-              <a href="{% url 'store' %}">Маркетплейс</a>
-            </li>
-          </ul>
-          <button id="navButton" class="nav_btn" href="#">
-            <p class="nav_btn_text">Начать бесплатно</p>
-          </button>
-          <button id="menu-open" class="menu-open">
-            <img
-              id="menu_img"
-              class="menu_img"
-              src="{% static '/img/burger.svg'%}"
-              alt="burger_menu_img"
-            />
-          </button>
-        </div>
-        <div class="main_block">
-          <ul id="show-menu" class="show-menu">
-            <li id="navButtonMobile" class="login_btn">
-              <p class="login_btn_text">Начать бесплатно</p>
-            </li>
-            <li>
-              <a href="{% url 'academy2' %}">Об академии</a>
-            </li>
-            <li>
-              <a href="{% url 'all_courses' %}">Направления</a>
-            </li>
-            <li>
-              <a href="{% url 'index' %}">Метавселенная</a>
-            </li>
-            <li>
-              <a href="{% url 'store' %}">Маркетплейс</a>
-            </li>
-            <li class="support_btn">
-              <a class="support_btn_text" href="{% url 'contact' %}"
-                >Связатся с нами</a
-              >
-            </li>
-          </ul>
-        </div>
-        <div class="action_text_block">
-          <div
-            id="action_block_title "
-            data-wow-duration="5s"
-            class="action_block_title animate__animated animate__fadeIn"
-          >
-            <div class="title_litle_text">
-              <p class="title1">Бирюзовая</p>
-              &nbsp;&nbsp;
-              <p class="title2">Академия</p>
+        <div class="container">
+            <div data-wow-duration="5s" class="nav animate__animated animate__fadeIn">
+                <a href="{% url 'academy' %}"><img class="logo" src="{% static 'img/image 1.svg'%}" alt="logo"/></a>
+                <div class="logo_text">
+                    <a href="{% url 'academy' %}"><p class="text1">Бирюзовая</p></a>
+                    <a href="{% url 'academy' %}"><p class="text2">Академия</p></a>
+                </div>
+                <ul class="menu">
+                    <li>
+                      <a href="{% url 'academy2' %}">Об академии</a>
+                    </li>
+                    <li>
+                      <a href="{% url 'all_courses' %}">Направления</a>
+                    </li>
+                    <li>
+                      <a href="{% url 'index' %}">Метавселенная</a>
+                    </li>
+                    <li>
+                      <a href="{% url 'store' %}">Маркетплейс</a>
+                    </li>
+                  </ul>
+                <button id="navButton" class="nav_btn">
+                    <p class="nav_btn_text">Начать бесплатно</p>
+                </button>
+                <button id="menu-open" class="menu-open">
+                    <img
+                    id="menu_img"
+                    class="menu_img"
+                    src="{% static '/img/burger.svg'%}"
+                    alt="burger_menu_img"
+                  />
+                </button>
             </div>
-            <p class="litle_text">ваш компас в мире гармонии и счастья</p>
-            <p class="litle_text2">
-              Ваши таланты – это уникальный след в этом мире. Дайте им свободу
-              развиться и сверкнуть на полную мощность
-            </p>
-            <button
-              id="coursesButton1"
-              class="action_btn animate__animated animate__pulse"
-            >
-              <div class="btn_text">
-                <p class="action_btn_text">Выбрать направление</p>
-                <img
-                  class="btn_arrow"
-                  src="{% static '/img/btn_arrow.svg'%}"
-                  alt="arrow for btn"
-                />
-              </div>
-            </button>
-            <div class="triger_group animate__animated animate__fadeInUp">
-              <div class="courses">
-                <p class="numbers">40+</p>
-                <p class="text_trigers">Образовательных курсов</p>
-              </div>
-              <div class="divider"></div>
-              <div class="teachers">
-                <p class="numbers">20+</p>
-                <p class="text_trigers">Крутых преподавателей</p>
-              </div>
-              <div class="divider"></div>
-              <div class="students">
-                <p class="numbers">5к+</p>
-                <p class="text_trigers">Студентов прошедших наши курсы</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="action-image animate__animated animate__fadeInRight">
-          <div class="round-action-image"></div>
-          <img class="action-image2" src="{% static 'img/action_image.png'%}" />
-        </div>
-      </div>
+                <div class="main_block">
+                    <ul id="show-menu" class="show-menu">
+                        <li id="navButtonMobile"  class="login_btn">
+                            <p class="login_btn_text" href="#">Начать бесплатно</p>
+                        </li>
+                        <li>
+                            <a href="{% url 'academy2' %}">Об академии</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'all_courses' %}">Направления</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'index' %}">Метавселенная</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'store' %}">Маркетплейс</a>
+                        </li>
+                        <li class="support_btn">
+                            <a class="support_btn_text" href="{% url 'contact' %}">Связатся с нами</a>
+                        </li>
+                    </ul>
+                    <div class="action_text_block">
+                        <div id="action_block_title " data-wow-duration="5s"  class="action_block_title animate__animated animate__fadeIn">
+                            <div class="title_litle_text">
+                                <p class="title1">Бирюзовая</p>&nbsp;&nbsp;
+                                <p class="title2">Академия</p>
+                            </div>
+                                <p class="litle_text">ваш компас в мире гармонии и счастья</p>
+                                <p class="litle_text2">Ваши таланты – это уникальный след в этом мире. Дайте им свободу развиться и сверкнуть на полную мощность</p>
+                                <button class="action_btn animate__animated animate__pulse">
+                                    <div id="coursesButton1" class="btn_text">
+                                        <p class="action_btn_text">Выбрать направление</p>
+                                        <img class="btn_arrow" src="{% static '/img/btn_arrow.svg'%}" alt="arrow for btn"/>
+                                    </div>
+                                </button>
+                            <div class="triger_group animate__animated animate__fadeInUp">
+                                <div class="courses">
+                                        <p class="numbers">40+</p>
+                                        <p  class="text_trigers">Образовательных курсов</p>
+                                </div>
+                                <div class="divider"></div>
+                                <div class="teachers">
+                                    <p  class="numbers">20+</p>
+                                    <p  class="text_trigers">Крутых преподавателей</p>
+                                </div>
+                                <div class="divider"></div>
+                                <div class="students">
+                                    <p  class="numbers">5к+</p>
+                                    <p  class="text_trigers">Студентов прошедших наши курсы</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="action-image animate__animated animate__fadeInRight">
+                        <div class="round-action-image"></div>
+                        <img class="action-image2" src="{% static 'img/action_image.png'%}" />
+                    </div>
+                </div>
     </header>
     <div id="courses_block" class="courses_block">
       <div class="container">
@@ -1102,9 +1079,13 @@
       const web3modal = new Web3Modal({ projectId }, ethereumClient)
 
       {% if not user.is_authenticated %}
-        document.getElementById("navButton").addEventListener("click", () => {
-            web3modal.openModal();
-        });
+      document.getElementById("navButton").addEventListener("click", () => {
+        web3modal.openModal();
+      });
+      
+      document.getElementById("navButtonMobile").addEventListener("click", () => {
+        web3modal.openModal();
+      });
 
         // Define the main function to handle wallet connection and authentication/registration
         async function handleWalletConnect() {
