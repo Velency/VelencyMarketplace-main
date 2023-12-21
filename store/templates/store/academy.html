@@ -6,8 +6,9 @@
     <meta charset="UTF-8" />
     <meta
       name="viewport"
-      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
+
     <title>Академия</title>
     <link
       rel="stylesheet"
@@ -63,10 +64,8 @@
         </div>
         <div class="main_block">
           <ul id="show-menu" class="show-menu">
-            <li>
-              <button id="navButtonMobile" href="#">
-                <p class="nav_btn_text">Начать бесплатно</p>
-              </button>
+            <li id="navButtonMobile" class="login_btn">
+              <p class="login_btn_text">Начать бесплатно</p>
             </li>
             <li>
               <a href="{% url 'academy2' %}">Об академии</a>
@@ -1162,7 +1161,10 @@
 
         // Call the main function to handle wallet connection and authentication/registration
         document.getElementById("navButton").addEventListener("click", handleWalletConnect);
-        document.getElementById("navButtonMobile").addEventListener("click", handleWalletConnect);
+        document.getElementById("navButtonMobile").addEventListener("touchend", () => {
+          console.log("Mobile button touched");
+          handleWalletConnect();
+        });
 
 
         if (web3modal && web3modal.ethereum) {
@@ -1197,7 +1199,7 @@
                         console.error("Error disconnecting:", error);
                       }
                     }{% endcomment %}
-                    {%endif%}
+      {%endif%}
     </script>
   </body>
 </html>
