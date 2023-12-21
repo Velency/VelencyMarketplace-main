@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Личный кабинет</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/academy_cab_main-academy.css'%}">
+
+</head>
+<body>
+    <header class="head_block">
+        <nav class="nav_line">
+          <div class="logo_block">
+            <img src="{% static 'img/burger.svg'%}" alt="" class="menu_drop" />
+            <img class="logo" src="{% static 'img/image 1.svg'%}" alt="logo" />
+            <div class="logo_text">
+              <p class="text1">Бирюзовая</p>
+              <p class="text2">Академия</p>
+            </div>
+          </div>
+          <div class="nav_btn_group">
+            <ul class="btn_list">
+              <li class="main_menu_item">
+                <a class="link_img" href="/all_courses.html"
+                  ><img
+                    class="item_img"
+                    src="{% static 'img/marketplace.png'%}"
+                    alt=""
+                /></a>
+              </li>
+              <li class="main_menu_item">
+                <a class="link_img" href="#"
+                  ><img
+                    class="item_img"
+                    src="{% static 'img/crypto.png'%}"
+                    alt=""
+                /></a>
+              </li>
+              <li class="main_menu_item">
+                <a class="link_img" href="#"
+                  ><img
+                    class="item_img"
+                    src="{% static 'img/metaverse.png'%}"
+                    alt=""
+                /></a>
+              </li>
+              <li class="main_menu_item">
+                <a class="link_img" href="#"
+                  ><img class="item_img" src="{% static 'img/hrw.png'%}" alt=""
+                /></a>
+              </li>
+            </ul>
+            <div class="profile_drop">
+              <img
+                src="{{ request.user.customer.image.url }}"
+                alt=""
+                class="profile_img"
+              />
+              <p class="profile_name">
+                Eth address: ...{{ user.username|slice:"-3:" }}
+              </p>
+              <img
+                class="arrow_down"
+                src="{% static 'img/arrow_down.png'%}"
+                alt=""
+              />
+            </div>
+            <ul class="drop_menu_list">
+              <a href="#"
+                ><li class="drop_menu_item main">
+                  <img
+                    class="drop_menu_img"
+                    src="{% static 'img/main_icon.png'%}"
+                    alt=""
+                  />
+                  <p class="drop_menu_text">Главная</p>
+                </li></a
+              >
+              <a href="#"
+                ><li class="drop_menu_item">
+                  <img
+                    class="drop_menu_img"
+                    src="{% static 'img/package_icon.png'%}"
+                    alt=""
+                  />
+                  <p class="drop_menu_text">Пакеты</p>
+                </li></a
+              >
+              <a href="#"
+                ><li class="drop_menu_item settings">
+                  <img
+                    class="drop_menu_img"
+                    src="{% static 'img/settings_icon.png'%}"
+                    alt=""
+                  />
+                  <p class="drop_menu_text">Настройки</p>
+                </li></a
+              >
+              <a href="#"
+                ><li id="logoutButton" class="drop_menu_item">
+                  <img
+                    class="drop_menu_img"
+                    src="{% static 'img/exit_icon.png'%}"
+                    alt=""
+                  />
+                  <p class="drop_menu_text">Выход</p>
+                </li></a
+              >
+            </ul>
+          </div>
+        </nav>
+      </header>
+    <div class="main-block">
+        <!-- боковое меню -->
+        <div class="side_menu">
+            <ul class="menu_group">
+                <li class="menu_item study_btn">
+                    <div class="study">
+                        <img class="item_menu_img" src="{% static 'img/study.png'%}" alt="">
+                    </div>
+                    <a href="#"><p class="item_text">Обучение</p></a>
+                </li>
+                <li class="menu_item practic_btn">
+                    <div class="study">
+                        <img class="item_menu_img" src="{% static 'img/practic.png'%}" alt="">
+                    </div>
+                    <a href="#"><p class="item_text">Практика</p></a>
+                </li>
+                <li class="menu_item desitions_btn">
+                    <div class="study">
+                        <img class="item_menu_img" src="{% static 'img/desitions.png'%}" alt="">
+                    </div>
+                    <a href="#"><p class="item_text">Мои успехи</p></a>
+                </li>
+                <li class="menu_item partnership_btn">
+                    <div class="study">
+                        <img class="item_menu_img" src="{% static 'img/partnership.png'%}" alt="">
+                    </div>
+                    <a href="#"><p class="item_text">Партнерство</p></a>
+                </li>
+                <li class="menu_item home_work_btn">
+                    <div class="study">
+                        <img class="item_menu_img" src="{% static 'img/home_work.png'%}" alt="">
+                    </div>
+                    <a href="#"><p class="item_text">Чат по ДЗ</p></a>
+                </li>
+                <li class="menu_item support_btn">
+                    <div class="study">
+                        <img class="item_menu_img" src="{% static 'img/support.png'%}" alt="">
+                    </div>
+                    <a href="#"><p class="item_text">Поддержка</p></a>
+                </li>
+            </ul>
+        </div>
+        <div class="main_display">
+            <!-- настройки -->
+            <div class="settings_page" style="display: block">
+                <form method="POST" name="UpdateCustomerForm">
+                    {% csrf_token %}
+                <div class="personal_block">
+                <p class="person_info_title">Персональная информация</p>
+                <div class="person_info_block">
+                    <div class="first_block">
+                        <div class="base_info_block">
+                            <p class="base_title">Базовая информация:</p>
+                            {% if request.user.customer.registred %} {% else %}
+                            <div class="ref_group">
+                                <p class="ref">Реферальный код</p>
+                                <input
+                        type="text"
+                        name="referrer_code"
+                        value="{{ request.user.customer.referrer_code }}"
+                        placeholder=""
+                        class="input_block"
+                      />
+                            </div>
+                            {% endif %}
+                            <div class="name_group">
+                                <p class="name">Имя</p>
+                                <input
+                        type="text"
+                        name="first_name"
+                        value="{{ request.user.customer.first_name }}"
+                        title="Введите ваше имя"
+                        placeholder=""
+                        class="input_block"
+                      />
+                            </div>
+                            <div class="Surname_group">
+                                <p class="surname">Фамилия</p>
+                                <input
+                                type="text"
+                                name="last_name"
+                                value="{{ request.user.customer.last_name }}"
+                                title="Введите вашу фамилию"
+                                placeholder=""
+                                class="input_block"
+                              />
+                            </div>
+                        </div>
+                        <div class="contact_info_block">
+                            <p class="contact_title">Контактные данные:</p>
+                            <div class="mail_group">
+                                <p class="mail">Email</p>
+                                <input
+                        type="email"
+                        name="email"
+                        value="{{ request.user.customer.email }}"
+                        title="Электронная почта для связи"
+                        required
+                        placeholder=""
+                        class="input_block"
+                      />
+                            </div>
+                            <div class="phone_group">
+                                <p class="phone">Телефон</p>
+                                <input
+                        type="mobile"
+                        name="mobile"
+                        value="{{ request.user.customer.mobile }}"
+                        title="Мобильный телефон для связи"
+                        placeholder=""
+                        class="input_block"
+                      />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="second_block">
+                        <div class="location_info_block">
+                            <p class="location_title">Месторасположение:</p>
+                            <div class="contry_group">
+                                <p class="contry">Страна</p>
+                                <input
+                        type="text"
+                        name="country"
+                        value="{{ request.user.customer.country }}"
+                        title="Страна проживания"
+                        placeholder=""
+                        class="input_block"
+                      />
+                            </div>
+                            <div class="zipcode_group">
+                                <p class="zipcode">Zipcode города</p>
+                                <input
+                        type="text"
+                        name="zipcode"
+                        value="{{ request.user.customer.zipcode }}"
+                        title="Почтовый индекс"
+                        placeholder=""
+                        class="input_block"
+                      />
+                            </div>
+                        </div>
+                        <div class="wallet_info_block">
+                            <div class="wallet_group">
+                                <p class="walet_title">Кошелёк:</p>
+                                <p class="wallet">Адрес кошелька Metamask</p>
+                                <input
+                                type="text"
+                                name="wallet"
+                                value="{{ request.user.customer.wallet }}"
+                                title="Enter the address of your Metamask wallet"
+                                placeholder=""
+                                class="input_block"
+                              />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="save_btn"><p class="save_btn_text">Сохранить</p></button>
+                </div>
+            </form>
+            {% if form.errors %}
+            {% for field in form %}
+                {% for error in field.errors %}
+                    <div class="alert alert-danger">{{ error }}</div>
+                {% endfor %}
+            {% endfor %}
+        {% endif %}
+            </div>
+    </div>
+</div>
+
+
+<script type="module">
+    import {
+      EthereumClient,
+      w3mConnectors,
+      w3mProvider,
+      WagmiCore,
+      WagmiCoreChains,
+      WagmiCoreConnectors,
+    } from "https://unpkg.com/@web3modal/ethereum";
+
+    import { Web3Modal } from "https://unpkg.com/@web3modal/html";
+
+    // Equivalent to importing from @wagmi/core
+    const { configureChains, createConfig, getAccount, disconnect } =
+      WagmiCore;
+
+    // Equivalent to importing from @wagmi/core/chains
+    const { mainnet, polygon, avalanche, arbitrum, bsc } = WagmiCoreChains;
+
+    // Equivalent to importing from @wagmi/core/providers
+    const { CoinbaseWalletConnector } = WagmiCoreConnectors;
+
+    window.process = {
+      env: {
+        NODE_ENV: "development",
+      },
+    };
+
+    const chains = [arbitrum, mainnet, polygon, bsc];
+    const projectId = "0b1e5c998294f163bf1af4d05e11e4c1";
+
+    const { publicClient, connect } = configureChains(chains, [
+      w3mProvider({ projectId }),
+    ]);
+    const wagmiConfig = createConfig({
+      autoConnect: true,
+      connectors: w3mConnectors({ projectId, chains }),
+      publicClient,
+    });
+    const ethereumClient = new EthereumClient(wagmiConfig, chains);
+    const web3modal = new Web3Modal({ projectId }, ethereumClient);
+    const logoutButton = document.getElementById("logoutButton");
+
+    // Add a click event listener to the logoutButton
+    logoutButton.addEventListener("click", handleLogout);
+
+    // Define the logout handler function
+    async function handleLogout() {
+      try {
+        // Disconnect from the wallet connection
+        await disconnect();
+        // Redirect to the /logout page or any other desired action
+        window.location.href = "/logout";
+      } catch (error) {
+        console.error("Error disconnecting:", error);
+      }
+    }
+  </script>
+</body>
+</html>

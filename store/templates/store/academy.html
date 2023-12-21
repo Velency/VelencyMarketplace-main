@@ -24,124 +24,97 @@
   </head>
   <body>
     <header class="header">
-      <div class="container">
-        <div
-          data-wow-duration="5s"
-          class="nav animate__animated animate__fadeIn"
-        >
-          <a href="{% url 'academy' %}"
-            ><img class="logo" src="{% static 'img/image 1.svg'%}" alt="logo"
-          /></a>
-          <div class="logo_text">
-            <a href="{% url 'academy' %}"><p class="text1">Бирюзовая</p></a>
-            <a href="{% url 'academy' %}"><p class="text2">Академия</p></a>
-          </div>
-          <ul class="menu">
-            <li>
-              <a href="{% url 'academy2' %}">Об академии</a>
-            </li>
-            <li>
-              <a href="{% url 'all_courses' %}">Направления</a>
-            </li>
-            <li>
-              <a href="{% url 'index' %}">Метавселенная</a>
-            </li>
-            <li>
-              <a href="{% url 'store' %}">Маркетплейс</a>
-            </li>
-          </ul>
-          <button id="navButton" class="nav_btn" href="#">
-            <p class="nav_btn_text">Начать бесплатно</p>
-          </button>
-          <button id="menu-open" class="menu-open">
-            <img
-              id="menu_img"
-              class="menu_img"
-              src="{% static '/img/burger.svg'%}"
-              alt="burger_menu_img"
-            />
-          </button>
-        </div>
-        <div class="main_block">
-          <ul id="show-menu" class="show-menu">
-            <li id="MobileAuth" class="login_btn">
-              <p class="login_btn_text">Начать бесплатно</p>
-            </li>
-            <li>
-              <a href="{% url 'academy2' %}">Об академии</a>
-            </li>
-            <li>
-              <a href="{% url 'all_courses' %}">Направления</a>
-            </li>
-            <li>
-              <a href="{% url 'index' %}">Метавселенная</a>
-            </li>
-            <li>
-              <a href="{% url 'store' %}">Маркетплейс</a>
-            </li>
-            <li class="support_btn">
-              <a class="support_btn_text" href="{% url 'contact' %}"
-                >Связатся с нами</a
-              >
-            </li>
-          </ul>
-
-          <div class="action_text_block">
-            <div
-              id="action_block_title "
-              data-wow-duration="5s"
-              class="action_block_title animate__animated animate__fadeIn"
-            >
-              <div class="title_litle_text">
-                <p class="title1">Бирюзовая</p>
-                &nbsp;&nbsp;
-                <p class="title2">Академия</p>
-              </div>
-              <p class="litle_text">ваш компас в мире гармонии и счастья</p>
-              <p class="litle_text2">
-                Ваши таланты – это уникальный след в этом мире. Дайте им свободу
-                развиться и сверкнуть на полную мощность
-              </p>
-              <button
-                id="coursesButton1"
-                class="action_btn animate__animated animate__pulse"
-              >
-                <div class="btn_text">
-                  <p class="action_btn_text">Выбрать направление</p>
-                  <img
-                    class="btn_arrow"
-                    src="{% static '/img/btn_arrow.svg'%}"
-                    alt="arrow for btn"
+        <div class="container">
+            <div data-wow-duration="5s" class="nav animate__animated animate__fadeIn">
+                <a href="{% url 'academy' %}"><img class="logo" src="{% static 'img/image 1.svg'%}" alt="logo"/></a>
+                <div class="logo_text">
+                    <a href="{% url 'academy' %}"><p class="text1">Бирюзовая</p></a>
+                    <a href="{% url 'academy' %}"><p class="text2">Академия</p></a>
+                </div>
+                <ul class="menu">
+                    <li>
+                      <a href="{% url 'academy2' %}">Об академии</a>
+                    </li>
+                    <li>
+                      <a href="{% url 'all_courses' %}">Направления</a>
+                    </li>
+                    <li>
+                      <a href="{% url 'index' %}">Метавселенная</a>
+                    </li>
+                    <li>
+                      <a href="{% url 'store' %}">Маркетплейс</a>
+                    </li>
+                  </ul>
+                <button id="navButton" class="nav_btn">
+                    <p class="nav_btn_text">Начать бесплатно</p>
+                </button>
+                <button id="menu-open" class="menu-open">
+                    <img
+                    id="menu_img"
+                    class="menu_img"
+                    src="{% static '/img/burger.svg'%}"
+                    alt="burger_menu_img"
                   />
-                </div>
-              </button>
-              <div class="triger_group animate__animated animate__fadeInUp">
-                <div class="courses">
-                  <p class="numbers">40+</p>
-                  <p class="text_trigers">Образовательных курсов</p>
-                </div>
-                <div class="divider"></div>
-                <div class="teachers">
-                  <p class="numbers">20+</p>
-                  <p class="text_trigers">Крутых преподавателей</p>
-                </div>
-                <div class="divider"></div>
-                <div class="students">
-                  <p class="numbers">5к+</p>
-                  <p class="text_trigers">Студентов прошедших наши курсы</p>
-                </div>
-              </div>
+                </button>
             </div>
-          </div>
-          <div class="action-image animate__animated animate__fadeInRight">
-            <div class="round-action-image"></div>
-            <img
-              class="action-image2"
-              src="{% static 'img/action_image.png'%}"
-            />
-          </div>
-        </div>
-      </div>
+                <div class="main_block">
+                    <ul id="show-menu" class="show-menu">
+                        <li id="navButtonMobile"  class="login_btn">
+                            <p class="login_btn_text" href="#">Начать бесплатно</p>
+                        </li>
+                        <li>
+                            <a href="{% url 'academy2' %}">Об академии</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'all_courses' %}">Направления</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'index' %}">Метавселенная</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'store' %}">Маркетплейс</a>
+                        </li>
+                        <li class="support_btn">
+                            <a class="support_btn_text" href="{% url 'contact' %}">Связатся с нами</a>
+                        </li>
+                    </ul>
+                    <div class="action_text_block">
+                        <div id="action_block_title " data-wow-duration="5s"  class="action_block_title animate__animated animate__fadeIn">
+                            <div class="title_litle_text">
+                                <p class="title1">Бирюзовая</p>&nbsp;&nbsp;
+                                <p class="title2">Академия</p>
+                            </div>
+                                <p class="litle_text">ваш компас в мире гармонии и счастья</p>
+                                <p class="litle_text2">Ваши таланты – это уникальный след в этом мире. Дайте им свободу развиться и сверкнуть на полную мощность</p>
+                                <button class="action_btn animate__animated animate__pulse">
+                                    <div id="coursesButton1" class="btn_text">
+                                        <p class="action_btn_text">Выбрать направление</p>
+                                        <img class="btn_arrow" src="{% static '/img/btn_arrow.svg'%}" alt="arrow for btn"/>
+                                    </div>
+                                </button>
+                            <div class="triger_group animate__animated animate__fadeInUp">
+                                <div class="courses">
+                                        <p class="numbers">40+</p>
+                                        <p  class="text_trigers">Образовательных курсов</p>
+                                </div>
+                                <div class="divider"></div>
+                                <div class="teachers">
+                                    <p  class="numbers">20+</p>
+                                    <p  class="text_trigers">Крутых преподавателей</p>
+                                </div>
+                                <div class="divider"></div>
+                                <div class="students">
+                                    <p  class="numbers">5к+</p>
+                                    <p  class="text_trigers">Студентов прошедших наши курсы</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="action-image animate__animated animate__fadeInRight">
+                        <div class="round-action-image"></div>
+                        <img class="action-image2" src="{% static 'img/action_image.png'%}" />
+                    </div>
+                </div>
     </header>
     <div id="courses_block" class="courses_block">
       <div class="container">
@@ -1062,143 +1035,134 @@
     <script src="https://unpkg.com/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
 
     <script type="module">
-
-
         import {
-        EthereumClient,
-        w3mConnectors,
-        w3mProvider,
-        WagmiCore,
-        WagmiCoreChains,
-        WagmiCoreConnectors
-      } from 'https://unpkg.com/@web3modal/ethereum'
-
-      import { Web3Modal } from 'https://unpkg.com/@web3modal/html'
-
-      // Equivalent to importing from @wagmi/core
-      const { configureChains, createConfig, getAccount,disconnect   } = WagmiCore
-
-      // Equivalent to importing from @wagmi/core/chains
-      const { mainnet, polygon, avalanche, arbitrum,bsc } = WagmiCoreChains
-
-      // Equivalent to importing from @wagmi/core/providers
-      const { CoinbaseWalletConnector } = WagmiCoreConnectors
-
-      window.process = {
-        env: {
-            NODE_ENV: 'development'
-        }
-      }
-
-      const chains = [arbitrum, mainnet, polygon,bsc]
-      const projectId = '0b1e5c998294f163bf1af4d05e11e4c1'
-
-      const { publicClient, connect } = configureChains(chains, [w3mProvider({ projectId })]);
-      const wagmiConfig = createConfig({
-        autoConnect: true,
-        connectors: w3mConnectors({ projectId, chains }),
-        publicClient
-      })
-      const ethereumClient = new EthereumClient(wagmiConfig, chains)
-      const web3modal = new Web3Modal({ projectId }, ethereumClient)
-
-      {% if not user.is_authenticated %}
-        document.getElementById("navButton").addEventListener("click", () => {
-            web3modal.openModal();
-        });
-        document.getElementById("MobileAuth").addEventListener("click", () => {
-          web3modal.openModal();
-      });
-
-        // Define the main function to handle wallet connection and authentication/registration
-        async function handleWalletConnect() {
-          try {
-            console.log("Wallet button clicked. Connecting to the wallet...");
-            const account = await getAccount();
-            console.log("Account information:", account);
-            window.csrfToken = "{{ csrf_token }}";
-            const csrfToken = window.csrfToken;
-
-            // Проверяем, подключен ли аккаунт
-            if (account.isConnected) {
-              console.log("Account is connected.");
-              const address = account.address;
-              const additionalInfo = "Дополнительная информация";
-
-              // Создаем объект с данными
-              const data = { address, additionalInfo };
-
-              // Создаем объект опций для запроса
-              const options = {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
-                  "X-CSRFToken": csrfToken, // Use the correct token value
-                },
-                body: JSON.stringify(data),
-              };
-
-
-              // Отправляем запрос на сервер Django
-              const response = await fetch("/authenticate_wallet/", options);
-              const json = await response.json();
-
-              if (json.success) {
-                console.log("Authentication or registration success!");
-                window.location.href = "/academy_profile"; // Перенаправляем на нужную страницу после успешного входа
-              } else {
-                console.error("Ошибка авторизации или регистрации:", json.error);
-              }
-            } else {
-              console.log("Account is not connected. Waiting for the connection to complete...");
-              setTimeout(handleWalletConnect, 1000); // Retry after 1 second
-            }
-          } catch (error) {
-            console.error("Ошибка авторизации через WalletConnect:", error);
+          EthereumClient,
+          w3mConnectors,
+          w3mProvider,
+          WagmiCore,
+          WagmiCoreChains,
+          WagmiCoreConnectors
+        } from 'https://unpkg.com/@web3modal/ethereum'
+      
+        import { Web3Modal } from 'https://unpkg.com/@web3modal/html'
+      
+        // Equivalent to importing from @wagmi/core
+        const { configureChains, createConfig, getAccount,disconnect   } = WagmiCore
+      
+        // Equivalent to importing from @wagmi/core/chains
+        const { mainnet, polygon, avalanche, arbitrum,bsc } = WagmiCoreChains
+      
+        // Equivalent to importing from @wagmi/core/providers
+        const { CoinbaseWalletConnector } = WagmiCoreConnectors
+  
+        window.process = {
+          env: {
+              NODE_ENV: 'development'
           }
-        }
+        }    
+  
+        const chains = [arbitrum, mainnet, polygon,bsc]
+        const projectId = '0b1e5c998294f163bf1af4d05e11e4c1'
+  
+        const { publicClient, connect } = configureChains(chains, [w3mProvider({ projectId })]);  
+        const wagmiConfig = createConfig({
+          autoConnect: true,
+          connectors: w3mConnectors({ projectId, chains }),
+          publicClient
+        })
+        const ethereumClient = new EthereumClient(wagmiConfig, chains)
+        const web3modal = new Web3Modal({ projectId }, ethereumClient)
 
-        // Call the main function to handle wallet connection and authentication/registration
-        document.getElementById("navButton").addEventListener("click", handleWalletConnect);
-        document.getElementById("MobileAuth").addEventListener("touchend", () => {
-          console.log("Mobile button touched");
-          handleWalletConnect();
-        });
+        {% if not user.is_authenticated %}
+          document.getElementById("navButton").addEventListener("click", () => {
+            web3modal.openModal();
+          });
+          document.getElementById("navButtonMobile").addEventListener("click", () => {
+            web3modal.openModal();
+          });
 
+          // Define the main function to handle wallet connection and authentication/registration
+          async function handleWalletConnect() {
+            try {
+              console.log("Wallet button clicked. Connecting to the wallet...");
+              const account = await getAccount();
+              console.log("Account information:", account);
+              window.csrfToken = "{{ csrf_token }}";
+              const csrfToken = window.csrfToken;
 
-        if (web3modal && web3modal.ethereum) {
-          web3modal.ethereum.on("accountsChanged", (accounts) => {
-            if (accounts.length > 0) {
-                      // User is authenticated, redirect or update the page here
-                      window.location.href = "/academy_profile"; // Перенаправляем на нужную страницу после успешного входа
-                    } else {
-                      // User is disconnected
-                    }
-                  });
+              // Проверяем, подключен ли аккаунт
+              if (account.isConnected) {
+                console.log("Account is connected.");
+                const address = account.address;
+                const additionalInfo = "Дополнительная информация";
+
+                // Создаем объект с данными
+                const data = { address, additionalInfo };
+
+                // Создаем объект опций для запроса
+                const options = {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRFToken": csrfToken, // Use the correct token value
+                  },
+                  body: JSON.stringify(data),
+                };
+                
+
+                // Отправляем запрос на сервер Django
+                const response = await fetch("/authenticate_wallet/", options);
+                const json = await response.json();
+
+                if (json.success) {
+                  console.log("Authentication or registration success!");
+                  window.location.href = "/academy_cab_main_unauthenticated"; // Перенаправляем на нужную страницу после успешного входа
+                } else {
+                  console.error("Ошибка авторизации или регистрации:", json.error);
                 }
+              } else {
+                console.log("Account is not connected. Waiting for the connection to complete...");
+                setTimeout(handleWalletConnect, 1000); // Retry after 1 second
+              }
+            } catch (error) {
+              console.error("Ошибка авторизации через WalletConnect:", error);
+            }
+          }
 
-      {% else %}
-      document.getElementById("navButton").addEventListener("click", ()=>{window.location.href = '/academy_profile';});
-      document.getElementById("MobileAuth").addEventListener("click", ()=>{window.location.href = '/academy_profile';});
-
-      {% comment %}
-                    const logoutButton = document.getElementById('logoutButton');
-
-                    // Add a click event listener to the logoutButton
-                    logoutButton.addEventListener('click', handleLogout);
-
-                  // Define the logout handler function
-                    async function handleLogout() {
-                      try {
-                        // Disconnect from the wallet connection
-                        await disconnect();
-                        // Redirect to the /logout page or any other desired action
-                        window.location.href = '/logout';
-                      } catch (error) {
-                        console.error("Error disconnecting:", error);
+          // Call the main function to handle wallet connection and authentication/registration
+          document.getElementById("navButton").addEventListener("click", handleWalletConnect);
+          document.getElementById("navButtonMobile").addEventListener("click", handleWalletConnect);
+                    
+          if (web3modal && web3modal.ethereum) {
+            web3modal.ethereum.on("accountsChanged", (accounts) => {
+              if (accounts.length > 0) {
+                        // User is authenticated, redirect or update the page here
+                        window.location.href = "/academy_cab_main_unauthenticated"; // Перенаправляем на нужную страницу после успешного входа
+                      } else {
+                        // User is disconnected
                       }
-                    }{% endcomment %}
-      {%endif%}
-    </script>
+                    });
+                  }
+
+        {% else %}
+                      {% comment %} const logoutButton = document.getElementById('logoutButton');
+              
+                      // Add a click event listener to the logoutButton
+                      logoutButton.addEventListener('click', handleLogout);
+                      
+                    // Define the logout handler function
+                      async function handleLogout() {
+                        try {
+                          // Disconnect from the wallet connection
+                          await disconnect();
+                          // Redirect to the /logout page or any other desired action
+                          window.location.href = '/logout';
+                        } catch (error) {
+                          console.error("Error disconnecting:", error);
+                        }
+                      } {% endcomment %}
+                      {%endif%}
+
+      </script>
   </body>
 </html>
