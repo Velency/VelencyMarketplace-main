@@ -1,0 +1,11 @@
+<ul class="drop_lessons_list_p1">
+  {% if lessons %} {% for lesson in lessons %}
+  <li class="drop_lessons_item main">
+    <p class="drop_lessons_text">{{ lesson.name }}</p>
+  </li>
+  {% endfor %} {% else %}
+  <li class="drop_lessons_item main">
+    <p class="drop_lessons_text">Нет уроков для выбранного курса</p>
+  </li>
+  {% endif %}
+</ul>

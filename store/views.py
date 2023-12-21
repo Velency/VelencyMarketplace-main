@@ -1,3 +1,6 @@
+from django.shortcuts import get_object_or_404
+from django.template.loader import render_to_string
+from django.views.decorators.csrf import csrf_exempt
 from itertools import groupby
 from django.db.models import F, IntegerField, Case, When, Value
 from functools import wraps
@@ -126,7 +129,7 @@ def login_and_registration_required(view_func):
 
 def academy2(request):
     context = {}
-    return render(request, 'store/academy2.html', {})
+    return render(request, 'store/academy2.html', context)
 
 
 def show_managment(request, id):
@@ -224,7 +227,71 @@ def academy(request):
 @login_required
 def academy_profile(request):
 
-    return render(request, 'store/academy_cab_main.html', {})
+    customer = request.user.customer  # Определите customer здесь
+
+    if request.method == 'POST':
+        # Заполняем форму UpdateCustomerForm
+        form = UpdateCustomerForm(
+            request.POST, request.FILES, instance=customer)
+        wallet_form = WalletForm(request.POST, instance=customer)
+        if form.is_valid():
+            customer.registred = True
+            if customer.status is None:
+                customer.status = 'Ученик'
+
+            referrer_code = form.cleaned_data.get('referrer_code')
+            if referrer_code:
+                referrer = Customer.objects.filter(
+                    referral_code=referrer_code).first()
+                if referrer:
+                    Referral.objects.create(
+                        referrer=request.user, invitee=referrer.user)
+                    customer.referral_by = referrer
+            form.save()
+            messages.success(request, 'Profile was updated')
+            return redirect('academy_profile')
+
+        if wallet_form.is_valid():
+            wallet_form.save()
+            messages.success(request, 'Wallet was updated')
+            return JsonResponse({'success': True})
+
+    else:
+        form = UpdateCustomerForm(instance=customer)
+        wallet_form = WalletForm(instance=customer)
+
+    direction_instance = Direction.objects.filter(name='Демо').first()
+    courses = direction_instance.courses.all()
+
+    context = {
+        'direction': direction_instance,
+        'courses': courses,
+        'form': form,
+        'wallet_form': wallet_form,
+    }
+
+    return render(request, 'store/academy_cab_main.html', context)
+
+
+@csrf_exempt
+def update_courses_lessons(request):
+    if request.method == 'POST':
+        # Получите данные из тела POST-запроса
+        data = json.loads(request.body)
+        course_id = data.get('course_id')
+
+        # Обработайте выбранный курс
+        lessons = Lesson.objects.filter(
+            course_id=course_id).values('id', 'name')
+
+        # Верните JSON-ответ
+        response_data = {
+            'status': 'success',
+            'lessons': list(lessons),
+        }
+        return JsonResponse(response_data)
+    else:
+        return JsonResponse({'status': 'error', 'message': 'Invalid request method'})
 
 
 def logoutUser(request):
