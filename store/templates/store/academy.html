@@ -6,8 +6,9 @@
     <meta charset="UTF-8" />
     <meta
       name="viewport"
-      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
+
     <title>Академия</title>
     <link
       rel="stylesheet"
@@ -901,8 +902,8 @@
                   <p class="footer_text1">
                     Никогда не сомневайтесь в своем потенциале! Бирюзовая
                     Академия – это ваш путь к лучшей версии себя. <br />
-                    <p class="footer_text2">#БирюзоваяАкадемия #РаскройСебя</p>
                   </p>
+                  <p class="footer_text2">#БирюзоваяАкадемия #РаскройСебя</p>
                 </div>
                 <div class="icon_footer_block">
                   <div class="facebook">
@@ -1009,11 +1010,7 @@
     <script src="{% static 'js/slider_team_academy.js'%}"></script>
     <script>
       new WOW().init();
-      // JavaScript для обработки клика на кнопке и перехода на другую страницу
-        {% comment %} document.getElementById("navButton").addEventListener("click", function() {
-            // Используйте window.location.href для перехода на другую страницу
-            window.location.href = "{% url 'contact' %}"; // Замените "новая_страница.html" на URL вашей целевой страницы
-        }); {% endcomment %}
+
         // JavaScript для обработки клика на кнопке и перехода на другую страницу
         document.getElementById("footButton").addEventListener("click", function() {
             // Используйте window.location.href для перехода на другую страницу
@@ -1038,141 +1035,134 @@
     <script src="https://unpkg.com/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
 
     <script type="module">
-
-
         import {
-        EthereumClient,
-        w3mConnectors,
-        w3mProvider,
-        WagmiCore,
-        WagmiCoreChains,
-        WagmiCoreConnectors
-      } from 'https://unpkg.com/@web3modal/ethereum'
-
-      import { Web3Modal } from 'https://unpkg.com/@web3modal/html'
-
-      // Equivalent to importing from @wagmi/core
-      const { configureChains, createConfig, getAccount,disconnect   } = WagmiCore
-
-      // Equivalent to importing from @wagmi/core/chains
-      const { mainnet, polygon, avalanche, arbitrum,bsc } = WagmiCoreChains
-
-      // Equivalent to importing from @wagmi/core/providers
-      const { CoinbaseWalletConnector } = WagmiCoreConnectors
-
-      window.process = {
-        env: {
-            NODE_ENV: 'development'
-        }
-      }
-
-      const chains = [arbitrum, mainnet, polygon,bsc]
-      const projectId = '0b1e5c998294f163bf1af4d05e11e4c1'
-
-      const { publicClient, connect } = configureChains(chains, [w3mProvider({ projectId })]);
-      const wagmiConfig = createConfig({
-        autoConnect: true,
-        connectors: w3mConnectors({ projectId, chains }),
-        publicClient
-      })
-      const ethereumClient = new EthereumClient(wagmiConfig, chains)
-      const web3modal = new Web3Modal({ projectId }, ethereumClient)
-
-      {% if not user.is_authenticated %}
-      document.getElementById("navButton").addEventListener("click", () => {
-        web3modal.openModal();
-      });
+          EthereumClient,
+          w3mConnectors,
+          w3mProvider,
+          WagmiCore,
+          WagmiCoreChains,
+          WagmiCoreConnectors
+        } from 'https://unpkg.com/@web3modal/ethereum'
       
-      document.getElementById("navButtonMobile").addEventListener("click", () => {
-        web3modal.openModal();
-      });
-
-        // Define the main function to handle wallet connection and authentication/registration
-        async function handleWalletConnect() {
-          try {
-            console.log("Wallet button clicked. Connecting to the wallet...");
-            const account = await getAccount();
-            console.log("Account information:", account);
-            window.csrfToken = "{{ csrf_token }}";
-            const csrfToken = window.csrfToken;
-
-            // Проверяем, подключен ли аккаунт
-            if (account.isConnected) {
-              console.log("Account is connected.");
-              const address = account.address;
-              const additionalInfo = "Дополнительная информация";
-
-              // Создаем объект с данными
-              const data = { address, additionalInfo };
-
-              // Создаем объект опций для запроса
-              const options = {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
-                  "X-CSRFToken": csrfToken, // Use the correct token value
-                },
-                body: JSON.stringify(data),
-              };
-
-
-              // Отправляем запрос на сервер Django
-              const response = await fetch("/authenticate_wallet/", options);
-              const json = await response.json();
-
-              if (json.success) {
-                console.log("Authentication or registration success!");
-                window.location.href = "/academy_profile"; // Перенаправляем на нужную страницу после успешного входа
-              } else {
-                console.error("Ошибка авторизации или регистрации:", json.error);
-              }
-            } else {
-              console.log("Account is not connected. Waiting for the connection to complete...");
-              setTimeout(handleWalletConnect, 1000); // Retry after 1 second
-            }
-          } catch (error) {
-            console.error("Ошибка авторизации через WalletConnect:", error);
+        import { Web3Modal } from 'https://unpkg.com/@web3modal/html'
+      
+        // Equivalent to importing from @wagmi/core
+        const { configureChains, createConfig, getAccount,disconnect   } = WagmiCore
+      
+        // Equivalent to importing from @wagmi/core/chains
+        const { mainnet, polygon, avalanche, arbitrum,bsc } = WagmiCoreChains
+      
+        // Equivalent to importing from @wagmi/core/providers
+        const { CoinbaseWalletConnector } = WagmiCoreConnectors
+  
+        window.process = {
+          env: {
+              NODE_ENV: 'development'
           }
-        }
+        }    
+  
+        const chains = [arbitrum, mainnet, polygon,bsc]
+        const projectId = '0b1e5c998294f163bf1af4d05e11e4c1'
+  
+        const { publicClient, connect } = configureChains(chains, [w3mProvider({ projectId })]);  
+        const wagmiConfig = createConfig({
+          autoConnect: true,
+          connectors: w3mConnectors({ projectId, chains }),
+          publicClient
+        })
+        const ethereumClient = new EthereumClient(wagmiConfig, chains)
+        const web3modal = new Web3Modal({ projectId }, ethereumClient)
 
-        // Call the main function to handle wallet connection and authentication/registration
-        document.getElementById("navButton").addEventListener("click", handleWalletConnect);
-        document.getElementById("navButtonMobile").addEventListener("click", handleWalletConnect);
+        {% if not user.is_authenticated %}
+          document.getElementById("navButton").addEventListener("click", () => {
+            web3modal.openModal();
+          });
+          document.getElementById("navButtonMobile").addEventListener("click", () => {
+            web3modal.openModal();
+          });
 
+          // Define the main function to handle wallet connection and authentication/registration
+          async function handleWalletConnect() {
+            try {
+              console.log("Wallet button clicked. Connecting to the wallet...");
+              const account = await getAccount();
+              console.log("Account information:", account);
+              window.csrfToken = "{{ csrf_token }}";
+              const csrfToken = window.csrfToken;
 
-        if (web3modal && web3modal.ethereum) {
-          web3modal.ethereum.on("accountsChanged", (accounts) => {
-            if (accounts.length > 0) {
-                      // User is authenticated, redirect or update the page here
-                      window.location.href = "/academy_profile"; // Перенаправляем на нужную страницу после успешного входа
-                    } else {
-                      // User is disconnected
-                    }
-                  });
+              // Проверяем, подключен ли аккаунт
+              if (account.isConnected) {
+                console.log("Account is connected.");
+                const address = account.address;
+                const additionalInfo = "Дополнительная информация";
+
+                // Создаем объект с данными
+                const data = { address, additionalInfo };
+
+                // Создаем объект опций для запроса
+                const options = {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRFToken": csrfToken, // Use the correct token value
+                  },
+                  body: JSON.stringify(data),
+                };
+                
+
+                // Отправляем запрос на сервер Django
+                const response = await fetch("/authenticate_wallet/", options);
+                const json = await response.json();
+
+                if (json.success) {
+                  console.log("Authentication or registration success!");
+                  window.location.href = "/academy_cab_main_unauthenticated"; // Перенаправляем на нужную страницу после успешного входа
+                } else {
+                  console.error("Ошибка авторизации или регистрации:", json.error);
                 }
+              } else {
+                console.log("Account is not connected. Waiting for the connection to complete...");
+                setTimeout(handleWalletConnect, 1000); // Retry after 1 second
+              }
+            } catch (error) {
+              console.error("Ошибка авторизации через WalletConnect:", error);
+            }
+          }
 
-      {% else %}
-      document.getElementById("navButton").addEventListener("click", ()=>{window.location.href = '/academy_profile';});
-      document.getElementById("navButtonMobile").addEventListener("click", ()=>{window.location.href = '/academy_profile';});
-
-      {% comment %}
-                    const logoutButton = document.getElementById('logoutButton');
-
-                    // Add a click event listener to the logoutButton
-                    logoutButton.addEventListener('click', handleLogout);
-
-                  // Define the logout handler function
-                    async function handleLogout() {
-                      try {
-                        // Disconnect from the wallet connection
-                        await disconnect();
-                        // Redirect to the /logout page or any other desired action
-                        window.location.href = '/logout';
-                      } catch (error) {
-                        console.error("Error disconnecting:", error);
+          // Call the main function to handle wallet connection and authentication/registration
+          document.getElementById("navButton").addEventListener("click", handleWalletConnect);
+          document.getElementById("navButtonMobile").addEventListener("click", handleWalletConnect);
+                    
+          if (web3modal && web3modal.ethereum) {
+            web3modal.ethereum.on("accountsChanged", (accounts) => {
+              if (accounts.length > 0) {
+                        // User is authenticated, redirect or update the page here
+                        window.location.href = "/academy_cab_main_unauthenticated"; // Перенаправляем на нужную страницу после успешного входа
+                      } else {
+                        // User is disconnected
                       }
-                    }{% endcomment %}
-                    {%endif%}
-    </script>
+                    });
+                  }
+
+        {% else %}
+                      {% comment %} const logoutButton = document.getElementById('logoutButton');
+              
+                      // Add a click event listener to the logoutButton
+                      logoutButton.addEventListener('click', handleLogout);
+                      
+                    // Define the logout handler function
+                      async function handleLogout() {
+                        try {
+                          // Disconnect from the wallet connection
+                          await disconnect();
+                          // Redirect to the /logout page or any other desired action
+                          window.location.href = '/logout';
+                        } catch (error) {
+                          console.error("Error disconnecting:", error);
+                        }
+                      } {% endcomment %}
+                      {%endif%}
+
+      </script>
   </body>
 </html>

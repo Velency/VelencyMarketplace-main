@@ -1,3 +1,4 @@
+from django.http import Http404
 from django.shortcuts import get_object_or_404
 from django.template.loader import render_to_string
 from django.views.decorators.csrf import csrf_exempt
@@ -280,16 +281,22 @@ def update_courses_lessons(request):
         data = json.loads(request.body)
         course_id = data.get('course_id')
 
-        # Обработайте выбранный курс
-        lessons = Lesson.objects.filter(
-            course_id=course_id).values('id', 'name')
+        try:
+            # Попробуйте получить курс по ID, используя get_object_or_404
+            selected_course = get_object_or_404(Course, id=course_id)
 
-        # Верните JSON-ответ
-        response_data = {
-            'status': 'success',
-            'lessons': list(lessons),
-        }
-        return JsonResponse(response_data)
+            # Обработайте выбранный курс
+            lessons = Lesson.objects.filter(
+                course=selected_course).values('id', 'name')
+
+            # Верните JSON-ответ
+            response_data = {
+                'status': 'success',
+                'lessons': list(lessons),
+            }
+            return JsonResponse(response_data)
+        except Http404:
+            return JsonResponse({'status': 'error', 'message': 'Course not found'})
     else:
         return JsonResponse({'status': 'error', 'message': 'Invalid request method'})
 
