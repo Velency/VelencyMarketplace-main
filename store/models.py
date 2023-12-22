@@ -14,7 +14,7 @@ from django.utils import timezone
 class Customer(models.Model):
 
     STATUS_CHOICES = (
-        ('Ученик', 'Ученик'),
+        ('Студент', 'Студент'),
         ('Преподаватель', 'Преподаватель'),
         ('Эксперт', 'Эксперт'),
         ('Продавец', 'Продавец'),

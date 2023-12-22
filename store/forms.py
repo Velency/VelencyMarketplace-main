@@ -33,12 +33,6 @@ class UpdateCustomerForm(forms.ModelForm):
                   'email', 'mobile', 'referrer_code', 'wallet']
 
 
-class WalletForm(forms.ModelForm):
-    class Meta:
-        model = Customer
-        fields = ['wallet']
-
-
 class PhotoForm(forms.ModelForm):
     class Meta:
         model = Customer
