@@ -695,7 +695,7 @@
                     <p class="courses_drop_text">Выберите курс</p>
                     <div class="drop_courses_p1">
                         <p class="courses_text">Талант-менеджмент</p>
-                        <img class="courses_drop_img_p1" src="/img/arrow_down.png" alt="">
+                        <img class="courses_drop_img_p1" src="{% static 'img/arrow_down.png'%}" alt="">
                     </div>
                     <ul class="drop_courses_list_p1">
                         <li class="drop_courses_item main">
@@ -721,34 +721,30 @@
                 <div class="lessons_drop_block">
                     <p class="lessons_drop_text">Выберите урок</p>
                     <div class="drop_lessons_p1">
-                        <img class="lessons_drop_img_knock" src="/img/knock_open.png" alt="">
-                        <p class="lessons_text">Урок 1</p>
-                        <img class="lessons_drop_img_p1" src="/img/arrow_down.png" alt="">
+                        <img class="lessons_drop_img_knock" src="{% static 'img/knock_open.png'%}" alt="">
+                        <p class="lessons_text">Демо</p>
+                        <img class="lessons_drop_img_p1" src="{% static 'img/arrow_down.png'%}" alt="">
                     </div>
                     <ul class="drop_lessons_list_p1">
                         <li class="drop_lessons_item main">
-                            <img class="lessons_item_img" src="/img/knock_open.png" alt="">
-                            <p class="drop_lessons_text" >Урок 1</p>
+                            <img class="lessons_item_img" src="{% static 'img/knock_open.png'%}" alt="">
+                            <p class="drop_lessons_text" >Демо</p>
                         </li>
                             <li class="drop_lessons_item">
-                                <img class="lessons_item_img" src="/img/knock_close.png" alt="">
+                                <img class="lessons_item_img" src="{% static 'img/knock_close.png'%}" alt="">
+                            <p class="drop_lessons_text">Урок 1</p>
+                        </li>
+                        <li class="drop_lessons_item">
+                            <img class="lessons_item_img" src="{% static 'img/knock_close.png'%}" alt="">
                             <p class="drop_lessons_text">Урок 2</p>
                         </li>
                         <li class="drop_lessons_item">
-                            <img class="lessons_item_img" src="/img/knock_close.png" alt="">
+                            <img class="lessons_item_img" src="{% static 'img/knock_close.png'%}" alt="">
                             <p class="drop_lessons_text">Урок 3</p>
                         </li>
                         <li class="drop_lessons_item">
-                            <img class="lessons_item_img" src="/img/knock_close.png" alt="">
+                            <img class="lessons_item_img" src="{% static 'img/knock_close.png'%}" alt="">
                             <p class="drop_lessons_text">Урок 4</p>
-                        </li>
-                        <li class="drop_lessons_item">
-                            <img class="lessons_item_img" src="/img/knock_close.png" alt="">
-                            <p class="drop_lessons_text">Урок 5</p>
-                        </li>
-                        <li class="drop_lessons_item">
-                            <img class="lessons_item_img" src="/img/knock_close.png" alt="">
-                            <p class="drop_lessons_text">Урок 6</p>
                         </li>
                     </ul>
                 </div>
@@ -764,9 +760,14 @@
                     </div>
                     <div class="item_container_topic">
                         <ul class="topick_group">
-                            <li class="topick_name">&#10149; Здесь актуальная ссылка на zoom урок</li>
-                            <iframe class="video_block animate__animated animate__fadeInUp" width="560" height="315" src="https://www.youtube.com/embed/ToXfaJvAk5k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                            
+                            <div class="mess_text_info">
+                                <div class="mess">
+                                    <img src="{% static 'img/zoom.png'%}" alt="" class="file_img">
+                                    <div src="/img/Оферта ИП 890409100814.pdf" type="">
+                                        <a class="file_link" href="/img/Оферта ИП 890409100814.pdf">&#10149; Здесь ссылка на zoom урок</a>
+                                    </div>
+                                </div>
+                            </div>
                         </ul>
                     </div>
                     <div id="midle_topic" class="dropdown_topic_item">
@@ -803,7 +804,7 @@
                     <p class="courses_drop_text">Выберите курс</p>
                     <div class="drop_courses_p2">
                         <p class="courses_text">Талант-менеджмент</p>
-                        <img class="courses_drop_img_p2" src="/img/arrow_down.png" alt="">
+                        <img class="courses_drop_img_p2" src="{% static 'img/arrow_down.png'%}" alt="">
                     </div>
                     <ul class="drop_courses_list_p2">
                         <li class="drop_courses_item main">
@@ -823,25 +824,29 @@
                 <div class="lessons_drop_block">
                     <p class="lessons_drop_text">Выберите урок</p>
                     <div class="drop_lessons_p2">
-                        <img class="lessons_drop_img_knock" src="/img/knock_open.png" alt="">
-                        <p class="lessons_text">Урок 1</p>
-                        <img class="lessons_drop_img_p2" src="/img/arrow_down.png" alt="">
+                        <img class="lessons_drop_img_knock" src="{% static 'img/knock_open.png'%}" alt="">
+                        <p class="lessons_text">Демо</p>
+                        <img class="lessons_drop_img_p2" src="{% static 'img/arrow_down.png'%}" alt="">
                     </div>
                     <ul class="drop_lessons_list_p2">
                         <li class="drop_lessons_item main">
-                            <img class="lessons_item_img" src="/img/knock_open.png" alt="">
-                            <p class="drop_lessons_text" >Урок 1</p>
+                            <img class="lessons_item_img" src="{% static 'img/knock_open.png'%}" alt="">
+                            <p class="drop_lessons_text" >Демо</p>
                         </li>
                             <li class="drop_lessons_item">
-                                <img class="lessons_item_img" src="/img/knock_close.png" alt="">
+                                <img class="lessons_item_img" src="{% static 'img/knock_close.png'%}" alt="">
+                            <p class="drop_lessons_text">Урок 1</p>
+                        </li>
+                        <li class="drop_lessons_item">
+                            <img class="lessons_item_img" src="{% static 'img/knock_close.png'%}" alt="">
                             <p class="drop_lessons_text">Урок 2</p>
                         </li>
                         <li class="drop_lessons_item">
-                            <img class="lessons_item_img" src="/img/knock_close.png" alt="">
+                            <img class="lessons_item_img" src="{% static 'img/knock_close.png'%}" alt="">
                             <p class="drop_lessons_text">Урок 3</p>
                         </li>
                         <li class="drop_lessons_item">
-                            <img class="lessons_item_img" src="/img/knock_close.png" alt="">
+                            <img class="lessons_item_img" src="{% static 'img/knock_close.png'%}" alt="">
                             <p class="drop_lessons_text">Урок 4</p>
                         </li>
                     </ul>
@@ -858,8 +863,14 @@
                     </div>
                     <div class="item_container_topic">
                         <ul class="topick_group">
-                            <iframe class="video_block animate__animated animate__fadeInUp" width="560" height="315" src="https://www.youtube.com/embed/ToXfaJvAk5k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                            <li class="topick_name">&#10149; Здесь актуальная ссылка на zoom урок</li>
+                            <div class="mess_text_info">
+                                <div class="mess">
+                                    <img src="{% static 'img/zoom.png'%}" alt="" class="file_img">
+                                    <div src="/img/Оферта ИП 890409100814.pdf" type="">
+                                        <a class="file_link" href="/img/Оферта ИП 890409100814.pdf">&#10149; Здесь ссылка на zoom урок</a>
+                                    </div>
+                                </div>
+                            </div>
                         </ul>
                     </div>
                     <div id="midle_topic" class="dropdown_topic_item">
@@ -895,7 +906,7 @@
                     <p class="courses_drop_text">Выберите курс</p>
                     <div class="drop_courses_p3">
                         <p class="courses_text">Талант-менеджмент</p>
-                        <img class="courses_drop_img_p3" src="/img/arrow_down.png" alt="">
+                        <img class="courses_drop_img_p3" src="{% static 'img/arrow_down.png'%}" alt="">
                     </div>
                     <ul class="drop_courses_list_p3">
                         <li class="drop_courses_item main">
@@ -915,25 +926,29 @@
                 <div class="lessons_drop_block">
                     <p class="lessons_drop_text">Выберите урок</p>
                     <div class="drop_lessons_p3">
-                        <img class="lessons_drop_img_knock" src="/img/knock_open.png" alt="">
-                        <p class="lessons_text">Урок 1</p>
-                        <img class="lessons_drop_img_p3" src="/img/arrow_down.png" alt="">
+                        <img class="lessons_drop_img_knock" src="{% static 'img/knock_open.png'%}" alt="">
+                        <p class="lessons_text">Демо</p>
+                        <img class="lessons_drop_img_p3" src="{% static 'img/arrow_down.png'%}" alt="">
                     </div>
                     <ul class="drop_lessons_list_p3">
                         <li class="drop_lessons_item main">
-                            <img class="lessons_item_img" src="/img/knock_open.png" alt="">
-                            <p class="drop_lessons_text" >Урок 1</p>
+                            <img class="lessons_item_img" src="{% static 'img/knock_open.png'%}" alt="">
+                            <p class="drop_lessons_text" >Демо</p>
                         </li>
                             <li class="drop_lessons_item">
-                                <img class="lessons_item_img" src="/img/knock_close.png" alt="">
+                                <img class="lessons_item_img" src="{% static 'img/knock_close.png'%}" alt="">
+                            <p class="drop_lessons_text">Урок 1</p>
+                        </li>
+                        <li class="drop_lessons_item">
+                            <img class="lessons_item_img" src="{% static 'img/knock_close.png'%}" alt="">
                             <p class="drop_lessons_text">Урок 2</p>
                         </li>
                         <li class="drop_lessons_item">
-                            <img class="lessons_item_img" src="/img/knock_close.png" alt="">
+                            <img class="lessons_item_img" src="{% static 'img/knock_close.png'%}" alt="">
                             <p class="drop_lessons_text">Урок 3</p>
                         </li>
                         <li class="drop_lessons_item">
-                            <img class="lessons_item_img" src="/img/knock_close.png" alt="">
+                            <img class="lessons_item_img" src="{% static 'img/knock_close.png'%}" alt="">
                             <p class="drop_lessons_text">Урок 4</p>
                         </li>
                     </ul>
@@ -950,8 +965,14 @@
                     </div>
                     <div class="item_container_topic">
                         <ul class="topick_group">
-                            <iframe class="video_block animate__animated animate__fadeInUp" width="560" height="315" src="https://www.youtube.com/embed/ToXfaJvAk5k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                            <li class="topick_name">&#10149; Здесь актуальная ссылка на zoom урок</li>
+                            <div class="mess_text_info">
+                                <div class="mess">
+                                    <img src="{% static 'img/zoom.png'%}" alt="" class="file_img">
+                                    <div src="/img/Оферта ИП 890409100814.pdf" type="">
+                                        <a class="file_link" href="/img/Оферта ИП 890409100814.pdf">&#10149; Здесь ссылка на zoom урок</a>
+                                    </div>
+                                </div>
+                            </div>
                         </ul>
                     </div>
                     <div id="midle_topic" class="dropdown_topic_item">

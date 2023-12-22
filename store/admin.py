@@ -63,14 +63,14 @@ class ProductAdmin(admin.ModelAdmin):
     inlines = [GalleryInline,]
 
 
-class ZoomLinkInline(admin.TabularInline):
+class VideoRecInline(admin.TabularInline):
     fk_name = 'Lesson'
-    model = ZoomLink
+    model = VideoRec
 
 
 @admin.register(Lesson)
 class LessonAdmin(admin.ModelAdmin):
-    inlines = [ZoomLinkInline,]
+    inlines = [VideoRecInline,]
 
 
 class Sub_CategoryInline(admin.TabularInline):

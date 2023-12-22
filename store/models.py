@@ -128,7 +128,7 @@ class Lesson(models.Model):
         return self.name
 
 
-class ZoomLink(models.Model):
+class VideoRec(models.Model):
     link = models.URLField()
     Lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE, null=True)
 
