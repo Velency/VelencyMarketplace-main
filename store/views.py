@@ -234,8 +234,8 @@ def academy_profile(request):
         return redirect('academy_cab_main_unauthenticated')
     else:
         if request.method == 'POST':
-            form = UpdateCustomerForm(request.POST, request.FILES, instance=customer)
-            wallet_form = WalletForm(request.POST, instance=customer)
+            form = UpdateCustomerForm(
+                request.POST, request.FILES, instance=customer)
 
             if form.is_valid():
                 customer.registred = True
@@ -253,15 +253,9 @@ def academy_profile(request):
                 form.save()
                 messages.success(request, 'Profile was updated')
                 return redirect('academy_profile')
-                
 
-            if wallet_form.is_valid():
-                wallet_form.save()
-                messages.success(request, 'Wallet was updated')
-                return JsonResponse({'success': True})
         else:
             form = UpdateCustomerForm(instance=customer)
-            wallet_form = WalletForm(instance=customer)
 
         direction_instance = Direction.objects.filter(name='Демо').first()
         courses = direction_instance.courses.all()
@@ -270,10 +264,10 @@ def academy_profile(request):
             'direction': direction_instance,
             'courses': courses,
             'form': form,
-            'wallet_form': wallet_form,
         }
 
         return render(request, 'store/academy_cab_main.html', context)
+
 
 def academy_cab_main_unauthenticated(request):
     customer = request.user.customer
@@ -281,45 +275,41 @@ def academy_cab_main_unauthenticated(request):
     if not customer.registred:
         # Если пользователь первый раз заходит
         if request.method == 'POST':
-            form = UpdateCustomerForm(request.POST, request.FILES, instance=customer)
-            wallet_form = WalletForm(request.POST, instance=customer)
+            form = UpdateCustomerForm(
+                request.POST, request.FILES, instance=customer)
 
             if form.is_valid():
                 customer.registred = True
-                if customer.status is None:
-                    customer.status = 'Ученик'
+                customer.status = 'Студент'
 
-                referrer_code = form.cleaned_data.get('referrer_code')
+                referrer_code = form.cleaned_data.get('referrer_code', None)
                 if referrer_code:
                     referrer = Customer.objects.filter(
                         referral_code=referrer_code).first()
                     if referrer:
-                        Referral.objects.create(
-                            referrer=request.user, invitee=referrer.user)
                         customer.referral_by = referrer
+                    else:
+                        customer.referral_by = Customer.objects.get(
+                            referrer_code='ADMIN')
+                else:
+                    customer.referral_by = Customer.objects.get(
+                        referrer_code='ADMIN')
+
                 form.save()
                 messages.success(request, 'Profile was updated')
                 return redirect('academy_profile')
-                
 
-            if wallet_form.is_valid():
-                wallet_form.save()
-                messages.success(request, 'Wallet was updated')
-                return JsonResponse({'success': True})
         else:
             form = UpdateCustomerForm(instance=customer)
-            wallet_form = WalletForm(instance=customer)
 
         context = {
             'form': form,
-            'wallet_form': wallet_form,
         }
 
         return render(request, 'store/academy_cab_main_unauthenticated.html', context)
     else:
         # Если пользователь уже зарегистрирован, перенаправляем его на academy_profile
         return redirect('academy_profile')
-
 
 
 @csrf_exempt
