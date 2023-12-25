@@ -19,7 +19,7 @@ admin.site.register(Partnership)
 admin.site.register(packagesCat)
 admin.site.register(Packages)
 admin.site.register(Stream)
-
+admin.site.register(Referral)
 
 
 class CourseAdmin(admin.ModelAdmin):

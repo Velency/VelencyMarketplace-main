@@ -234,54 +234,38 @@ def academy_profile(request):
         return redirect('academy_cab_main_unauthenticated')
     else:
         if request.method == 'POST':
-            form = UpdateCustomerForm(request.POST, request.FILES, instance=customer)
+            form = UpdateCustomerForm(
+                request.POST, request.FILES, instance=customer)
 
             if form.is_valid():
-                customer.registred = True
-                if customer.status is None:
-                    customer.status = 'Ученик'
-
-                referrer_code = form.cleaned_data.get('referrer_code')
-                if referrer_code:
-                    referrer = Customer.objects.filter(
-                        referral_code=referrer_code).first()
-                    if referrer:
-                        Referral.objects.create(
-                            referrer=request.user, invitee=referrer.user)
-                        customer.referral_by = referrer
                 form.save()
                 messages.success(request, 'Profile was updated')
                 return redirect('academy_profile')
-                
-
-
         else:
             form = UpdateCustomerForm(instance=customer)
-            
 
         direction_instance = customer.direction
         streams = direction_instance.stream_set.all()
         selected_stream = streams.first()
-        
+
         # Добавьте streams в контекст
         context = {
             'direction': direction_instance,
             'form': form,
             'streams': streams,
             'selected_stream': selected_stream,
-            
+
         }
 
         return render(request, 'store/academy_cab_main.html', context)
-
-
 
 
 def get_courses(request):
     stream_id = request.GET.get('stream_id')
     stream = get_object_or_404(Stream, pk=stream_id)
     courses = stream.courses.all()
-    course_list = [{'id': course.id, 'name': course.name} for course in courses]
+    course_list = [{'id': course.id, 'name': course.name}
+                   for course in courses]
     return JsonResponse({'courses': course_list})
 
 
@@ -297,7 +281,8 @@ def get_lesson_details(request, lesson_id):
         'lesson_topic': lesson.topic if lesson.topic else 'Название темы урока отсутствует',
         'zoom_rec': lesson.zoom_rec,
         'homework': lesson.homework,
-        'video_link': video_rec.link if video_rec else '',  # Если видеоурока нет, возвращаем пустую строку
+        # Если видеоурока нет, возвращаем пустую строку
+        'video_link': video_rec.link if video_rec else '',
     }
 
     return JsonResponse(lesson_data)
@@ -311,9 +296,9 @@ def get_lesson_details(request, lesson_id):
 #             lessons = Lesson.objects.filter(course_id=course_id)
 #             lesson_list = [{'id': lesson.id, 'name': lesson.name} for lesson in lessons]
 #             return JsonResponse({'lessons': lesson_list})
-    
+
 #     return JsonResponse({'error': 'Invalid request'})
-   
+
 
 def get_lessons(request):
     if request.method == 'GET':
@@ -321,17 +306,13 @@ def get_lessons(request):
         stream_id = request.GET.get('stream_id', None)
 
         if course_id is not None and stream_id is not None:
-            lessons = Lesson.objects.filter(course_id=course_id, streams_id=stream_id)
-            lesson_list = [{'id': lesson.id, 'name': lesson.name} for lesson in lessons]
+            lessons = Lesson.objects.filter(
+                course_id=course_id, streams_id=stream_id)
+            lesson_list = [{'id': lesson.id, 'name': lesson.name}
+                           for lesson in lessons]
             return JsonResponse({'lessons': lesson_list})
 
     return JsonResponse({'error': 'Invalid request'})
-
-
-
-
-
-
 
 
 def academy_cab_main_unauthenticated(request):
@@ -340,42 +321,44 @@ def academy_cab_main_unauthenticated(request):
     if not customer.registred:
         # Если пользователь первый раз заходит
         if request.method == 'POST':
-            form = UpdateCustomerForm(request.POST, request.FILES, instance=customer)
-            
+            form = UpdateCustomerForm(
+                request.POST, request.FILES, instance=customer)
 
             if form.is_valid():
                 customer.registred = True
                 if customer.status is None:
-                    customer.status = 'Ученик'
+                    customer.status = 'Студент'
 
-                referrer_code = form.cleaned_data.get('referrer_code')
-                if referrer_code:
+                ref_code = form.cleaned_data.get('referrer_code')
+                if ref_code:
                     referrer = Customer.objects.filter(
-                        referral_code=referrer_code).first()
+                        referral_code=ref_code).first()
                     if referrer:
                         Referral.objects.create(
-                            referrer=request.user, invitee=referrer.user)
+                            referrer=referrer.user, invitee=request.user)
                         customer.referral_by = referrer
-                form.save()
-                messages.success(request, 'Profile was updated')
-                return redirect('academy_profile')
-                
+                else:
+                    referrer = Customer.objects.filter(
+                        referral_code="ADMIN").first()
+                    Referral.objects.create(
+                        referrer=request.user, invitee=referrer.user)
+                    customer.referral_by = referrer
+            form.save()
+            messages.success(request, 'Profile was updated')
+            return redirect('academy_profile')
 
-            
         else:
             form = UpdateCustomerForm(instance=customer)
-            
 
         context = {
             'form': form,
-            
+
         }
 
         return render(request, 'store/academy_cab_main_unauthenticated.html', context)
     else:
         # Если пользователь уже зарегистрирован, перенаправляем его на academy_profile
         return redirect('academy_profile')
-
 
 
 @csrf_exempt

@@ -19,6 +19,9 @@ class Referral(models.Model):
         User, related_name='invitee', on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return f"{self.referrer} -> {self.invitee}"
+
 
 class TeamMember(models.Model):
     first_name = models.CharField(max_length=100)
@@ -51,7 +54,6 @@ class Course(models.Model):
         return self.name
 
 
-
 class Direction(models.Model):
     name = models.CharField(max_length=100)
     sale_name = models.CharField(max_length=100, null=True)
@@ -61,8 +63,6 @@ class Direction(models.Model):
     hard_skills = models.TextField()
     soft_skills = models.TextField()
     price = models.DecimalField(max_digits=15, decimal_places=2, null=True)
-  
-    
 
     def get_all_teachers(self):
         # Используем values() для получения словарей с данными по курсам и преподавателям
@@ -117,9 +117,10 @@ class Customer(models.Model):
         max_digits=10, decimal_places=2, default=0)
     # level = models.IntegerField(default=0, blank=False, null=False)
     wallet = models.CharField(max_length=100, default='')
-    status = models.CharField(max_length=20, choices=STATUS_CHOICES)
-    direction = models.ForeignKey(Direction, null=True, blank=True, on_delete=models.SET_NULL)
-
+    status = models.CharField(
+        max_length=20, choices=STATUS_CHOICES, default='Студент')
+    direction = models.ForeignKey(
+        Direction, null=True, blank=True, on_delete=models.SET_NULL)
 
     def __init__(self, *args, **kwargs):
         super(Customer, self).__init__(*args, **kwargs)
@@ -146,7 +147,8 @@ class Customer(models.Model):
 
     def get_referrals(self):
         return Customer.objects.filter(referral_by=self)
-    
+
+
 @receiver(post_save, sender=User)
 def create_customer(sender, instance, created, **kwargs):
     if created:
@@ -154,6 +156,7 @@ def create_customer(sender, instance, created, **kwargs):
         demo_direction = Direction.objects.filter(name='Демо').first()
         if demo_direction:
             Customer.objects.create(user=instance, direction=demo_direction)
+
 
 class Purchase(models.Model):
     purchase_date = models.DateField()
@@ -171,9 +174,10 @@ class StudyGroup(models.Model):
 
 class Stream(models.Model):
     name = models.CharField(max_length=100)
-    direction = models.ForeignKey(Direction, null=True, on_delete=models.CASCADE)
+    direction = models.ForeignKey(
+        Direction, null=True, on_delete=models.CASCADE)
     courses = models.ManyToManyField(Course)
-    open_status = models.BooleanField(default=False) 
+    open_status = models.BooleanField(default=False)
     # ... (другие поля)
 
     def __str__(self):
@@ -188,18 +192,19 @@ class Lesson(models.Model):
     teachers = models.ManyToManyField(TeamMember)
     course = models.ForeignKey(Course, null=True, on_delete=models.CASCADE)
     streams = models.ForeignKey(Stream, null=True, on_delete=models.CASCADE)
-    open_status = models.BooleanField(default=False) 
+    open_status = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name
-    
-    
+
+
 class VideoRec(models.Model):
     link = models.URLField()
     Lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return self.link
+
 
 class Withdraw(models.Model):
     amount = models.DecimalField(max_digits=23, decimal_places=2)
