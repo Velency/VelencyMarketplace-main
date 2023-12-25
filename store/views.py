@@ -234,8 +234,7 @@ def academy_profile(request):
         return redirect('academy_cab_main_unauthenticated')
     else:
         if request.method == 'POST':
-            form = UpdateCustomerForm(
-                request.POST, request.FILES, instance=customer)
+            form = UpdateCustomerForm(request.POST, request.FILES, instance=customer)
 
             if form.is_valid():
                 customer.registred = True
@@ -253,20 +252,86 @@ def academy_profile(request):
                 form.save()
                 messages.success(request, 'Profile was updated')
                 return redirect('academy_profile')
+                
+
 
         else:
             form = UpdateCustomerForm(instance=customer)
+            
 
-        direction_instance = Direction.objects.filter(name='Демо').first()
-        courses = direction_instance.courses.all()
-
+        direction_instance = customer.direction
+        streams = direction_instance.stream_set.all()
+        selected_stream = streams.first()
+        
+        # Добавьте streams в контекст
         context = {
             'direction': direction_instance,
-            'courses': courses,
             'form': form,
+            'streams': streams,
+            'selected_stream': selected_stream,
+            
         }
 
         return render(request, 'store/academy_cab_main.html', context)
+
+
+
+
+def get_courses(request):
+    stream_id = request.GET.get('stream_id')
+    stream = get_object_or_404(Stream, pk=stream_id)
+    courses = stream.courses.all()
+    course_list = [{'id': course.id, 'name': course.name} for course in courses]
+    return JsonResponse({'courses': course_list})
+
+
+def get_lesson_details(request, lesson_id):
+    # Получаем урок для урока с id=lesson_id
+    lesson = get_object_or_404(Lesson, id=lesson_id)
+
+    # Получаем данные о видеоуроке для данного урока
+    video_rec = VideoRec.objects.filter(Lesson=lesson).first()
+
+    # Собираем данные урока и видеоурока
+    lesson_data = {
+        'lesson_topic': lesson.topic if lesson.topic else 'Название темы урока отсутствует',
+        'zoom_rec': lesson.zoom_rec,
+        'homework': lesson.homework,
+        'video_link': video_rec.link if video_rec else '',  # Если видеоурока нет, возвращаем пустую строку
+    }
+
+    return JsonResponse(lesson_data)
+
+# def get_lessons(request):
+#     if request.method == 'GET':
+#         course_id = request.GET.get('course_id', None)
+
+#         if course_id is not None:
+#             # Здесь вы загружаете уроки только по курсу
+#             lessons = Lesson.objects.filter(course_id=course_id)
+#             lesson_list = [{'id': lesson.id, 'name': lesson.name} for lesson in lessons]
+#             return JsonResponse({'lessons': lesson_list})
+    
+#     return JsonResponse({'error': 'Invalid request'})
+   
+
+def get_lessons(request):
+    if request.method == 'GET':
+        course_id = request.GET.get('course_id', None)
+        stream_id = request.GET.get('stream_id', None)
+
+        if course_id is not None and stream_id is not None:
+            lessons = Lesson.objects.filter(course_id=course_id, streams_id=stream_id)
+            lesson_list = [{'id': lesson.id, 'name': lesson.name} for lesson in lessons]
+            return JsonResponse({'lessons': lesson_list})
+
+    return JsonResponse({'error': 'Invalid request'})
+
+
+
+
+
+
 
 
 def academy_cab_main_unauthenticated(request):
@@ -275,41 +340,42 @@ def academy_cab_main_unauthenticated(request):
     if not customer.registred:
         # Если пользователь первый раз заходит
         if request.method == 'POST':
-            form = UpdateCustomerForm(
-                request.POST, request.FILES, instance=customer)
+            form = UpdateCustomerForm(request.POST, request.FILES, instance=customer)
+            
 
             if form.is_valid():
                 customer.registred = True
-                customer.status = 'Студент'
+                if customer.status is None:
+                    customer.status = 'Ученик'
 
-                referrer_code = form.cleaned_data.get('referrer_code', None)
+                referrer_code = form.cleaned_data.get('referrer_code')
                 if referrer_code:
                     referrer = Customer.objects.filter(
                         referral_code=referrer_code).first()
                     if referrer:
+                        Referral.objects.create(
+                            referrer=request.user, invitee=referrer.user)
                         customer.referral_by = referrer
-                    else:
-                        customer.referral_by = Customer.objects.get(
-                            referrer_code='ADMIN')
-                else:
-                    customer.referral_by = Customer.objects.get(
-                        referrer_code='ADMIN')
-
                 form.save()
                 messages.success(request, 'Profile was updated')
                 return redirect('academy_profile')
+                
 
+            
         else:
             form = UpdateCustomerForm(instance=customer)
+            
 
         context = {
             'form': form,
+            
         }
 
         return render(request, 'store/academy_cab_main_unauthenticated.html', context)
     else:
         # Если пользователь уже зарегистрирован, перенаправляем его на academy_profile
         return redirect('academy_profile')
+
 
 
 @csrf_exempt

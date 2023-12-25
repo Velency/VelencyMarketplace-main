@@ -18,20 +18,8 @@ admin.site.register(NewsFeed)
 admin.site.register(Partnership)
 admin.site.register(packagesCat)
 admin.site.register(Packages)
-admin.site.register(StudyGroup)
-admin.site.register(Purchase)
+admin.site.register(Stream)
 
-
-class StreamCustomersInline(admin.TabularInline):
-    model = Stream.customers.through  # Модель для связи многие ко многим
-    extra = 1  # Количество пустых форм для добавления новых связанных объектов
-
-
-class StreamAdmin(admin.ModelAdmin):
-    inlines = [StreamCustomersInline]
-
-
-admin.site.register(Stream, StreamAdmin)
 
 
 class CourseAdmin(admin.ModelAdmin):

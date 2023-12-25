@@ -11,72 +11,6 @@ from django.utils import timezone
 
 # Create your models here.
 
-class Customer(models.Model):
-
-    STATUS_CHOICES = (
-        ('Студент', 'Студент'),
-        ('Преподаватель', 'Преподаватель'),
-        ('Эксперт', 'Эксперт'),
-        ('Продавец', 'Продавец'),
-    )
-
-    user = models.OneToOneField(
-        User, null=True, blank=True, on_delete=models.CASCADE)
-    name = models.CharField(max_length=200, null=True)
-    first_name = models.CharField(max_length=200, null=True)
-    last_name = models.CharField(max_length=20, null=True)
-    email = models.CharField(max_length=200)
-    image = models.ImageField(
-        default='user_photos/img.jpg', upload_to='user_photos')
-    mobile = models.CharField(max_length=13, null=True, blank=True)
-    # address = models.TextField(max_length=100, null=True, blank=True)
-    country = models.CharField(max_length=100, null=True, blank=True)
-    # city = models.CharField(max_length=100, null=True, blank=True)
-    # state = models.CharField(max_length=50, null=True, blank=True)
-    zipcode = models.CharField(max_length=6, null=True, blank=True)
-    referral_link = models.CharField(
-        max_length=255, unique=True, null=True, blank=True)
-    referral_code = models.CharField(max_length=5, unique=True, blank=True)
-    referrer_code = models.CharField(max_length=5, default='admin', blank=True)
-    referral_by = models.ForeignKey(
-        'self', on_delete=models.SET_NULL, null=True, blank=True)
-    registred = models.BooleanField(default=False)
-    balance_tvt = models.DecimalField(
-        max_digits=10, decimal_places=2, default=0)
-    balance_usdt = models.DecimalField(
-        max_digits=10, decimal_places=2, default=0)
-    balance_hrwt = models.DecimalField(
-        max_digits=10, decimal_places=2, default=0)
-    # level = models.IntegerField(default=0, blank=False, null=False)
-    wallet = models.CharField(max_length=100, default='')
-    status = models.CharField(max_length=20, choices=STATUS_CHOICES)
-
-    def __init__(self, *args, **kwargs):
-        super(Customer, self).__init__(*args, **kwargs)
-        if not self.wallet and self.user:
-            self.wallet = self.user.username
-
-    def __str__(self):
-        return self.user.username
-
-    def save(self, *args, **kwargs):
-        if not self.referral_code:
-            self.referral_code = secrets.token_urlsafe(5)[:5]
-        if not self.wallet:
-            self.wallet = self.user.get_username()
-        super().save(*args, **kwargs)
-
-    def generate_referral_code(self):
-        letters_and_digits = string.ascii_letters + string.digits
-        while True:
-            referral_code = ''.join(random.choice(
-                letters_and_digits) for _ in range(5))
-            if not Customer.objects.filter(referral_link=referral_code).exists():
-                return referral_code
-
-    def get_referrals(self):
-        return Customer.objects.filter(referral_by=self)
-
 
 class Referral(models.Model):
     referrer = models.ForeignKey(
@@ -117,24 +51,6 @@ class Course(models.Model):
         return self.name
 
 
-class Lesson(models.Model):
-    name = models.CharField(max_length=100)
-    zoom_rec = models.URLField()
-    homework = models.TextField()
-    teachers = models.ManyToManyField(TeamMember)
-    course = models.ForeignKey(Course, null=True, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.name
-
-
-class VideoRec(models.Model):
-    link = models.URLField()
-    Lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE, null=True)
-
-    def __str__(self):
-        return self.link
-
 
 class Direction(models.Model):
     name = models.CharField(max_length=100)
@@ -145,7 +61,8 @@ class Direction(models.Model):
     hard_skills = models.TextField()
     soft_skills = models.TextField()
     price = models.DecimalField(max_digits=15, decimal_places=2, null=True)
-    lessons = models.ManyToManyField(Lesson, related_name='direction_lessons')
+  
+    
 
     def get_all_teachers(self):
         # Используем values() для получения словарей с данными по курсам и преподавателям
@@ -162,6 +79,82 @@ class Direction(models.Model):
         return self.name
 
 
+class Customer(models.Model):
+
+    STATUS_CHOICES = (
+        ('Студент', 'Студент'),
+        ('Преподаватель', 'Преподаватель'),
+        ('Эксперт', 'Эксперт'),
+        ('Продавец', 'Продавец'),
+    )
+
+    user = models.OneToOneField(
+        User, null=True, blank=True, on_delete=models.CASCADE)
+    name = models.CharField(max_length=200, null=True)
+    first_name = models.CharField(max_length=200, null=True)
+    last_name = models.CharField(max_length=20, null=True)
+    email = models.CharField(max_length=200)
+    image = models.ImageField(
+        default='user_photos/img.jpg', upload_to='user_photos')
+    mobile = models.CharField(max_length=13, null=True, blank=True)
+    # address = models.TextField(max_length=100, null=True, blank=True)
+    country = models.CharField(max_length=100, null=True, blank=True)
+    # city = models.CharField(max_length=100, null=True, blank=True)
+    # state = models.CharField(max_length=50, null=True, blank=True)
+    zipcode = models.CharField(max_length=6, null=True, blank=True)
+    referral_link = models.CharField(
+        max_length=255, unique=True, null=True, blank=True)
+    referral_code = models.CharField(max_length=5, unique=True, blank=True)
+    referrer_code = models.CharField(max_length=5, default='admin', blank=True)
+    referral_by = models.ForeignKey(
+        'self', on_delete=models.SET_NULL, null=True, blank=True)
+    registred = models.BooleanField(default=False)
+    balance_tvt = models.DecimalField(
+        max_digits=10, decimal_places=2, default=0)
+    balance_usdt = models.DecimalField(
+        max_digits=10, decimal_places=2, default=0)
+    balance_hrwt = models.DecimalField(
+        max_digits=10, decimal_places=2, default=0)
+    # level = models.IntegerField(default=0, blank=False, null=False)
+    wallet = models.CharField(max_length=100, default='')
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES)
+    direction = models.ForeignKey(Direction, null=True, blank=True, on_delete=models.SET_NULL)
+
+
+    def __init__(self, *args, **kwargs):
+        super(Customer, self).__init__(*args, **kwargs)
+        if not self.wallet and self.user:
+            self.wallet = self.user.username
+
+    def __str__(self):
+        return self.user.username
+
+    def save(self, *args, **kwargs):
+        if not self.referral_code:
+            self.referral_code = secrets.token_urlsafe(5)[:5]
+        if not self.wallet:
+            self.wallet = self.user.get_username()
+        super().save(*args, **kwargs)
+
+    def generate_referral_code(self):
+        letters_and_digits = string.ascii_letters + string.digits
+        while True:
+            referral_code = ''.join(random.choice(
+                letters_and_digits) for _ in range(5))
+            if not Customer.objects.filter(referral_link=referral_code).exists():
+                return referral_code
+
+    def get_referrals(self):
+        return Customer.objects.filter(referral_by=self)
+    
+@receiver(post_save, sender=User)
+def create_customer(sender, instance, created, **kwargs):
+    if created:
+        # При создании нового пользователя устанавливаем связь с направлением "Демо"
+        demo_direction = Direction.objects.filter(name='Демо').first()
+        if demo_direction:
+            Customer.objects.create(user=instance, direction=demo_direction)
+
 class Purchase(models.Model):
     purchase_date = models.DateField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
@@ -177,24 +170,36 @@ class StudyGroup(models.Model):
 
 
 class Stream(models.Model):
-    direction = models.ForeignKey(Direction, on_delete=models.CASCADE)
-    name = models.CharField(max_length=50)
-    start_date = models.DateField(null=True)
-    end_date = models.DateField(null=True)
-    customers = models.ManyToManyField(Customer)
-    isavaliable = models.BooleanField(default=False)
+    name = models.CharField(max_length=100)
+    direction = models.ForeignKey(Direction, null=True, on_delete=models.CASCADE)
+    courses = models.ManyToManyField(Course)
+    open_status = models.BooleanField(default=False) 
+    # ... (другие поля)
+
+    def __str__(self):
+        return f"{self.direction.name} - {self.name}"
 
 
-@receiver(post_save, sender=Stream)
-def set_isavaliable(sender, instance, **kwargs):
-    # Проверяем, если текущая дата в пределах start_date и end_date
-    if instance.start_date <= timezone.now().date() <= instance.end_date:
-        instance.isavaliable = True
-    else:
-        instance.isavaliable = False
+class Lesson(models.Model):
+    name = models.CharField(max_length=100)
+    topic = models.CharField(max_length=500, null=True, blank=True)
+    zoom_rec = models.URLField()
+    homework = models.TextField()
+    teachers = models.ManyToManyField(TeamMember)
+    course = models.ForeignKey(Course, null=True, on_delete=models.CASCADE)
+    streams = models.ForeignKey(Stream, null=True, on_delete=models.CASCADE)
+    open_status = models.BooleanField(default=False) 
 
-    instance.save()
+    def __str__(self):
+        return self.name
+    
+    
+class VideoRec(models.Model):
+    link = models.URLField()
+    Lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE, null=True)
 
+    def __str__(self):
+        return self.link
 
 class Withdraw(models.Model):
     amount = models.DecimalField(max_digits=23, decimal_places=2)

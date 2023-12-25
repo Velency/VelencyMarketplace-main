@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/academy_cab_main-academy.css'%}">
-
+    
 </head>
 <body>
     <header class="head_block">
@@ -664,344 +664,111 @@
             <div class="study_page">
                 <div class="study_content">
             <div class="title_menu_block">
-                <p class="study_title">Ваше направление "Менеджмент"</p>
+                <p class="study_title">Ваше направление {{direction.name}}</p>
             </div>
             <ul class="potok_menu_group">
-                <a href="#"><li class="potok_item first">
-                    <img class="potok_img" src="{% static 'img/knock_open.png'%}" alt="">
+                {% for stream in streams %}
+                <a href="#">
+                    <li class="potok_item {% if stream.name == 'Поток 1' %}first{% endif %}{% if stream.name == 'Поток 2' %}second{% endif %}{% if stream.name == 'Поток 3' %}third{% endif %}{% if stream.open_status %} open{% endif %}" data-stream-id="{{ stream.id }}">
+                    <img class="potok_img" src="{% if stream.open_status %}{% static 'img/knock_open.png'%}{% else %}{% static 'img/knock_close.png'%}{% endif %}" alt="">
+                 
                     <div class="potok_text_block">
-                    <p class="potok_text">Поток 1</p>
+                    <p class="potok_text">{{ stream.name }}</p>
+                    
                     <div class="underline"></div>
+                    
                     </div>
                 </li></a>
-                <a href="#"><li class="potok_item second">
-                    <img class="potok_img" src="{% static 'img/knock_open.png'%}" alt="">
-                    <div class="potok_text_block">
-                        <p class="potok_text">Поток 2</p>
-                        <div class="underline"></div>
-                        </div>
-                </li></a>
-                <a href="#"><li class="potok_item third">
-                    <img class="potok_img" src="{% static 'img/knock_open.png'%}" alt="">
-                    <div class="potok_text_block">
-                        <p class="potok_text">Поток 3</p>
-                        <div class="underline"></div>
-                        </div>
-                </li></a>
+                {% endfor %}
             </ul>
-            <div class="potok_1_block">
-            <div class="drop_block">
-                <div class="courses_drop_block">
-                    <p class="courses_drop_text">Выберите курс</p>
-                    <div class="drop_courses_p1">
-                        <p class="courses_text">Талант-менеджмент</p>
-                        <img class="courses_drop_img_p1" src="{% static 'img/arrow_down.png'%}" alt="">
-                    </div>
-                    <ul class="drop_courses_list_p1">
-                        <li class="drop_courses_item main">
-                            <p class="drop_courses_text" >Талант-менеджмент</p>
-                        </li>
-                            <li class="drop_courses_item">
-                            <p class="drop_courses_text">Свобода воли</p>
-                        </li>
-                        <li class="drop_courses_item">
-                            <p class="drop_courses_text">Нумерология для гармоничных отношений</p>
-                        </li>
-                        <li class="drop_courses_item">
-                            <p class="drop_courses_text">Йога</p>
-                        </li>
-                        <li class="drop_courses_item">
-                            <p class="drop_courses_text">Гармония. Основы тантры</p>
-                        </li>
-                        <li class="drop_courses_item">
-                            <p class="drop_courses_text">Проффориентология</p>
-                        </li>
-                    </ul>
-                </div>
-                <div class="lessons_drop_block">
-                    <p class="lessons_drop_text">Выберите урок</p>
-                    <div class="drop_lessons_p1">
-                        <img class="lessons_drop_img_knock" src="{% static 'img/knock_open.png'%}" alt="">
-                        <p class="lessons_text">Демо</p>
-                        <img class="lessons_drop_img_p1" src="{% static 'img/arrow_down.png'%}" alt="">
-                    </div>
-                    <ul class="drop_lessons_list_p1">
-                        <li class="drop_lessons_item main">
-                            <img class="lessons_item_img" src="{% static 'img/knock_open.png'%}" alt="">
-                            <p class="drop_lessons_text" >Демо</p>
-                        </li>
-                            <li class="drop_lessons_item">
-                                <img class="lessons_item_img" src="{% static 'img/knock_close.png'%}" alt="">
-                            <p class="drop_lessons_text">Урок 1</p>
-                        </li>
-                        <li class="drop_lessons_item">
-                            <img class="lessons_item_img" src="{% static 'img/knock_close.png'%}" alt="">
-                            <p class="drop_lessons_text">Урок 2</p>
-                        </li>
-                        <li class="drop_lessons_item">
-                            <img class="lessons_item_img" src="{% static 'img/knock_close.png'%}" alt="">
-                            <p class="drop_lessons_text">Урок 3</p>
-                        </li>
-                        <li class="drop_lessons_item">
-                            <img class="lessons_item_img" src="{% static 'img/knock_close.png'%}" alt="">
-                            <p class="drop_lessons_text">Урок 4</p>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="topic_drop_block">
-                <p class="topic_title">Тема урока “Название темы урока”</p>
-                <div class="topic_dropdown">
-                    <div id="first_topic" class="dropdown_topic_item">
-                        <div class="text_item_topic">
-                            <p class="name_item_topic">Кабинет Zoom</p>
-                            <img class="item_topic_img" src="{% static 'img/dropdown_arrow.png'%}" alt="">
+            <div class="potok_block">
+                <div class="drop_block">
+                    <div class="courses_drop_block" >
+                        <p class="courses_drop_text">Выберите курс</p>
+                        <div class="drop_courses">
+                            <p class="courses_text">Ваш курс</p>
+                            <img class="courses_drop_img_p1" src="{% static 'img/arrow_down.png'%}" alt="">
                         </div>
+                    
+                         <ul class="drop_courses_list">
+                             {% comment %} здесь список курсов в li 
+                            <li class="drop_courses_item main" >
+                                <p class="drop_courses_text">Здесь должно быть название курса</p>
+                            </li>  {% endcomment %}
+                        
+                        </ul>
+                    
+                
                     </div>
-                    <div class="item_container_topic">
-                        <ul class="topick_group">
-                            <div class="mess_text_info">
-                                <div class="mess">
-                                    <img src="{% static 'img/zoom.png'%}" alt="" class="file_img">
-                                    <div src="/img/Оферта ИП 890409100814.pdf" type="">
-                                        <a class="file_link" href="/img/Оферта ИП 890409100814.pdf">&#10149; Здесь ссылка на zoom урок</a>
+                    <div class="lessons_drop_block">
+                        <p class="lessons_drop_text">Выберите урок</p>
+                        <div class="drop_lessons">
+                            {% comment %} <img class="lessons_drop_img_knock" src="{% static 'img/knock_open.png'%}" alt=""> {% endcomment %}
+                            <p class="lessons_text" >Ваш урок</p>
+                            <img class="lessons_drop_img_p1" src="{% static 'img/arrow_down.png'%}" alt="">
+                        </div>
+                        <ul class="drop_lessons_list" >
+                                
+                                 {% comment %} <li class="drop_lessons_item main">
+                                    <img class="lessons_drop_img_knock" src="{% static 'img/knock_open.png'%}" alt="">
+                                    <p class="drop_lessons_text">ммыы</p>
+                                </li> {% endcomment %}
+                             
+                        </ul>
+                    </div>
+                </div>
+                <div class="topic_drop_block">
+                    <p class="topic_title">Тема урока “Название темы урока”</p>
+                    <div class="topic_dropdown">
+                        <div id="first_topic" class="dropdown_topic_item">
+                            <div class="text_item_topic">
+                                <p class="name_item_topic">Кабинет Zoom</p>
+                                <img class="item_topic_img" src="{% static 'img/dropdown_arrow.png'%}" alt="">
+                            </div>
+                        </div>
+                        <div class="item_container_topic">
+                            <ul class="topick_group">
+                                <div class="mess_text_info">
+                                    <div class="mess">
+                                        <img src="{% static 'img/zoom.png'%}" alt="" class="file_img">
+                                        <div type="">
+                                            
+                                            <a class="file_link" href="" >&#10149; Здесь ссылка на zoom урок</a>
+                                          
+                                        </div>
                                     </div>
                                 </div>
+                            </ul>
+                        </div>
+                        <div id="midle_topic" class="dropdown_topic_item">
+                            <div class="text_item_topic">
+                                <p class="name_item_topic">Запись урока</p>
+                                <img class="item_topic_img" src="{% static 'img/dropdown_arrow.png'%}" alt="">
                             </div>
-                        </ul>
-                    </div>
-                    <div id="midle_topic" class="dropdown_topic_item">
-                        <div class="text_item_topic">
-                            <p class="name_item_topic">Запись урока</p>
-                            <img class="item_topic_img" src="{% static 'img/dropdown_arrow.png'%}" alt="">
                         </div>
-                    </div>
-                    <div class="item_container_topic">
-                        <ul class="topick_group">
-                            <li class="topick_name">&#10149; Здесь актуальная запись zoom урока</li>
-                            <iframe class="video_block animate__animated animate__fadeInUp" width="560" height="315" src="https://www.youtube.com/embed/ToXfaJvAk5k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                            
-                        </ul>
-                    </div>
-                    <div id="last_topic" class="dropdown_topic_item">
-                        <div class="text_item_topic">
-                            <p class="name_item_topic">Домашнее задание</p>
-                            <img class="item_topic_img" src="{% static 'img/dropdown_arrow.png'%}" alt="">
+                        <div class="item_container_topic">
+                            <ul class="topick_group">
+                                <li class="topick_name">&#10149; Здесь актуальная запись zoom урока</li>
+                                <iframe class="video_block animate__animated animate__fadeInUp" width="560" height="315" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                                
+                            </ul>
                         </div>
-                    </div>
-                    <div class="item_container_topic">
-                        <ul class="topick_group">
-                            <iframe class="video_block animate__animated animate__fadeInUp" width="560" height="315" src="https://www.youtube.com/embed/ToXfaJvAk5k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                            <li class="topick_name">&#10149; Здесь актуальная ссылка на zoom урок</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            </div>
-            <div class="potok_2_block">
-            <div class="drop_block">
-                <div class="courses_drop_block">
-                    <p class="courses_drop_text">Выберите курс</p>
-                    <div class="drop_courses_p2">
-                        <p class="courses_text">Талант-менеджмент</p>
-                        <img class="courses_drop_img_p2" src="{% static 'img/arrow_down.png'%}" alt="">
-                    </div>
-                    <ul class="drop_courses_list_p2">
-                        <li class="drop_courses_item main">
-                            <p class="drop_courses_text" >Талант-менеджмент</p>
-                        </li>
-                            <li class="drop_courses_item">
-                            <p class="drop_courses_text">Свобода воли</p>
-                        </li>
-                        <li class="drop_courses_item">
-                            <p class="drop_courses_text">Нумерология для гармоничных отношений</p>
-                        </li>
-                        <li class="drop_courses_item">
-                            <p class="drop_courses_text">Йога</p>
-                        </li>
-                    </ul>
-                </div>
-                <div class="lessons_drop_block">
-                    <p class="lessons_drop_text">Выберите урок</p>
-                    <div class="drop_lessons_p2">
-                        <img class="lessons_drop_img_knock" src="{% static 'img/knock_open.png'%}" alt="">
-                        <p class="lessons_text">Демо</p>
-                        <img class="lessons_drop_img_p2" src="{% static 'img/arrow_down.png'%}" alt="">
-                    </div>
-                    <ul class="drop_lessons_list_p2">
-                        <li class="drop_lessons_item main">
-                            <img class="lessons_item_img" src="{% static 'img/knock_open.png'%}" alt="">
-                            <p class="drop_lessons_text" >Демо</p>
-                        </li>
-                            <li class="drop_lessons_item">
-                                <img class="lessons_item_img" src="{% static 'img/knock_close.png'%}" alt="">
-                            <p class="drop_lessons_text">Урок 1</p>
-                        </li>
-                        <li class="drop_lessons_item">
-                            <img class="lessons_item_img" src="{% static 'img/knock_close.png'%}" alt="">
-                            <p class="drop_lessons_text">Урок 2</p>
-                        </li>
-                        <li class="drop_lessons_item">
-                            <img class="lessons_item_img" src="{% static 'img/knock_close.png'%}" alt="">
-                            <p class="drop_lessons_text">Урок 3</p>
-                        </li>
-                        <li class="drop_lessons_item">
-                            <img class="lessons_item_img" src="{% static 'img/knock_close.png'%}" alt="">
-                            <p class="drop_lessons_text">Урок 4</p>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="topic_drop_block">
-                <p class="topic_title">Тема урока “Название темы урока”</p>
-                <div class="topic_dropdown">
-                    <div id="first_topic" class="dropdown_topic_item">
-                        <div class="text_item_topic">
-                            <p class="name_item_topic">Кабинет Zoom</p>
-                            <img class="item_topic_img" src="{% static 'img/dropdown_arrow.png'%}" alt="">
-                        </div>
-                    </div>
-                    <div class="item_container_topic">
-                        <ul class="topick_group">
-                            <div class="mess_text_info">
-                                <div class="mess">
-                                    <img src="{% static 'img/zoom.png'%}" alt="" class="file_img">
-                                    <div src="/img/Оферта ИП 890409100814.pdf" type="">
-                                        <a class="file_link" href="/img/Оферта ИП 890409100814.pdf">&#10149; Здесь ссылка на zoom урок</a>
-                                    </div>
-                                </div>
+                        <div id="last_topic" class="dropdown_topic_item">
+                            <div class="text_item_topic">
+                                <p class="name_item_topic">Домашнее задание</p>
+                                <img class="item_topic_img" src="{% static 'img/dropdown_arrow.png'%}" alt="">
                             </div>
-                        </ul>
-                    </div>
-                    <div id="midle_topic" class="dropdown_topic_item">
-                        <div class="text_item_topic">
-                            <p class="name_item_topic">Запись урока</p>
-                            <img class="item_topic_img" src="{% static 'img/dropdown_arrow.png'%}" alt="">
                         </div>
-                    </div>
-                    <div class="item_container_topic">
-                        <ul class="topick_group">
-                            <iframe class="video_block animate__animated animate__fadeInUp" width="560" height="315" src="https://www.youtube.com/embed/ToXfaJvAk5k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                            <li class="topick_name">&#10149; Здесь актуальная запрись zoom урока</li>
-                        </ul>
-                    </div>
-                    <div id="last_topic" class="dropdown_topic_item">
-                        <div class="text_item_topic">
-                            <p class="name_item_topic">Домашнее задание</p>
-                            <img class="item_topic_img" src="{% static 'img/dropdown_arrow.png'%}" alt="">
+                        <div class="item_container_topic">
+                            <ul class="topick_group">
+                                <li class="topick_name">&#10149; Здесь домашнее задание к уроку</li>
+                                <p class="homework_text"></p>
+                            </ul>
                         </div>
-                    </div>
-                    <div class="item_container_topic">
-                        <ul class="topick_group">
-                            <iframe class="video_block animate__animated animate__fadeInUp" width="560" height="315" src="https://www.youtube.com/embed/ToXfaJvAk5k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                            <li class="topick_name">&#10149; Здесь актуальная ссылка на zoom урок</li>
-                        </ul>
                     </div>
                 </div>
             </div>
-            </div>
-            <div class="potok_3_block">
-            <div class="drop_block">
-                <div class="courses_drop_block">
-                    <p class="courses_drop_text">Выберите курс</p>
-                    <div class="drop_courses_p3">
-                        <p class="courses_text">Талант-менеджмент</p>
-                        <img class="courses_drop_img_p3" src="{% static 'img/arrow_down.png'%}" alt="">
-                    </div>
-                    <ul class="drop_courses_list_p3">
-                        <li class="drop_courses_item main">
-                            <p class="drop_courses_text" >Талант-менеджмент</p>
-                        </li>
-                            <li class="drop_courses_item">
-                            <p class="drop_courses_text">Свобода воли</p>
-                        </li>
-                        <li class="drop_courses_item">
-                            <p class="drop_courses_text">Нумерология для гармоничных отношений</p>
-                        </li>
-                        <li class="drop_courses_item">
-                            <p class="drop_courses_text">Йога</p>
-                        </li>
-                    </ul>
-                </div>
-                <div class="lessons_drop_block">
-                    <p class="lessons_drop_text">Выберите урок</p>
-                    <div class="drop_lessons_p3">
-                        <img class="lessons_drop_img_knock" src="{% static 'img/knock_open.png'%}" alt="">
-                        <p class="lessons_text">Демо</p>
-                        <img class="lessons_drop_img_p3" src="{% static 'img/arrow_down.png'%}" alt="">
-                    </div>
-                    <ul class="drop_lessons_list_p3">
-                        <li class="drop_lessons_item main">
-                            <img class="lessons_item_img" src="{% static 'img/knock_open.png'%}" alt="">
-                            <p class="drop_lessons_text" >Демо</p>
-                        </li>
-                            <li class="drop_lessons_item">
-                                <img class="lessons_item_img" src="{% static 'img/knock_close.png'%}" alt="">
-                            <p class="drop_lessons_text">Урок 1</p>
-                        </li>
-                        <li class="drop_lessons_item">
-                            <img class="lessons_item_img" src="{% static 'img/knock_close.png'%}" alt="">
-                            <p class="drop_lessons_text">Урок 2</p>
-                        </li>
-                        <li class="drop_lessons_item">
-                            <img class="lessons_item_img" src="{% static 'img/knock_close.png'%}" alt="">
-                            <p class="drop_lessons_text">Урок 3</p>
-                        </li>
-                        <li class="drop_lessons_item">
-                            <img class="lessons_item_img" src="{% static 'img/knock_close.png'%}" alt="">
-                            <p class="drop_lessons_text">Урок 4</p>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="topic_drop_block">
-                <p class="topic_title">Тема урока “Название темы урока”</p>
-                <div class="topic_dropdown">
-                    <div id="first_topic" class="dropdown_topic_item">
-                        <div class="text_item_topic">
-                            <p class="name_item_topic">Кабинет Zoom</p>
-                            <img class="item_topic_img" src="{% static 'img/dropdown_arrow.png'%}" alt="">
-                        </div>
-                    </div>
-                    <div class="item_container_topic">
-                        <ul class="topick_group">
-                            <div class="mess_text_info">
-                                <div class="mess">
-                                    <img src="{% static 'img/zoom.png'%}" alt="" class="file_img">
-                                    <div src="/img/Оферта ИП 890409100814.pdf" type="">
-                                        <a class="file_link" href="/img/Оферта ИП 890409100814.pdf">&#10149; Здесь ссылка на zoom урок</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </ul>
-                    </div>
-                    <div id="midle_topic" class="dropdown_topic_item">
-                        <div class="text_item_topic">
-                            <p class="name_item_topic">Запись урока</p>
-                            <img class="item_topic_img" src="{% static 'img/dropdown_arrow.png'%}" alt="">
-                        </div>
-                    </div>
-                    <div class="item_container_topic">
-                        <ul class="topick_group">
-                            <iframe class="video_block animate__animated animate__fadeInUp" width="560" height="315" src="https://www.youtube.com/embed/ToXfaJvAk5k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                            <li class="topick_name">&#10149; Здесь актуальная запрись zoom урока</li>
-                        </ul>
-                    </div>
-                    <div id="last_topic" class="dropdown_topic_item">
-                        <div class="text_item_topic">
-                            <p class="name_item_topic">Домашнее задание</p>
-                            <img class="item_topic_img" src="{% static 'img/dropdown_arrow.png'%}" alt="">
-                        </div>
-                    </div>
-                    <div class="item_container_topic">
-                        <ul class="topick_group">
-                            <iframe class="video_block animate__animated animate__fadeInUp" width="560" height="315" src="https://www.youtube.com/embed/ToXfaJvAk5k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                            <li class="topick_name">&#10149; Здесь актуальная ссылка на zoom урок</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            </div>
+          
             </div>
             </div>
             <!-- практика -->
@@ -1028,7 +795,7 @@
                             </div>
                             <ul class="rooms">
                                 <li class="chat_room mentor_room">
-                                    <img src="/img/никита.jpg" alt="" class="chat_img">
+                                    <img src="{% static 'img/никита.jpg'%}" alt="" class="chat_img">
                                     <div class="chat_info">
                                         <p class="name_person">Никита</p>
                                         <p class="info_person">"Игра "Мыслить Масшт."</p>
@@ -1036,7 +803,7 @@
                                     <div class="mess_income"><p class="mess_numb">1</p></div>
                                 </li>
                                 <li class="chat_room student_room">
-                                    <img src="/img/никита.jpg" alt="" class="chat_img">
+                                    <img src="{% static 'img/никита.jpg'%}" alt="" class="chat_img">
                                     <div class="chat_info">
                                         <p class="name_person">Никита</p>
                                         <p class="info_person">"Напр. Менеджмент"</p>
@@ -1102,11 +869,11 @@
                             </ul>
                             <div class="nav_panel">
                                 <div class="add_btn" id="uploadElement">
-                                    <img src="/img/add_media.png" alt="" class="add_btn_img">
+                                    <img src="{% static 'img/add_media.png'%}" alt="" class="add_btn_img">
                                 </div>
                                 <input class="input_mess" type="text" placeholder="Напишите свой текст здесь...">
                                 <div class="send_btn" id="sendBtn">
-                                    <img src="/img/send_arrow.png" alt="" class="send_btn_img">
+                                    <img src="{% static 'img/send_arrow.png'%}" alt="" class="send_btn_img">
                                 </div>
                                 <!-- Элемент для загрузки файла -->
                                 <input type="file" id="fileInput" style="display: none;">
@@ -1124,6 +891,163 @@
     <script src="{% static 'js/side_menu_hover-academy.js'%}"></script>
     <script src="{% static 'js/drop_menu_cab-academy.js'%}"></script>
     <script src="{% static 'js/study_page_cab-academy.js'%}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+
+<script>
+    $(document).ready(function() {
+        var activeStreamId = $('.potok_item.open').data('stream-id');  // Добавляем переменную для отслеживания активного потока
+    
+        // Функция для загрузки уроков по курсу и потоку
+        function loadLessons(courseId, streamId) {
+            console.log('Loading lessons for Course ID:', courseId, 'and Stream ID:', streamId);
+    
+            var blockSelector = '.drop_lessons_list';
+    
+            $.ajax({
+                url: '/get_lessons/',
+                type: 'GET',
+                data: {'course_id': courseId, 'stream_id': streamId},
+                success: function(data) {
+                    var lessonsHtml = '';
+                    $.each(data.lessons, function(index, lesson) {
+                        lessonsHtml += '<li class="drop_lessons_item main" data-lesson-id="' + lesson.id + '">';
+                        lessonsHtml += '<p class="drop_lessons_text">' + lesson.name + '</p>';
+                        lessonsHtml += '</li>';
+                    });
+                    $(blockSelector).html(lessonsHtml);
+    
+                    // Обработка кликов для элементов с классом "drop_lessons_item"
+                    $(blockSelector).on('click', '.drop_lessons_item', function() {
+                        var lessonId = $(this).data('lesson-id');
+                        var lessonName = $(this).find('.drop_lessons_text').text();
+                        $('.lessons_text').text(lessonName);
+                        console.log('Selected Lesson ID:', lessonId);
+                        console.log('Selected Lesson Name:', lessonName);
+                    });
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+        }
+    
+        // Обработка кликов для элементов с классом "drop_courses_item"
+        $('.drop_courses_list').on('click', '.drop_courses_item', function() {
+            var courseId = $(this).data('course-id');  // Получаем id курса
+            var streamId = activeStreamId;  // Получаем id активного потока
+            loadLessons(courseId, streamId);
+        });
+    
+        // Обработка кликов для элементов с классом "potok_item"
+        $('.potok_item').on('click', function() {
+            // Обновляем id активного потока при переключении
+            activeStreamId = $(this).data('stream-id');
+            // Сброс отображения уроков при нажатии на элемент "potok_item"
+            var blockSelector = '.drop_lessons_list';
+            $(blockSelector).html('');
+        });
+    });
+    
+</script>
+
+<script>
+    $(document).ready(function() {
+        // Функция для загрузки курсов по потоку
+        function loadCourses(streamId) {
+            var blockSelector = '.drop_courses_list';  // Изменено на '.drop_courses_list'
+            
+            $.ajax({
+                url: '/get_courses/',
+                type: 'GET',
+                data: {'stream_id': streamId},  // Заменено на 'stream-id'
+                success: function(data) {
+                    var coursesHtml = '';
+                    $.each(data.courses, function(index, course) {
+                        // Добавляем атрибут data-course-id
+                        coursesHtml += '<li class="drop_courses_item main" data-course-id="' + course.id + '">';
+                        coursesHtml += '<p class="drop_courses_text">' + course.name + '</p>';
+                        coursesHtml += '</li>';
+                    });
+                    $(blockSelector).html(coursesHtml);
+    
+                    // Обработка кликов на элементах .drop_courses_item
+                    $(blockSelector).on('click', '.drop_courses_item', function() {
+                        var courseId = $(this).data('course-id');
+                        var courseName = $(this).find('.drop_courses_text').text();
+                        $('.courses_text').text(courseName);
+                        console.log('Selected Course ID:', courseId);
+                        console.log('Selected Course Name:', courseName);
+                    });
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+        }
+    
+        // Загрузка курсов при загрузке страницы
+        loadCourses($('.first.open').data('stream-id'));
+    
+        // Обработка кликов на элементах .first.open, .second.open, .third.open
+        $('.first.open, .second.open, .third.open').on('click', function() {
+            var streamId = $(this).data('stream-id');  // Заменено на 'stream-id'
+            loadCourses(streamId);
+        });
+
+
+         // Обработка кликов на элементах .first.open, .second.open, .third.open
+         $('.first.open, .second.open, .third.open').on('click', function() {
+            var streamId = $(this).data('stream-id');
+            loadCourses(streamId);
+    
+            // Отображение "Ваш курс" и "Ваш урок"
+            $('.courses_text').text('Ваш курс');
+            $('.lessons_text').text('Ваш урок');
+            $('.topic_title').text('Тема урока “Название темы урока”'); 
+        });
+    });
+    
+</script>
+    
+
+
+<script>
+  // Отображение темы урока 
+    // Добавляем обработчик кликов для элементов .drop_lessons_item
+    $('.drop_lessons_list').on('click', '.drop_lessons_item', function() {
+    var lessonId = $(this).data('lesson-id');
+
+    // AJAX-запрос для получения данных урока
+    $.ajax({
+        url: '/get_lesson_details/' + lessonId + '/',
+        type: 'GET',
+        success: function(data) {
+            var lessonTopicTitle = 'Тема урока "' + data.lesson_topic + '"';
+            $('.topic_title').text(lessonTopicTitle);
+
+            // Отображение zoom_rec в ссылке
+            $('.file_link').attr('href', data.zoom_rec);
+
+            // Отображение homework
+            $('.homework_text').text(data.homework);
+
+            // Отображение видео в iframe
+            $('.video_block').attr('src', data.video_link);
+        },
+        error: function(error) {
+            console.log(error);
+        }
+    });
+    });
+
+
+    
+</script>
+
+
     <script type="module">
         import {
           EthereumClient,
@@ -1183,7 +1107,21 @@
         }
       </script>
 
+
+      {% comment %} <script> 
+        //код по переключению между потоками
+        function handleClick(streamId) {
+            var streamElement = document.querySelector('.potok_item.first');
+            if (streamElement.classList.contains('knock_close')) {
+                alert('Этот поток еще закрыт!');
+            } else {
+                // Обработка клика на открытый поток
+            }
+        }
+      </script> {% endcomment %}
+
         <script>
+            //код к чату
             document.addEventListener('DOMContentLoaded', function() {
                 var addBtn = document.querySelector('.add_btn');
                 var sendBtn = document.querySelector('.send_btn');
