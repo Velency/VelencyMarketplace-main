@@ -436,14 +436,13 @@ def send_email(request):
 
 def account(request):
     form = None  # установить значение по умолчанию
-    wallet_form = None  # установить значение по умолчанию
     if request.method == "POST":
         customer = request.user.customer
         if request.user.customer.name == '':
             request.user.customer.name = request.user.username
         form = UpdateCustomerForm(
             request.POST, request.FILES, instance=customer)
-        wallet_form = WalletForm(request.POST, instance=customer)
+
         if form.is_valid():
             customer.registred = True
             if customer.status is None:
@@ -464,14 +463,10 @@ def account(request):
             form.save()
             messages.success(request, 'Profile was updated')
             return redirect('my_profile')
-        if wallet_form.is_valid():
-            wallet_form.save()
-            messages.success(request, 'Wallet was updated')
-            return redirect('my_profile')
     else:
         form = UpdateCustomerForm(instance=request.user.customer)
-        wallet_form = WalletForm(instance=request.user.customer)
-    return render(request, 'store/customer_form.html', {'form': form, 'wallet_form': wallet_form})
+
+    return render(request, 'store/customer_form.html', {'form': form, })
 
 
 # Viwe.py
