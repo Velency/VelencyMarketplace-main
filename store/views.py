@@ -16,6 +16,7 @@ from .models import *
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 import json
 import datetime
+import pytz
 from .utils import cookieCart, cartData, guestOrder
 from django.db.models.signals import post_save
 
@@ -248,18 +249,65 @@ def academy_profile(request):
 
         if study_group:
             direction_name = study_group.direction.name
-            # Получаем потоки для направления пользователя
             study_group_direction_streams = study_group.direction.stream_set.all()
         else:
             direction_name = Direction.objects.get(name='Демо').name
-            # Получаем потоки для направления "Демо"
             study_group_direction_streams = Direction.objects.get(name='Демо').stream_set.all()
 
+        # Получение данных о расписании
+        schedule_data = WeaklyBoard.objects.filter(direction__name=direction_name)
+
+        # Группировка данных по дням недели
+        schedule_by_days = {}
+        for day in ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница']:
+            schedule_by_days[day] = schedule_data.filter(name=day).order_by('start_time')
+            
+
+            
+        COUNTRY_TIMEZONES = {
+                'Россия': 'Europe/Moscow',
+                'Украина': 'Europe/Kiev',
+                'Беларусь': 'Europe/Minsk',
+                'Казахстан': 'Asia/Almaty',
+                'Грузия': 'Asia/Tbilisi',
+                'Армения': 'Asia/Yerevan',
+                'Азербайджан': 'Asia/Baku',
+                'Туркменистан': 'Asia/Ashgabat',
+                'Узбекистан': 'Asia/Tashkent',
+                'Киргизия': 'Asia/Bishkek',
+                'Таджикистан': 'Asia/Dushanbe',
+                'Германия': 'Europe/Berlin',
+                'Франция': 'Europe/Paris',
+                'Италия': 'Europe/Rome',
+                'Великобритания': 'Europe/London',
+                'Испания': 'Europe/Madrid',
+                'Турция': 'Europe/Istanbul',
+                'Китай': 'Asia/Shanghai',
+                'Япония': 'Asia/Tokyo',
+                'Индия': 'Asia/Kolkata',
+                'Южная Корея': 'Asia/Seoul',
+                'Сингапур': 'Asia/Singapore',
+                # Добавьте другие страны и временные зоны по необходимости
+                }
+
+       # Определяем часовой пояс пользователя
+        user_timezone = pytz.timezone(COUNTRY_TIMEZONES.get(customer.country, 'UTC'))
+        # Проходим по расписанию и конвертируем время в часовой пояс пользователя
+        converted_schedule = []
+        for day, lessons in schedule_by_days.items():
+            converted_lessons = []
+            for lesson in lessons:
+                start_time = lesson.start_time.astimezone(user_timezone).strftime('%H:%M')
+                end_time = lesson.end_time.astimezone(user_timezone).strftime('%H:%M')
+                converted_lessons.append({'start_time': start_time, 'end_time': end_time, 'course': lesson.course})
+            converted_schedule.append({'day': day, 'lessons': converted_lessons})
+           
         context = {
             'direction': direction_name,
             'form': form,
             'study_group_direction_streams': study_group_direction_streams,
-            'study_group_direction': direction_name,  # Добавляем название направления в контекст
+            'study_group_direction': direction_name,
+            'schedule_by_days': converted_schedule,  # Обновляем расписание с учетом часового пояса
         }
 
         return render(request, 'store/academy_cab_main.html', context)

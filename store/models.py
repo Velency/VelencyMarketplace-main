@@ -158,13 +158,15 @@ def create_customer(sender, instance, created, **kwargs):
             Customer.objects.create(user=instance, direction=demo_direction)
 
 
-class Purchase(models.Model):
-    purchase_date = models.DateField()
-    price = models.DecimalField(max_digits=10, decimal_places=2)
-    payment_status = models.BooleanField(default=False)
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+class WeaklyBoard(models.Model):
+    name = models.CharField(max_length=50)
     direction = models.ForeignKey(Direction, on_delete=models.CASCADE)
-
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    start_time = models.DateTimeField(null=True)
+    end_time = models.DateTimeField(null=True)
+    
+    def __str__(self):
+        return f"{self.name} - {self.course} - {self.start_time} to {self.end_time}"
 
 class StudyGroup(models.Model):
     direction = models.ForeignKey(Direction, on_delete=models.CASCADE)

@@ -251,288 +251,28 @@
                 </div>
             </div>
             <div class="weekly_board">
-                    <ul class="weakly_lessons_board_text">
-                        <li class="weakly_lessons_item">
-                            <div class="mondey_title_block">
-                                <p class="mondey_title">Понедельник</p>
-                                <div class="weakly_lessons_underline"></div>
-                            </div>
-                            <div class="lesson_block_main">
-                                <div class="lessons_info_block">
-                                <p class="lessons_info_time">11:30-12:30</p>
-                                <p class="lessons_info_subj">Талант-мен...</p>
+                <ul class="weakly_lessons_board_text">
+                    {% for day_schedule in schedule_by_days %}
+                    <li class="weakly_lessons_item">
+                        <div class="mondey_title_block">
+                            <p class="mondey_title">{{ day_schedule.day }}</p>
+                            <div class="weakly_lessons_underline"></div>
+                        </div>
+                        {% for lesson in day_schedule.lessons %}
+                        <div class="{% if forloop.first %}lesson_block_main{% else %}lesson_block{% endif %}">
+                            <div class="lessons_info_block">
+                                <p class="lessons_info_time">{{ lesson.start_time }}-{{ lesson.end_time }}</p>
+                                <p class="lessons_info_subj">{{ lesson.course.name|truncatechars:10 }}...</p>
                                 <div class="lessons_info_subj_full_block">
-                                <p class="lessons_info_subj_full">Талант-менеджмент</p>
+                                    <p class="lessons_info_subj_full">{{ lesson.course.name }}</p>
                                 </div>
-                                </div>
-                                <div class="weakly_lessons_underline"></div>
                             </div>
-                            <div class="lesson_block">
-                                <div class="lessons_info_block">
-                                <p class="lessons_info_time">11:30-12:30</p>
-                                <p class="lessons_info_subj">Талант-мен...</p>
-                                <div class="lessons_info_subj_full_block">
-                                    <p class="lessons_info_subj_full">Талант-менеджмент</p>
-                                    </div>
-                                </div>
-                                <div class="weakly_lessons_underline"></div>
-                            </div>
-                            <div class="lesson_block">
-                                <div class="lessons_info_block">
-                                <p class="lessons_info_time">11:30-12:30</p>
-                                <p class="lessons_info_subj">Талант-мен...</p>
-                                <div class="lessons_info_subj_full_block">
-                                    <p class="lessons_info_subj_full">Талант-менеджмент</p>
-                                    </div>
-                                </div>
-                                <div class="weakly_lessons_underline"></div>
-                            </div>
-                            <div class="lesson_block">
-                                <div class="lessons_info_block">
-                                <p class="lessons_info_time">11:30-12:30</p>
-                                <p class="lessons_info_subj">Талант-мен...</p>
-                                <div class="lessons_info_subj_full_block">
-                                    <p class="lessons_info_subj_full">Талант-менеджмент</p>
-                                    </div>
-                                </div>
-                                <div class="weakly_lessons_underline"></div>
-                            </div>
-                            <div class="lesson_block">
-                                <div class="lessons_info_block">
-                                <p class="lessons_info_time">11:30-12:30</p>
-                                <p class="lessons_info_subj">Талант-мен...</p>
-                                <div class="lessons_info_subj_full_block">
-                                    <p class="lessons_info_subj_full">Талант-менеджмент</p>
-                                    </div>
-                                </div>
-                                <div class="weakly_lessons_underline"></div>
-                            </div>
-                        </li>
-                        <li class="weakly_lessons_item">
-                            <div class="mondey_title_block">
-                                <p class="mondey_title">Вторник</p>
-                                <div class="weakly_lessons_underline"></div>
-                            </div>
-                            <div class="lesson_block_main">
-                                <div class="lessons_info_block">
-                                <p class="lessons_info_time">11:30-12:30</p>
-                                <p class="lessons_info_subj">Талант-мен...</p>
-                                <div class="lessons_info_subj_full_block">
-                                <p class="lessons_info_subj_full">Талант-менеджмент</p>
-                                </div>
-                                </div>
-                                <div class="weakly_lessons_underline"></div>
-                            </div>
-                            <div class="lesson_block">
-                                <div class="lessons_info_block">
-                                <p class="lessons_info_time">11:30-12:30</p>
-                                <p class="lessons_info_subj">Талант-мен...</p>
-                                <div class="lessons_info_subj_full_block">
-                                    <p class="lessons_info_subj_full">Талант-менеджмент</p>
-                                    </div>
-                                </div>
-                                <div class="weakly_lessons_underline"></div>
-                            </div>
-                            <div class="lesson_block">
-                                <div class="lessons_info_block">
-                                <p class="lessons_info_time">11:30-12:30</p>
-                                <p class="lessons_info_subj">Талант-мен...</p>
-                                <div class="lessons_info_subj_full_block">
-                                    <p class="lessons_info_subj_full">Талант-менеджмент</p>
-                                    </div>
-                                </div>
-                                <div class="weakly_lessons_underline"></div>
-                            </div>
-                            <div class="lesson_block">
-                                <div class="lessons_info_block">
-                                <p class="lessons_info_time">11:30-12:30</p>
-                                <p class="lessons_info_subj">Талант-мен...</p>
-                                <div class="lessons_info_subj_full_block">
-                                    <p class="lessons_info_subj_full">Талант-менеджмент</p>
-                                    </div>
-                                </div>
-                                <div class="weakly_lessons_underline"></div>
-                            </div>
-                            <div class="lesson_block">
-                                <div class="lessons_info_block">
-                                <p class="lessons_info_time">11:30-12:30</p>
-                                <p class="lessons_info_subj">Талант-мен...</p>
-                                <div class="lessons_info_subj_full_block">
-                                    <p class="lessons_info_subj_full">Талант-менеджмент</p>
-                                    </div>
-                                </div>
-                                <div class="weakly_lessons_underline"></div>
-                            </div>
-                        </li>
-                        <li class="weakly_lessons_item">
-                            <div class="mondey_title_block">
-                                <p class="mondey_title">Среда</p>
-                                <div class="weakly_lessons_underline"></div>
-                            </div>
-                            <div class="lesson_block_main">
-                                <div class="lessons_info_block">
-                                <p class="lessons_info_time">11:30-12:30</p>
-                                <p class="lessons_info_subj">Талант-мен...</p>
-                                <div class="lessons_info_subj_full_block">
-                                <p class="lessons_info_subj_full">Талант-менеджмент</p>
-                                </div>
-                                </div>
-                                <div class="weakly_lessons_underline"></div>
-                            </div>
-                            <div class="lesson_block">
-                                <div class="lessons_info_block">
-                                <p class="lessons_info_time">11:30-12:30</p>
-                                <p class="lessons_info_subj">Талант-мен...</p>
-                                <div class="lessons_info_subj_full_block">
-                                    <p class="lessons_info_subj_full">Талант-менеджмент</p>
-                                    </div>
-                                </div>
-                                <div class="weakly_lessons_underline"></div>
-                            </div>
-                            <div class="lesson_block">
-                                <div class="lessons_info_block">
-                                <p class="lessons_info_time">11:30-12:30</p>
-                                <p class="lessons_info_subj">Талант-мен...</p>
-                                <div class="lessons_info_subj_full_block">
-                                    <p class="lessons_info_subj_full">Талант-менеджмент</p>
-                                    </div>
-                                </div>
-                                <div class="weakly_lessons_underline"></div>
-                            </div>
-                            <div class="lesson_block">
-                                <div class="lessons_info_block">
-                                <p class="lessons_info_time">11:30-12:30</p>
-                                <p class="lessons_info_subj">Талант-мен...</p>
-                                <div class="lessons_info_subj_full_block">
-                                    <p class="lessons_info_subj_full">Талант-менеджмент</p>
-                                    </div>
-                                </div>
-                                <div class="weakly_lessons_underline"></div>
-                            </div>
-                            <div class="lesson_block">
-                                <div class="lessons_info_block">
-                                <p class="lessons_info_time">11:30-12:30</p>
-                                <p class="lessons_info_subj">Талант-мен...</p>
-                                <div class="lessons_info_subj_full_block">
-                                    <p class="lessons_info_subj_full">Талант-менеджмент</p>
-                                    </div>
-                                </div>
-                                <div class="weakly_lessons_underline"></div>
-                            </div>
-                        </li>
-                        <li class="weakly_lessons_item">
-                            <div class="mondey_title_block">
-                                <p class="mondey_title">Четверг</p>
-                                <div class="weakly_lessons_underline"></div>
-                            </div>
-                            <div class="lesson_block_main">
-                                <div class="lessons_info_block">
-                                <p class="lessons_info_time">11:30-12:30</p>
-                                <p class="lessons_info_subj">Талант-мен...</p>
-                                <div class="lessons_info_subj_full_block">
-                                <p class="lessons_info_subj_full">Талант-менеджмент</p>
-                                </div>
-                                </div>
-                                <div class="weakly_lessons_underline"></div>
-                            </div>
-                            <div class="lesson_block">
-                                <div class="lessons_info_block">
-                                <p class="lessons_info_time">11:30-12:30</p>
-                                <p class="lessons_info_subj">Талант-мен...</p>
-                                <div class="lessons_info_subj_full_block">
-                                    <p class="lessons_info_subj_full">Талант-менеджмент</p>
-                                    </div>
-                                </div>
-                                <div class="weakly_lessons_underline"></div>
-                            </div>
-                            <div class="lesson_block">
-                                <div class="lessons_info_block">
-                                <p class="lessons_info_time">11:30-12:30</p>
-                                <p class="lessons_info_subj">Талант-мен...</p>
-                                <div class="lessons_info_subj_full_block">
-                                    <p class="lessons_info_subj_full">Талант-менеджмент</p>
-                                    </div>
-                                </div>
-                                <div class="weakly_lessons_underline"></div>
-                            </div>
-                            <div class="lesson_block">
-                                <div class="lessons_info_block">
-                                <p class="lessons_info_time">11:30-12:30</p>
-                                <p class="lessons_info_subj">Талант-мен...</p>
-                                <div class="lessons_info_subj_full_block">
-                                    <p class="lessons_info_subj_full">Талант-менеджмент</p>
-                                    </div>
-                                </div>
-                                <div class="weakly_lessons_underline"></div>
-                            </div>
-                            <div class="lesson_block">
-                                <div class="lessons_info_block">
-                                <p class="lessons_info_time">11:30-12:30</p>
-                                <p class="lessons_info_subj">Талант-мен...</p>
-                                <div class="lessons_info_subj_full_block">
-                                    <p class="lessons_info_subj_full">Талант-менеджмент</p>
-                                    </div>
-                                </div>
-                                <div class="weakly_lessons_underline"></div>
-                            </div>
-                        </li>
-                        <li class="weakly_lessons_item">
-                            <div class="mondey_title_block">
-                                <p class="mondey_title">Пятница</p>
-                                <div class="weakly_lessons_underline"></div>
-                            </div>
-                            <div class="lesson_block_main">
-                                <div class="lessons_info_block">
-                                <p class="lessons_info_time">11:30-12:30</p>
-                                <p class="lessons_info_subj">Талант-мен...</p>
-                                <div class="lessons_info_subj_full_block">
-                                <p class="lessons_info_subj_full">Талант-менеджмент</p>
-                                </div>
-                                </div>
-                                <div class="weakly_lessons_underline"></div>
-                            </div>
-                            <div class="lesson_block">
-                                <div class="lessons_info_block">
-                                <p class="lessons_info_time">11:30-12:30</p>
-                                <p class="lessons_info_subj">Талант-мен...</p>
-                                <div class="lessons_info_subj_full_block">
-                                    <p class="lessons_info_subj_full">Талант-менеджмент</p>
-                                    </div>
-                                </div>
-                                <div class="weakly_lessons_underline"></div>
-                            </div>
-                            <div class="lesson_block">
-                                <div class="lessons_info_block">
-                                <p class="lessons_info_time">11:30-12:30</p>
-                                <p class="lessons_info_subj">Талант-мен...</p>
-                                <div class="lessons_info_subj_full_block">
-                                    <p class="lessons_info_subj_full">Талант-менеджмент</p>
-                                    </div>
-                                </div>
-                                <div class="weakly_lessons_underline"></div>
-                            </div>
-                            <div class="lesson_block">
-                                <div class="lessons_info_block">
-                                <p class="lessons_info_time">11:30-12:30</p>
-                                <p class="lessons_info_subj">Талант-мен...</p>
-                                <div class="lessons_info_subj_full_block">
-                                    <p class="lessons_info_subj_full">Талант-менеджмент</p>
-                                    </div>
-                                </div>
-                                <div class="weakly_lessons_underline"></div>
-                            </div>
-                            <div class="lesson_block">
-                                <div class="lessons_info_block">
-                                <p class="lessons_info_time">11:30-12:30</p>
-                                <p class="lessons_info_subj">Талант-мен...</p>
-                                <div class="lessons_info_subj_full_block">
-                                    <p class="lessons_info_subj_full">Талант-менеджмент</p>
-                                    </div>
-                                </div>
-                                <div class="weakly_lessons_underline"></div>
-                            </div>
-                        </li>
-                    </ul>
+                            <div class="weakly_lessons_underline"></div>
+                        </div>
+                        {% endfor %}
+                    </li>
+                    {% endfor %}
+                </ul>
             </div>
             </div>
             <!-- настройки -->
@@ -651,123 +391,123 @@
                 </div>
                 <button class="save_btn"><p class="save_btn_text">Сохранить</p></button>
                 </div>
-            </form>
-            {% if form.errors %}
-            {% for field in form %}
-                {% for error in field.errors %}
-                    <div class="alert alert-danger">{{ error }}</div>
-                {% endfor %}
-            {% endfor %}
-        {% endif %}
+                </form>
+                    {% if form.errors %}
+                    {% for field in form %}
+                        {% for error in field.errors %}
+                            <div class="alert alert-danger">{{ error }}</div>
+                        {% endfor %}
+                    {% endfor %}
+                {% endif %}
             </div>
             <!-- обучение -->
             <div class="study_page">
                 <div class="study_content">
-            <div class="title_menu_block">
-                <p class="study_title">Ваше направление {{ study_group_direction }}</p>
-            </div>
-            <ul class="potok_menu_group">
-                {% for stream in study_group_direction_streams %}
-                <a href="#">
-                    <li class="potok_item {% if stream.name == 'Поток 1' %}first{% endif %}{% if stream.name == 'Поток 2' %}second{% endif %}{% if stream.name == 'Поток 3' %}third{% endif %}{% if stream.open_status %} open{% endif %}" data-stream-id="{{ stream.id }}">
-                        <img class="potok_img" src="{% if stream.open_status %}{% static 'img/knock_open.png'%}{% else %}{% static 'img/knock_close.png'%}{% endif %}" alt="">
-                        <div class="potok_text_block">
-                            <p class="potok_text">{{ stream.name }}</p>
-                            <div class="underline"></div>
-                        </div>
-                    </li>
-                </a>
-                {% endfor %}
-            </ul>
-            <div class="potok_block">
-                <div class="drop_block">
-                    <div class="courses_drop_block" >
-                        <p class="courses_drop_text">Выберите курс</p>
-                        <div class="drop_courses">
-                            <p class="courses_text">Ваш курс</p>
-                            <img class="courses_drop_img_p1" src="{% static 'img/arrow_down.png'%}" alt="">
-                        </div>
-                    
-                         <ul class="drop_courses_list">
-                             {% comment %} здесь список курсов в li 
-                            <li class="drop_courses_item main" >
-                                <p class="drop_courses_text">Здесь должно быть название курса</p>
-                            </li>  {% endcomment %}
-                        
-                        </ul>
-                    
-                
-                    </div>
-                    <div class="lessons_drop_block">
-                        <p class="lessons_drop_text">Выберите урок</p>
-                        <div class="drop_lessons">
-                            {% comment %} <img class="lessons_drop_img_knock" src="{% static 'img/knock_open.png'%}" alt=""> {% endcomment %}
-                            <p class="lessons_text" >Ваш урок</p>
-                            <img class="lessons_drop_img_p1" src="{% static 'img/arrow_down.png'%}" alt="">
-                        </div>
-                        <ul class="drop_lessons_list" >
-                                
-                                 {% comment %} <li class="drop_lessons_item main">
-                                    <img class="lessons_drop_img_knock" src="{% static 'img/knock_open.png'%}" alt="">
-                                    <p class="drop_lessons_text">ммыы</p>
-                                </li> {% endcomment %}
-                             
-                        </ul>
-                    </div>
+                <div class="title_menu_block">
+                    <p class="study_title">Ваше направление {{ study_group_direction }}</p>
                 </div>
-                <div class="topic_drop_block">
-                    <p class="topic_title">Тема урока “Название темы урока”</p>
-                    <div class="topic_dropdown">
-                        <div id="first_topic" class="dropdown_topic_item">
-                            <div class="text_item_topic">
-                                <p class="name_item_topic">Кабинет Zoom</p>
-                                <img class="item_topic_img" src="{% static 'img/dropdown_arrow.png'%}" alt="">
+                <ul class="potok_menu_group">
+                    {% for stream in study_group_direction_streams %}
+                    <a href="#">
+                        <li class="potok_item {% if stream.name == 'Поток 1' %}first{% endif %}{% if stream.name == 'Поток 2' %}second{% endif %}{% if stream.name == 'Поток 3' %}third{% endif %}{% if stream.open_status %} open{% endif %}" data-stream-id="{{ stream.id }}">
+                            <img class="potok_img" src="{% if stream.open_status %}{% static 'img/knock_open.png'%}{% else %}{% static 'img/knock_close.png'%}{% endif %}" alt="">
+                            <div class="potok_text_block">
+                                <p class="potok_text">{{ stream.name }}</p>
+                                <div class="underline"></div>
+                            </div>
+                        </li>
+                    </a>
+                    {% endfor %}
+                </ul>
+                <div class="potok_block">
+                        <div class="drop_block">
+                            <div class="courses_drop_block" >
+                                <p class="courses_drop_text">Выберите курс</p>
+                                <div class="drop_courses">
+                                    <p class="courses_text">Ваш курс</p>
+                                    <img class="courses_drop_img_p1" src="{% static 'img/arrow_down.png'%}" alt="">
+                                </div>
+                            
+                                <ul class="drop_courses_list">
+                                    {% comment %} здесь список курсов в li 
+                                    <li class="drop_courses_item main" >
+                                        <p class="drop_courses_text">Здесь должно быть название курса</p>
+                                    </li>  {% endcomment %}
+                                
+                                </ul>
+                            
+                        
+                            </div>
+                            <div class="lessons_drop_block">
+                                <p class="lessons_drop_text">Выберите урок</p>
+                                <div class="drop_lessons">
+                                    {% comment %} <img class="lessons_drop_img_knock" src="{% static 'img/knock_open.png'%}" alt=""> {% endcomment %}
+                                    <p class="lessons_text" >Ваш урок</p>
+                                    <img class="lessons_drop_img_p1" src="{% static 'img/arrow_down.png'%}" alt="">
+                                </div>
+                                <ul class="drop_lessons_list" >
+                                        
+                                        {% comment %} <li class="drop_lessons_item main">
+                                            <img class="lessons_drop_img_knock" src="{% static 'img/knock_open.png'%}" alt="">
+                                            <p class="drop_lessons_text">ммыы</p>
+                                        </li> {% endcomment %}
+                                    
+                                </ul>
                             </div>
                         </div>
-                        <div class="item_container_topic">
-                            <ul class="topick_group">
-                                <div class="mess_text_info">
-                                    <div class="mess">
-                                        <img src="{% static 'img/zoom.png'%}" alt="" class="file_img">
-                                        <div type="">
-                                            
-                                            <a class="file_link" href="" >&#10149; Здесь ссылка на zoom урок</a>
-                                          
-                                        </div>
+                        <div class="topic_drop_block">
+                            <p class="topic_title">Тема урока “Название темы урока”</p>
+                            <div class="topic_dropdown">
+                                <div id="first_topic" class="dropdown_topic_item">
+                                    <div class="text_item_topic">
+                                        <p class="name_item_topic">Кабинет Zoom</p>
+                                        <img class="item_topic_img" src="{% static 'img/dropdown_arrow.png'%}" alt="">
                                     </div>
                                 </div>
-                            </ul>
-                        </div>
-                        <div id="midle_topic" class="dropdown_topic_item">
-                            <div class="text_item_topic">
-                                <p class="name_item_topic">Запись урока</p>
-                                <img class="item_topic_img" src="{% static 'img/dropdown_arrow.png'%}" alt="">
+                                <div class="item_container_topic">
+                                    <ul class="topick_group">
+                                        <div class="mess_text_info">
+                                            <div class="mess">
+                                                <img src="{% static 'img/zoom.png'%}" alt="" class="file_img">
+                                                <div type="">
+                                                    
+                                                    <a class="file_link" href="" >&#10149; Здесь ссылка на zoom урок</a>
+                                                
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                </div>
+                                <div id="midle_topic" class="dropdown_topic_item">
+                                    <div class="text_item_topic">
+                                        <p class="name_item_topic">Запись урока</p>
+                                        <img class="item_topic_img" src="{% static 'img/dropdown_arrow.png'%}" alt="">
+                                    </div>
+                                </div>
+                                <div class="item_container_topic">
+                                    <ul class="topick_group">
+                                        <li class="topick_name">&#10149; Здесь актуальная запись zoom урока</li>
+                                        <iframe class="video_block animate__animated animate__fadeInUp" width="560" height="315" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                                        
+                                    </ul>
+                                </div>
+                                <div id="last_topic" class="dropdown_topic_item">
+                                    <div class="text_item_topic">
+                                        <p class="name_item_topic">Домашнее задание</p>
+                                        <img class="item_topic_img" src="{% static 'img/dropdown_arrow.png'%}" alt="">
+                                    </div>
+                                </div>
+                                <div class="item_container_topic">
+                                    <ul class="topick_group">
+                                        <li class="topick_name">&#10149; Здесь домашнее задание к уроку</li>
+                                        <p class="homework_text"></p>
+                                    </ul>
+                                </div>
                             </div>
-                        </div>
-                        <div class="item_container_topic">
-                            <ul class="topick_group">
-                                <li class="topick_name">&#10149; Здесь актуальная запись zoom урока</li>
-                                <iframe class="video_block animate__animated animate__fadeInUp" width="560" height="315" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                                
-                            </ul>
-                        </div>
-                        <div id="last_topic" class="dropdown_topic_item">
-                            <div class="text_item_topic">
-                                <p class="name_item_topic">Домашнее задание</p>
-                                <img class="item_topic_img" src="{% static 'img/dropdown_arrow.png'%}" alt="">
-                            </div>
-                        </div>
-                        <div class="item_container_topic">
-                            <ul class="topick_group">
-                                <li class="topick_name">&#10149; Здесь домашнее задание к уроку</li>
-                                <p class="homework_text"></p>
-                            </ul>
                         </div>
                     </div>
-                </div>
-            </div>
-          
-            </div>
+                
+                    </div>
             </div>
             <!-- практика -->
             <div class="practic_page">

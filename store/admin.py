@@ -21,6 +21,7 @@ admin.site.register(Packages)
 admin.site.register(Stream)
 admin.site.register(Referral)
 admin.site.register(StudyGroup)
+admin.site.register(WeaklyBoard)
 
 class CourseAdmin(admin.ModelAdmin):
     list_display = ('name', 'display_teachers', 'Category')
