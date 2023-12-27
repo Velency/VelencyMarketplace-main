@@ -419,28 +419,32 @@
                           });
                         }
     
-              {% else %}
-              document.getElementById("navButton").addEventListener("click", ()=>{window.location.href = '/academy_profile';});
-              document.getElementById("navButtonMobile").addEventListener("click", ()=>{window.location.href = '/academy_profile';});
+                        document.getElementById("navButton").addEventListener("click", () => {
+          window.location.href = "/academy_profile";
+        });
+        document.getElementById("navButtonMobile").addEventListener("click", () => {
+          window.location.href = "/academy_profile";
+        });
+
+        // Define the main function to handle wallet connection and authentication/registration
+
+                      {% comment %} const logoutButton = document.getElementById('logoutButton');
               
-              {% comment %} 
-                            const logoutButton = document.getElementById('logoutButton');
-                    
-                            // Add a click event listener to the logoutButton
-                            logoutButton.addEventListener('click', handleLogout);
-                            
-                          // Define the logout handler function
-                            async function handleLogout() {
-                              try {
-                                // Disconnect from the wallet connection
-                                await disconnect();
-                                // Redirect to the /logout page or any other desired action
-                                window.location.href = '/logout';
-                              } catch (error) {
-                                console.error("Error disconnecting:", error);
-                              }
-                            }{% endcomment %}
-                            {%endif%} 
+                      // Add a click event listener to the logoutButton
+                      logoutButton.addEventListener('click', handleLogout);
+                      
+                    // Define the logout handler function
+                      async function handleLogout() {
+                        try {
+                          // Disconnect from the wallet connection
+                          await disconnect();
+                          // Redirect to the /logout page or any other desired action
+                          window.location.href = '/logout';
+                        } catch (error) {
+                          console.error("Error disconnecting:", error);
+                        }
+                      } {% endcomment %}
+                      {%endif%}
     
             </script>
 </body>

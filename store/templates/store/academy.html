@@ -1147,8 +1147,15 @@
                   }
 
         {% else %}
-        document.getElementById("navButton").addEventListener("click", ()=>(window.location.href="/academy_profile"));
-        document.getElementById("navButtonMobile").addEventListener("click", ()=>(window.location.href="/academy_profile"));
+        document.getElementById("navButton").addEventListener("click", () => {
+          window.location.href = "/academy_profile";
+        });
+        document.getElementById("navButtonMobile").addEventListener("click", () => {
+          window.location.href = "/academy_profile";
+        });
+
+        // Define the main function to handle wallet connection and authentication/registration
+
                       {% comment %} const logoutButton = document.getElementById('logoutButton');
               
                       // Add a click event listener to the logoutButton
