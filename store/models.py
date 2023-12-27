@@ -170,6 +170,9 @@ class StudyGroup(models.Model):
     direction = models.ForeignKey(Direction, on_delete=models.CASCADE)
     name = models.CharField(max_length=50)
     students = models.ManyToManyField(Customer)
+    
+    def __str__(self):
+        return f"{self.direction.name} - {self.name}"
 
 
 class Stream(models.Model):
