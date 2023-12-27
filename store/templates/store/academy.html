@@ -1034,6 +1034,8 @@
     </script>
     <script src="https://unpkg.com/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
 
+
+
     <script type="module">
         import {
           EthereumClient,
@@ -1074,7 +1076,7 @@
         const web3modal = new Web3Modal({ projectId }, ethereumClient)
 
         {% if not user.is_authenticated %}
-          document.getElementById("navButton").addEventListener("click", () => {
+        document.getElementById("navButton").addEventListener("click", () => {
             web3modal.openModal();
           });
           document.getElementById("navButtonMobile").addEventListener("click", () => {

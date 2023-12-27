@@ -20,7 +20,7 @@ admin.site.register(packagesCat)
 admin.site.register(Packages)
 admin.site.register(Stream)
 admin.site.register(Referral)
-
+admin.site.register(StudyGroup)
 
 class CourseAdmin(admin.ModelAdmin):
     list_display = ('name', 'display_teachers', 'Category')

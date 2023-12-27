@@ -664,21 +664,19 @@
             <div class="study_page">
                 <div class="study_content">
             <div class="title_menu_block">
-                <p class="study_title">Ваше направление {{direction.name}}</p>
+                <p class="study_title">Ваше направление {{ study_group_direction }}</p>
             </div>
             <ul class="potok_menu_group">
-                {% for stream in streams %}
+                {% for stream in study_group_direction_streams %}
                 <a href="#">
                     <li class="potok_item {% if stream.name == 'Поток 1' %}first{% endif %}{% if stream.name == 'Поток 2' %}second{% endif %}{% if stream.name == 'Поток 3' %}third{% endif %}{% if stream.open_status %} open{% endif %}" data-stream-id="{{ stream.id }}">
-                    <img class="potok_img" src="{% if stream.open_status %}{% static 'img/knock_open.png'%}{% else %}{% static 'img/knock_close.png'%}{% endif %}" alt="">
-                 
-                    <div class="potok_text_block">
-                    <p class="potok_text">{{ stream.name }}</p>
-                    
-                    <div class="underline"></div>
-                    
-                    </div>
-                </li></a>
+                        <img class="potok_img" src="{% if stream.open_status %}{% static 'img/knock_open.png'%}{% else %}{% static 'img/knock_close.png'%}{% endif %}" alt="">
+                        <div class="potok_text_block">
+                            <p class="potok_text">{{ stream.name }}</p>
+                            <div class="underline"></div>
+                        </div>
+                    </li>
+                </a>
                 {% endfor %}
             </ul>
             <div class="potok_block">

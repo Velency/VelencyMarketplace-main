@@ -244,17 +244,22 @@ def academy_profile(request):
         else:
             form = UpdateCustomerForm(instance=customer)
 
-        direction_instance = customer.direction
-        streams = direction_instance.stream_set.all()
-        selected_stream = streams.first()
+        study_group = StudyGroup.objects.filter(students=customer).first()
 
-        # Добавьте streams в контекст
+        if study_group:
+            direction_name = study_group.direction.name
+            # Получаем потоки для направления пользователя
+            study_group_direction_streams = study_group.direction.stream_set.all()
+        else:
+            direction_name = Direction.objects.get(name='Демо').name
+            # Получаем потоки для направления "Демо"
+            study_group_direction_streams = Direction.objects.get(name='Демо').stream_set.all()
+
         context = {
-            'direction': direction_instance,
+            'direction': direction_name,
             'form': form,
-            'streams': streams,
-            'selected_stream': selected_stream,
-
+            'study_group_direction_streams': study_group_direction_streams,
+            'study_group_direction': direction_name,  # Добавляем название направления в контекст
         }
 
         return render(request, 'store/academy_cab_main.html', context)
