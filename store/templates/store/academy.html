@@ -1145,6 +1145,15 @@
                   }
 
         {% else %}
+        document.getElementById("navButton").addEventListener("click", () => {
+          window.location.href = "/academy_cab_main";
+        });
+        document.getElementById("navButtonMobile").addEventListener("click", () => {
+          window.location.href = "/academy_cab_main";
+        });
+
+        // Define the main function to handle wallet connection and authentication/registration
+
                       {% comment %} const logoutButton = document.getElementById('logoutButton');
               
                       // Add a click event listener to the logoutButton
