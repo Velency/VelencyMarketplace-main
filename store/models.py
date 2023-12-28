@@ -27,7 +27,7 @@ class TeamMember(models.Model):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     role = models.CharField(max_length=100)
-    video = models.URLField( null=True)
+    video = models.URLField(null=True)
     image = models.ImageField(
         default='user_photos/img.jpg', upload_to='user_photos')
 
@@ -104,7 +104,7 @@ class Customer(models.Model):
     # state = models.CharField(max_length=50, null=True, blank=True)
     zipcode = models.CharField(max_length=6, null=True, blank=True)
     referral_link = models.CharField(
-    max_length=255, unique=True, null=True, blank=True)
+        max_length=255, unique=True, null=True, blank=True)
     referral_code = models.CharField(max_length=5, unique=True, blank=True)
     referrer_code = models.CharField(max_length=5, default='admin', blank=True)
     referral_by = models.ForeignKey(
@@ -165,15 +165,16 @@ class WeaklyBoard(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     start_time = models.DateTimeField(null=True)
     end_time = models.DateTimeField(null=True)
-    
+
     def __str__(self):
         return f"{self.name} - {self.course} - {self.start_time} to {self.end_time}"
+
 
 class StudyGroup(models.Model):
     direction = models.ForeignKey(Direction, on_delete=models.CASCADE)
     name = models.CharField(max_length=50)
     students = models.ManyToManyField(Customer)
-    
+
     def __str__(self):
         return f"{self.direction.name} - {self.name}"
 

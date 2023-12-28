@@ -14,11 +14,14 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='WeaklyBoard',
             fields=[
-                ('id', models.CharField(max_length=50, primary_key=True, serialize=False)),
+                ('id', models.CharField(max_length=50,
+                 primary_key=True, serialize=False)),
                 ('name', models.CharField(max_length=50)),
-                ('time', models.TimeField(null=True)),
-                ('course', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='store.course')),
-                ('direction', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='store.direction')),
+                ('time', models.DateTimeField(null=True)),
+                ('course', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE, to='store.course')),
+                ('direction', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE, to='store.direction')),
             ],
         ),
     ]
