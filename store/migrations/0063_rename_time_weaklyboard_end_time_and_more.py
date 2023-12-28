@@ -18,6 +18,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='weaklyboard',
             name='start_time',
-            field=models.TimeField(null=True),
+            field=models.DateTimeField(null=True),
         ),
     ]
