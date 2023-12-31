@@ -27,7 +27,7 @@ class TeamMember(models.Model):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     role = models.CharField(max_length=100)
-    video = models.URLField( null=True)
+    # video = models.URLField( null=True)
     image = models.ImageField(
         default='user_photos/img.jpg', upload_to='user_photos')
 

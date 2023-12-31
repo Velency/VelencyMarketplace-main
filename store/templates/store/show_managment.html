@@ -123,10 +123,10 @@
                             <p class="blog_text2">{{ teacher.first_name }} {{ teacher.last_name }}</p>
                         </div>
                     </div>
-                    <div class="card_back">
-                        <iframe class="card_group_item_video" src="https://www.youtube.com/embed/ToXfaJvAk5k" frameborder="0"></iframe>
+                    {% comment %} <div class="card_back">
+                        <iframe class="card_group_item_video" src="{{store.teammembers.video}}" frameborder="0"></iframe>
                         </div>
-                    </div>
+                    </div> {% endcomment %}
                     {% endfor %}
                 </div>
             </div>
