@@ -767,30 +767,30 @@
                 $('.homework_text').text(data.homework);
     
                 // Очищаем содержимое .video_block перед добавлением новых видео
-                $('.video_block').empty();
+                $('.topick_group .video_block').remove();
     
                 if (data.video_links && data.video_links.length > 0) {
-                    // Создаем элемент iframe для видео-ссылок
-                    var iframe = $('<iframe>', {
-                        class: 'video_frame animate__animated animate__fadeInUp',
-                        width: '560',
-                        height: '315',
-                        src: data.video_links[0],  // Используем первую ссылку из массива
-                        frameborder: 0,
-                        allow: 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share',
-                        allowfullscreen: true
-                    });
+                    // Обходим список видео и добавляем каждую ссылку в .topick_group
+                    for (var i = 0; i < data.video_links.length; i++) {
+                        var videoLink = data.video_links[i];
+                        if (videoLink) {
+                            var iframe = $('<iframe>', {
+                                class: 'video_block animate__animated animate__fadeInUp',
+                                width: '560',
+                                height: '315',
+                                src: videoLink,
+                                frameborder: 0,
+                                allow: 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share',
+                                allowfullscreen: true
+                            });
     
-                    // Добавляем iframe в .video_block
-                    $('.video_block').append(iframe);
-    
-                    // Если есть еще ссылки, то обновляем существующий iframe
-                    for (var i = 1; i < data.video_links.length; i++) {
-                        $('.video_block iframe').attr('src', data.video_links[i]);
+                            // Добавляем iframe в .topick_group после элемента с классом topick_name
+                            $('.topick_group .topick_name').after(iframe);
+                        }
                     }
                 } else {
                     // Если видео-ссылок нет, вы можете отобразить сообщение или выполнить другие действия
-                    $('.video_block').text('No videos available');
+                    $('.topick_group').append('<p>No videos available</p>');
                 }
             },
             error: function(error) {
