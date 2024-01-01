@@ -249,8 +249,8 @@
                         </li>
                     </ul>
                 </div>
-            </div>
-            <div class="weekly_board">
+                </div>
+                <div class="weekly_board">
                 <ul class="weakly_lessons_board_text">
                     {% for day_schedule in schedule_by_days %}
                     <li class="weakly_lessons_item">
@@ -273,7 +273,7 @@
                     </li>
                     {% endfor %}
                 </ul>
-            </div>
+                </div>
             </div>
             <!-- настройки -->
             <div class="settings_page">
@@ -753,37 +753,44 @@
 
 
 <script>
-  // Отображение темы урока 
-    // Добавляем обработчик кликов для элементов .drop_lessons_item
-    $('.drop_lessons_list').on('click', '.drop_lessons_item', function() {
-    var lessonId = $(this).data('lesson-id');
+    $('.drop_lessons_list').on('click', '.drop_lessons_item', function () {
+        var lessonId = $(this).data('lesson-id');
 
-    // AJAX-запрос для получения данных урока
-    $.ajax({
-        url: '/get_lesson_details/' + lessonId + '/',
-        type: 'GET',
-        success: function(data) {
-            var lessonTopicTitle = 'Тема урока "' + data.lesson_topic + '"';
-            $('.topic_title').text(lessonTopicTitle);
+        // AJAX-запрос для получения данных урока
+        $.ajax({
+            url: '/get_lesson_details/' + lessonId + '/',
+            type: 'GET',
+            success: function (data) {
+                var lessonTopicTitle = 'Тема урока "' + data.lesson_topic + '"';
+                $('.topic_title').text(lessonTopicTitle);
 
-            // Отображение zoom_rec в ссылке
-            $('.file_link').attr('href', data.zoom_rec);
+                // Отображение zoom_rec в ссылке
+                $('.file_link').attr('href', data.zoom_rec);
 
-            // Отображение homework
-            $('.homework_text').text(data.homework);
+                // Отображение homework
+                $('.homework_text').text(data.homework);
 
-            // Отображение видео в iframe
-            $('.video_block').attr('src', data.video_link);
-        },
-        error: function(error) {
-            console.log(error);
-        }
+                // Очищаем содержимое .video_block перед добавлением новых видео
+                $('.video_block').empty();
+
+                // Обходим список видео и добавляем каждую ссылку в .video_block
+                for (var i = 0; i < data.video_links.length; i++) {
+                    var videoLink = data.video_links[i];
+                    var iframe = $('<iframe>', {
+                        src: videoLink,
+                        frameborder: 0,
+                        allowfullscreen: true
+                    });
+                    $('.video_block').append(iframe);
+                }
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
     });
-    });
-
-
-    
 </script>
+
 
 
     <script type="module">
