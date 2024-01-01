@@ -774,14 +774,19 @@
                 $('.video_block').empty();
 
                 // Обходим список видео и добавляем каждую ссылку в .video_block
-                for (var i = 0; i < data.video_links.length; i++) {
-                    var videoLink = data.video_links[i];
-                    var iframe = $('<iframe>', {
-                        src: videoLink,
-                        frameborder: 0,
-                        allowfullscreen: true
-                    });
-                    $('.video_block').append(iframe);
+                if (data.video_links.length > 0) {
+                    for (var i = 0; i < data.video_links.length; i++) {
+                        var videoLink = data.video_links[i];
+                        var iframe = $('<iframe>', {
+                            src: videoLink,
+                            frameborder: 0,
+                            allowfullscreen: true
+                        });
+                        $('.video_block').append(iframe);
+                    }
+                } else {
+                    // Если видео-ссылок нет, вы можете отобразить сообщение или выполнить другие действия
+                    $('.video_block').text('No videos available');
                 }
             },
             error: function (error) {
@@ -789,8 +794,8 @@
             }
         });
     });
-    
 </script>
+
 
 
 
