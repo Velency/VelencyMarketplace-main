@@ -784,8 +784,8 @@
                                 allowfullscreen: true
                             });
     
-                            // Добавляем iframe в .topick_group после элемента с классом topick_name
-                            $('.topick_group .topick_name').after(iframe);
+                            // Вставляем iframe под предыдущим элементом
+                            $('.topick_group .topick_name:last').after(iframe);
                         }
                     }
                 } else {
