@@ -755,34 +755,28 @@
 <script>
     $('.drop_lessons_list').on('click', '.drop_lessons_item', function() {
         var lessonId = $(this).data('lesson-id');
-
-        // AJAX-запрос для получения данных урока
+    
         $.ajax({
             url: '/get_lesson_details/' + lessonId + '/',
             type: 'GET',
             success: function(data) {
                 var lessonTopicTitle = 'Тема урока "' + data.lesson_topic + '"';
                 $('.topic_title').text(lessonTopicTitle);
-
-                // Отображение zoom_rec в ссылке
+    
                 $('.file_link').attr('href', data.zoom_rec);
-
-                // Отображение homework
                 $('.homework_text').text(data.homework);
-
+    
                 // Очищаем содержимое .video_block перед добавлением новых видео
                 $('.video_block').empty();
-
-                // Проверяем, есть ли видео-ссылки в данных
+    
                 if (data.video_links && data.video_links.length > 0) {
                     // Создаем элемент <ul> для видео-ссылок
                     var ulElement = $('<ul>', { class: 'topick_group' });
-
-                    // Обходим список видео и добавляем каждую ссылку в <ul>
+    
+                    // Обходим список видео и добавляем каждую ссылку в .video_block
                     for (var i = 0; i < data.video_links.length; i++) {
                         var videoLink = data.video_links[i];
                         if (videoLink) {
-                            var liElement = $('<li>');
                             var iframe = $('<iframe>', {
                                 class: 'video_frame animate__animated animate__fadeInUp',
                                 width: '560',
@@ -792,15 +786,11 @@
                                 allow: 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share',
                                 allowfullscreen: true
                             });
-
-                            // Добавляем iframe внутрь li, а li внутрь ul
-                            liElement.append(iframe);
-                            ulElement.append(liElement);
+    
+                            // Добавляем iframe в .video_block
+                            $('.video_block').append(iframe);
                         }
                     }
-
-                    // Добавляем ul в .video_block
-                    $('.video_block').append(ulElement);
                 } else {
                     // Если видео-ссылок нет, вы можете отобразить сообщение или выполнить другие действия
                     $('.video_block').text('No videos available');
@@ -811,6 +801,7 @@
             }
         });
     });
+    
 </script>
 
 
