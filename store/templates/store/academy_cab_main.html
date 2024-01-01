@@ -782,6 +782,7 @@
                     for (var i = 0; i < data.video_links.length; i++) {
                         var videoLink = data.video_links[i];
                         if (videoLink) {
+                            var liElement = $('<li>');
                             var iframe = $('<iframe>', {
                                 class: 'video_frame animate__animated animate__fadeInUp',
                                 width: '560',
@@ -792,8 +793,9 @@
                                 allowfullscreen: true
                             });
 
-                            // Добавляем iframe внутрь ul
-                            ulElement.append(iframe);
+                            // Добавляем iframe внутрь li, а li внутрь ul
+                            liElement.append(iframe);
+                            ulElement.append(liElement);
                         }
                     }
 
@@ -810,6 +812,7 @@
         });
     });
 </script>
+
 
 
 
