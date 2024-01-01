@@ -326,16 +326,18 @@ def get_lesson_details(request, lesson_id):
     # Получаем урок для урока с id=lesson_id
     lesson = get_object_or_404(Lesson, id=lesson_id)
 
-    # Получаем данные о видеоуроке для данного урока
-    video_rec = VideoRec.objects.filter(Lesson=lesson).first()
+    # Получаем все видеоуроки для данного урока
+    video_recs = VideoRec.objects.filter(Lesson=lesson)
 
-    # Собираем данные урока и видеоурока
+    # Собираем список видео-ссылок
+    video_links = [video_rec.link for video_rec in video_recs]
+
+    # Собираем данные урока и видеоуроков
     lesson_data = {
         'lesson_topic': lesson.topic if lesson.topic else 'Название темы урока отсутствует',
         'zoom_rec': lesson.zoom_rec,
         'homework': lesson.homework,
-        # Если видеоурока нет, возвращаем пустую строку
-        'video_link': video_rec.link if video_rec else '',
+        'video_links': video_links,
     }
 
     return JsonResponse(lesson_data)
