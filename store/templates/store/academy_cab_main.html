@@ -487,8 +487,8 @@
                                 <div class="item_container_topic">
                                     <ul class="topick_group">
                                         <li class="topick_name">&#10149; Здесь актуальная запись zoom урока</li>
-                                        {% comment %} <iframe class="video_block animate__animated animate__fadeInUp" width="560" height="315" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                                          {% endcomment %}
+                                        <iframe class="video_block animate__animated animate__fadeInUp" width="560" height="315" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                                          
                                     </ul>
                                 </div>
                                 <div id="last_topic" class="dropdown_topic_item">
@@ -770,26 +770,23 @@
                 $('.video_block').empty();
     
                 if (data.video_links && data.video_links.length > 0) {
-                    // Создаем элемент <ul> для видео-ссылок
-                    var ulElement = $('<ul>', { class: 'topick_group' });
+                    // Создаем элемент iframe для видео-ссылок
+                    var iframe = $('<iframe>', {
+                        class: 'video_frame animate__animated animate__fadeInUp',
+                        width: '560',
+                        height: '315',
+                        src: data.video_links[0],  // Используем первую ссылку из массива
+                        frameborder: 0,
+                        allow: 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share',
+                        allowfullscreen: true
+                    });
     
-                    // Обходим список видео и добавляем каждую ссылку в .video_block
-                    for (var i = 0; i < data.video_links.length; i++) {
-                        var videoLink = data.video_links[i];
-                        if (videoLink) {
-                            var iframe = $('<iframe>', {
-                                class: 'video_frame animate__animated animate__fadeInUp',
-                                width: '560',
-                                height: '315',
-                                src: videoLink,
-                                frameborder: 0,
-                                allow: 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share',
-                                allowfullscreen: true
-                            });
+                    // Добавляем iframe в .video_block
+                    $('.video_block').append(iframe);
     
-                            // Добавляем iframe в .video_block
-                            $('.video_block').append(iframe);
-                        }
+                    // Если есть еще ссылки, то обновляем существующий iframe
+                    for (var i = 1; i < data.video_links.length; i++) {
+                        $('.video_block iframe').attr('src', data.video_links[i]);
                     }
                 } else {
                     // Если видео-ссылок нет, вы можете отобразить сообщение или выполнить другие действия
@@ -801,6 +798,7 @@
             }
         });
     });
+    
     
 </script>
 
