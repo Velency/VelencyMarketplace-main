@@ -636,9 +636,8 @@
 
 <script>
     $(document).ready(function() {
-        var activeStreamId = $('.potok_item.open').data('stream-id');  // Добавляем переменную для отслеживания активного потока
+        var activeStreamId = $('.potok_item.open').data('stream-id');
     
-        // Функция для загрузки уроков по курсу и потоку
         function loadLessons(courseId, streamId) {
             console.log('Loading lessons for Course ID:', courseId, 'and Stream ID:', streamId);
     
@@ -657,7 +656,6 @@
                     });
                     $(blockSelector).html(lessonsHtml);
     
-                    // Обработка кликов для элементов с классом "drop_lessons_item"
                     $(blockSelector).on('click', '.drop_lessons_item', function() {
                         var lessonId = $(this).data('lesson-id');
                         var lessonName = $(this).find('.drop_lessons_text').text();
@@ -672,18 +670,17 @@
             });
         }
     
-        // Обработка кликов для элементов с классом "drop_courses_item"
         $('.drop_courses_list').on('click', '.drop_courses_item', function() {
-            var courseId = $(this).data('course-id');  // Получаем id курса
-            var streamId = activeStreamId;  // Получаем id активного потока
+            var courseId = $(this).data('course-id');
+            var streamId = activeStreamId;
             loadLessons(courseId, streamId);
+    
+            // Устанавливаем текст "Ваш урок" в элементе с классом "lessons_text"
+            $('.lessons_text').text('Ваш урок');
         });
     
-        // Обработка кликов для элементов с классом "potok_item"
         $('.potok_item').on('click', function() {
-            // Обновляем id активного потока при переключении
             activeStreamId = $(this).data('stream-id');
-            // Сброс отображения уроков при нажатии на элемент "potok_item"
             var blockSelector = '.drop_lessons_list';
             $(blockSelector).html('');
         });
@@ -753,6 +750,7 @@
 
 
 <script>
+    // отображение содержимого уроков
     $('.drop_lessons_list').on('click', '.drop_lessons_item', function() {
         var lessonId = $(this).data('lesson-id');
     
