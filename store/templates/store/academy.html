@@ -78,6 +78,27 @@
                             <a class="support_btn_text" href="{% url 'contact' %}">Связатся с нами</a>
                         </li>
                     </ul>
+                    <div class="modal" id="loginModal">
+                        <div class="modal-content">
+                            <span class="close" id="closeModal">&times;</span>
+                            <h3 class="login_text">Войти в личный кабинет</h3>
+                                <ul class="login_group">
+                                    <li class="login_item">
+                                        <button id="" class="walletBtn">
+                                            <img class="wallet_btn_img" src="{% static '/img/wallet-connect-logo.png'%}" alt="">
+                                            <p class="wallet_btn_text">Войти через криптокошелёк</p>
+                                        </button>
+                                    </li>
+                                </ul>
+                                <p class="wallet_login_text">Как войти через кошелёк?</p>
+                                <div class="video_block">
+                                    <video class="install_login_video" src="" controls="control"></video>
+                                    <a class="install_wallet_link" href="https://chromewebstore.google.com/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn">Скачать Metamask для браузера</a>
+                                    <a class="install_wallet_link" href="https://play.google.com/store/apps/details?id=io.metamask&hl=en&gl=US">Скачать Metamask для Android</a>
+                                    <a class="install_wallet_link" href="https://apps.apple.com/us/app/metamask-blockchain-wallet/id1438144202">Скачать Metamask для IOS</a>
+                                </div>
+                        </div>
+                    </div>
                     <div class="action_text_block">
                         <div id="action_block_title " data-wow-duration="5s"  class="action_block_title animate__animated animate__fadeIn">
                             <div class="title_litle_text">
@@ -1175,5 +1196,37 @@
                       {%endif%}
 
       </script>
+
+      <script>
+        $(document).ready(function() {
+            // Show the modal when a button with class loginBtn or loginBtnMobile is clicked
+            $('.loginBtn, .loginBtnMobile').click(function() {
+                $('#loginModal').show();
+            });
+        
+            // Close the modal when the closeModal button is clicked
+            $('#closeModal').click(function() {
+                // Set the display style to none for the element with class video_block
+                $('.video_block').css('display', 'none');
+                $('#loginModal').hide();
+            });
+        
+            // Close the modal when clicking outside the modal content
+            $(window).click(function(event) {
+                if (event.target.id === 'loginModal') {
+                    // Set the display style to none for the element with class video_block
+                    $('.video_block').css('display', 'none');
+                    $('#loginModal').hide();
+                }
+            });
+        
+            // Click event for the element with class wallet_login_text
+            $('.wallet_login_text').click(function() {
+                // Set the display style to flex for the element with class video_block
+                $('.video_block').css('display', 'flex');
+            });
+        });
+        
+    </script>
   </body>
 </html>
