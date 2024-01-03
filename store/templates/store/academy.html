@@ -45,7 +45,7 @@
                       <a href="{% url 'store' %}">Маркетплейс</a>
                     </li>
                   </ul>
-                <button id="navButton" class="nav_btn">
+                <button  class="nav_btn loginBtn">
                     <p class="nav_btn_text">Начать бесплатно</p>
                 </button>
                 <button id="menu-open" class="menu-open">
@@ -59,7 +59,7 @@
             </div>
                 <div class="main_block">
                     <ul id="show-menu" class="show-menu">
-                        <li id="navButtonMobile"  class="login_btn">
+                        <li  class="login_btn loginBtnMobile">
                             <p class="login_btn_text" href="#">Начать бесплатно</p>
                         </li>
                         <li>
@@ -84,7 +84,7 @@
                             <h3 class="login_text">Войти в личный кабинет</h3>
                                 <ul class="login_group">
                                     <li class="login_item">
-                                        <button id="" class="walletBtn">
+                                        <button id="navButton" class="walletBtn">
                                             <img class="wallet_btn_img" src="{% static '/img/wallet-connect-logo.png'%}" alt="">
                                             <p class="wallet_btn_text">Войти через криптокошелёк</p>
                                         </button>
@@ -1100,9 +1100,6 @@
         document.getElementById("navButton").addEventListener("click", () => {
             web3modal.openModal();
           });
-          document.getElementById("navButtonMobile").addEventListener("click", () => {
-            web3modal.openModal();
-          });
 
           // Define the main function to handle wallet connection and authentication/registration
           async function handleWalletConnect() {
@@ -1154,7 +1151,6 @@
 
           // Call the main function to handle wallet connection and authentication/registration
           document.getElementById("navButton").addEventListener("click", handleWalletConnect);
-          document.getElementById("navButtonMobile").addEventListener("click", handleWalletConnect);
                     
           if (web3modal && web3modal.ethereum) {
             web3modal.ethereum.on("accountsChanged", (accounts) => {
@@ -1171,9 +1167,7 @@
         document.getElementById("navButton").addEventListener("click", () => {
           window.location.href = "/academy_profile";
         });
-        document.getElementById("navButtonMobile").addEventListener("click", () => {
-          window.location.href = "/academy_profile";
-        });
+       
 
         // Define the main function to handle wallet connection and authentication/registration
 
