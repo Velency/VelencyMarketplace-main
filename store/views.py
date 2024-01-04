@@ -182,6 +182,10 @@ def show_managment(request, id):
         return render(request, 'store/show_managment.html', context)
     else:
         return redirect('all_courses')
+    
+def show_personal(request):
+    context = {}
+    return render(request, 'store/show_personal.html', context)
 
 
 def all_courses(request):
@@ -334,18 +338,6 @@ def get_lesson_details(request, lesson_id):
     }
 
     return JsonResponse(lesson_data)
-
-# def get_lessons(request):
-#     if request.method == 'GET':
-#         course_id = request.GET.get('course_id', None)
-
-#         if course_id is not None:
-#             # Здесь вы загружаете уроки только по курсу
-#             lessons = Lesson.objects.filter(course_id=course_id)
-#             lesson_list = [{'id': lesson.id, 'name': lesson.name} for lesson in lessons]
-#             return JsonResponse({'lessons': lesson_list})
-
-#     return JsonResponse({'error': 'Invalid request'})
 
 
 def get_lessons(request):

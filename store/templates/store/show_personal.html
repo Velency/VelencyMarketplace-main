@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Портфолио</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/show_personal-academy.css'%}">
+    <script src="https://forma.tinkoff.ru/static/onlineScript.js"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div data-wow-duration="5s" class="nav animate__animated animate__fadeIn">
+                <a href="{% url 'academy' %}"><img class="logo" src="{% static 'img/image 1.svg'%}" alt="logo"></a>
+                <div class="logo_text">
+                    <a href="{% url 'academy' %}"><p class="text1">Бирюзовая</p></a>
+                       <a href="{% url 'academy' %}"><p class="text2">Академия</p></p></a>
+                </div>
+                <ul class="menu">
+                    <li>
+                        <a href="{% url 'academy2' %}">Об академи</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'all_courses' %}">Направления</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'index' %}">Метавселенная</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'store' %}">Маркетплейс</a>
+                    </li>
+                </ul>
+                <button id="navButton" class="nav_btn">
+                    <p class="nav_btn_text">Начать бесплатно</p>
+                </button>
+                <button id="menu-open" class="menu-open">
+                        <img id="menu_img" class="menu_img" src="{% static 'img/burger.svg'%}" alt="burger_menu_img">
+                </button>
+            </div>
+            <div class="courses_uptitle_block">
+                <ul id="show-menu" class="show-menu">
+                    <li>
+                        <a href="{% url 'academy2' %}">Об академии</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'all_courses' %}">Направления</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'index' %}">Метавселенная</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'store' %}">Маркетплейс</a>
+                    </li>
+                </ul>
+            <div class="action_text_block">
+                <div id="action_block_title " data-wow-duration="5s"  class="action_block_title animate__animated animate__fadeIn">
+                    <div class="title_litle_text">
+                        <p class="title1">Привет! Меня зовут</p>
+                        <p class="title2">Никита Костава</p>
+                    </div>
+                    <p class="litle_text">У меня более 3х лет опыта работы в сфере обслуживания,
+                        хороший навык коммуникации, ответственность и желание развиваться, сейчас ищу для себя возможности работы в сфере продаж и менеджмента: менеджер по продажам/продавец консультант 
+                    </p>
+                </div>
+                    {% comment %} <button class="action_btn animate__animated animate__pulse">
+                            <a href="#price-form"><div id="coursesButton" class="btn_text">
+                                <p class="action_btn_text">Начать обучение</p>
+                            </div></a>
+                    </button> {% endcomment %}
+                </div>
+                <iframe class="video_block animate__animated animate__fadeInUp" width="560" height="315" src="{{ direction.video_presentation}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+        </div>
+    </header>
+    <div class="skills">
+        <div class="container">
+            <div class="skills_block">
+                <div class="skills_title_block">
+                    <p class="skills_title">Ключевые навыки которыми владею</p>
+                        <div class="skills_div"></div>
+                </div>
+                <div class="two_colms_block">
+                    <div class="hart_block">
+                        <p class="hart_title">Hard skills</p>
+                        <div class="hart">
+                            <ul class="hart_colum">
+                                {% for line in hard_lines %}
+                                    <li class="soft_item">{{ line }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="soft_block">
+                        <p class="soft_title">Soft skills</p>
+                        <div class="soft">
+                            <ul class="soft_colum">
+                                {% for line in soft_lines %}
+                                <li class="soft_item">{{ line }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="dropdown_block">
+        <div class="dropdown_title">
+            <p class="title_dropdown wow animate__animated animate__fadeIn">Мои проекты и кейсы</p>
+            <div class="dropdown_div wow animate__animated animate__fadeIn"></div>
+        </div>
+        <div class="courses_dropdown">
+            <p class="main_dropdown_title">Основные курсы</p>
+            <div id="first" class="dropdown_item">
+                <div class="text_item">
+                    <p class="name_item">Талант-менеджмент</p>
+                    <img class="item_img" src="{% static '/img/dropdown_arrow.png'%}" alt="">
+                </div>
+            </div>
+            <div class="item_container">
+                <ul class="topick_group">
+                    <li class="topick_name">Tема 1</li>
+                    <li class="topick_name">Tема 2</li>
+                    <li class="topick_name">Tема 3</li>
+                    <li class="topick_name">Tема 4</li>
+                    <li class="topick_name">Tема 5</li>
+                    <li class="topick_name">Tема 6</li>
+                    <li class="topick_name">Tема 7</li>
+                    <li class="topick_name">Tема 8</li>
+                    <li class="topick_name">Tема 9</li>
+                    <li class="topick_name">Tема 10</li>
+                    <li class="topick_name">Tема 11</li>
+                    <li class="topick_name">Tема 12</li>
+                </ul>
+            </div>
+            <div class="dropdown_item">
+                <div class="text_item">
+                    <p class="name_item">Тайм-менеджмент</p>
+                    <img class="item_img" src="{% static '/img/dropdown_arrow.png'%}" alt="">
+                </div>
+            </div>
+            <div class="item_container">
+                <ul class="topick_group">
+                    <li class="topick_name">Tема 1</li>
+                    <li class="topick_name">Tема 2</li>
+                    <li class="topick_name">Tема 3</li>
+                    <li class="topick_name">Tема 4</li>
+                    <li class="topick_name">Tема 5</li>
+                    <li class="topick_name">Tема 6</li>
+                    <li class="topick_name">Tема 7</li>
+                    <li class="topick_name">Tема 8</li>
+                    <li class="topick_name">Tема 9</li>
+                    <li class="topick_name">Tема 10</li>
+                    <li class="topick_name">Tема 11</li>
+                    <li class="topick_name">Tема 12</li>
+                </ul>
+            </div>
+            <div class="dropdown_item">
+                <div class="text_item">
+                    <p class="name_item">Нумерология</p>
+                    <img class="item_img" src="{% static '/img/dropdown_arrow.png'%}" alt="">
+                </div>
+            </div>
+            <div class="item_container">
+                <ul class="topick_group">
+                    <li class="topick_name">Tема 1</li>
+                    <li class="topick_name">Tема 2</li>
+                    <li class="topick_name">Tема 3</li>
+                    <li class="topick_name">Tема 4</li>
+                    <li class="topick_name">Tема 5</li>
+                    <li class="topick_name">Tема 6</li>
+                    <li class="topick_name">Tема 7</li>
+                    <li class="topick_name">Tема 8</li>
+                    <li class="topick_name">Tема 9</li>
+                    <li class="topick_name">Tема 10</li>
+                    <li class="topick_name">Tема 11</li>
+                    <li class="topick_name">Tема 12</li>
+                </ul>
+            </div>
+            <div class="dropdown_item">
+                <div class="text_item">
+                    <p class="name_item">Свобода воли</p>
+                    <img class="item_img" src="{% static '/img/dropdown_arrow.png'%}" alt="">
+                </div>
+            </div>
+            <div class="item_container">
+                <ul class="topick_group">
+                    <li class="topick_name">Tема 1</li>
+                    <li class="topick_name">Tема 2</li>
+                    <li class="topick_name">Tема 3</li>
+                    <li class="topick_name">Tема 4</li>
+                    <li class="topick_name">Tема 5</li>
+                    <li class="topick_name">Tема 6</li>
+                    <li class="topick_name">Tема 7</li>
+                    <li class="topick_name">Tема 8</li>
+                    <li class="topick_name">Tема 9</li>
+                    <li class="topick_name">Tема 10</li>
+                    <li class="topick_name">Tема 11</li>
+                    <li class="topick_name">Tема 12</li>
+                </ul>
+            </div>
+            <div class="dropdown_item">
+                <div class="text_item">
+                    <p class="name_item">Финансовый менеджмент</p>
+                    <img class="item_img" src="{% static '/img/dropdown_arrow.png'%}" alt="">
+                </div>
+            </div>
+            <div class="item_container">
+                <ul class="topick_group">
+                    <li class="topick_name">Tема 1</li>
+                    <li class="topick_name">Tема 2</li>
+                    <li class="topick_name">Tема 3</li>
+                    <li class="topick_name">Tема 4</li>
+                    <li class="topick_name">Tема 5</li>
+                    <li class="topick_name">Tема 6</li>
+                    <li class="topick_name">Tема 7</li>
+                    <li class="topick_name">Tема 8</li>
+                    <li class="topick_name">Tема 9</li>
+                    <li class="topick_name">Tема 10</li>
+                    <li class="topick_name">Tема 11</li>
+                    <li class="topick_name">Tема 12</li>
+                </ul>
+            </div>
+            <div class="dropdown_item">
+                <div class="text_item">
+                    <p class="name_item">Управление личными финансам</p>
+                    <img class="item_img" src="{% static '/img/dropdown_arrow.png'%}" alt="">
+                </div>
+            </div>
+            <div class="item_container">
+                <ul class="topick_group">
+                    <li class="topick_name">Tема 1</li>
+                    <li class="topick_name">Tема 2</li>
+                    <li class="topick_name">Tема 3</li>
+                    <li class="topick_name">Tема 4</li>
+                    <li class="topick_name">Tема 5</li>
+                    <li class="topick_name">Tема 6</li>
+                    <li class="topick_name">Tема 7</li>
+                    <li class="topick_name">Tема 8</li>
+                    <li class="topick_name">Tема 9</li>
+                    <li class="topick_name">Tема 10</li>
+                    <li class="topick_name">Tема 11</li>
+                    <li class="topick_name">Tема 12</li>
+                </ul>
+            </div>
+            <div class="dropdown_item">
+                <div class="text_item">
+                    <p class="name_item">Бирюзовая коммуникация</p>
+                    <img class="item_img" src="{% static '/img/dropdown_arrow.png'%}" alt="">
+                </div>
+            </div>
+            <div class="item_container">
+                <ul class="topick_group">
+                    <li class="topick_name">Tема 1</li>
+                    <li class="topick_name">Tема 2</li>
+                    <li class="topick_name">Tема 3</li>
+                    <li class="topick_name">Tема 4</li>
+                    <li class="topick_name">Tема 5</li>
+                    <li class="topick_name">Tема 6</li>
+                    <li class="topick_name">Tема 7</li>
+                    <li class="topick_name">Tема 8</li>
+                    <li class="topick_name">Tема 9</li>
+                    <li class="topick_name">Tема 10</li>
+                    <li class="topick_name">Tема 11</li>
+                    <li class="topick_name">Tема 12</li>
+                </ul>
+            </div>
+            <div class="dropdown_item">
+                <div class="text_item">
+                    <p class="name_item">Управление проектами и задачами</p>
+                    <img class="item_img" src="{% static '/img/dropdown_arrow.png'%}" alt="">
+                </div>
+            </div>
+            <div class="item_container">
+                <ul class="topick_group">
+                    <li class="topick_name">Tема 1</li>
+                    <li class="topick_name">Tема 2</li>
+                    <li class="topick_name">Tема 3</li>
+                    <li class="topick_name">Tема 4</li>
+                    <li class="topick_name">Tема 5</li>
+                    <li class="topick_name">Tема 6</li>
+                    <li class="topick_name">Tема 7</li>
+                    <li class="topick_name">Tема 8</li>
+                    <li class="topick_name">Tема 9</li>
+                    <li class="topick_name">Tема 10</li>
+                    <li class="topick_name">Tема 11</li>
+                    <li class="topick_name">Tема 12</li>
+                </ul>
+            </div>
+            <div class="dropdown_item">
+                <div class="text_item">
+                    <p class="name_item">Профориентология</p>
+                    <img class="item_img" src="{% static '/img/dropdown_arrow.png'%}" alt="">
+                </div>
+            </div>
+            <div class="item_container">
+                <ul class="topick_group">
+                    <li class="topick_name">Tема 1</li>
+                    <li class="topick_name">Tема 2</li>
+                    <li class="topick_name">Tема 3</li>
+                    <li class="topick_name">Tема 4</li>
+                    <li class="topick_name">Tема 5</li>
+                    <li class="topick_name">Tема 6</li>
+                    <li class="topick_name">Tема 7</li>
+                    <li class="topick_name">Tема 8</li>
+                    <li class="topick_name">Tема 9</li>
+                    <li class="topick_name">Tема 10</li>
+                    <li class="topick_name">Tема 11</li>
+                    <li class="topick_name">Tема 12</li>
+                </ul>
+            </div>
+            <div id="last" class="dropdown_item">
+                <div class="text_item">
+                    <p class="name_item">Структурирование данных в Notion</p>
+                    <img class="item_img" src="{% static '/img/dropdown_arrow.png'%}" alt="">
+                </div>
+            </div>
+            <div class="item_container">
+                <ul class="topick_group">
+                    <li class="topick_name">Tема 1</li>
+                    <li class="topick_name">Tема 2</li>
+                    <li class="topick_name">Tема 3</li>
+                    <li class="topick_name">Tема 4</li>
+                    <li class="topick_name">Tема 5</li>
+                    <li class="topick_name">Tема 6</li>
+                    <li class="topick_name">Tема 7</li>
+                    <li class="topick_name">Tема 8</li>
+                    <li class="topick_name">Tема 9</li>
+                    <li class="topick_name">Tема 10</li>
+                    <li class="topick_name">Tема 11</li>
+                    <li class="topick_name">Tема 12</li>
+                </ul>
+            </div>
+            <p class="second_dropdown_title">Занятие телом</p>
+            <div id="first" class="dropdown_item">
+                <div class="text_item">
+                    <p class="name_item">Ораторское искуство</p>
+                    <img class="item_img" src="{% static '/img/dropdown_arrow.png'%}" alt="">
+                </div>
+            </div>
+            <div class="item_container">
+                <ul class="topick_group">
+                    <li class="topick_name">Tема 1</li>
+                    <li class="topick_name">Tема 2</li>
+                    <li class="topick_name">Tема 3</li>
+                    <li class="topick_name">Tема 4</li>
+                    <li class="topick_name">Tема 5</li>
+                    <li class="topick_name">Tема 6</li>
+                    <li class="topick_name">Tема 7</li>
+                    <li class="topick_name">Tема 8</li>
+                    <li class="topick_name">Tема 9</li>
+                    <li class="topick_name">Tема 10</li>
+                    <li class="topick_name">Tема 11</li>
+                    <li class="topick_name">Tема 12</li>
+                </ul>
+            </div>
+            <div id="last" class="dropdown_item">
+                <div class="text_item">
+                    <p class="name_item">Йога</p>
+                    <img class="item_img" src="{% static '/img/dropdown_arrow.png'%}" alt="">
+                </div>
+            </div>
+            <div class="item_container">
+                <ul class="topick_group">
+                    <li class="topick_name">Tема 1</li>
+                    <li class="topick_name">Tема 2</li>
+                    <li class="topick_name">Tема 3</li>
+                    <li class="topick_name">Tема 4</li>
+                    <li class="topick_name">Tема 5</li>
+                    <li class="topick_name">Tема 6</li>
+                    <li class="topick_name">Tема 7</li>
+                    <li class="topick_name">Tема 8</li>
+                    <li class="topick_name">Tема 9</li>
+                    <li class="topick_name">Tема 10</li>
+                    <li class="topick_name">Tема 11</li>
+                    <li class="topick_name">Tема 12</li>
+                </ul>
+            </div>
+            <p class="last_dropdown_title">Игры</p>
+            <div id="one" class="dropdown_item">
+                <div class="text_item">
+                    <p class="name_item">"Мыслить масштабно"</p>
+                    <img class="item_img" src="{% static '/img/dropdown_arrow.png'%}" alt="">
+                </div>
+            </div>
+            <div class="item_container">
+                <ul class="topick_group">
+                    <li class="topick_name">Tема 1</li>
+                    <li class="topick_name">Tема 2</li>
+                    <li class="topick_name">Tема 3</li>
+                    <li class="topick_name">Tема 4</li>
+                    <li class="topick_name">Tема 5</li>
+                    <li class="topick_name">Tема 6</li>
+                    <li class="topick_name">Tема 7</li>
+                    <li class="topick_name">Tема 8</li>
+                    <li class="topick_name">Tема 9</li>
+                    <li class="topick_name">Tема 10</li>
+                    <li class="topick_name">Tема 11</li>
+                    <li class="topick_name">Tема 12</li>
+                </ul>
+            </div>
+        </div>
+            
+            
+        </div>
+    </div>
+    <div class="smm_block">
+        <div class="smm_title">
+            <p class="title_smm wow animate__animated animate__fadeIn">Расширяй свой потенциал общаясь с нашими комьюнити</p>
+            <div class="smm_div wow animate__animated animate__fadeIn"></div>
+            </div>
+            <div class="smm_dropdown">
+                <div id="first_smm" class="dropdown_item">
+                    <div class="text_item_smm">
+                        <p class="name_item">Telegram-канал “Бирюзовая академия”</p>
+                        <img class="item_img" src="{% static '/img/dropdown_arrow.png'%}" alt="">
+                    </div>
+                </div>
+                <div class="item_container_smm">
+                    <ul class="topick_group">
+                        <li class="topick_name">На канале мы размещаем все материалы которые помогут нам познать бирюзовый уровень игры.</li>
+                        <li class="topick_name"><a href="https://t.me/+t5_ReQH8e8s5OWFl">&#10149;Присоединяйся к нам</a></li>
+                    </ul>
+                </div>
+                <div id="smm"  class="dropdown_item">
+                    <div class="text_item_smm">
+                        <p class="name_item">Telegram-канал “Kid-to-Kid”</p>
+                        <img class="item_img" src="{% static '/img/dropdown_arrow.png'%}" alt="">
+                    </div>
+                </div>
+                <div class="item_container_smm">
+                    <ul class="topick_group">
+                        <li class="topick_name">Детям с детьми познавать мир гораздо веселее. Всё детям от детей.</li>
+                        <li class="topick_name"><a href="https://t.me/+uRc2I0mdr0VmZjdh">&#10149;Вступай в наше комьюнити (канал)</a>&nbsp;&nbsp; <a href="https://kid2kid.education/">&#10149;Учи английский играя (сайт)</a></li>
+                    </ul>
+                </div>
+                <div id="last_smm" class="dropdown_item">
+                    <div class="text_item_smm">
+                        <p class="name_item">Telegram-канал ”Evolution life”</p>
+                        <img class="item_img" src="{% static '/img/dropdown_arrow.png'%}" alt="">
+                    </div>
+                </div>
+                <div class="item_container_smm">
+                    <ul class="topick_group">
+                        <li class="topick_name">Каждый человек уникален и приходит в мир уже со своими врожденными талантами. Изучая себя мы изучаем мир вокруг.</li>
+                        <li class="topick_name"><a href="https://t.me/evolution_life">&#10149;Узнай свои таланты (канал)</a>&nbsp;&nbsp; <a href="https://evolution.life/p/guzelusm">&#10149;Присоединяйся к комьюнити (сайт)</a></li>
+                    </ul>
+                </div>
+            </div>
+    </div>
+    <div class="mila_englsh_block">
+        <div class="eng_block">
+            <p class="eng_title">Подарок! 
+                Курс английского для детей!</p>
+                <div class="eng_offer">
+                    <iframe class="eng_img" src="https://www.youtube.com/embed/Jb2WCzY5WZI?si=EHAbywtJxrOF0szq" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    <div class="eng_text_block">
+                        <p class="eng_text">Все начинается с МЕЧТЫ 🙌🏻 Привет, меня зовут Милла. Я владею 3мя языками, играю на фортепиано и мечтаю помочь деткам свободно говорить на иностранных языках. Приглашаю вас на уроки английского для того что бы открыть возможности и общаться с детьми по всему миру.</p>
+                        <button  class="eng_btn animate__animated animate__pulse">
+                            <a href="#price-form"><p class="eng_btn_text">Я хочу курс!</p> </a>
+                    </button>
+                    </div>
+                </div>
+        </div>
+    </div>
+    <div class="support_block">
+        <div class="support_title">
+            <p class="title_support wow animate__animated animate__fadeIn">Мы всегда рядом</p>
+            <div class="support_div wow animate__animated animate__fadeIn"></div>
+            </div>
+            <div class="team_block">
+                <div data-wow-duration="2.5s" class="card_group_suport wow animate__animated animate__fadeIn">
+                    <img id="blog_img" src="{% static 'img/полина.jpg'%}"  alt="blog_img">
+                    <div class="blog_text1"><p class="blog_text2">Полина - лидер академии</p></div>
+                </div>
+                    <div data-wow-duration="2.5s" class="card_group_suport wow animate__animated animate__fadeIn">
+                        <img id="blog_img"  src="{% static 'img/эльза.jpg'%}" alt="blog_img">
+                        <div class="blog_text1"><p class="blog_text2">Эльза - медиа лидер</p></div>
+                    </div>
+                        <div data-wow-duration="2.5s" class="card_group_suport wow animate__animated animate__fadeIn">
+                            <img id="blog_img" src="{% static 'img/марина.jpg'%}" alt="blog_img">
+                            <div class="blog_text1"><p class="blog_text2">Марина - лидер поддержки</p></div>
+                        </div>
+                    </div>
+            </div>
+            <div class="presale_block">
+                <div class="presale_title">
+                    <p class="title_presale wow animate__animated animate__fadeIn">Гибкие условия для каждого</p>
+                    <div class="presale_div wow animate__animated animate__fadeIn"></div>
+                    </div>
+                    <div class="two_sale_blocks">
+                        <div class="back_money_block">
+                            <p class="back_money_title">Вернем деньги</p>
+                            <p class="back_money_text">В течении 14 дней если не подойдет направление мы вернем вам деньги за него</p>
+                        </div>
+                        <div class="sale_block">
+                            <p class="sale_title">Скидка</p>
+                            <p class="sale_text">При единоразовой оплате направления</p>
+                        </div>
+                    </div>
+            </div>
+            <div id="price-form" class="price_block">
+                <div class="price_card">
+                    <div class="price_title">
+                        <p class="title_price wow animate__animated animate__fadeIn">Стоимость направления “Менеджмент”</p>
+                        </div>
+                        <div class="info_text_date">
+                            <p class="start_date">Старт обучения: <p class="start_date1">1 декабря</p></p>
+                            <p class="count">Количество:  <p class="count1">10 мест</p></p>
+                        </div>
+                        <div class="two_price_blocks">
+                            <div class="big_price_block">
+                                <div class="price_block_info">
+                                    <div class="price_text">
+                                        <div class="big_price">
+                                            <p class="b_price1">6048</p>
+                                            <p class="b_price2">₽/мес</p>
+                                        </div>
+                                        <p class="small_price">Рассрочка на 24 месяца Первый платеж через месяц</p>
+                                    </div>
+                                </div>
+                                <div class="sale_info_text">
+                                    <ul class="sale_info_group">
+                                        <li class="sale_info_item">&#10149; Расширение сознания</li>
+                                        <li class="sale_info_item">&#10149; Среда единомышлеников</li>
+                                        <li class="sale_info_item">&#10149; Раскрытие потенциала</li>
+                                        <li class="sale_info_item">&#10149; Монетизаци своих навыков</li>
+                                        <li class="sale_info_item">&#10149; Внутреняя свобода</li>
+                                    </ul>
+                                </div>
+                            </div>
+                                <div class="price_form_block">
+                                    <p id="title2" class="form_title">Выбрать способ оплаты</p>
+                                    <p id="title1" class="form_title1">Заполние форму и выберете способ оплаты</p>
+                                        <div id="btn_group" class="btn_group">
+                                            <tinkoff-create-button
+                                            size="M"
+                                            subtext=""
+                                            shopId="b846bfc3-b390-4e5f-a0c3-db7c584b6afb"
+                                            showcaseId="a10e81c0-a515-45c9-bb24-5a5f2091b2bf"
+                                           
+                                            payment-data="sms&initialStage=filling&items.0.name={{direction.sale_name}}&items.0.price={{direction.price}}&items.0.quantity=1&promoCode=installment_0_0_24_20,5&sum={{direction.price}}"
+                                            ui-data="productType=installment&useReturnLinks=true&view=newTab"
+                                            ></tinkoff-create-button>
+                                                        <button class="full_price_btn"><p class="btn_full_text">Купить со скидкой 7500 ₽</p></button>
+                                        </div>
+                                        <div class="block_form animate__animated animate__fadeIn" data-wow-duration="5s">
+                                            <div id="success_block" class="success_form_block">
+                                                <p class="succsess_text">Благодарим за отправку!</p>
+                                            </div>
+                                            <form id="input_grup" name="contact-form" method="post">
+                                                 {% csrf_token %}
+                                                <div class="contact_form">
+                                                    <div class="input_group">
+                                                        <div class="name_group">
+                                                            <p class="name">Имя</p>
+                                                            <input type="text" placeholder="Ваше имя" name="name" class="input_block">
+                                                        </div>
+                                                        <div class="tel_group">
+                                                            <p class="tel">Телефон</p>
+                                                            <input type="text" placeholder="Ваш телефон" name="phone" class="input_block" pattern="[0-9]*" title="Введите только цифры">
+                            
+                                                        </div>
+                                                        <div class="mes_group">
+                                                            <p class="mes">Мессенджер</p>
+                                                            <div class="input_block_mes">
+                                                                <button id="type_mes" class="mes_type_btn" type="button">
+                                                                    <p class="text_btn_mes" id="selectedMessenger">Тип</p>
+                                                                    <img class="btn_arrow" id="btn_arrow" src={% static 'img/btn_arrow.svg' %} alt="arrow">
+                                                                </button>
+                                                                <input type="text" name="messenger_value" class="input_mes" placeholder="Ваш никнейм">
+                                                                <select name="messenger_type" style="display: none;"> <!-- Скрытый select -->
+                                                                    <option value="Telegram">Telegram</option>
+                                                                    <option value="Instagram">Instagram</option>
+                                                                    <option value="WhatsApp">WhatsApp</option>
+                                                                    <option value="Viber">Viber</option>
+                                                                </select>
+                                                                <div id="dropdown_mes" class="dropdown_menu">
+                                                                    <ul class="drop_menu">
+                                                                        <li class="drop_item">
+                                                                            <p class="drop_text">Telegram</p>
+                                                                        </li>
+                                                                        <li class="drop_item">
+                                                                            <p class="drop_text">Instagram</p>
+                                                                        </li>
+                                                                        <li class="drop_item">
+                                                                            <p class="drop_text">WhatsApp</p>
+                                                                        </li>
+                                                                        <li class="drop_item">
+                                                                            <p class="drop_text">Viber</p>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="btn_contact">
+                                                            <button id="form_btn" class="contact_btn" type="submit" name="UpdateCustomerForm">
+                                                                <p class="btn_text">Отправить заявку</p>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <p class="doc_agreement">Нажимая на кнопку "Отправить заявку", я соглашаюсь на <a class="doc_link" href="https://drive.google.com/file/d/1rt2P9qtgjZ19m8PzV1sQbahndV5TMws6/view?usp=sharing">обработку персональных данных</a>, <a class="doc_link" href="https://drive.google.com/file/d/1nKo_XiytxuVaBBAFqtRZ7jTGuz-mSvlU/view?usp=sharing">пользовательским соглашением</a> и <a class="doc_link" href="https://drive.google.com/file/d/1ep8I55KZW_uh3PSI7a44t0Z-8L_dOHS2/view?usp=drive_link">офертой</a></p>
+                                </div>
+                        </div>
+                </div>
+            </div>
+            <footer class="footer">
+                <div class="container">
+                    <div class="footer_main">
+                    <div class="footer_box">
+                    <div data-wow-delay="1s" class="text_block_footer animate__animated animate__fadeInUp">
+                    <div class="logo_footer">
+                        <a href="{% url 'academy' %}"><img src="{% static 'img/image 1.svg'%}" alt="logo"></a>
+                    <div class="logo_text">
+                        <p class="text1">Бирюзовая</p>
+                        <p class="text2">Академия</p></p>
+                    </div>
+                    </div>
+                    <div class="footer_second_text_block">
+                    <div class="footer_text">
+                    <p class="footer_text1">Никогда не сомневайтесь в своем потенциале! Бирюзовая Академия – это ваш путь к лучшей версии себя.
+                       <br><p class="footer_text2">#БирюзоваяАкадемия #РаскройСебя</p></p>
+                       </div>
+                       <div class="icon_footer_block">
+                            <div class="facebook">
+                                <div class="round_smm">
+                                    <a href="#"><img src="{% static 'img/facebook.svg'%}" alt="facebook"></a>
+                                </div>
+                            </div>
+                            <div class="instargram">
+                                <div class="round_smm">
+                                    <a href="https://www.instagram.com/modern.time.academy/"><img src="{% static 'img/instagram.svg'%}" alt="instagram"></a>
+                                </div>
+                            </div>
+                            <div class="telegram">
+                                <div class="round_smm">
+                                    <a href="https://t.me/+Xp5zW6wyF_FmMDU1"><img src="{% static 'img/telegram.svg'%}" alt="telegram"></a>
+                                </div>
+                            </div>
+                       </div>
+                    </div>
+                    </div>
+                    <div id="triger_box" data-wow-delay="1s" class="triger_box animate__animated animate__fadeInUp">
+                    <div  id="footer-triger-title" class="footer-triger-title">
+                        <span
+                          ><span id="span" class="footer-triger-title-span">Готов начать обучение в </span
+                          ><span id="span2" class="footer-triger-title-span2">Бирюзовой </span
+                          ><span  id="span3" class="footer-triger-title-span3">Академии?</span></span>
+                      </div>
+                      <button id="footButton" class="footer_btn wow animate__animated animate__pulse">
+                        <div class="footer_btn_text_block">
+                            <p class="footer_btn_text">Начать бесплатно</p>
+                            <img class="btn_arrow_footer" src="/img/btn_arrow.svg" alt="action_btn_arrow">
+                        </div>
+                    </button>
+                    </div>
+                    <div data-wow-delay="1s" class="law_info_block animate__animated animate__fadeInUp">
+                        <ul class="list_info">
+                            <li class="ip">ИП Мокрецова Марина Владимировна</li>
+                            <li class="inn">ИНН 890409100814</li>
+                            <li class="ogrnip">ОГРНИП 323237500416580</li>
+                            <li class="number">+995 568 836 179</li>
+                            <li class="mail">talentversesup.academy@gmail.com</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="doc_line">
+                    <div class="doc_list">
+                        <a class="docs" href="https://drive.google.com/file/d/1ep8I55KZW_uh3PSI7a44t0Z-8L_dOHS2/view?usp=drive_link">Оферта</a><a class="docs" href="https://drive.google.com/file/d/1nKo_XiytxuVaBBAFqtRZ7jTGuz-mSvlU/view?usp=sharing">Пользовотельское соглашение</a><a class="docs" href="https://drive.google.com/file/d/1rt2P9qtgjZ19m8PzV1sQbahndV5TMws6/view?usp=sharing">Политика конфиденциальности</a><p class="lable" >© 2023 Бирюзовая Академия</p>
+                    </div>
+                </div>
+                </div> 
+                </div>
+            </footer>
+    
+            
+
+                
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="{% static 'js/slider_teachers_academy.js'%}"></script>
+    <script src="{% static 'js/dropdown-academy.js'%}"></script>
+    <script src="{% static 'js/menu-academy.js'%}"></script>
+    <script src="{% static 'js/contact-academy.js'%}"></script>
+    <script src="{% static 'js/sale_form_function.js'%}"></script>
+    <script src="{% static 'js/wow.min.js'%}"></script>
+    <script src="{% static 'js/card_rotete.js'%}"></script>
+
+
+    <script>
+        $(document).ready(function () {
+            $("#input_grup").submit(function (e) {
+                e.preventDefault(); // Предотвращаем обычную отправку формы
+                var formData = new FormData(this);
+        
+                $.ajax({
+                    type: 'POST',
+                    url: $(this).attr('action'),
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (response) {
+                        // Обработка успешного ответа (например, отображение сообщения)
+                        console.log("ты супер");
+                    },
+                    error: function (error) {
+                        // Обработка ошибки (например, отображение сообщения об ошибке)
+                        console.log(error);
+                    }
+                });
+            });
+        });
+        </script>
+</body>
+</html>
