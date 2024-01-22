@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Личный кабинет</title>
+    <link rel="shortcut icon" href="{% static 'img/image 1.svg'%}" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -278,11 +279,16 @@
             </div>
             <!-- настройки -->
             <div class="settings_page">
-                <form method="POST" name="UpdateCustomerForm">
+                <form method="POST" name="UpdateCustomerForm" enctype="multipart/form-data">
                     {% csrf_token %}
                 <div class="personal_block">
                 <p class="person_info_title">Персональная информация</p>
                 <div class="person_info_block">
+                    <div class="img_profile_block">
+                    <img class="profile_img_set" src="{{ request.user.customer.image.url }}" id="profileImage">
+                    <p class="img_desc">Ваше фото профиля</p>
+                    <input name="image" type="file" id="fileInput" style="display: none;" >
+                    </div>
                     <div class="first_block">
                         <div class="base_info_block">
                             <p class="base_title">Базовая информация:</p>
@@ -351,28 +357,37 @@
                     <div class="second_block">
                         <div class="location_info_block">
                             <p class="location_title">Месторасположение:</p>
-                            <div class="contry_group">
-                                <p class="contry">Страна</p>
-                                <input
-                        type="text"
-                        name="country"
-                        value="{{ request.user.customer.country }}"
-                        title="Страна проживания"
-                        placeholder=""
-                        class="input_block"
-                      />
-                            </div>
-                            <div class="zipcode_group">
-                                <p class="zipcode">Zipcode города</p>
-                                <input
-                        type="text"
-                        name="zipcode"
-                        value="{{ request.user.customer.zipcode }}"
-                        title="Почтовый индекс"
-                        placeholder=""
-                        class="input_block"
-                      />
-                            </div>
+                      <div class="country_group">
+                        <p class="country">Страна</p>
+                        <select name="country" id="countrySelect" value="{{ request.user.customer.country }}" class="input_block">
+                            <option value="{{ request.user.customer.country }}" disabled selected>Выберите страну</option>
+                            <optgroup label="СНГ">
+                                <option value="Россия" {% if request.user.customer.country == 'Россия' %}selected{% endif %}>Россия</option>
+                                <option value="Украина" {% if request.user.customer.country == 'Украина' %}selected{% endif %}>Украина</option>
+                                <option value="Беларусь" {% if request.user.customer.country == 'Беларусь' %}selected{% endif %}>Беларусь</option>
+                                <option value="Казахстан" {% if request.user.customer.country == 'Казахстан' %}selected{% endif %}>Казахстан</option>
+                            </optgroup>
+                            <optgroup label="Европа">
+                                <option value="Германия" {% if request.user.customer.country == 'Германия' %}selected{% endif %}>Германия</option>
+                                <option value="Франция" {% if request.user.customer.country == 'Франция' %}selected{% endif %}>Франция</option>
+                                <option value="Италия" {% if request.user.customer.country == 'Италия' %}selected{% endif %}>Италия</option>
+                                <option value="Великобритания" {% if request.user.customer.country == 'Великобритания' %}selected{% endif %}>Великобритания</option>
+                            </optgroup>
+                            <optgroup label="Азия">
+                                <option value="Китай" {% if request.user.customer.country == 'Китай' %}selected{% endif %}>Китай</option>
+                                <option value="Япония" {% if request.user.customer.country == 'Япония' %}selected{% endif %}>Япония</option>
+                                <option value="Индия" {% if request.user.customer.country == 'Индия' %}selected{% endif %}>Индия</option>
+                                <option value="Южная Корея" {% if request.user.customer.country == 'Южная Корея' %}selected{% endif %}>Южная Корея</option>
+                            </optgroup>
+                        </select>
+                        </div>
+                      <div class="zipcode_group">
+                        <p class="zipcode">Город</p>
+                        <select value="{{ request.user.customer.zipcode }}" name="city" class="input_block" id="citySelect">
+                            <option value="{{ request.user.customer.zipcode }}" disabled selected>Выберите город</option>
+                          
+                        </select>
+                    </div>
                         </div>
                         <div class="wallet_info_block">
                             <div class="wallet_group">
@@ -782,30 +797,54 @@
                 <div class="home_work_content">
                     <p class="home_work_title">Чат с преподавателями академии</p>
                     <div class="chat_block">
-                        <div class="rooms_block">
-                            <div class="title_rooms_block">
-                                <p class="title_rooms mentors">Преподаватели</p>
-                                <p class="title_rooms students">Студенты</p>
-                            </div>
-                            <ul class="rooms">
-                                <li class="chat_room mentor_room">
-                                    <img src="{% static 'img/никита.jpg'%}" alt="" class="chat_img">
-                                    <div class="chat_info">
-                                        <p class="name_person">Никита</p>
-                                        <p class="info_person">"Игра "Мыслить Масшт."</p>
+                   <!-- Отображение для студента -->
+                                {% if is_student %}
+                                <div class="rooms_block">
+                                    <div class="title_rooms_block">
+                                        <p class="title_rooms mentors">Преподаватели</p>
                                     </div>
-                                    <div class="mess_income"><p class="mess_numb">1</p></div>
-                                </li>
-                                <li class="chat_room student_room">
-                                    <img src="{% static 'img/никита.jpg'%}" alt="" class="chat_img">
-                                    <div class="chat_info">
-                                        <p class="name_person">Никита</p>
-                                        <p class="info_person">"Напр. Менеджмент"</p>
+                                    <ul class="rooms">
+                                        {% for user in users %}
+                                            {% if user.status == 'Преподаватель' %}
+                                                <li class="chat_room mentor_room">
+                                                    <img src="{% static 'img/никита.jpg' %}" alt="" class="chat_img">
+                                                    <div class="chat_info">
+                                                        <p class="name_person">{{ user.first_name }} {{ user.last_name }}</p>
+                                                        <!-- Дополнительные данные для преподавателя -->
+                                                        <p class="info_person">{% if user.courses %}"{{ user.courses.name|truncatechars:15 }}"{% endif %}</p>
+                                                    </div>
+                                                    <div class="mess_income"><p class="mess_numb">1</p></div>
+                                                </li>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                                {% else %}
+                                <!-- Отображение для преподавателя -->
+                                <div class="rooms_block">
+                                    <div class="title_rooms_block">
+                                        <p class="title_rooms students">Студенты</p>
                                     </div>
-                                    <div class="mess_income"><p class="mess_numb">1</p></div>
-                                </li>
-                            </ul>
-                        </div>
+                                    <ul class="rooms">
+                                        {% for user in users %}
+                                            {% if user.status == 'Студент' %}
+                                                <li class="chat_room student_room">
+                                                    <img src="{% static 'img/никита.jpg' %}" alt="" class="chat_img">
+                                                    <div class="chat_info">
+                                                        <p class="name_person">{{ user.first_name }} {{ user.last_name }}</p>
+                                                        <!-- Дополнительные данные для студента -->
+                                                        <p class="info_person">"Напр. {{ user.direction.name }}"</p>
+                                                    </div>
+                                                    <div class="mess_income"><p class="mess_numb">1</p></div>
+                                                </li>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                                {% endif %}
+
+                                                    
+                                                        
                         <div class="back_btn"><img class="back_btn_img" src="{% static 'img/arrow_btn_prew.png' %}" alt=""><p class="back_btn_text">Все чаты</p></div>
                         <div class="chat_desk_block">
                             <ul class="mess_block" id="messageList">
@@ -890,9 +929,7 @@
     <script src="{% static 'js/chat-academy.js'%}"></script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-
-
+{% comment %} скрипты для обучения {% endcomment %}
 <script>
     $(document).ready(function() {
         var activeStreamId = $('.potok_item.open').data('stream-id');
@@ -1059,10 +1096,7 @@
     
 </script>
 
-
-
-
-
+{% comment %} скрипт для кприто входа {% endcomment %}
 
     <script type="module">
         import {
@@ -1121,20 +1155,8 @@
             console.error("Error disconnecting:", error);
           }
         }
-      </script>
+    </script>
 
-
-      {% comment %} <script> 
-        //код по переключению между потоками
-        function handleClick(streamId) {
-            var streamElement = document.querySelector('.potok_item.first');
-            if (streamElement.classList.contains('knock_close')) {
-                alert('Этот поток еще закрыт!');
-            } else {
-                // Обработка клика на открытый поток
-            }
-        }
-      </script> {% endcomment %}
 
         <script>
             //код к чату
@@ -1281,6 +1303,160 @@
             });
             
         </script>
+
+        {% comment %} скрипты к настройкам {% endcomment %}
                   
+        <script>
+            $(document).ready(function () {
+                // Обработчик события изменения страны
+                $('#countrySelect').change(function () {
+                    // Очищаем текущий список городов
+                    $('#citySelect').empty();
+
+                      // Добавляем фразу "Выберите город"
+                     $('#citySelect').append('<option value="" disabled selected>Выберите город</option>');
+
+        
+                    // Получаем выбранную страну
+                    var selectedCountry = $(this).val();
+        
+                    // Добавляем города в зависимости от выбранной страны
+                    if (selectedCountry === 'Россия') {
+                        $('#citySelect').append('<option value="Москва">Москва</option>');
+                        $('#citySelect').append('<option value="Санкт-Петербург">Санкт-Петербург</option>');
+                        $('#citySelect').append('<option value="Новосибирск">Новосибирск</option>');
+                        $('#citySelect').append('<option value="Екатеринбург">Екатеринбург</option>');
+                        $('#citySelect').append('<option value="Нижний Новгород">Нижний Новгород</option>');
+                        $('#citySelect').append('<option value="Казань">Казань</option>');
+                        $('#citySelect').append('<option value="Челябинск">Челябинск</option>');
+                        $('#citySelect').append('<option value="Омск">Омск</option>');
+                        $('#citySelect').append('<option value="Самара">Самара</option>');
+                        $('#citySelect').append('<option value="Ростов-на-Дону">Ростов-на-Дону</option>');
+                        $('#citySelect').append('<option value="Владивосток">Владивосток</option>');
+                        $('#citySelect').append('<option value="Красноярск">Красноярск</option>');
+                        $('#citySelect').append('<option value="Уфа">Уфа</option>');
+                        $('#citySelect').append('<option value="Пермь">Пермь</option>');
+                        $('#citySelect').append('<option value="Воронеж">Воронеж</option>');
+                    } else if (selectedCountry === 'Украина') {
+                        $('#citySelect').append('<option value="Киев">Киев</option>');
+                        $('#citySelect').append('<option value="Харьков">Харьков</option>');
+                        $('#citySelect').append('<option value="Одесса">Одесса</option>');
+                        $('#citySelect').append('<option value="Днепр">Днепр</option>');
+                        $('#citySelect').append('<option value="Донецк">Донецк</option>');
+                        $('#citySelect').append('<option value="Запорожье">Запорожье</option>');
+                        $('#citySelect').append('<option value="Львов">Львов</option>');
+                        $('#citySelect').append('<option value="Кривой Рог">Кривой Рог</option>');
+                        $('#citySelect').append('<option value="Николаев">Николаев</option>');
+                        $('#citySelect').append('<option value="Мариуполь">Мариуполь</option>');
+                        $('#citySelect').append('<option value="Луцк">Луцк</option>');
+                        $('#citySelect').append('<option value="Хмельницкий">Хмельницкий</option>');
+                        $('#citySelect').append('<option value="Чернигов">Чернигов</option>');
+                        $('#citySelect').append('<option value="Житомир">Житомир</option>');
+                        $('#citySelect').append('<option value="Полтава">Полтава</option>');
+                    } else if (selectedCountry === 'Германия') {
+                        $('#citySelect').append('<option value="Берлин">Берлин</option>');
+                        $('#citySelect').append('<option value="Гамбург">Гамбург</option>');
+                        $('#citySelect').append('<option value="Мюнхен">Мюнхен</option>');
+                        $('#citySelect').append('<option value="Кёльн">Кёльн</option>');
+                        $('#citySelect').append('<option value="Франкфурт">Франкфурт</option>');
+                        $('#citySelect').append('<option value="Штутгарт">Штутгарт</option>');
+                        $('#citySelect').append('<option value="Дюссельдорф">Дюссельдорф</option>');
+                        $('#citySelect').append('<option value="Ганновер">Ганновер</option>');
+                        $('#citySelect').append('<option value="Нюрнберг">Нюрнберг</option>');
+                        $('#citySelect').append('<option value="Лейпциг">Лейпциг</option>');
+                        $('#citySelect').append('<option value="Ганновер">Ганновер</option>');
+                        $('#citySelect').append('<option value="Дортмунд">Дортмунд</option>');
+                        $('#citySelect').append('<option value="Штутгарт">Штутгарт</option>');
+                        $('#citySelect').append('<option value="Эссен">Эссен</option>');
+                        $('#citySelect').append('<option value="Бремен">Бремен</option>');
+                        $('#citySelect').append('<option value="Ганновер">Ганновер</option>');
+                    } else if (selectedCountry === 'Франция') {
+                        $('#citySelect').append('<option value="Париж">Париж</option>');
+                        $('#citySelect').append('<option value="Марсель">Марсель</option>');
+                        $('#citySelect').append('<option value="Лион">Лион</option>');
+                        $('#citySelect').append('<option value="Тулуза">Тулуза</option>');
+                        $('#citySelect').append('<option value="Ницца">Ницца</option>');
+                        $('#citySelect').append('<option value="Бордо">Бордо</option>');
+                        $('#citySelect').append('<option value="Лилль">Лилль</option>');
+                        $('#citySelect').append('<option value="Страсбург">Страсбург</option>');
+                        $('#citySelect').append('<option value="Монако">Монако</option>');
+                        $('#citySelect').append('<option value="Лозанна">Лозанна</option>');
+                        $('#citySelect').append('<option value="Ницца">Ницца</option>');
+                        $('#citySelect').append('<option value="Лион">Лион</option>');
+                        $('#citySelect').append('<option value="Марсель">Марсель</option>');
+                        $('#citySelect').append('<option value="Тулуза">Тулуза</option>');
+                        $('#citySelect').append('<option value="Бордо">Бордо</option>');
+                        $('#citySelect').append('<option value="Лилль">Лилль</option>');
+                        $('#citySelect').append('<option value="Страсбург">Страсбург</option>');
+                        $('#citySelect').append('<option value="Монако">Монако</option>');
+                        $('#citySelect').append('<option value="Лозанна">Лозанна</option>');
+                    } else if (selectedCountry === 'Китай') {
+                        $('#citySelect').append('<option value="Пекин">Пекин</option>');
+                        $('#citySelect').append('<option value="Шанхай">Шанхай</option>');
+                        $('#citySelect').append('<option value="Гуанчжоу">Гуанчжоу</option>');
+                        $('#citySelect').append('<option value="Шэньчжэнь">Шэньчжэнь</option>');
+                        $('#citySelect').append('<option value="Тяньцзинь">Тяньцзинь</option>');
+                        $('#citySelect').append('<option value="Гонконг">Гонконг</option>');
+                        $('#citySelect').append('<option value="Макао">Макао</option>');
+                        $('#citySelect').append('<option value="Чунцин">Чунцин</option>');
+                        $('#citySelect').append('<option value="Ханчжоу">Ханчжоу</option>');
+                        $('#citySelect').append('<option value="Нанкин">Нанкин</option>');
+                        $('#citySelect').append('<option value="Чэнду">Чэнду</option>');
+                        $('#citySelect').append('<option value="Сиань">Сиань</option>');
+                        $('#citySelect').append('<option value="Ханчжоу">Ханчжоу</option>');
+                        $('#citySelect').append('<option value="Чунцин">Чунцин</option>');
+                        $('#citySelect').append('<option value="Нанкин">Нанкин</option>');
+                        $('#citySelect').append('<option value="Чэнду">Чэнду</option>');
+                        $('#citySelect').append('<option value="Сиань">Сиань</option>');
+                    } else if (selectedCountry === 'Япония') {
+                        $('#citySelect').append('<option value="Токио">Токио</option>');
+                        $('#citySelect').append('<option value="Йокогама">Йокогама</option>');
+                        $('#citySelect').append('<option value="Осака">Осака</option>');
+                        $('#citySelect').append('<option value="Киото">Киото</option>');
+                        $('#citySelect').append('<option value="Саппоро">Саппоро</option>');
+                        $('#citySelect').append('<option value="Нагоя">Нагоя</option>');
+                        $('#citySelect').append('<option value="Фукуока">Фукуока</option>');
+                        $('#citySelect').append('<option value="Осака">Осака</option>');
+                        $('#citySelect').append('<option value="Сэндай">Сэндай</option>');
+                        $('#citySelect').append('<option value="Кобе">Кобе</option>');
+                        $('#citySelect').append('<option value="Киото">Киото</option>');
+                        $('#citySelect').append('<option value="Саппоро">Саппоро</option>');
+                        $('#citySelect').append('<option value="Нагоя">Нагоя</option>');
+                        $('#citySelect').append('<option value="Фукуока">Фукуока</option>');
+                        $('#citySelect').append('<option value="Сэндай">Сэндай</option>');
+                        $('#citySelect').append('<option value="Кобе">Кобе</option>');
+                    }
+                });
+            });
+        </script>
+        
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const fileInput = document.getElementById('fileInput');
+                const profileImage = document.getElementById('profileImage');
+        
+                // Обработчик изменения файла
+                fileInput.addEventListener('change', function () {
+                    // Проверяем, что файл был выбран
+                    if (fileInput.files.length > 0) {
+                        const file = fileInput.files[0];
+        
+                        // Показываем превью выбранного изображения
+                        const reader = new FileReader();
+                        reader.onload = function (e) {
+                            profileImage.src = e.target.result;
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                });
+        
+                // Обработчик клика на изображение
+                profileImage.addEventListener('click', function () {
+                    // Открываем файловый менеджер для выбора файла
+                    fileInput.click();
+                });
+            });
+        </script>
+        
 </body>
 </html>

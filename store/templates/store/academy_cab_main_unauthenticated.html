@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Личный кабинет</title>
+    <link rel="shortcut icon" href="{% static 'img/image 1.svg'%}" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -165,6 +166,11 @@
                 <div class="personal_block">
                 <p class="person_info_title">Персональная информация</p>
                 <div class="person_info_block">
+                  <div class="img_profile_block">
+                    <img class="profile_img_set" src="{{ request.user.customer.image.url }}" id="profileImage">
+                    <p class="img_desc">Ваше фото профиля</p>
+                    <input name="image" type="file" id="fileInput" style="display: none;" >
+                    </div>
                     <div class="first_block">
                         <div class="base_info_block">
                             <p class="base_title">Базовая информация:</p>
@@ -231,45 +237,55 @@
                         </div>
                     </div>
                     <div class="second_block">
-                        <div class="location_info_block">
-                            <p class="location_title">Месторасположение:</p>
-                            <div class="contry_group">
-                                <p class="contry">Страна</p>
-                                <input
-                        type="text"
-                        name="country"
-                        value="{{ request.user.customer.country }}"
-                        title="Страна проживания"
-                        placeholder=""
-                        class="input_block"
-                      />
-                            </div>
-                            <div class="zipcode_group">
-                                <p class="zipcode">Zipcode города</p>
-                                <input
-                        type="text"
-                        name="zipcode"
-                        value="{{ request.user.customer.zipcode }}"
-                        title="Почтовый индекс"
-                        placeholder=""
-                        class="input_block"
-                      />
-                            </div>
-                        </div>
-                        <div class="wallet_info_block">
-                            <div class="wallet_group">
-                                <p class="walet_title">Кошелёк:</p>
-                                <p class="wallet">Адрес кошелька Metamask</p>
-                                <input
-                                type="text"
-                                name="wallet"
-                                value="{{ request.user.customer.wallet }}"
-                                title="Enter the address of your Metamask wallet"
-                                placeholder=""
-                                class="input_block"
-                              />
-                            </div>
-                        </div>
+                      <div class="location_info_block">
+                          <p class="location_title">Месторасположение:</p>
+                    <div class="country_group">
+                      <p class="country">Страна</p>
+                      <select name="country" id="countrySelect" value="{{ request.user.customer.country }}" class="input_block">
+                          <option value="{{ request.user.customer.country }}" disabled selected>Выберите страну</option>
+                          <optgroup label="СНГ">
+                              <option value="Россия" {% if request.user.customer.country == 'Россия' %}selected{% endif %}>Россия</option>
+                              <option value="Украина" {% if request.user.customer.country == 'Украина' %}selected{% endif %}>Украина</option>
+                              <option value="Беларусь" {% if request.user.customer.country == 'Беларусь' %}selected{% endif %}>Беларусь</option>
+                              <option value="Казахстан" {% if request.user.customer.country == 'Казахстан' %}selected{% endif %}>Казахстан</option>
+                          </optgroup>
+                          <optgroup label="Европа">
+                              <option value="Германия" {% if request.user.customer.country == 'Германия' %}selected{% endif %}>Германия</option>
+                              <option value="Франция" {% if request.user.customer.country == 'Франция' %}selected{% endif %}>Франция</option>
+                              <option value="Италия" {% if request.user.customer.country == 'Италия' %}selected{% endif %}>Италия</option>
+                              <option value="Великобритания" {% if request.user.customer.country == 'Великобритания' %}selected{% endif %}>Великобритания</option>
+                          </optgroup>
+                          <optgroup label="Азия">
+                              <option value="Китай" {% if request.user.customer.country == 'Китай' %}selected{% endif %}>Китай</option>
+                              <option value="Япония" {% if request.user.customer.country == 'Япония' %}selected{% endif %}>Япония</option>
+                              <option value="Индия" {% if request.user.customer.country == 'Индия' %}selected{% endif %}>Индия</option>
+                              <option value="Южная Корея" {% if request.user.customer.country == 'Южная Корея' %}selected{% endif %}>Южная Корея</option>
+                          </optgroup>
+                      </select>
+                      </div>
+                    <div class="zipcode_group">
+                      <p class="zipcode">Город</p>
+                      <select value="{{ request.user.customer.zipcode }}" name="city" class="input_block" id="citySelect">
+                          <option value="{{ request.user.customer.zipcode }}" disabled selected>Выберите город</option>
+                        
+                      </select>
+                  </div>
+                      </div>
+                      <div class="wallet_info_block">
+                          <div class="wallet_group">
+                              <p class="walet_title">Кошелёк:</p>
+                              <p class="wallet">Адрес кошелька Metamask</p>
+                              <input
+                              type="text"
+                              name="wallet"
+                              value="{{ request.user.customer.wallet }}"
+                              title="Enter the address of your Metamask wallet"
+                              placeholder=""
+                              class="input_block"
+                            />
+                          </div>
+                      </div>
+                  </div>
                     </div>
                 </div>
                 <button class="save_btn"><p class="save_btn_text">Сохранить</p></button>
@@ -345,5 +361,35 @@
       }
     }
   </script>
+
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const fileInput = document.getElementById('fileInput');
+        const profileImage = document.getElementById('profileImage');
+
+        // Обработчик изменения файла
+        fileInput.addEventListener('change', function () {
+            // Проверяем, что файл был выбран
+            if (fileInput.files.length > 0) {
+                const file = fileInput.files[0];
+
+                // Показываем превью выбранного изображения
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    profileImage.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Обработчик клика на изображение
+        profileImage.addEventListener('click', function () {
+            // Открываем файловый менеджер для выбора файла
+            fileInput.click();
+        });
+    });
+</script>
+
 </body>
 </html>

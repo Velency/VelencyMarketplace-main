@@ -96,17 +96,17 @@ class Customer(models.Model):
     last_name = models.CharField(max_length=20, null=True)
     email = models.CharField(max_length=200)
     image = models.ImageField(
-        default='user_photos/img.jpg', upload_to='user_photos')
+        default='user_photos/dflt_img.jpeg', upload_to='user_photos')
     mobile = models.CharField(max_length=13, null=True, blank=True)
     # address = models.TextField(max_length=100, null=True, blank=True)
     country = models.CharField(max_length=100, null=True, blank=True)
     # city = models.CharField(max_length=100, null=True, blank=True)
     # state = models.CharField(max_length=50, null=True, blank=True)
-    zipcode = models.CharField(max_length=6, null=True, blank=True)
+    city = models.CharField(max_length=100, null=True, blank=True)
     referral_link = models.CharField(
         max_length=255, unique=True, null=True, blank=True)
     referral_code = models.CharField(max_length=5, unique=True, blank=True)
-    referrer_code = models.CharField(max_length=5, default='admin', blank=True)
+    referrer_code = models.CharField(max_length=5, default='Academy', blank=True)
     referral_by = models.ForeignKey(
         'self', on_delete=models.SET_NULL, null=True, blank=True)
     registred = models.BooleanField(default=False)
@@ -122,6 +122,8 @@ class Customer(models.Model):
         max_length=20, choices=STATUS_CHOICES, default='Студент')
     direction = models.ForeignKey(
         Direction, null=True, blank=True, on_delete=models.SET_NULL)
+    courses = models.ForeignKey(
+        Course, null=True, blank=True, on_delete=models.SET_NULL)
 
     def __init__(self, *args, **kwargs):
         super(Customer, self).__init__(*args, **kwargs)
@@ -129,7 +131,7 @@ class Customer(models.Model):
             self.wallet = self.user.username
 
     def __str__(self):
-        return self.user.username
+        return f"{self.first_name} {self.last_name}"
 
     def save(self, *args, **kwargs):
         if not self.referral_code:

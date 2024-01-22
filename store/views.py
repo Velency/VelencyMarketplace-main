@@ -3,7 +3,7 @@ from django.shortcuts import get_object_or_404
 from django.template.loader import render_to_string
 from django.views.decorators.csrf import csrf_exempt
 from itertools import groupby
-from django.db.models import F, IntegerField, Case, When, Value
+from django.db.models import F, IntegerField, Case, When, Value, Q
 from functools import wraps
 from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
@@ -238,6 +238,7 @@ def academy_profile(request):
         # Если пользователь первый раз заходит, перенаправляем его
         return redirect('academy_cab_main_unauthenticated')
     else:
+       
         if request.method == 'POST':
             form = UpdateCustomerForm(
                 request.POST, request.FILES, instance=customer)
@@ -306,12 +307,22 @@ def academy_profile(request):
                 converted_lessons.append({'start_time': start_time, 'end_time': end_time, 'course': lesson.course})
             converted_schedule.append({'day': day, 'lessons': converted_lessons})
            
+
+        is_student = customer.status == 'Студент'
+        users = None
+
+        if is_student:
+            users = Customer.objects.filter(Q(direction__name=direction_name) & Q(status='Преподаватель'))
+        else:
+            users = Customer.objects.filter(Q(direction__name=direction_name) & Q(status='Студент'))
+
         context = {
-            'direction': direction_name,
             'form': form,
             'study_group_direction_streams': study_group_direction_streams,
             'study_group_direction': direction_name,
-            'schedule_by_days': converted_schedule,  # Обновляем расписание с учетом часового пояса
+            'schedule_by_days': converted_schedule,
+            'is_student': is_student,
+            'users': users,
         }
 
         return render(request, 'store/academy_cab_main.html', context)

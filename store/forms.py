@@ -22,6 +22,7 @@ class UpdateImageForm(forms.Form):
 
 class UpdateCustomerForm(forms.ModelForm):
     referrer_code = forms.CharField(max_length=5, required=False)
+    image = forms.ImageField(required=False)
     # zipcode = forms.IntegerField( required=False)
     # country = forms.CharField(max_length=60, required=False)
     # mobile = forms.IntegerField(required=False)
@@ -29,7 +30,7 @@ class UpdateCustomerForm(forms.ModelForm):
     class Meta:
         model = Customer
 
-        fields = ['first_name', 'last_name', 'country', 'zipcode',
+        fields = ['first_name', 'last_name', 'image', 'country', 'city',
                   'email', 'mobile', 'referrer_code', 'wallet']
 
 
