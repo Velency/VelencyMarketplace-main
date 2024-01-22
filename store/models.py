@@ -111,11 +111,11 @@ class Customer(models.Model):
         'self', on_delete=models.SET_NULL, null=True, blank=True)
     registred = models.BooleanField(default=False)
     balance_tvt = models.DecimalField(
-        max_digits=10, decimal_places=2, default=0)
+        max_digits=10, decimal_places=2, default=10)
     balance_usdt = models.DecimalField(
-        max_digits=10, decimal_places=2, default=0)
-    balance_hrwt = models.DecimalField(
-        max_digits=10, decimal_places=2, default=0)
+        max_digits=10, decimal_places=2, default=5)
+    balance_rub = models.DecimalField(
+        max_digits=10, decimal_places=2, default=500)
     # level = models.IntegerField(default=0, blank=False, null=False)
     wallet = models.CharField(max_length=100, default='')
     status = models.CharField(

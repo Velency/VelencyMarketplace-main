@@ -207,9 +207,9 @@
                         <li class="dashbord_item">
                             <p class="dashbord_lable">Ваш оборот:</p>
                             <div class="dashbord_text_block">
-                                <p class="dashbord_text1">0 ₽</p>
-                                <p class="dashbord_text2">0 USDT</p>
-                                <p class="dashbord_text3">0 TVT</p>
+                                <p class="dashbord_text1">{{ request.user.customer.balance_rub }} ₽</p>
+                                <p class="dashbord_text2">{{ request.user.customer.balance_usdt }} USDT</p>
+                                <p class="dashbord_text3">{{ request.user.customer.balance_tvt }} TVT</p>
                             </div>
                         </li>
                         <li class="dashbord_item">
