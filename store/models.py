@@ -105,8 +105,8 @@ class Customer(models.Model):
     city = models.CharField(max_length=100, null=True, blank=True)
     referral_link = models.CharField(
         max_length=255, unique=True, null=True, blank=True)
-    referral_code = models.CharField(max_length=5, unique=True, blank=True)
-    referrer_code = models.CharField(max_length=5, default='Academy', blank=True)
+    referral_code = models.CharField(max_length=10, unique=True, blank=True)
+    referrer_code = models.CharField(max_length=10, default='Academy', blank=True)
     referral_by = models.ForeignKey(
         'self', on_delete=models.SET_NULL, null=True, blank=True)
     registred = models.BooleanField(default=False)
