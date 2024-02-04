@@ -804,10 +804,11 @@
                                         <p class="title_rooms mentors">Преподаватели</p>
                                     </div>
                                     <ul class="rooms">
+                                        <form action="" method="POST">
                                         {% for user in users %}
                                             {% if user.status == 'Преподаватель' %}
-                                                <li class="chat_room mentor_room">
-                                                    <img src="{% static 'img/никита.jpg' %}" alt="" class="chat_img">
+                                                <li class="chat_room mentor_room" name="username" data-user-id="{{user.id }}">
+                                                    <img src="{{ user.image.url }}" alt="" class="chat_img">
                                                     <div class="chat_info">
                                                         <p class="name_person">{{ user.first_name }} {{ user.last_name }}</p>
                                                         <!-- Дополнительные данные для преподавателя -->
@@ -828,8 +829,8 @@
                                     <ul class="rooms">
                                         {% for user in users %}
                                             {% if user.status == 'Студент' %}
-                                                <li class="chat_room student_room">
-                                                    <img src="{% static 'img/никита.jpg' %}" alt="" class="chat_img">
+                                                <li class="chat_room student_room" data-user-id="{{ user.id }}" >
+                                                    <img src="{{ user.image.url }}" alt="" class="chat_img">
                                                     <div class="chat_info">
                                                         <p class="name_person">{{ user.first_name }} {{ user.last_name }}</p>
                                                         <!-- Дополнительные данные для студента -->
@@ -839,6 +840,7 @@
                                                 </li>
                                             {% endif %}
                                         {% endfor %}
+                                            </form>
                                     </ul>
                                 </div>
                                 {% endif %}
@@ -846,79 +848,75 @@
                                                     
                                                         
                         <div class="back_btn"><img class="back_btn_img" src="{% static 'img/arrow_btn_prew.png' %}" alt=""><p class="back_btn_text">Все чаты</p></div>
-                        <div class="chat_desk_block">
-                            <ul class="mess_block" id="messageList">
-                                <!-- <li class="ask_block">
-                                    <img src="/img/никита.jpg" alt="" class="ask_user_img">
-                                    <div class="mess_text_info">
-                                        <div class="mess">
-                                        <p class="text_mess">Привет! Как дела? Как ты, что нового, что будем делать?</p>
-                                        </div>
-                                        <p class="date_text">30 Дек. 18:30</p>
-                                    </div>
-                                </li>
-                                <li class="answ_block">
-                                    <div class="mess_text_info">
-                                        <div class="mess">
-                                        <p class="text_mess">Привет! Хорошо</p>
-                                        </div>
-                                        <p class="date_text">30 Дек. 18:31</p>
-                                    </div>
-                                    <img src="/img/никита.jpg" alt="" class="answ_user_img">
-                                </li> -->
-                                <!-- <li class="answ_block_file">
-                                    <div class="mess_text_info">
-                                        <div class="mess">
-                                        <video src="/img/РечьУрок1.mov" alt="" class="file_sent" controls="controls"></video>
-                                        </div>
-                                        <p class="date_text">30 Дек. 18:31</p>
-                                    </div>
-                                    <img src="/img/никита.jpg" alt="" class="answ_user_img">
-                                </li> -->
-                                <!-- <li class="ask_block_file">
-                                    <img src="/img/никита.jpg" alt="" class="answ_user_img">
-                                    <div class="mess_text_info">
-                                        <div class="mess">
-                                        <img src="/img/send_arrow.png" alt="" class="file_sent">
-                                        </div>
-                                        <p class="date_text">30 Дек. 18:31</p>
-                                    </div>
-                                    
-                                </li>  -->
+                        <div class="chat_desk_block" id="chat" >
+                            <ul class="mess_block" id="chatMessages">
                                 
-
-                                <!-- <li class="answ_block_file">
+                                {% comment %} {% for message in messages %}
+                                {% if message.sender == user %}
+                                  <li class="answ_block">
+                                    <!-- Outgoing message -->
+                                    <!-- Display sender's message on the right side -->
                                     <div class="mess_text_info">
-                                        <div class="mess">
-                                            <img src="/img/file.png" alt="" class="file_img">
-                                            <div src="/img/Оферта ИП 890409100814.pdf" type="">
-                                                <a class="file_link" href="/img/Оферта ИП 890409100814.pdf">название файла.формат</a>
-                                            </div>
-                                        </div>
-                                        <p class="date_text">30 Дек. 18:31</p>
+                                      <div class="mess">
+                                        <p class="text_mess">{{ message.text }}</p>
+                                      </div>
+                                      <p class="date_text">{{ message.timestamp }}</p>
                                     </div>
-                                    <img src="/img/никита.jpg" alt="" class="answ_user_img">
-                                </li> -->
-                                
+                                    <img src="{{ user.profile.image.url }}" alt="" class="answ_user_img">
+                                  </li>
+                                {% else %}
+                                <li class="ask_block">
+                                    <!-- Incoming message -->
+                                    <!-- Display receiver's message on the left side -->
+                                    <img src="{{ other_user.profile.image.url }}" alt="" class="ask_user_img">
+                                    <div class="mess_text_info">
+                                      <div class="mess">
+                                        <p class="text_mess">{{ message.text }}</p>
+                                      </div>
+                                      <p class="date_text">{{ message.timestamp }}</p>
+                                    </div>
+                                  </li>
+                                {% endif %}
+                              {% endfor %} {% endcomment %}
                             </ul>
                             <div class="nav_panel">
                                 <div class="add_btn" id="uploadElement">
                                     <img src="{% static 'img/add_media.png'%}" alt="" class="add_btn_img">
                                 </div>
-                                <input class="input_mess" type="text" placeholder="Напишите свой текст здесь...">
-                                <div class="send_btn" id="sendBtn">
+                                <input class="input_mess"  id="messageInput"  type="text"  placeholder="Напишите свой текст здесь...">
+                                <button class="send_btn" onclick="sendMessage()">
                                     <img src="{% static 'img/send_arrow.png'%}" alt="" class="send_btn_img">
-                                </div>
+                                </button>
                                 <!-- Элемент для загрузки файла -->
                                 <input type="file" id="fileInput" style="display: none;">
                             </div>
                         </div>
+                        
                     </div>
                 </div>
             </div>
             <!-- поддержка -->
             <div class="support_page">
-                поддержка
+                <div class="support_content"></div>
+                <p class="support_title">Чат с нашей AI поддержкой</p>
+                <div class="support">
+                <div class="chat_desk_block support_deck">
+                    <ul class="mess_block">
+                        
+                        
+                    </ul>
+                    <div class="nav_panel">
+                        <div class="add_btn" id="uploadElement">
+                            <img src="{% static 'img/add_media.png'%}" alt="" class="add_btn_img">
+                        </div>
+                        <input class="input_mess" type="text" placeholder="Напишите свой текст здесь...">
+                        <div class="send_btn" id="sendBtn">
+                            <img src="{% static 'img/send_arrow.png'%}" alt="" class="send_btn_img">
+                        </div>
+                    
+                    </div>
+                </div>
+                </div>
             </div>
         </div>
     </div>
@@ -1158,151 +1156,13 @@
     </script>
 
 
+    {% comment %} скрипты к чату {% endcomment %}
+        
+    
         <script>
-            //код к чату
-            document.addEventListener('DOMContentLoaded', function() {
-                var addBtn = document.querySelector('.add_btn');
-                var sendBtn = document.querySelector('.send_btn');
-                var inputMess = document.querySelector('.input_mess');
-                var messageList = document.querySelector('.mess_block');
-            
-                addBtn.addEventListener('click', function() {
-                    var fileInput = document.createElement('input');
-                    fileInput.type = 'file';
-                    fileInput.accept = 'image/*, video/*, application/*'; // Разрешаем загрузку изображений, видео и PDF-файлов
-            
-                    fileInput.addEventListener('change', function() {
-                        handleFile(fileInput.files[0]);
-                    });
-            
-                    fileInput.click();
-                });
-            
-                sendBtn.addEventListener('click', function() {
-                    sendMessage();
-                });
-            
-                inputMess.addEventListener('keydown', function(event) {
-                    if (event.key === 'Enter') {
-                        sendMessage();
-                    }
-                });
-            
-                function sendMessage() {
-                    var messageText = inputMess.value;
-                    if (messageText.trim() !== '') {
-                        var maxLength = 32;
-                        var formattedText = formatText(messageText, maxLength);
-            
-                        // Распознавание ссылок и их оборачивание в тег <a>
-                        formattedText = linkify(formattedText);
-            
-                        var messageItem = document.createElement('li');
-                        messageItem.classList.add('answ_block');
-                        messageItem.innerHTML = `
-                            <div class="mess_text_info">
-                                <div class="mess">
-                                    <p class="text_mess">${formattedText}</p>
-                                </div>
-                                <p class="date_text">${getCurrentDate()}</p>
-                            </div>
-                            <img src="/img/никита.jpg" alt="" class="answ_user_img">
-                        `;
-                        messageList.appendChild(messageItem);
-                        inputMess.value = '';
-                    }
-                }
-                
-                function formatText(text, maxLength) {
-                    // Функция для форматирования текста
-                    // Если длина текста больше maxLength, добавляем переносы строки
-                    if (text.length > maxLength) {
-                        var result = '';
-                        for (var i = 0; i < text.length; i++) {
-                            result += text[i];
-                            if ((i + 1) % maxLength === 0) {
-                                result += '\n';
-                            }
-                        }
-                        return result;
-                    }
-                    return text;
-                }
-            
-                function linkify(text) {
-                    // Регулярное выражение для распознавания ссылок
-                    var urlRegex = /(?:https?|ftp):\/\/[^\s/$.?#].[^\s]*/g;
-                    return text.replace(urlRegex, function (url) {
-                        return `<a href="${url}" target="_blank" class="link_mess">${url}</a>`;
-                    });
-                }
-                
-                
-                
-                
-                
-            
-                function handleFile(file) {
-                    if (file) {
-                        var reader = new FileReader();
-                        reader.onload = function (e) {
-                            var fileItem = document.createElement('li');
-                            fileItem.classList.add('answ_block_file');
-                
-                            var fileName = file.name.length > 23 ? file.name.substring(0, 23) + '\n' + file.name.substring(23) : file.name;
-                
-                            if (file.type.startsWith('image/')) {
-                                // Если файл - изображение
-                                fileItem.innerHTML = `
-                                    <div class="mess_text_info">
-                                        <div class="mess">
-                                            <img src="${e.target.result}" alt="" class="file_sent">
-                                        </div>
-                                        <p class="date_text">${getCurrentDate()}</p>
-                                    </div>
-                                    <img src="/img/никита.jpg" alt="" class="answ_user_img">
-                                `;
-                            } else if (file.type.startsWith('video/')) {
-                                // Если файл - видео
-                                fileItem.innerHTML = `
-                                    <div class="mess_text_info">
-                                        <div class="mess">
-                                            <video src="${e.target.result}" alt="" class="file_sent" controls></video>
-                                        </div>
-                                        <p class="date_text">${getCurrentDate()}</p>
-                                    </div>
-                                    <img src="/img/никита.jpg" alt="" class="answ_user_img">
-                                `;
-                            } else {
-                                // Если файл - PDF, docx или другой тип
-                                fileItem.innerHTML = `
-                                    <div class="mess_text_info">
-                                        <div class="mess">
-                                            <img src="/img/file.png" alt="" class="file_img">
-                                            <div>
-                                                <a class="file_link" href="${e.target.result}" target="_blank">${fileName}</a>
-                                            </div>
-                                        </div>
-                                        <p class="date_text">${getCurrentDate()}</p>
-                                    </div>
-                                    <img src="/img/никита.jpg" alt="" class="answ_user_img">
-                                `;
-                            }
-                
-                            messageList.appendChild(fileItem);
-                        };
-                        reader.readAsDataURL(file);
-                    }
-                }
-            
-                function getCurrentDate() {
-                    var currentDate = new Date();
-                    var options = { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' };
-                    return currentDate.toLocaleString('ru-RU', options);
-                }
-            });
-            
-        </script>
+           
+          </script>
+  
 
         {% comment %} скрипты к настройкам {% endcomment %}
                   

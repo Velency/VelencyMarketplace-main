@@ -7,6 +7,7 @@ from store.models import Customer, Comments, Offer, Support, Withdraw
 from django.core.validators import EmailValidator
 
 
+
 class CreateUserForm(UserCreationForm):
     password1 = forms.CharField(label='Password', widget=forms.PasswordInput(
         attrs={'placeholder': 'Enter a password with 8 or more characters and at least 1 digit'}))

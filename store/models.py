@@ -7,6 +7,12 @@ import secrets
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.utils import timezone
+from datetime import datetime
+from django.contrib.auth import get_user_model
+from django.db.models import Q
+
+User = get_user_model()
+
 
 
 # Create your models here.
@@ -124,6 +130,7 @@ class Customer(models.Model):
         Direction, null=True, blank=True, on_delete=models.SET_NULL)
     courses = models.ForeignKey(
         Course, null=True, blank=True, on_delete=models.SET_NULL)
+    
 
     def __init__(self, *args, **kwargs):
         super(Customer, self).__init__(*args, **kwargs)
@@ -159,6 +166,11 @@ def create_customer(sender, instance, created, **kwargs):
         demo_direction = Direction.objects.filter(name='Демо').first()
         if demo_direction:
             Customer.objects.create(user=instance, direction=demo_direction)
+
+
+    
+
+
 
 
 class WeaklyBoard(models.Model):

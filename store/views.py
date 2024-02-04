@@ -1,4 +1,4 @@
-from django.http import Http404
+from django.http import Http404, HttpResponseNotFound
 from django.shortcuts import get_object_or_404
 from django.template.loader import render_to_string
 from django.views.decorators.csrf import csrf_exempt
@@ -19,6 +19,7 @@ import datetime
 import pytz
 from .utils import cookieCart, cartData, guestOrder
 from django.db.models.signals import post_save
+from django.views.decorators.http import require_POST
 
 from django.contrib.auth.forms import UserCreationForm
 from .forms import *
@@ -316,7 +317,10 @@ def academy_profile(request):
         else:
             users = Customer.objects.filter(Q(direction__name=direction_name) & Q(status='Студент'))
 
+       
+
         context = {
+        
             'form': form,
             'study_group_direction_streams': study_group_direction_streams,
             'study_group_direction': direction_name,
@@ -328,6 +332,8 @@ def academy_profile(request):
         return render(request, 'store/academy_cab_main.html', context)
 
 
+
+    
 def get_courses(request):
     stream_id = request.GET.get('stream_id')
     stream = get_object_or_404(Stream, pk=stream_id)

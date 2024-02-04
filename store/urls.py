@@ -2,6 +2,7 @@ from django.urls import path
 from . import views
 
 
+
 urlpatterns = [
     # log/reg pages
     path('logout/', views.logoutUser, name="logoutUser"),
@@ -63,13 +64,14 @@ urlpatterns = [
     path('all_courses/', views.all_courses, name='all_courses'),
     path('course/<str:id>', views.show_managment, name="courses_info"),
     path('personal/', views.show_personal, name="personal_info"),
-     path('academy_profile', views.academy_profile, name="academy_profile"),
+    path('academy_profile/', views.academy_profile, name="academy_profile"),
     path('academy_cab_main_unauthenticated', views.academy_cab_main_unauthenticated, name="academy_cab_main_unauthenticated"),
     path('update_courses_lessons/', views.update_courses_lessons, name='update_courses_lessons'),
     path('get_courses/', views.get_courses, name='get_courses'),
     path('get_lessons/', views.get_lessons, name='get_lessons'),
     path('get_lesson_details/<int:lesson_id>/', views.get_lesson_details, name='get_lesson_details'),
-
+ 
     
 ]
+  
 

@@ -38,6 +38,7 @@ ALLOWED_HOSTS = [
 # Application definition
 
 INSTALLED_APPS = [
+    'channels',
     'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -51,6 +52,7 @@ INSTALLED_APPS = [
     'ckeditor',
     'ckeditor_uploader',
     'storages',
+    
 ]
 
 MIDDLEWARE = [
@@ -84,8 +86,9 @@ TEMPLATES = [
 ]
 
 
-WSGI_APPLICATION = 'velencystore.wsgi.application'
 
+# WSGI_APPLICATION = 'velencystore.wsgi.application'
+ASGI_APPLICATION = 'velencystore.asgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
