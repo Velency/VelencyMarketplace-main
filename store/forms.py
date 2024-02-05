@@ -22,7 +22,7 @@ class UpdateImageForm(forms.Form):
 
 
 class UpdateCustomerForm(forms.ModelForm):
-    referrer_code = forms.CharField(max_length=5, required=False)
+    referrer_code = forms.CharField(max_length=10, required=False)
     image = forms.ImageField(required=False)
     # zipcode = forms.IntegerField( required=False)
     # country = forms.CharField(max_length=60, required=False)

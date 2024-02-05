@@ -238,54 +238,54 @@
                         </div>
                         <div class="second_block">
                           <div class="location_info_block">
-                              <p class="location_title">Месторасположение:</p>
-                        <div class="country_group">
-                          <p class="country">Страна</p>
-                          <select name="country" id="countrySelect" value="{{ request.user.customer.country }}" class="input_block">
-                              <option value="{{ request.user.customer.country }}" disabled selected>Выберите страну</option>
-                              <optgroup label="СНГ">
-                                  <option value="Россия" {% if request.user.customer.country == 'Россия' %}selected{% endif %}>Россия</option>
-                                  <option value="Украина" {% if request.user.customer.country == 'Украина' %}selected{% endif %}>Украина</option>
-                                  <option value="Беларусь" {% if request.user.customer.country == 'Беларусь' %}selected{% endif %}>Беларусь</option>
-                                  <option value="Казахстан" {% if request.user.customer.country == 'Казахстан' %}selected{% endif %}>Казахстан</option>
-                              </optgroup>
-                              <optgroup label="Европа">
-                                  <option value="Германия" {% if request.user.customer.country == 'Германия' %}selected{% endif %}>Германия</option>
-                                  <option value="Франция" {% if request.user.customer.country == 'Франция' %}selected{% endif %}>Франция</option>
-                                  <option value="Италия" {% if request.user.customer.country == 'Италия' %}selected{% endif %}>Италия</option>
-                                  <option value="Великобритания" {% if request.user.customer.country == 'Великобритания' %}selected{% endif %}>Великобритания</option>
-                              </optgroup>
-                              <optgroup label="Азия">
-                                  <option value="Китай" {% if request.user.customer.country == 'Китай' %}selected{% endif %}>Китай</option>
-                                  <option value="Япония" {% if request.user.customer.country == 'Япония' %}selected{% endif %}>Япония</option>
-                                  <option value="Индия" {% if request.user.customer.country == 'Индия' %}selected{% endif %}>Индия</option>
-                                  <option value="Южная Корея" {% if request.user.customer.country == 'Южная Корея' %}selected{% endif %}>Южная Корея</option>
-                              </optgroup>
-                          </select>
-                          </div>
-                          <div class="zipcode_group">
-                            <p class="zipcode">Город</p>
-                            <select value="{{ request.user.customer.zipcode }}" name="city" class="input_block" id="citySelect">
-                                <option value="{{ request.user.customer.zipcode }}" disabled selected>Выберите город</option>
-                              
-                            </select>
+                            <p class="location_title">Месторасположение:</p>
+                      <div class="country_group">
+                        <p class="country">Страна</p>
+                        <select name="country" id="countrySelect" value="{{ request.user.customer.country }}" class="input_block">
+                            <option value="{{ request.user.customer.country }}" disabled selected>Выберите страну</option>
+                            <optgroup label="СНГ">
+                                <option value="Россия" {% if request.user.customer.country == 'Россия' %}selected{% endif %}>Россия</option>
+                                <option value="Украина" {% if request.user.customer.country == 'Украина' %}selected{% endif %}>Украина</option>
+                                <option value="Беларусь" {% if request.user.customer.country == 'Беларусь' %}selected{% endif %}>Беларусь</option>
+                                <option value="Казахстан" {% if request.user.customer.country == 'Казахстан' %}selected{% endif %}>Казахстан</option>
+                            </optgroup>
+                            <optgroup label="Европа">
+                                <option value="Германия" {% if request.user.customer.country == 'Германия' %}selected{% endif %}>Германия</option>
+                                <option value="Франция" {% if request.user.customer.country == 'Франция' %}selected{% endif %}>Франция</option>
+                                <option value="Италия" {% if request.user.customer.country == 'Италия' %}selected{% endif %}>Италия</option>
+                                <option value="Великобритания" {% if request.user.customer.country == 'Великобритания' %}selected{% endif %}>Великобритания</option>
+                            </optgroup>
+                            <optgroup label="Азия">
+                                <option value="Китай" {% if request.user.customer.country == 'Китай' %}selected{% endif %}>Китай</option>
+                                <option value="Япония" {% if request.user.customer.country == 'Япония' %}selected{% endif %}>Япония</option>
+                                <option value="Индия" {% if request.user.customer.country == 'Индия' %}selected{% endif %}>Индия</option>
+                                <option value="Южная Корея" {% if request.user.customer.country == 'Южная Корея' %}selected{% endif %}>Южная Корея</option>
+                            </optgroup>
+                        </select>
                         </div>
+                      <div class="zipcode_group">
+                        <p class="zipcode">Город</p>
+                        <select value="{{ request.user.customer.zipcode }}" name="city" class="input_block" id="citySelect">
+                            <option value="{{ request.user.customer.zipcode }}" disabled selected>Выберите город</option>
+  
+                        </select>
+                    </div>
+                        </div>
+                        <div class="wallet_info_block">
+                            <div class="wallet_group">
+                                <p class="walet_title">Кошелёк:</p>
+                                <p class="wallet">Адрес кошелька Metamask</p>
+                                <input
+                                type="text"
+                                name="wallet"
+                                value="{{ request.user.customer.wallet }}"
+                                title="Enter the address of your Metamask wallet"
+                                placeholder=""
+                                class="input_block"
+                              />
                             </div>
-                            <div class="wallet_info_block">
-                              <div class="wallet_group">
-                                  <p class="walet_title">Кошелёк:</p>
-                                  <p class="wallet">Адрес кошелька Metamask</p>
-                                  <input
-                                  type="text"
-                                  name="wallet"
-                                  value="{{ request.user.customer.wallet }}"
-                                  title="Enter the address of your Metamask wallet"
-                                  placeholder=""
-                                  class="input_block"
-                                />
-                              </div>
-                          </div>
-                      </div>
+                        </div>
+                    </div>
                   </div>
                   <button class="save_btn"><p class="save_btn_text">Сохранить</p></button>
                   </div>
@@ -300,6 +300,8 @@
           </div>
     </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
 
  {% comment %} скрипты к настройкам {% endcomment %}
                   

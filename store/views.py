@@ -382,10 +382,7 @@ def academy_cab_main_unauthenticated(request):
                 request.POST, request.FILES, instance=customer)
 
             if form.is_valid():
-                customer.registred = True
-                if customer.status is None:
-                    customer.status = 'Студент'
-
+                customer.status = 'Студент'
                 ref_code = form.cleaned_data.get('referrer_code')
                 if ref_code:
                     referrer = Customer.objects.filter(
@@ -400,22 +397,34 @@ def academy_cab_main_unauthenticated(request):
                     Referral.objects.create(
                         referrer=request.user, invitee=referrer.user)
                     customer.referral_by = referrer
-            form.save()
-            messages.success(request, 'Profile was updated')
-            return redirect('academy_profile')
 
+                form.save()
+                customer.registred = True
+                customer.save()
+                messages.success(request, 'Profile was updated')
+
+                return redirect('academy_profile')
+            else:
+                # Если форма не валидна, повторно инициализируем форму в блоке POST
+                context = {
+                    'form': form,
+                }
+                return render(request, 'store/academy_cab_main_unauthenticated.html', context)
         else:
+            # Если запрос GET, инициализируем форму в блоке GET
             form = UpdateCustomerForm(instance=customer)
 
         context = {
             'form': form,
-
         }
 
         return render(request, 'store/academy_cab_main_unauthenticated.html', context)
     else:
         # Если пользователь уже зарегистрирован, перенаправляем его на academy_profile
         return redirect('academy_profile')
+
+
+
 
 
 @csrf_exempt
