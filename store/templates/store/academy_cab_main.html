@@ -901,20 +901,22 @@
                 <p class="support_title">Чат с нашей AI поддержкой</p>
                 <div class="support">
                 <div class="chat_desk_block support_deck">
-                    <ul class="mess_block">
+                    <ul class="mess_block" id="chat-container">
                         
                         
                     </ul>
-                    <div class="nav_panel">
-                        <div class="add_btn" id="uploadElement">
-                            <img src="{% static 'img/add_media.png'%}" alt="" class="add_btn_img">
+                    <form id="chat-form">
+                        {% csrf_token %}
+                        <div class="nav_panel">
+                            <div class="add_btn" id="uploadElement">
+                                <img src="{% static 'img/add_media.png'%}" alt="" class="add_btn_img">
+                            </div>
+                            <input class="input_mess" type="text"  id="user-input" placeholder="Напишите свой текст здесь...">
+                            <button class="send_btn" type="button" id="sendBtn_chat" onclick="sendMessage()">
+                                <img src="{% static 'img/send_arrow.png'%}" alt="" class="send_btn_img">
+                            </button>
                         </div>
-                        <input class="input_mess" type="text" placeholder="Напишите свой текст здесь...">
-                        <div class="send_btn" id="sendBtn">
-                            <img src="{% static 'img/send_arrow.png'%}" alt="" class="send_btn_img">
-                        </div>
-                    
-                    </div>
+                    </form>
                 </div>
                 </div>
             </div>
@@ -1159,9 +1161,7 @@
     {% comment %} скрипты к чату {% endcomment %}
         
     
-        <script>
-           
-          </script>
+       
   
 
         {% comment %} скрипты к настройкам {% endcomment %}
@@ -1318,5 +1318,97 @@
             });
         </script>
         
+
+        {% comment %} скрипт к чату с ботом {% endcomment %}
+
+
+        <script>
+            function sendMessage() {
+                var user_input = document.getElementById('user-input').value;
+            
+                if (user_input.trim() === '') {
+                    return; // Пустые сообщения не отправляем
+                }
+            
+                // Отправка вопроса чат-боту
+                $.ajax({
+                    type: 'POST',
+                    url: '{% url "chatbot" %}',
+                    data: JSON.stringify({ input: user_input }),
+                    contentType: 'application/json;charset=UTF-8',
+                    success: function (data) {
+                        // Получаем текущее время
+                        var currentTime = new Date().toLocaleTimeString();
+            
+                        // Отображаем ответ бота в блоке ask_block
+                        $('#chat-container').append(`
+                        <li class="answ_block">
+                            <div class="mess_text_info">
+                                <div class="mess">
+                                    <p class="text_mess">${user_input}</p>
+                                </div>
+                                <p class="date_text">${currentTime}</p>
+                            </div>
+                            <img src="{{request.user.customer.image.url}}" alt="" class="answ_user_img">
+                        </li>
+                        
+                        `);
+            
+                        // Отображаем сообщение пользователя в блоке answ_block
+                        $('#chat-container').append(`
+                        <li class="ask_block">
+                            <img src="{% static 'img/bot_img.jpg' %}" alt="" class="ask_user_img">
+                            <div class="mess_text_info">
+                                <div class="mess">
+                                    <p class="text_mess">${data.response}</p>
+                                </div>
+                                <p class="date_text">${currentTime}</p>
+                            </div>
+                        </li>
+                        `);
+            
+                        // Прокручиваем контейнер вниз, чтобы увидеть последнее сообщение
+                        var container = $('#chat-container');
+                        container.scrollTop(container[0].scrollHeight);
+                    },
+                    error: function (error) {
+                        console.error('Error sending message to chatbot:', error);
+                    }
+                });
+            
+                // Очистка ввода
+                document.getElementById('user-input').value = '';
+            }
+
+            document.addEventListener("DOMContentLoaded", function() {
+                // Ваш JavaScript код
+        
+        
+                $(document).on("submit", "#chat-form", function(event) {
+                    event.preventDefault();
+                    sendMessage();
+                });
+        
+                $(document).on("click", "#sendBtn_chat", function(event) {
+                    event.preventDefault();
+                    sendMessage();
+                });
+        
+                // Добавляем обработчик события для нажатия клавиши Enter
+                $(document).on("keyup", "#user-input", function(event) {
+                    if (event.key === 'Enter') {
+                        sendMessage();
+                    }
+                });
+                        // Добавляем обработчик события для нажатия клавиши Enter внутри формы
+                $(document).on("keypress", "#user-input", function(event) {
+                    if (event.key === 'Enter') {
+                        event.preventDefault();
+                        sendMessage();
+                    }
+                });
+            });
+        </script> 
+
 </body>
 </html>

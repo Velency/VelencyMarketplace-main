@@ -70,7 +70,8 @@ urlpatterns = [
     path('get_courses/', views.get_courses, name='get_courses'),
     path('get_lessons/', views.get_lessons, name='get_lessons'),
     path('get_lesson_details/<int:lesson_id>/', views.get_lesson_details, name='get_lesson_details'),
- 
+    path('chatbot/', views.chatbot, name='chatbot'),
+    path('chat/', views.chat_view, name='chat_view'),
     
 ]
   

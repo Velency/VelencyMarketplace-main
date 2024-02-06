@@ -28,6 +28,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from velencystore.settings import RECIPIENTS_EMAIL, EMAIL_HOST_USER
 from django.utils import timezone
+from .chatbot import ChatBot  
 # Create your views here.
 
 # mail
@@ -233,6 +234,7 @@ def academy(request):
 
 @login_required
 def academy_profile(request):
+    
     customer = request.user.customer
 
     if not customer.registred:
@@ -317,7 +319,6 @@ def academy_profile(request):
         else:
             users = Customer.objects.filter(Q(direction__name=direction_name) & Q(status='Студент'))
 
-       
 
         context = {
         
@@ -331,6 +332,36 @@ def academy_profile(request):
 
         return render(request, 'store/academy_cab_main.html', context)
 
+
+@csrf_exempt
+def chatbot(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        user_input = data.get('input', '')
+
+        # Обрабатываем ввод пользователя
+        chatbot_response = ChatBot.generate_response(user_input)
+
+        # Сохраняем вопрос и ответ в базу данных
+        Conversation.objects.create(question=user_input, answer=chatbot_response)
+
+        return JsonResponse({'response': chatbot_response})
+
+    return JsonResponse({'error': 'Invalid request method'})
+
+def chat_view(request):
+    if request.method == 'POST':
+        user_input = request.POST.get('input')
+        if user_input.lower().startswith('запомни'):
+            # Извлекаем текст после слова "запомни"
+            text_to_remember = user_input[7:].strip()
+            if text_to_remember:
+                # Сохраняем вопрос и ответ в базу данных
+                conversation = Conversation.objects.create(question=text_to_remember, answer='Хорошо, я запомню')
+                conversation.save()
+                return JsonResponse({'response': 'Хорошо, я запомню'})
+
+    return JsonResponse({'response': 'Данные не были сохранены'})
 
 
     

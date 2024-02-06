@@ -169,8 +169,24 @@ def create_customer(sender, instance, created, **kwargs):
 
 
     
+class Conversation(models.Model):
+    question = models.TextField()
+    answer = models.TextField()
 
+    def __str__(self):
+        return self.question
+    
 
+class Trigger(models.Model):
+    keywords = models.TextField( null=True)  # Поле для хранения ключевых слов, разделенных пробелами или другим разделителем
+    response = models.TextField(null=True)
+
+    def get_random_response(self):
+        responses = self.response.split(',')
+        return random.choice(responses).strip()
+
+    def __str__(self):
+        return self.keywords
 
 
 class WeaklyBoard(models.Model):
