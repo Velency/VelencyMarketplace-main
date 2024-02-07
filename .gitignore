@@ -5,4 +5,4 @@ store/templates/store/main-academy.css
 db.sqlite3
 ptest
 __pycache__
-/node_modules/
+node_modules
