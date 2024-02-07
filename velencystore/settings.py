@@ -343,6 +343,12 @@ AWS_DEFAULT_ACL = None
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
+
+# Для папки node_modules
+NODE_MODULES_S3_PATH = 's3://{}/{}/{}'.format(
+    AWS_STORAGE_BUCKET_NAME, '/static', 'node_modules'
+)
+
 # CKEditor Settings
 CKEDITOR_UPLOAD_PATH = '/static/uploads/'
 CKEDITOR_IMAGE_BACKEND = "/static/pillow"
