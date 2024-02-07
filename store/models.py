@@ -10,6 +10,7 @@ from django.utils import timezone
 from datetime import datetime
 from django.contrib.auth import get_user_model
 from django.db.models import Q
+import tensorflow as tf
 
 User = get_user_model()
 
@@ -169,24 +170,14 @@ def create_customer(sender, instance, created, **kwargs):
 
 
     
-class Conversation(models.Model):
-    question = models.TextField()
-    answer = models.TextField()
+class Response(models.Model):
+    text = models.TextField()
+    class meta:
+        verbose_name_plural = "Responses"
 
     def __str__(self):
-        return self.question
-    
+        return self.text
 
-class Trigger(models.Model):
-    keywords = models.TextField( null=True)  # Поле для хранения ключевых слов, разделенных пробелами или другим разделителем
-    response = models.TextField(null=True)
-
-    def get_random_response(self):
-        responses = self.response.split(',')
-        return random.choice(responses).strip()
-
-    def __str__(self):
-        return self.keywords
 
 
 class WeaklyBoard(models.Model):

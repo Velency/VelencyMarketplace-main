@@ -22,14 +22,9 @@ admin.site.register(Stream)
 admin.site.register(Referral)
 admin.site.register(StudyGroup)
 admin.site.register(WeaklyBoard)
+admin.site.register(Response)
 
-admin.site.register(Conversation)
 
-
-class TriggerAdmin(admin.ModelAdmin):
-    list_display = ('keywords', 'response')
-
-admin.site.register(Trigger, TriggerAdmin)
 
 
 class CourseAdmin(admin.ModelAdmin):

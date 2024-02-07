@@ -28,8 +28,12 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from velencystore.settings import RECIPIENTS_EMAIL, EMAIL_HOST_USER
 from django.utils import timezone
-from .chatbot import ChatBot  
+from .data import tokenizer, dialogue_database, load_dialogue_database_from_json
+from .bot_model import recognize_question, generate_response, model, max_sequence_length,remember_dialogue
+from keras.preprocessing.text import Tokenizer
 # Create your views here.
+
+
 
 # mail
 from django.core.mail import send_mail
@@ -46,6 +50,7 @@ API_KEY = 'cP2QKvv4ccJNAjffgnL5rnRjq0rjTf6iRXFm3odaHxbrzAsnOOXG5ggVYEEu4XfL'
 if API_KEY == 'WEB3_API_KEY_HERE':
     print("API key is not set")
     raise SystemExit
+
 
 
 # ГЛАВНАЯ Страница
@@ -333,35 +338,29 @@ def academy_profile(request):
         return render(request, 'store/academy_cab_main.html', context)
 
 
+# Загрузка базы данных из JSON файла
+dialogue_database = load_dialogue_database_from_json('dialogue_database.json')
+
 @csrf_exempt
-def chatbot(request):
+def collect_data(request):
     if request.method == 'POST':
-        data = json.loads(request.body)
-        user_input = data.get('input', '')
+        user_input = request.POST.get('input', '')
+        print('Получено сообщение от клиента:', user_input)
+        
+        # Создаем токенизатор
+        tokenizer = Tokenizer()
+        tokenizer.fit_on_texts(dialogue_database)
+        print("Токены:", tokenizer.word_index)
 
-        # Обрабатываем ввод пользователя
-        chatbot_response = ChatBot.generate_response(user_input)
+        # Генерируем ответ на основе входного сообщения
+        bot_response = generate_response(model=model, tokenizer=tokenizer, user_input=user_input, max_sequence_length=max_sequence_length, dialogue_database=dialogue_database)
 
-        # Сохраняем вопрос и ответ в базу данных
-        Conversation.objects.create(question=user_input, answer=chatbot_response)
+        return JsonResponse({'response': bot_response})
+    
 
-        return JsonResponse({'response': chatbot_response})
 
-    return JsonResponse({'error': 'Invalid request method'})
 
-def chat_view(request):
-    if request.method == 'POST':
-        user_input = request.POST.get('input')
-        if user_input.lower().startswith('запомни'):
-            # Извлекаем текст после слова "запомни"
-            text_to_remember = user_input[7:].strip()
-            if text_to_remember:
-                # Сохраняем вопрос и ответ в базу данных
-                conversation = Conversation.objects.create(question=text_to_remember, answer='Хорошо, я запомню')
-                conversation.save()
-                return JsonResponse({'response': 'Хорошо, я запомню'})
 
-    return JsonResponse({'response': 'Данные не были сохранены'})
 
 
     
