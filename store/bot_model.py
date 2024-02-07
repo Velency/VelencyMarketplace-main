@@ -69,7 +69,7 @@ def generate_response(model, tokenizer, user_input, max_sequence_length, dialogu
     predicted_id = np.argmax(model.predict(np.array([input_sequence])), axis=-1)[0]
     print("Предсказанный ID:", predicted_id)
     # Преобразование числа обратно в текст с помощью токенизатора
-    bot_response = tokenizer.index_word.get(predicted_id, "Простите, я вас не понимаю или нет пока ответа на данное предложение.")
+    bot_response = tokenizer.index_word.get(predicted_id, "Простите, я вас не понимаю или пока нет ответа на данное предложение.")
     print("Ответ бота:", bot_response)
     return bot_response
 
