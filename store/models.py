@@ -10,7 +10,7 @@ from django.utils import timezone
 from datetime import datetime
 from django.contrib.auth import get_user_model
 from django.db.models import Q
-import tensorflow as tf
+
 
 User = get_user_model()
 
