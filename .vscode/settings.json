@@ -6,7 +6,8 @@
       "django-html": "html"
   },
     "python.formatting.provider": "none",
-    "emmet.triggerExpansionOnTab": true
+    "emmet.triggerExpansionOnTab": true,
+    "git.ignoreLimitWarning": true
 
 }
   

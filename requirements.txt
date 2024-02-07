@@ -44,6 +44,8 @@ itsdangerous==2.1.2
 Jinja2==3.1.2
 jmespath==0.10.0
 jsonschema==4.17.3
+keras==2.15.0
+Keras-Preprocessing==1.1.2
 lru-dict==1.1.8
 MarkupSafe==2.1.1
 multidict==6.0.4
@@ -62,7 +64,7 @@ s3transfer==0.3.3
 six==1.15.0
 sqlparse==0.4.3
 toolz==0.12.0
-tensorflow==2.12.0
+numpy==1.23.5
 typing_extensions==4.3.0
 tzdata==2022.4
 urllib3==1.26.7
