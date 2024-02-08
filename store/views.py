@@ -28,9 +28,9 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from velencystore.settings import RECIPIENTS_EMAIL, EMAIL_HOST_USER
 from django.utils import timezone
-from .data import tokenizer, dialogue_database, load_dialogue_database_from_json
-from .bot_model import recognize_question, generate_response, model, max_sequence_length,remember_dialogue
-from keras.preprocessing.text import Tokenizer
+from .data import  dialogue_database, load_dialogue_database_from_json
+from .bot_model import recognize_question, generate_response, word2vec_model, remember_dialogue
+
 # Create your views here.
 
 
@@ -347,13 +347,10 @@ def collect_data(request):
         user_input = request.POST.get('input', '')
         print('Получено сообщение от клиента:', user_input)
         
-        # Создаем токенизатор
-        tokenizer = Tokenizer()
-        tokenizer.fit_on_texts(dialogue_database)
-        print("Токены:", tokenizer.word_index)
 
         # Генерируем ответ на основе входного сообщения
-        bot_response = generate_response(model=model, tokenizer=tokenizer, user_input=user_input, max_sequence_length=max_sequence_length, dialogue_database=dialogue_database)
+        bot_response = generate_response(word2vec_model, user_input, dialogue_database)
+
 
         return JsonResponse({'response': bot_response})
     

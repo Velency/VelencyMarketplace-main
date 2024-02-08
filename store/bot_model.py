@@ -1,9 +1,9 @@
-# В файле bot_model.py
-from .data import tokenizer, load_dialogue_database_from_json
-from keras.models import Sequential
-from keras.layers import Embedding, LSTM, Dense
+from .data import load_dialogue_database_from_json
+from gensim.models import Word2Vec
 import numpy as np
 import json
+
+
 
 def load_dialogue_database(file_path):
     try:
@@ -17,37 +17,19 @@ def save_dialogue_database(dialogue_database, file_path):
     with open(file_path, 'w', encoding='utf-8') as file:
         json.dump(dialogue_database, file, ensure_ascii=False, indent=4)
 
-def create_model(vocab_size, max_sequence_length, embedding_dim, lstm_units):
-    model = Sequential()
-    model.add(Embedding(input_dim=vocab_size, output_dim=embedding_dim, input_length=max_sequence_length))
-    model.add(LSTM(units=lstm_units))
-    model.add(Dense(vocab_size, activation='softmax'))
-    return model
 
-def pad_or_trim_sequence(sequence, max_length):
-    if len(sequence) < max_length:
-        # Если длина последовательности меньше максимальной, дополняем нулями
-        padded_sequence = sequence + [0] * (max_length - len(sequence))
-    else:
-        # Если длина последовательности больше или равна максимальной, обрезаем до максимальной длины
-        padded_sequence = sequence[:max_length]
-    return padded_sequence
 
-def generate_response(model, tokenizer, user_input, max_sequence_length, dialogue_database):
-    # Отладочный вывод для проверки аргументов
-    print("user_input:", user_input)
-
+def generate_response(word2vec_model, user_input, dialogue_database):
+    # Разбиваем вход пользователя на слова
+    user_input_tokens = user_input.lower().split()
+    
     # Проверяем, начинается ли входное сообщение с ключевого слова "запомни"
-    if user_input.startswith("запомни"):
+    if user_input.startswith("Запомни"):
         # Извлекаем вопрос и ответ из сообщения
-        question_answer = user_input.split("запомни", 1)[1].strip()
+        question_answer = user_input.split("Запомни", 1)[1].strip()
         # Проверяем, присутствует ли фраза "тебя спросят" во входной строке
         if "тебя спросят" in question_answer:
             question, answer = question_answer.split("тебя спросят", 1)
-            # Отладочный вывод для проверки извлеченных вопроса и ответа
-            print("question:", question.strip())
-            print("answer:", answer.strip())
-
             # Вызываем функцию remember_dialogue
             remember_dialogue(question.strip(), answer.strip(), dialogue_database)
             return "Я запомнил этот диалог."
@@ -58,29 +40,32 @@ def generate_response(model, tokenizer, user_input, max_sequence_length, dialogu
     if user_input in dialogue_database:
         # Если есть несколько ответов на вопрос, выбираем один случайным образом
         return np.random.choice(dialogue_database[user_input])
-    print("Входной текст:", user_input)
-    # Преобразование входного текста в последовательность чисел с помощью токенизатора
-    input_sequence = tokenizer.texts_to_sequences([user_input])
-    print("Числовая последовательность:", input_sequence)
-    # Дополнение последовательности нулями или обрезка, чтобы достичь максимальной длины
-    input_sequence = pad_or_trim_sequence(input_sequence[0], max_sequence_length)
     
-    # Получение предсказания от модели
-    predicted_id = np.argmax(model.predict(np.array([input_sequence])), axis=-1)[0]
-    print("Предсказанный ID:", predicted_id)
-    # Преобразование числа обратно в текст с помощью токенизатора
-    bot_response = tokenizer.index_word.get(predicted_id, "Простите, я вас не понимаю или пока нет ответа на данное предложение.")
-    print("Ответ бота:", bot_response)
-    return bot_response
+    # Ищем наиболее похожие слова в модели Word2Vec
+    similar_words = []
+    for word in user_input_tokens:
+        if word in word2vec_model.wv.key_to_index:
+            similar_words.extend(word2vec_model.wv.most_similar(word, topn=3))  # Поиск 3 наиболее похожих слов
+    # Выбираем ответ из базы данных, если найдены похожие слова
+    responses = []
+    for word, similarity in similar_words:
+        if word in dialogue_database:
+            responses.extend(dialogue_database[word])
+    if responses:
+        return np.random.choice(responses)
+    else:
+        return "Простите, я не могу понять ваш запрос или у меня нет ответа на него."
 
 
 def recognize_question(user_input, dialogue_database):
+    # Эта функция остается без изменений, так как она не зависит от выбранной модели
     for question in dialogue_database:
         if question in user_input:
             return question
     return None
 
 def remember_dialogue(question, answer, dialogue_database):
+    # Эта функция остается без изменений, так как она не зависит от выбранной модели
     print("Запомнил вопрос:", question)
     print("Запомнил ответ:", answer)
     if question in dialogue_database:
@@ -91,19 +76,19 @@ def remember_dialogue(question, answer, dialogue_database):
         dialogue_database[question] = [answer]
     save_dialogue_database(dialogue_database, 'dialogue_database.json')
 
+# Загрузка модели Word2Vec
+word2vec_model = Word2Vec.load('word2vec.bin')
 
+# Загрузка базы данных из JSON файла
+dialogue_database = load_dialogue_database('dialogue_database.json')
 
-# Параметры модели
-vocab_size = 10000  # Размер словаря
-max_sequence_length = 20  # Максимальная длина последовательности вопроса
-embedding_dim = 100  # Размерность векторов вложений
-lstm_units = 256  # Количество нейронов в слое LSTM
+# Остальные параметры модели LSTM (не нужны для Word2Vec)
+vocab_size = None
+max_sequence_length = None
+embedding_dim = None
+lstm_units = None
 
-# Создание модели
-model = create_model(vocab_size, max_sequence_length, embedding_dim, lstm_units)
+# Необходимо также создать заглушку для компиляции модели, так как она не требуется для Word2Vec
+def compile_model(model):
+    pass
 
-# Компиляция модели
-model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
-
-# Вывод информации о модели
-model.summary()
