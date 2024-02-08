@@ -2,7 +2,9 @@ from .data import load_dialogue_database_from_json
 from gensim.models import Word2Vec
 import numpy as np
 import json
-
+import Levenshtein
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
 
 
 def load_dialogue_database(file_path):
@@ -11,7 +13,10 @@ def load_dialogue_database(file_path):
             dialogue_database = json.load(file)
     except FileNotFoundError:
         dialogue_database = {}
+    # Приведение ключей к нижнему регистру
+    dialogue_database = {question.lower(): answers for question, answers in dialogue_database.items()}
     return dialogue_database
+
 
 def save_dialogue_database(dialogue_database, file_path):
     with open(file_path, 'w', encoding='utf-8') as file:
@@ -19,14 +24,15 @@ def save_dialogue_database(dialogue_database, file_path):
 
 
 
-def generate_response(word2vec_model, user_input, dialogue_database):
-    # Разбиваем вход пользователя на слова
-    user_input_tokens = user_input.lower().split()
+
+def generate_response(user_input, dialogue_database):
+    # Приводим входной текст к нижнему регистру
+    user_input = user_input.lower()  
     
     # Проверяем, начинается ли входное сообщение с ключевого слова "запомни"
-    if user_input.startswith("Запомни"):
+    if user_input.startswith("запомни"):
         # Извлекаем вопрос и ответ из сообщения
-        question_answer = user_input.split("Запомни", 1)[1].strip()
+        question_answer = user_input.split("запомни", 1)[1].strip()
         # Проверяем, присутствует ли фраза "тебя спросят" во входной строке
         if "тебя спросят" in question_answer:
             question, answer = question_answer.split("тебя спросят", 1)
@@ -35,26 +41,50 @@ def generate_response(word2vec_model, user_input, dialogue_database):
             return "Я запомнил этот диалог."
         else:
             return "Фраза 'тебя спросят' отсутствует в вашем запросе."
-    
-    # Проверяем, есть ли вопрос в базе данных
+
+    # Собираем все фразы из базы данных
+    all_phrases = list(dialogue_database.keys())
+
+    # Добавляем входную фразу в список
+    all_phrases.append(user_input)
+
+    # Создаем матрицу TF-IDF для всех фраз
+    vectorizer = TfidfVectorizer()
+    tfidf_matrix = vectorizer.fit_transform(all_phrases)
+
+    # Вычисляем косинусное сходство между входной фразой и всеми фразами из базы данных
+    similarities = cosine_similarity(tfidf_matrix[-1:], tfidf_matrix[:-1])
+
+    # Находим наиболее похожую фразу
+    max_similarity_index = np.argmax(similarities)
+    max_similarity = similarities[0][max_similarity_index]
+
+    # Если сходство больше некоторого порога, возвращаем ответ из базы данных
+    if max_similarity > 0.5:  # Пример порога
+        return np.random.choice(dialogue_database[all_phrases[max_similarity_index]])
+    else:
+        return "Простите, я не могу понять ваш запрос или у меня нет ответа на него."
+
+
+    # Проверяем, есть ли точное совпадение в базе данных
     if user_input in dialogue_database:
-        # Если есть несколько ответов на вопрос, выбираем один случайным образом
-        return np.random.choice(dialogue_database[user_input])
-    
-    # Ищем наиболее похожие слова в модели Word2Vec
-    similar_words = []
-    for word in user_input_tokens:
-        if word in word2vec_model.wv.key_to_index:
-            similar_words.extend(word2vec_model.wv.most_similar(word, topn=3))  # Поиск 3 наиболее похожих слов
-    # Выбираем ответ из базы данных, если найдены похожие слова
-    responses = []
-    for word, similarity in similar_words:
-        if word in dialogue_database:
-            responses.extend(dialogue_database[word])
+        responses.extend(dialogue_database[user_input])
+
+    # Если нет точного совпадения, попробуем найти наиболее близкие запросы по расстоянию Левенштейна
+    if not responses:
+        for question, answers in dialogue_database.items():
+            if Levenshtein.distance(user_input, question) <= 2:  # Подберите подходящий порог
+                responses.extend(answers)
+
     if responses:
         return np.random.choice(responses)
     else:
         return "Простите, я не могу понять ваш запрос или у меня нет ответа на него."
+
+
+
+
+
 
 
 def recognize_question(user_input, dialogue_database):

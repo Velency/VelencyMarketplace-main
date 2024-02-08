@@ -349,7 +349,7 @@ def collect_data(request):
         
 
         # Генерируем ответ на основе входного сообщения
-        bot_response = generate_response(word2vec_model, user_input, dialogue_database)
+        bot_response = generate_response(user_input, dialogue_database)
 
 
         return JsonResponse({'response': bot_response})
