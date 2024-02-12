@@ -28,8 +28,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from velencystore.settings import RECIPIENTS_EMAIL, EMAIL_HOST_USER
 from django.utils import timezone
-from .data import  dialogue_database, load_dialogue_database_from_json
-from .bot_model import recognize_question, generate_response, word2vec_model, remember_dialogue
+from .bot_model import   load_dialogue_database, generate_response, use_model, remember_dialogue
+
 
 # Create your views here.
 
@@ -338,25 +338,25 @@ def academy_profile(request):
         return render(request, 'store/academy_cab_main.html', context)
 
 
-# Загрузка базы данных из JSON файла
-dialogue_database = load_dialogue_database_from_json('dialogue_database.json')
+
 
 @csrf_exempt
 def collect_data(request):
+    # Загрузка базы данных и модели Doc2Vec
+    dialogue_database = load_dialogue_database('dialogue_database.json')
+   
+
     if request.method == 'POST':
         user_input = request.POST.get('input', '')
         print('Получено сообщение от клиента:', user_input)
         
-
         # Генерируем ответ на основе входного сообщения
-        bot_response = generate_response(user_input, dialogue_database)
+        bot_response = generate_response(user_input, dialogue_database, use_model)
+
 
 
         return JsonResponse({'response': bot_response})
     
-
-
-
 
 
 
